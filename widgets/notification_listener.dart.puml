@@ -1,0 +1,32 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::notification_listener.dart::Notification" {
+  +void dispatch()
+  +String toString()
+  +void debugFillDescription()
+}
+
+class "flutter::lib::src::widgets::notification_listener.dart::NotificationListener" {
+  +bool Function(T)? onNotification
+  +Element createElement()
+}
+
+"flutter::lib::src::widgets::notification_listener.dart::NotificationListener" o-- "flutter::lib::src::widgets::notification_listener.dart::bool Function(T)"
+"flutter::lib::src::widgets::framework.dart::ProxyWidget" <|-- "flutter::lib::src::widgets::notification_listener.dart::NotificationListener"
+
+class "flutter::lib::src::widgets::notification_listener.dart::_NotificationElement" {
+  +bool onNotification()
+  +void notifyClients()
+}
+
+"flutter::lib::src::widgets::framework.dart::ProxyElement" <|-- "flutter::lib::src::widgets::notification_listener.dart::_NotificationElement"
+"flutter::lib::src::widgets::framework.dart::NotifiableElementMixin" <|-- "flutter::lib::src::widgets::notification_listener.dart::_NotificationElement"
+
+class "flutter::lib::src::widgets::notification_listener.dart::LayoutChangedNotification" {
+}
+
+"flutter::lib::src::widgets::notification_listener.dart::Notification" <|-- "flutter::lib::src::widgets::notification_listener.dart::LayoutChangedNotification"
+
+
+@enduml

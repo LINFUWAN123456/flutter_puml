@@ -1,0 +1,111 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" {
+  +Future<bool> didPopRoute()
+  +Future<bool> didPushRoute()
+  +Future<bool> didPushRouteInformation()
+  +void didChangeMetrics()
+  +void didChangeTextScaleFactor()
+  +void didChangePlatformBrightness()
+  +void didChangeLocales()
+  +void didChangeAppLifecycleState()
+  +void didHaveMemoryPressure()
+  +void didChangeAccessibilityFeatures()
+}
+
+class "flutter::lib::src::widgets::binding.dart::RenderObjectToWidgetAdapter" {
+  +Widget? child
+  +dynamic container
+  +String? debugShortDescription
+  +RenderObjectToWidgetElement<T> createElement()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +RenderObjectToWidgetElement<T> attachToRenderTree()
+  +String toStringShort()
+}
+
+"flutter::lib::src::widgets::binding.dart::RenderObjectToWidgetAdapter" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::RenderObjectWidget" <|-- "flutter::lib::src::widgets::binding.dart::RenderObjectToWidgetAdapter"
+
+class "flutter::lib::src::widgets::binding.dart::RenderObjectToWidgetElement" {
+  -Element? _child
+  {static} -Object _rootChildSlot
+  -Widget? _newWidget
+  +dynamic renderObject
+  +void visitChildren()
+  +void forgetChild()
+  +void mount()
+  +void update()
+  +void performRebuild()
+  -void _rebuild()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+}
+
+"flutter::lib::src::widgets::binding.dart::RenderObjectToWidgetElement" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::widgets::binding.dart::RenderObjectToWidgetElement" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::RootRenderObjectElement" <|-- "flutter::lib::src::widgets::binding.dart::RenderObjectToWidgetElement"
+
+class "flutter::lib::src::widgets::binding.dart::WidgetsFlutterBinding" {
+  {static} +WidgetsBinding ensureInitialized()
+}
+
+"flutter::lib::src::widgets::binding.dart::WidgetsBinding" <|-- "flutter::lib::src::widgets::binding.dart::WidgetsFlutterBinding"
+
+abstract class "flutter::lib::src::widgets::binding.dart::WidgetsBinding" {
+  {static} -WidgetsBinding? _instance
+  -BuildOwner? _buildOwner
+  +PlatformMenuDelegate platformMenuDelegate
+  -List<WidgetsBindingObserver> _observers
+  -bool _needToReportFirstFrame
+  -Completer<void> _firstFrameCompleter
+  +bool debugBuildingDirtyElements
+  -Element? _renderViewElement
+  -bool _readyToProduceFrames
+  {static} +WidgetsBinding instance
+  +BuildOwner? buildOwner
+  +FocusManager focusManager
+  +bool firstFrameRasterized
+  +Future<void> waitUntilFirstFrameRasterized
+  +bool debugDidSendFirstFrameEvent
+  +Element? renderViewElement
+  +bool framesEnabled
+  +bool isRootWidgetAttached
+  +void initInstances()
+  -void _debugAddStackFilters()
+  +void initServiceExtensions()
+  -Future<void> _forceRebuild()
+  +void addObserver()
+  +bool removeObserver()
+  +void handleMetricsChanged()
+  +void handleTextScaleFactorChanged()
+  +void handlePlatformBrightnessChanged()
+  +void handleAccessibilityFeaturesChanged()
+  +void handleLocaleChanged()
+  +void dispatchLocalesChanged()
+  +void dispatchAccessibilityFeaturesChanged()
+  +Future<void> handlePopRoute()
+  +Future<void> handlePushRoute()
+  -Future<void> _handlePushRouteInformation()
+  -Future<dynamic> _handleNavigationInvocation()
+  +void handleAppLifecycleStateChanged()
+  +void handleMemoryPressure()
+  -void _handleBuildScheduled()
+  +void drawFrame()
+  +void scheduleAttachRootWidget()
+  +void attachRootWidget()
+  +Future<void> performReassemble()
+  +dynamic computePlatformResolvedLocale()
+}
+
+"flutter::lib::src::widgets::binding.dart::WidgetsBinding" o-- "flutter::lib::src::widgets::binding.dart::WidgetsBinding"
+"flutter::lib::src::widgets::binding.dart::WidgetsBinding" o-- "flutter::lib::src::widgets::framework.dart::BuildOwner"
+"flutter::lib::src::widgets::binding.dart::WidgetsBinding" o-- "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuDelegate"
+"flutter::lib::src::widgets::binding.dart::WidgetsBinding" o-- "dart::async::Completer<void>"
+"flutter::lib::src::widgets::binding.dart::WidgetsBinding" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::widgets::binding.dart::WidgetsBinding" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusManager"
+
+
+@enduml

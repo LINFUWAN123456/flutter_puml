@@ -1,0 +1,178 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::ink_well.dart::InteractiveInkFeature" {
+  -dynamic _color
+  +dynamic color
+  +void confirm()
+  +void cancel()
+  +void paintInkCircle()
+}
+
+"flutter::lib::src::material::material.dart::InkFeature" <|-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeature"
+
+abstract class "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory" {
+  +InteractiveInkFeature create()
+}
+
+abstract class "flutter::lib::src::material::ink_well.dart::_ParentInkResponseState" {
+  +void markChildInkResponsePressed()
+}
+
+class "flutter::lib::src::material::ink_well.dart::_ParentInkResponseProvider" {
+  +_ParentInkResponseState state
+  +bool updateShouldNotify()
+  {static} +_ParentInkResponseState? of()
+}
+
+"flutter::lib::src::material::ink_well.dart::_ParentInkResponseProvider" o-- "flutter::lib::src::material::ink_well.dart::_ParentInkResponseState"
+
+class "flutter::lib::src::material::ink_well.dart::InkResponse" {
+  +dynamic child
+  +dynamic onTap
+  +dynamic onTapDown
+  +dynamic onTapUp
+  +dynamic onTapCancel
+  +dynamic onDoubleTap
+  +dynamic onLongPress
+  +dynamic onHighlightChanged
+  +dynamic onHover
+  +dynamic mouseCursor
+  +bool containedInkWell
+  +dynamic highlightShape
+  +double? radius
+  +dynamic borderRadius
+  +dynamic customBorder
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic highlightColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +dynamic splashColor
+  +InteractiveInkFeatureFactory? splashFactory
+  +bool enableFeedback
+  +bool excludeFromSemantics
+  +dynamic onFocusChange
+  +bool autofocus
+  +dynamic focusNode
+  +bool canRequestFocus
+  +MaterialStatesController? statesController
+  +dynamic Function()? getRectCallback()
+  +dynamic build()
+  +bool debugCheckContext()
+}
+
+"flutter::lib::src::material::ink_well.dart::InkResponse" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::ink_well.dart::InkResponse" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::ink_well.dart::InkResponse" o-- "flutter::lib::src::material::material_state.dart::MaterialStatesController"
+
+class "flutter::lib::src::material::ink_well.dart::_InkResponseStateWidget" {
+  +dynamic child
+  +dynamic onTap
+  +dynamic onTapDown
+  +dynamic onTapUp
+  +dynamic onTapCancel
+  +dynamic onDoubleTap
+  +dynamic onLongPress
+  +dynamic onHighlightChanged
+  +dynamic onHover
+  +dynamic mouseCursor
+  +bool containedInkWell
+  +dynamic highlightShape
+  +double? radius
+  +dynamic borderRadius
+  +dynamic customBorder
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic highlightColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +dynamic splashColor
+  +InteractiveInkFeatureFactory? splashFactory
+  +bool enableFeedback
+  +bool excludeFromSemantics
+  +dynamic onFocusChange
+  +bool autofocus
+  +dynamic focusNode
+  +bool canRequestFocus
+  +_ParentInkResponseState? parentState
+  +dynamic Function()? Function(dynamic)? getRectCallback
+  +bool Function(dynamic) debugCheckContext
+  +MaterialStatesController? statesController
+  +_InkResponseState createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::ink_well.dart::_InkResponseStateWidget" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::ink_well.dart::_InkResponseStateWidget" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::ink_well.dart::_InkResponseStateWidget" o-- "flutter::lib::src::material::ink_well.dart::_ParentInkResponseState"
+"flutter::lib::src::material::ink_well.dart::_InkResponseStateWidget" o-- "flutter::lib::src::material::ink_well.dart::dynamic Function() Function(dynamic)"
+"flutter::lib::src::material::ink_well.dart::_InkResponseStateWidget" o-- "flutter::lib::src::material::ink_well.dart::bool Function(dynamic)"
+"flutter::lib::src::material::ink_well.dart::_InkResponseStateWidget" o-- "flutter::lib::src::material::material_state.dart::MaterialStatesController"
+
+class "flutter::lib::src::material::ink_well.dart::_InkResponseState" {
+  -Set<InteractiveInkFeature>? _splashes
+  -InteractiveInkFeature? _currentSplash
+  -bool _hovering
+  -Map<_HighlightType, InkHighlight?> _highlights
+  -Map<Type, dynamic> _actionMap
+  +MaterialStatesController? internalStatesController
+  -dynamic _activeChildren
+  -bool _hasFocus
+  +bool highlightsExist
+  -bool _anyChildInkResponsePressed
+  +MaterialStatesController statesController
+  +bool wantKeepAlive
+  -bool _shouldShowFocus
+  +bool enabled
+  -bool _canRequestFocus
+  +void markChildInkResponsePressed()
+  +void simulateTap()
+  +void simulateLongPress()
+  +void handleStatesControllerChange()
+  +void initStatesController()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic getHighlightColorForType()
+  +Duration getFadeDurationForType()
+  +void updateHighlight()
+  -InteractiveInkFeature _createInkFeature()
+  +void handleFocusHighlightModeChange()
+  +void updateFocusHighlights()
+  +void handleFocusUpdate()
+  +void handleTapDown()
+  +void handleTapUp()
+  -void _startNewSplash()
+  +void handleTap()
+  +void handleTapCancel()
+  +void handleDoubleTap()
+  +void handleLongPress()
+  +void deactivate()
+  +bool isWidgetEnabled()
+  +void handleMouseEnter()
+  +void handleMouseExit()
+  +void handleHoverChange()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::ink_well.dart::_InkResponseState" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeature"
+"flutter::lib::src::material::ink_well.dart::_InkResponseState" o-- "flutter::lib::src::material::material_state.dart::MaterialStatesController"
+"flutter::lib::src::material::ink_well.dart::_ParentInkResponseState" <|-- "flutter::lib::src::material::ink_well.dart::_InkResponseState"
+
+class "flutter::lib::src::material::ink_well.dart::InkWell" {
+}
+
+"flutter::lib::src::material::ink_well.dart::InkResponse" <|-- "flutter::lib::src::material::ink_well.dart::InkWell"
+
+class "flutter::lib::src::material::ink_well.dart::_HighlightType" {
+  +int index
+  {static} +List<_HighlightType> values
+  {static} +_HighlightType pressed
+  {static} +_HighlightType hover
+  {static} +_HighlightType focus
+}
+
+"flutter::lib::src::material::ink_well.dart::_HighlightType" o-- "flutter::lib::src::material::ink_well.dart::_HighlightType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::ink_well.dart::_HighlightType"
+
+
+@enduml

@@ -1,0 +1,151 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::gesture_detector.dart::GestureRecognizerFactory" {
+  +T constructor()
+  +void initializer()
+  -bool _debugAssertTypeMatches()
+}
+
+class "flutter::lib::src::widgets::gesture_detector.dart::GestureRecognizerFactoryWithHandlers" {
+  -T Function() _constructor
+  -void Function(T) _initializer
+  +T constructor()
+  +void initializer()
+}
+
+"flutter::lib::src::widgets::gesture_detector.dart::GestureRecognizerFactoryWithHandlers" o-- "flutter::lib::src::widgets::gesture_detector.dart::T Function()"
+"flutter::lib::src::widgets::gesture_detector.dart::GestureRecognizerFactoryWithHandlers" o-- "flutter::lib::src::widgets::gesture_detector.dart::void Function(T)"
+"flutter::lib::src::widgets::gesture_detector.dart::GestureRecognizerFactory" <|-- "flutter::lib::src::widgets::gesture_detector.dart::GestureRecognizerFactoryWithHandlers"
+
+class "flutter::lib::src::widgets::gesture_detector.dart::GestureDetector" {
+  +Widget? child
+  +dynamic onTapDown
+  +dynamic onTapUp
+  +dynamic onTap
+  +dynamic onTapCancel
+  +dynamic onSecondaryTap
+  +dynamic onSecondaryTapDown
+  +dynamic onSecondaryTapUp
+  +dynamic onSecondaryTapCancel
+  +dynamic onTertiaryTapDown
+  +dynamic onTertiaryTapUp
+  +dynamic onTertiaryTapCancel
+  +dynamic onDoubleTapDown
+  +dynamic onDoubleTap
+  +dynamic onDoubleTapCancel
+  +dynamic onLongPressDown
+  +dynamic onLongPressCancel
+  +dynamic onLongPress
+  +dynamic onLongPressStart
+  +dynamic onLongPressMoveUpdate
+  +dynamic onLongPressUp
+  +dynamic onLongPressEnd
+  +dynamic onSecondaryLongPressDown
+  +dynamic onSecondaryLongPressCancel
+  +dynamic onSecondaryLongPress
+  +dynamic onSecondaryLongPressStart
+  +dynamic onSecondaryLongPressMoveUpdate
+  +dynamic onSecondaryLongPressUp
+  +dynamic onSecondaryLongPressEnd
+  +dynamic onTertiaryLongPressDown
+  +dynamic onTertiaryLongPressCancel
+  +dynamic onTertiaryLongPress
+  +dynamic onTertiaryLongPressStart
+  +dynamic onTertiaryLongPressMoveUpdate
+  +dynamic onTertiaryLongPressUp
+  +dynamic onTertiaryLongPressEnd
+  +dynamic onVerticalDragDown
+  +dynamic onVerticalDragStart
+  +dynamic onVerticalDragUpdate
+  +dynamic onVerticalDragEnd
+  +dynamic onVerticalDragCancel
+  +dynamic onHorizontalDragDown
+  +dynamic onHorizontalDragStart
+  +dynamic onHorizontalDragUpdate
+  +dynamic onHorizontalDragEnd
+  +dynamic onHorizontalDragCancel
+  +dynamic onPanDown
+  +dynamic onPanStart
+  +dynamic onPanUpdate
+  +dynamic onPanEnd
+  +dynamic onPanCancel
+  +dynamic onScaleStart
+  +dynamic onScaleUpdate
+  +dynamic onScaleEnd
+  +dynamic onForcePressStart
+  +dynamic onForcePressPeak
+  +dynamic onForcePressUpdate
+  +dynamic onForcePressEnd
+  +dynamic behavior
+  +bool excludeFromSemantics
+  +dynamic dragStartBehavior
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::gesture_detector.dart::GestureDetector" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::gesture_detector.dart::GestureDetector"
+
+class "flutter::lib::src::widgets::gesture_detector.dart::RawGestureDetector" {
+  +Widget? child
+  +Map<Type, GestureRecognizerFactory<dynamic>> gestures
+  +dynamic behavior
+  +bool excludeFromSemantics
+  +SemanticsGestureDelegate? semantics
+  +RawGestureDetectorState createState()
+}
+
+"flutter::lib::src::widgets::gesture_detector.dart::RawGestureDetector" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::gesture_detector.dart::RawGestureDetector" o-- "flutter::lib::src::widgets::gesture_detector.dart::SemanticsGestureDelegate"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::gesture_detector.dart::RawGestureDetector"
+
+class "flutter::lib::src::widgets::gesture_detector.dart::RawGestureDetectorState" {
+  -Map<Type, dynamic>? _recognizers
+  -SemanticsGestureDelegate? _semantics
+  -dynamic _defaultBehavior
+  +void initState()
+  +void didUpdateWidget()
+  +void replaceGestureRecognizers()
+  +void replaceSemanticsActions()
+  +void dispose()
+  -void _syncAll()
+  -void _handlePointerDown()
+  -void _handlePointerPanZoomStart()
+  -void _updateSemanticsForRenderObject()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::gesture_detector.dart::RawGestureDetectorState" o-- "flutter::lib::src::widgets::gesture_detector.dart::SemanticsGestureDelegate"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::gesture_detector.dart::RawGestureDetectorState"
+
+class "flutter::lib::src::widgets::gesture_detector.dart::_GestureSemantics" {
+  +dynamic behavior
+  +void Function(dynamic) assignSemantics
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::gesture_detector.dart::_GestureSemantics" o-- "flutter::lib::src::widgets::gesture_detector.dart::void Function(dynamic)"
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::gesture_detector.dart::_GestureSemantics"
+
+abstract class "flutter::lib::src::widgets::gesture_detector.dart::SemanticsGestureDelegate" {
+  +void assignSemantics()
+  +String toString()
+}
+
+class "flutter::lib::src::widgets::gesture_detector.dart::_DefaultSemanticsGestureDelegate" {
+  +RawGestureDetectorState detectorState
+  +void assignSemantics()
+  -dynamic _getTapHandler()
+  -dynamic _getLongPressHandler()
+  -dynamic _getHorizontalDragUpdateHandler()
+  -dynamic _getVerticalDragUpdateHandler()
+}
+
+"flutter::lib::src::widgets::gesture_detector.dart::_DefaultSemanticsGestureDelegate" o-- "flutter::lib::src::widgets::gesture_detector.dart::RawGestureDetectorState"
+"flutter::lib::src::widgets::gesture_detector.dart::SemanticsGestureDelegate" <|-- "flutter::lib::src::widgets::gesture_detector.dart::_DefaultSemanticsGestureDelegate"
+
+
+@enduml

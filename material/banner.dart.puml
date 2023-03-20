@@ -1,0 +1,44 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::banner.dart::MaterialBanner" {
+  +dynamic content
+  +dynamic contentTextStyle
+  +List<dynamic> actions
+  +double? elevation
+  +dynamic leading
+  +dynamic backgroundColor
+  +dynamic padding
+  +dynamic leadingPadding
+  +bool forceActionsBelow
+  +dynamic overflowAlignment
+  +dynamic animation
+  +dynamic onVisible
+  {static} +dynamic createAnimationController()
+  +MaterialBanner withAnimation()
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::banner.dart::_MaterialBannerState" {
+  -bool _wasVisible
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _onAnimationStatusChanged()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::banner.dart::MaterialBannerClosedReason" {
+  +int index
+  {static} +List<MaterialBannerClosedReason> values
+  {static} +MaterialBannerClosedReason dismiss
+  {static} +MaterialBannerClosedReason swipe
+  {static} +MaterialBannerClosedReason hide
+  {static} +MaterialBannerClosedReason remove
+}
+
+"flutter::lib::src::material::banner.dart::MaterialBannerClosedReason" o-- "flutter::lib::src::material::banner.dart::MaterialBannerClosedReason"
+"dart::core::Enum" <|-- "flutter::lib::src::material::banner.dart::MaterialBannerClosedReason"
+
+
+@enduml

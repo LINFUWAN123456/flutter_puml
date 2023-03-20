@@ -1,0 +1,135 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::scroll_activity.dart::ScrollActivityDelegate" {
+  +dynamic axisDirection
+  +double setPixels()
+  +void applyUserOffset()
+  +void goIdle()
+  +void goBallistic()
+}
+
+abstract class "flutter::lib::src::widgets::scroll_activity.dart::ScrollActivity" {
+  -ScrollActivityDelegate _delegate
+  +ScrollActivityDelegate delegate
+  +bool shouldIgnorePointer
+  +bool isScrolling
+  +double velocity
+  +void updateDelegate()
+  +void resetActivity()
+  +void dispatchScrollStartNotification()
+  +void dispatchScrollUpdateNotification()
+  +void dispatchOverscrollNotification()
+  +void dispatchScrollEndNotification()
+  +void applyNewDimensions()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollActivity" o-- "flutter::lib::src::widgets::scroll_activity.dart::ScrollActivityDelegate"
+
+class "flutter::lib::src::widgets::scroll_activity.dart::IdleScrollActivity" {
+  +bool shouldIgnorePointer
+  +bool isScrolling
+  +double velocity
+  +void applyNewDimensions()
+}
+
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollActivity" <|-- "flutter::lib::src::widgets::scroll_activity.dart::IdleScrollActivity"
+
+abstract class "flutter::lib::src::widgets::scroll_activity.dart::ScrollHoldController" {
+  +void cancel()
+}
+
+class "flutter::lib::src::widgets::scroll_activity.dart::HoldScrollActivity" {
+  +dynamic onHoldCanceled
+  +bool shouldIgnorePointer
+  +bool isScrolling
+  +double velocity
+  +void cancel()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollActivity" <|-- "flutter::lib::src::widgets::scroll_activity.dart::HoldScrollActivity"
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollHoldController" <|-- "flutter::lib::src::widgets::scroll_activity.dart::HoldScrollActivity"
+
+class "flutter::lib::src::widgets::scroll_activity.dart::ScrollDragController" {
+  -ScrollActivityDelegate _delegate
+  +dynamic onDragCanceled
+  +double? carriedVelocity
+  +double? motionStartDistanceThreshold
+  -Duration? _lastNonStationaryTimestamp
+  -bool _retainMomentum
+  -double? _offsetSinceLastStop
+  {static} +Duration momentumRetainStationaryDurationThreshold
+  {static} +double momentumRetainVelocityThresholdFactor
+  {static} +Duration motionStoppedDurationThreshold
+  {static} -double _bigThresholdBreakDistance
+  -dynamic _lastDetails
+  +ScrollActivityDelegate delegate
+  -bool _reversed
+  +dynamic lastDetails
+  +void updateDelegate()
+  -void _maybeLoseMomentum()
+  -double _adjustForScrollStartThreshold()
+  +void update()
+  +void end()
+  +void cancel()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollDragController" o-- "flutter::lib::src::widgets::scroll_activity.dart::ScrollActivityDelegate"
+
+class "flutter::lib::src::widgets::scroll_activity.dart::DragScrollActivity" {
+  -ScrollDragController? _controller
+  +bool shouldIgnorePointer
+  +bool isScrolling
+  +double velocity
+  +void dispatchScrollStartNotification()
+  +void dispatchScrollUpdateNotification()
+  +void dispatchOverscrollNotification()
+  +void dispatchScrollEndNotification()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scroll_activity.dart::DragScrollActivity" o-- "flutter::lib::src::widgets::scroll_activity.dart::ScrollDragController"
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollActivity" <|-- "flutter::lib::src::widgets::scroll_activity.dart::DragScrollActivity"
+
+class "flutter::lib::src::widgets::scroll_activity.dart::BallisticScrollActivity" {
+  -dynamic _controller
+  +bool shouldIgnorePointer
+  +bool isScrolling
+  +double velocity
+  +void resetActivity()
+  +void applyNewDimensions()
+  -void _tick()
+  +bool applyMoveTo()
+  -void _end()
+  +void dispatchOverscrollNotification()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollActivity" <|-- "flutter::lib::src::widgets::scroll_activity.dart::BallisticScrollActivity"
+
+class "flutter::lib::src::widgets::scroll_activity.dart::DrivenScrollActivity" {
+  -Completer<void> _completer
+  -dynamic _controller
+  +Future<void> done
+  +bool shouldIgnorePointer
+  +bool isScrolling
+  +double velocity
+  -void _tick()
+  -void _end()
+  +void dispatchOverscrollNotification()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scroll_activity.dart::DrivenScrollActivity" o-- "dart::async::Completer<void>"
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollActivity" <|-- "flutter::lib::src::widgets::scroll_activity.dart::DrivenScrollActivity"
+
+
+@enduml

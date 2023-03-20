@@ -1,0 +1,776 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::basic.dart::_UbiquitousInheritedElement" {
+  +void setDependencies()
+  +Object? getDependencies()
+  +void notifyClients()
+  {static} -void _recurseChildren()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedElement" <|-- "flutter::lib::src::widgets::basic.dart::_UbiquitousInheritedElement"
+
+abstract class "flutter::lib::src::widgets::basic.dart::_UbiquitousInheritedWidget" {
+  +InheritedElement createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::basic.dart::_UbiquitousInheritedWidget"
+
+class "flutter::lib::src::widgets::basic.dart::Directionality" {
+  +dynamic textDirection
+  {static} +dynamic of()
+  {static} +dynamic maybeOf()
+  +bool updateShouldNotify()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::basic.dart::_UbiquitousInheritedWidget" <|-- "flutter::lib::src::widgets::basic.dart::Directionality"
+
+class "flutter::lib::src::widgets::basic.dart::Opacity" {
+  +double opacity
+  +bool alwaysIncludeSemantics
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Opacity"
+
+class "flutter::lib::src::widgets::basic.dart::ShaderMask" {
+  +dynamic shaderCallback
+  +dynamic blendMode
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ShaderMask"
+
+class "flutter::lib::src::widgets::basic.dart::BackdropFilter" {
+  +dynamic filter
+  +dynamic blendMode
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::BackdropFilter"
+
+class "flutter::lib::src::widgets::basic.dart::CustomPaint" {
+  +dynamic painter
+  +dynamic foregroundPainter
+  +dynamic size
+  +bool isComplex
+  +bool willChange
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void didUnmountRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::CustomPaint"
+
+class "flutter::lib::src::widgets::basic.dart::ClipRect" {
+  +dynamic clipper
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void didUnmountRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ClipRect"
+
+class "flutter::lib::src::widgets::basic.dart::ClipRRect" {
+  +dynamic borderRadius
+  +dynamic clipper
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ClipRRect"
+
+class "flutter::lib::src::widgets::basic.dart::ClipOval" {
+  +dynamic clipper
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void didUnmountRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ClipOval"
+
+class "flutter::lib::src::widgets::basic.dart::ClipPath" {
+  +dynamic clipper
+  +dynamic clipBehavior
+  {static} +Widget shape()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void didUnmountRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ClipPath"
+
+class "flutter::lib::src::widgets::basic.dart::PhysicalModel" {
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic borderRadius
+  +double elevation
+  +dynamic color
+  +dynamic shadowColor
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::PhysicalModel"
+
+class "flutter::lib::src::widgets::basic.dart::PhysicalShape" {
+  +dynamic clipper
+  +dynamic clipBehavior
+  +double elevation
+  +dynamic color
+  +dynamic shadowColor
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::PhysicalShape"
+
+class "flutter::lib::src::widgets::basic.dart::Transform" {
+  +dynamic transform
+  +dynamic origin
+  +dynamic alignment
+  +bool transformHitTests
+  +dynamic filterQuality
+  {static} -dynamic _computeRotation()
+  {static} -dynamic _createZRotation()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Transform"
+
+class "flutter::lib::src::widgets::basic.dart::CompositedTransformTarget" {
+  +dynamic link
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::CompositedTransformTarget"
+
+class "flutter::lib::src::widgets::basic.dart::CompositedTransformFollower" {
+  +dynamic link
+  +bool showWhenUnlinked
+  +dynamic targetAnchor
+  +dynamic followerAnchor
+  +dynamic offset
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::CompositedTransformFollower"
+
+class "flutter::lib::src::widgets::basic.dart::FittedBox" {
+  +dynamic fit
+  +dynamic alignment
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::FittedBox"
+
+class "flutter::lib::src::widgets::basic.dart::FractionalTranslation" {
+  +dynamic translation
+  +bool transformHitTests
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::FractionalTranslation"
+
+class "flutter::lib::src::widgets::basic.dart::RotatedBox" {
+  +int quarterTurns
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::RotatedBox"
+
+class "flutter::lib::src::widgets::basic.dart::Padding" {
+  +dynamic padding
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Padding"
+
+class "flutter::lib::src::widgets::basic.dart::Align" {
+  +dynamic alignment
+  +double? widthFactor
+  +double? heightFactor
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Align"
+
+class "flutter::lib::src::widgets::basic.dart::Center" {
+}
+
+"flutter::lib::src::widgets::basic.dart::Align" <|-- "flutter::lib::src::widgets::basic.dart::Center"
+
+class "flutter::lib::src::widgets::basic.dart::CustomSingleChildLayout" {
+  +dynamic delegate
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::CustomSingleChildLayout"
+
+class "flutter::lib::src::widgets::basic.dart::LayoutId" {
+  +Object id
+  +Type debugTypicalAncestorWidgetClass
+  +void applyParentData()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::ParentDataWidget" <|-- "flutter::lib::src::widgets::basic.dart::LayoutId"
+
+class "flutter::lib::src::widgets::basic.dart::CustomMultiChildLayout" {
+  +dynamic delegate
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::CustomMultiChildLayout"
+
+class "flutter::lib::src::widgets::basic.dart::SizedBox" {
+  +double? width
+  +double? height
+  -dynamic _additionalConstraints
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +String toStringShort()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::SizedBox"
+
+class "flutter::lib::src::widgets::basic.dart::ConstrainedBox" {
+  +dynamic constraints
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ConstrainedBox"
+
+class "flutter::lib::src::widgets::basic.dart::ConstraintsTransformBox" {
+  {static} -Map<dynamic, String> _debugKnownTransforms
+  +dynamic textDirection
+  +dynamic alignment
+  +dynamic constraintsTransform
+  +dynamic clipBehavior
+  -String _debugTransformLabel
+  {static} +dynamic unmodified()
+  {static} +dynamic unconstrained()
+  {static} +dynamic widthUnconstrained()
+  {static} +dynamic heightUnconstrained()
+  {static} +dynamic maxHeightUnconstrained()
+  {static} +dynamic maxWidthUnconstrained()
+  {static} +dynamic maxUnconstrained()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ConstraintsTransformBox"
+
+class "flutter::lib::src::widgets::basic.dart::UnconstrainedBox" {
+  +dynamic textDirection
+  +dynamic alignment
+  +dynamic constrainedAxis
+  +dynamic clipBehavior
+  +Widget? child
+  -dynamic _axisToTransform()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::basic.dart::UnconstrainedBox" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::basic.dart::UnconstrainedBox"
+
+class "flutter::lib::src::widgets::basic.dart::FractionallySizedBox" {
+  +double? widthFactor
+  +double? heightFactor
+  +dynamic alignment
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::FractionallySizedBox"
+
+class "flutter::lib::src::widgets::basic.dart::LimitedBox" {
+  +double maxWidth
+  +double maxHeight
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::LimitedBox"
+
+class "flutter::lib::src::widgets::basic.dart::OverflowBox" {
+  +dynamic alignment
+  +double? minWidth
+  +double? maxWidth
+  +double? minHeight
+  +double? maxHeight
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::OverflowBox"
+
+class "flutter::lib::src::widgets::basic.dart::SizedOverflowBox" {
+  +dynamic alignment
+  +dynamic size
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::SizedOverflowBox"
+
+class "flutter::lib::src::widgets::basic.dart::Offstage" {
+  +bool offstage
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+  +SingleChildRenderObjectElement createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Offstage"
+
+class "flutter::lib::src::widgets::basic.dart::_OffstageElement" {
+  +void debugVisitOnstageChildren()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectElement" <|-- "flutter::lib::src::widgets::basic.dart::_OffstageElement"
+
+class "flutter::lib::src::widgets::basic.dart::AspectRatio" {
+  +double aspectRatio
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::AspectRatio"
+
+class "flutter::lib::src::widgets::basic.dart::IntrinsicWidth" {
+  +double? stepWidth
+  +double? stepHeight
+  -double? _stepWidth
+  -double? _stepHeight
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::IntrinsicWidth"
+
+class "flutter::lib::src::widgets::basic.dart::IntrinsicHeight" {
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::IntrinsicHeight"
+
+class "flutter::lib::src::widgets::basic.dart::Baseline" {
+  +double baseline
+  +dynamic baselineType
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Baseline"
+
+class "flutter::lib::src::widgets::basic.dart::SliverToBoxAdapter" {
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::SliverToBoxAdapter"
+
+class "flutter::lib::src::widgets::basic.dart::SliverPadding" {
+  +dynamic padding
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::SliverPadding"
+
+class "flutter::lib::src::widgets::basic.dart::ListBody" {
+  +dynamic mainAxis
+  +bool reverse
+  -dynamic _getDirection()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ListBody"
+
+class "flutter::lib::src::widgets::basic.dart::Stack" {
+  +dynamic alignment
+  +dynamic textDirection
+  +dynamic fit
+  +dynamic clipBehavior
+  -bool _debugCheckHasDirectionality()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Stack"
+
+class "flutter::lib::src::widgets::basic.dart::IndexedStack" {
+  +int? index
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::basic.dart::Stack" <|-- "flutter::lib::src::widgets::basic.dart::IndexedStack"
+
+class "flutter::lib::src::widgets::basic.dart::Positioned" {
+  +double? left
+  +double? top
+  +double? right
+  +double? bottom
+  +double? width
+  +double? height
+  +Type debugTypicalAncestorWidgetClass
+  +void applyParentData()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::ParentDataWidget" <|-- "flutter::lib::src::widgets::basic.dart::Positioned"
+
+class "flutter::lib::src::widgets::basic.dart::PositionedDirectional" {
+  +double? start
+  +double? top
+  +double? end
+  +double? bottom
+  +double? width
+  +double? height
+  +Widget child
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::basic.dart::PositionedDirectional" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::basic.dart::PositionedDirectional"
+
+class "flutter::lib::src::widgets::basic.dart::Flex" {
+  +dynamic direction
+  +dynamic mainAxisAlignment
+  +dynamic mainAxisSize
+  +dynamic crossAxisAlignment
+  +dynamic textDirection
+  +dynamic verticalDirection
+  +dynamic textBaseline
+  +dynamic clipBehavior
+  -bool _needTextDirection
+  +dynamic getEffectiveTextDirection()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Flex"
+
+class "flutter::lib::src::widgets::basic.dart::Row" {
+}
+
+"flutter::lib::src::widgets::basic.dart::Flex" <|-- "flutter::lib::src::widgets::basic.dart::Row"
+
+class "flutter::lib::src::widgets::basic.dart::Column" {
+}
+
+"flutter::lib::src::widgets::basic.dart::Flex" <|-- "flutter::lib::src::widgets::basic.dart::Column"
+
+class "flutter::lib::src::widgets::basic.dart::Flexible" {
+  +int flex
+  +dynamic fit
+  +Type debugTypicalAncestorWidgetClass
+  +void applyParentData()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::ParentDataWidget" <|-- "flutter::lib::src::widgets::basic.dart::Flexible"
+
+class "flutter::lib::src::widgets::basic.dart::Expanded" {
+}
+
+"flutter::lib::src::widgets::basic.dart::Flexible" <|-- "flutter::lib::src::widgets::basic.dart::Expanded"
+
+class "flutter::lib::src::widgets::basic.dart::Wrap" {
+  +dynamic direction
+  +dynamic alignment
+  +double spacing
+  +dynamic runAlignment
+  +double runSpacing
+  +dynamic crossAxisAlignment
+  +dynamic textDirection
+  +dynamic verticalDirection
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Wrap"
+
+class "flutter::lib::src::widgets::basic.dart::Flow" {
+  +dynamic delegate
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Flow"
+
+class "flutter::lib::src::widgets::basic.dart::RichText" {
+  +dynamic text
+  +dynamic textAlign
+  +dynamic textDirection
+  +bool softWrap
+  +dynamic overflow
+  +double textScaleFactor
+  +int? maxLines
+  +dynamic locale
+  +dynamic strutStyle
+  +dynamic textWidthBasis
+  +dynamic textHeightBehavior
+  +dynamic selectionRegistrar
+  +dynamic selectionColor
+  {static} -List<Widget> _extractChildren()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::RichText"
+
+class "flutter::lib::src::widgets::basic.dart::RawImage" {
+  +dynamic image
+  +String? debugImageLabel
+  +double? width
+  +double? height
+  +double scale
+  +dynamic color
+  +dynamic opacity
+  +dynamic filterQuality
+  +dynamic colorBlendMode
+  +dynamic fit
+  +dynamic alignment
+  +dynamic repeat
+  +dynamic centerSlice
+  +bool matchTextDirection
+  +bool invertColors
+  +bool isAntiAlias
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void didUnmountRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::RawImage"
+
+class "flutter::lib::src::widgets::basic.dart::DefaultAssetBundle" {
+  +dynamic bundle
+  {static} +dynamic of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::basic.dart::DefaultAssetBundle"
+
+class "flutter::lib::src::widgets::basic.dart::WidgetToRenderBoxAdapter" {
+  +dynamic renderBox
+  +dynamic onBuild
+  +dynamic onUnmount
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void didUnmountRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::WidgetToRenderBoxAdapter"
+
+class "flutter::lib::src::widgets::basic.dart::Listener" {
+  +dynamic onPointerDown
+  +dynamic onPointerMove
+  +dynamic onPointerUp
+  +dynamic onPointerHover
+  +dynamic onPointerCancel
+  +dynamic onPointerPanZoomStart
+  +dynamic onPointerPanZoomUpdate
+  +dynamic onPointerPanZoomEnd
+  +dynamic onPointerSignal
+  +dynamic behavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Listener"
+
+class "flutter::lib::src::widgets::basic.dart::MouseRegion" {
+  +dynamic onEnter
+  +dynamic onHover
+  +dynamic onExit
+  +dynamic cursor
+  +bool opaque
+  +dynamic hitTestBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::MouseRegion"
+
+class "flutter::lib::src::widgets::basic.dart::RepaintBoundary" {
+  {static} +List<RepaintBoundary> wrapAll()
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::RepaintBoundary"
+
+class "flutter::lib::src::widgets::basic.dart::IgnorePointer" {
+  +bool ignoring
+  +bool? ignoringSemantics
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::IgnorePointer"
+
+class "flutter::lib::src::widgets::basic.dart::AbsorbPointer" {
+  +bool absorbing
+  +bool? ignoringSemantics
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::AbsorbPointer"
+
+class "flutter::lib::src::widgets::basic.dart::MetaData" {
+  +dynamic metaData
+  +dynamic behavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::MetaData"
+
+class "flutter::lib::src::widgets::basic.dart::Semantics" {
+  +dynamic properties
+  +bool container
+  +bool explicitChildNodes
+  +bool excludeSemantics
+  +dynamic createRenderObject()
+  -dynamic _getTextDirection()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::Semantics"
+
+class "flutter::lib::src::widgets::basic.dart::MergeSemantics" {
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::MergeSemantics"
+
+class "flutter::lib::src::widgets::basic.dart::BlockSemantics" {
+  +bool blocking
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::BlockSemantics"
+
+class "flutter::lib::src::widgets::basic.dart::ExcludeSemantics" {
+  +bool excluding
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ExcludeSemantics"
+
+class "flutter::lib::src::widgets::basic.dart::IndexedSemantics" {
+  +int index
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::IndexedSemantics"
+
+class "flutter::lib::src::widgets::basic.dart::KeyedSubtree" {
+  +Widget child
+  {static} +List<Widget> ensureUniqueKeysForList()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::basic.dart::KeyedSubtree" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::basic.dart::KeyedSubtree"
+
+class "flutter::lib::src::widgets::basic.dart::Builder" {
+  +Widget Function(BuildContext) builder
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::basic.dart::Builder" o-- "flutter::lib::src::widgets::framework.dart::Widget Function(BuildContext)"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::basic.dart::Builder"
+
+class "flutter::lib::src::widgets::basic.dart::StatefulBuilder" {
+  +Widget Function(BuildContext, void Function(dynamic)) builder
+  +State<StatefulBuilder> createState()
+}
+
+"flutter::lib::src::widgets::basic.dart::StatefulBuilder" o-- "flutter::lib::src::widgets::basic.dart::Widget Function(BuildContext, void Function(dynamic))"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::basic.dart::StatefulBuilder"
+
+class "flutter::lib::src::widgets::basic.dart::_StatefulBuilderState" {
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::basic.dart::_StatefulBuilderState"
+
+class "flutter::lib::src::widgets::basic.dart::ColoredBox" {
+  +dynamic color
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::basic.dart::ColoredBox"
+
+class "flutter::lib::src::widgets::basic.dart::_RenderColoredBox" {
+  -dynamic _color
+  +dynamic color
+  +void paint()
+}
+
+
+@enduml

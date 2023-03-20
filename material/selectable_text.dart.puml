@@ -1,0 +1,80 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::selectable_text.dart::_TextSpanEditingController" {
+  -dynamic _textSpan
+  +String? text
+  +dynamic buildTextSpan()
+}
+
+class "flutter::lib::src::material::selectable_text.dart::_SelectableTextSelectionGestureDetectorBuilder" {
+  -_SelectableTextState _state
+  +void onForcePressStart()
+  +void onForcePressEnd()
+  +void onSingleLongTapMoveUpdate()
+  +void onSingleTapUp()
+  +void onSingleLongTapStart()
+}
+
+"flutter::lib::src::material::selectable_text.dart::_SelectableTextSelectionGestureDetectorBuilder" o-- "flutter::lib::src::material::selectable_text.dart::_SelectableTextState"
+
+class "flutter::lib::src::material::selectable_text.dart::SelectableText" {
+  +String? data
+  +dynamic textSpan
+  +dynamic focusNode
+  +dynamic style
+  +dynamic strutStyle
+  +dynamic textAlign
+  +dynamic textDirection
+  +double? textScaleFactor
+  +bool autofocus
+  +int? minLines
+  +int? maxLines
+  +bool showCursor
+  +double cursorWidth
+  +double? cursorHeight
+  +dynamic cursorRadius
+  +dynamic cursorColor
+  +dynamic selectionHeightStyle
+  +dynamic selectionWidthStyle
+  +bool enableInteractiveSelection
+  +dynamic selectionControls
+  +dynamic dragStartBehavior
+  +dynamic toolbarOptions
+  +dynamic onTap
+  +dynamic scrollPhysics
+  +String? semanticsLabel
+  +dynamic textHeightBehavior
+  +dynamic textWidthBasis
+  +dynamic onSelectionChanged
+  +bool selectionEnabled
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::selectable_text.dart::_SelectableTextState" {
+  -_TextSpanEditingController _controller
+  -dynamic _focusNode
+  -bool _showSelectionHandles
+  -_SelectableTextSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder
+  +bool forcePressEnabled
+  +dynamic editableTextKey
+  -dynamic _lastSeenTextSelection
+  -dynamic _editableText
+  -dynamic _effectiveFocusNode
+  +bool selectionEnabled
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _onControllerChanged()
+  -void _handleSelectionChanged()
+  -void _handleSelectionHandleTapped()
+  -bool _shouldShowSelectionHandles()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::selectable_text.dart::_SelectableTextState" o-- "flutter::lib::src::material::selectable_text.dart::_TextSpanEditingController"
+"flutter::lib::src::material::selectable_text.dart::_SelectableTextState" o-- "flutter::lib::src::material::selectable_text.dart::_SelectableTextSelectionGestureDetectorBuilder"
+
+
+@enduml

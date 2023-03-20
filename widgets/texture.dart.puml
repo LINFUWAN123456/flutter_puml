@@ -1,0 +1,15 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::texture.dart::Texture" {
+  +int textureId
+  +bool freeze
+  +dynamic filterQuality
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flutter::lib::src::widgets::texture.dart::Texture"
+
+
+@enduml

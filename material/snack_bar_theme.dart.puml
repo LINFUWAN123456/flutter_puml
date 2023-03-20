@@ -1,0 +1,32 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::snack_bar_theme.dart::SnackBarThemeData" {
+  +dynamic backgroundColor
+  +dynamic actionTextColor
+  +dynamic disabledActionTextColor
+  +dynamic contentTextStyle
+  +double? elevation
+  +dynamic shape
+  +SnackBarBehavior? behavior
+  +int hashCode
+  +SnackBarThemeData copyWith()
+  {static} +SnackBarThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::snack_bar_theme.dart::SnackBarThemeData" o-- "flutter::lib::src::material::snack_bar_theme.dart::SnackBarBehavior"
+
+class "flutter::lib::src::material::snack_bar_theme.dart::SnackBarBehavior" {
+  +int index
+  {static} +List<SnackBarBehavior> values
+  {static} +SnackBarBehavior fixed
+  {static} +SnackBarBehavior floating
+}
+
+"flutter::lib::src::material::snack_bar_theme.dart::SnackBarBehavior" o-- "flutter::lib::src::material::snack_bar_theme.dart::SnackBarBehavior"
+"dart::core::Enum" <|-- "flutter::lib::src::material::snack_bar_theme.dart::SnackBarBehavior"
+
+
+@enduml

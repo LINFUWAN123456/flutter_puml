@@ -1,0 +1,48 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::date.dart::DateUtils" {
+  {static} +DateTime dateOnly()
+  {static} +DateTimeRange datesOnly()
+  {static} +bool isSameDay()
+  {static} +bool isSameMonth()
+  {static} +int monthDelta()
+  {static} +DateTime addMonthsToMonthDate()
+  {static} +DateTime addDaysToDate()
+  {static} +int firstDayOffset()
+  {static} +int getDaysInMonth()
+}
+
+class "flutter::lib::src::material::date.dart::DateTimeRange" {
+  +DateTime start
+  +DateTime end
+  +Duration duration
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::material::date.dart::DatePickerEntryMode" {
+  +int index
+  {static} +List<DatePickerEntryMode> values
+  {static} +DatePickerEntryMode calendar
+  {static} +DatePickerEntryMode input
+  {static} +DatePickerEntryMode calendarOnly
+  {static} +DatePickerEntryMode inputOnly
+}
+
+"flutter::lib::src::material::date.dart::DatePickerEntryMode" o-- "flutter::lib::src::material::date.dart::DatePickerEntryMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::date.dart::DatePickerEntryMode"
+
+class "flutter::lib::src::material::date.dart::DatePickerMode" {
+  +int index
+  {static} +List<DatePickerMode> values
+  {static} +DatePickerMode day
+  {static} +DatePickerMode year
+}
+
+"flutter::lib::src::material::date.dart::DatePickerMode" o-- "flutter::lib::src::material::date.dart::DatePickerMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::date.dart::DatePickerMode"
+
+
+@enduml

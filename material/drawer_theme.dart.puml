@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::drawer_theme.dart::DrawerThemeData" {
+  +dynamic backgroundColor
+  +dynamic scrimColor
+  +double? elevation
+  +dynamic shape
+  +double? width
+  +int hashCode
+  +DrawerThemeData copyWith()
+  {static} +DrawerThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::drawer_theme.dart::DrawerTheme" {
+  +DrawerThemeData data
+  {static} +DrawerThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::drawer_theme.dart::DrawerTheme" o-- "flutter::lib::src::material::drawer_theme.dart::DrawerThemeData"
+
+
+@enduml

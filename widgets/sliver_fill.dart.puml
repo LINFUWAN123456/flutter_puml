@@ -1,0 +1,71 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::sliver_fill.dart::SliverFillViewport" {
+  +double viewportFraction
+  +bool padEnds
+  +SliverChildDelegate delegate
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::sliver_fill.dart::SliverFillViewport" o-- "flutter::lib::src::widgets::sliver.dart::SliverChildDelegate"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::sliver_fill.dart::SliverFillViewport"
+
+class "flutter::lib::src::widgets::sliver_fill.dart::_SliverFillViewportRenderObjectWidget" {
+  +double viewportFraction
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorWidget" <|-- "flutter::lib::src::widgets::sliver_fill.dart::_SliverFillViewportRenderObjectWidget"
+
+class "flutter::lib::src::widgets::sliver_fill.dart::_SliverFractionalPadding" {
+  +double viewportFraction
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver_fill.dart::_SliverFractionalPadding"
+
+class "flutter::lib::src::widgets::sliver_fill.dart::_RenderSliverFractionalPadding" {
+  -dynamic _lastResolvedConstraints
+  -double _viewportFraction
+  -dynamic _resolvedPadding
+  +double viewportFraction
+  +dynamic resolvedPadding
+  -void _markNeedsResolution()
+  -void _resolve()
+  +void performLayout()
+}
+
+class "flutter::lib::src::widgets::sliver_fill.dart::SliverFillRemaining" {
+  +Widget? child
+  +bool hasScrollBody
+  +bool fillOverscroll
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::sliver_fill.dart::SliverFillRemaining" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::sliver_fill.dart::SliverFillRemaining"
+
+class "flutter::lib::src::widgets::sliver_fill.dart::_SliverFillRemainingWithScrollable" {
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver_fill.dart::_SliverFillRemainingWithScrollable"
+
+class "flutter::lib::src::widgets::sliver_fill.dart::_SliverFillRemainingWithoutScrollable" {
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver_fill.dart::_SliverFillRemainingWithoutScrollable"
+
+class "flutter::lib::src::widgets::sliver_fill.dart::_SliverFillRemainingAndOverscroll" {
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver_fill.dart::_SliverFillRemainingAndOverscroll"
+
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::card.dart::Card" {
+  +dynamic color
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +double? elevation
+  +dynamic shape
+  +bool borderOnForeground
+  +dynamic clipBehavior
+  +dynamic margin
+  +bool semanticContainer
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::card.dart::_CardDefaultsM2" {
+  +dynamic context
+  +dynamic color
+  +dynamic shadowColor
+}
+
+"flutter::lib::src::material::card_theme.dart::CardTheme" <|-- "flutter::lib::src::material::card.dart::_CardDefaultsM2"
+
+class "flutter::lib::src::material::card.dart::_CardDefaultsM3" {
+  +dynamic context
+  +dynamic color
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+}
+
+"flutter::lib::src::material::card_theme.dart::CardTheme" <|-- "flutter::lib::src::material::card.dart::_CardDefaultsM3"
+
+
+@enduml

@@ -1,0 +1,181 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scrollbar.dart::ScrollbarPainter" {
+  -dynamic _color
+  -dynamic _trackColor
+  -dynamic _trackBorderColor
+  -dynamic _trackRadius
+  -dynamic _textDirection
+  -double _thickness
+  +dynamic fadeoutOpacityAnimation
+  -double _mainAxisMargin
+  -double _crossAxisMargin
+  -dynamic _radius
+  -dynamic _shape
+  -dynamic _padding
+  -double _minLength
+  -double _minOverscrollLength
+  -ScrollbarOrientation? _scrollbarOrientation
+  -bool _ignorePointer
+  -ScrollMetrics? _lastMetrics
+  -dynamic _lastAxisDirection
+  -dynamic _thumbRect
+  -dynamic _trackRect
+  -double _thumbOffset
+  +dynamic color
+  +dynamic trackColor
+  +dynamic trackBorderColor
+  +dynamic trackRadius
+  +dynamic textDirection
+  +double thickness
+  +double mainAxisMargin
+  +double crossAxisMargin
+  +dynamic radius
+  +dynamic shape
+  +dynamic padding
+  +double minLength
+  +double minOverscrollLength
+  +ScrollbarOrientation? scrollbarOrientation
+  +bool ignorePointer
+  -dynamic _paintThumb
+  -bool _isVertical
+  -bool _isReversed
+  -double _beforeExtent
+  -double _afterExtent
+  -double _mainAxisPadding
+  -double _trackExtent
+  -double _totalContentExtent
+  -bool _lastMetricsAreScrollable
+  +dynamic semanticsBuilder
+  -void _debugAssertIsValidOrientation()
+  -bool _isVerticalOrientation()
+  +void update()
+  +void updateThickness()
+  -dynamic _paintTrack()
+  -void _paintScrollbar()
+  -double _thumbExtent()
+  +void dispose()
+  +double getTrackToScroll()
+  -double _getScrollToTrack()
+  +void paint()
+  +bool hitTestInteractive()
+  +bool hitTestOnlyThumbInteractive()
+  +bool? hitTest()
+  +bool shouldRepaint()
+  +bool shouldRebuildSemantics()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scrollbar.dart::ScrollbarPainter" o-- "flutter::lib::src::widgets::scrollbar.dart::ScrollbarOrientation"
+"flutter::lib::src::widgets::scrollbar.dart::ScrollbarPainter" o-- "flutter::lib::src::widgets::scroll_metrics.dart::ScrollMetrics"
+
+class "flutter::lib::src::widgets::scrollbar.dart::RawScrollbar" {
+  +Widget child
+  +ScrollController? controller
+  +bool? thumbVisibility
+  +bool? isAlwaysShown
+  +dynamic shape
+  +dynamic radius
+  +double? thickness
+  +dynamic thumbColor
+  +double minThumbLength
+  +double? minOverscrollLength
+  +bool? trackVisibility
+  +dynamic trackRadius
+  +dynamic trackColor
+  +dynamic trackBorderColor
+  +Duration fadeDuration
+  +Duration timeToFade
+  +Duration pressDuration
+  +bool Function(ScrollNotification) notificationPredicate
+  +bool? interactive
+  +ScrollbarOrientation? scrollbarOrientation
+  +double mainAxisMargin
+  +double crossAxisMargin
+  +RawScrollbarState<RawScrollbar> createState()
+}
+
+"flutter::lib::src::widgets::scrollbar.dart::RawScrollbar" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::scrollbar.dart::RawScrollbar" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::scrollbar.dart::RawScrollbar" o-- "flutter::lib::src::widgets::scroll_notification.dart::bool Function(ScrollNotification)"
+"flutter::lib::src::widgets::scrollbar.dart::RawScrollbar" o-- "flutter::lib::src::widgets::scrollbar.dart::ScrollbarOrientation"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::scrollbar.dart::RawScrollbar"
+
+class "flutter::lib::src::widgets::scrollbar.dart::RawScrollbarState" {
+  -dynamic _dragScrollbarAxisOffset
+  -ScrollController? _currentController
+  -Timer? _fadeoutTimer
+  -dynamic _fadeoutAnimationController
+  -dynamic _fadeoutOpacityAnimation
+  -GlobalKey<State<StatefulWidget>> _scrollbarPainterKey
+  -bool _hoverIsActive
+  +ScrollbarPainter scrollbarPainter
+  +bool showScrollbar
+  -bool _showTrack
+  +bool enableGestures
+  -Map<Type, GestureRecognizerFactory<dynamic>> _gestures
+  +void initState()
+  +void didChangeDependencies()
+  -bool _debugScheduleCheckHasValidScrollPosition()
+  -void _validateInteractions()
+  -bool _debugCheckHasValidScrollPosition()
+  +void updateScrollbarPainter()
+  +void didUpdateWidget()
+  -void _updateScrollPosition()
+  -void _maybeStartFadeoutTimer()
+  +dynamic getScrollbarDirection()
+  +void handleThumbPress()
+  +void handleThumbPressStart()
+  +void handleThumbPressUpdate()
+  +void handleThumbPressEnd()
+  -void _handleTrackTapDown()
+  -bool _shouldUpdatePainter()
+  -bool _handleScrollMetricsNotification()
+  -bool _handleScrollNotification()
+  +bool isPointerOverTrack()
+  +bool isPointerOverThumb()
+  +bool isPointerOverScrollbar()
+  +void handleHover()
+  +void handleHoverExit()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::scrollbar.dart::RawScrollbarState" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::scrollbar.dart::RawScrollbarState" o-- "dart::async::Timer"
+"flutter::lib::src::widgets::scrollbar.dart::RawScrollbarState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::scrollbar.dart::RawScrollbarState" o-- "flutter::lib::src::widgets::scrollbar.dart::ScrollbarPainter"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::scrollbar.dart::RawScrollbarState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::scrollbar.dart::RawScrollbarState"
+
+class "flutter::lib::src::widgets::scrollbar.dart::_ThumbPressGestureRecognizer" {
+  -GlobalKey<State<StatefulWidget>> _customPaintKey
+  +bool isPointerAllowed()
+  -bool _hitTestInteractive()
+}
+
+"flutter::lib::src::widgets::scrollbar.dart::_ThumbPressGestureRecognizer" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+
+class "flutter::lib::src::widgets::scrollbar.dart::_TrackTapGestureRecognizer" {
+  -GlobalKey<State<StatefulWidget>> _customPaintKey
+  +bool isPointerAllowed()
+  -bool _hitTestInteractive()
+}
+
+"flutter::lib::src::widgets::scrollbar.dart::_TrackTapGestureRecognizer" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+
+class "flutter::lib::src::widgets::scrollbar.dart::ScrollbarOrientation" {
+  +int index
+  {static} +List<ScrollbarOrientation> values
+  {static} +ScrollbarOrientation left
+  {static} +ScrollbarOrientation right
+  {static} +ScrollbarOrientation top
+  {static} +ScrollbarOrientation bottom
+}
+
+"flutter::lib::src::widgets::scrollbar.dart::ScrollbarOrientation" o-- "flutter::lib::src::widgets::scrollbar.dart::ScrollbarOrientation"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::scrollbar.dart::ScrollbarOrientation"
+
+
+@enduml

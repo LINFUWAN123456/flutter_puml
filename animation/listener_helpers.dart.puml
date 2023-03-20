@@ -1,0 +1,40 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::animation::listener_helpers.dart::AnimationLazyListenerMixin" {
+  -int _listenerCounter
+  +bool isListening
+  +void didRegisterListener()
+  +void didUnregisterListener()
+  +void didStartListening()
+  +void didStopListening()
+}
+
+abstract class "flutter::lib::src::animation::listener_helpers.dart::AnimationEagerListenerMixin" {
+  +void didRegisterListener()
+  +void didUnregisterListener()
+  +void dispose()
+}
+
+abstract class "flutter::lib::src::animation::listener_helpers.dart::AnimationLocalListenersMixin" {
+  -dynamic _listeners
+  +void didRegisterListener()
+  +void didUnregisterListener()
+  +void addListener()
+  +void removeListener()
+  +void clearListeners()
+  +void notifyListeners()
+}
+
+abstract class "flutter::lib::src::animation::listener_helpers.dart::AnimationLocalStatusListenersMixin" {
+  -dynamic _statusListeners
+  +void didRegisterListener()
+  +void didUnregisterListener()
+  +void addStatusListener()
+  +void removeStatusListener()
+  +void clearStatusListeners()
+  +void notifyStatusListeners()
+}
+
+
+@enduml

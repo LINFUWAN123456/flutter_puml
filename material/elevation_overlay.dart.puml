@@ -1,0 +1,19 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::elevation_overlay.dart::ElevationOverlay" {
+  {static} +dynamic applySurfaceTint()
+  {static} -double _surfaceTintOpacityForElevation()
+  {static} +dynamic applyOverlay()
+  {static} +dynamic overlayColor()
+  {static} +dynamic colorWithOverlay()
+  {static} -dynamic _overlayColor()
+}
+
+class "flutter::lib::src::material::elevation_overlay.dart::_ElevationOpacity" {
+  +double elevation
+  +double opacity
+}
+
+
+@enduml

@@ -1,0 +1,115 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::cupertino::localizations.dart::CupertinoLocalizations" {
+  +DatePickerDateOrder datePickerDateOrder
+  +DatePickerDateTimeOrder datePickerDateTimeOrder
+  +String anteMeridiemAbbreviation
+  +String postMeridiemAbbreviation
+  +String todayLabel
+  +String alertDialogLabel
+  +List<String> timerPickerHourLabels
+  +List<String> timerPickerMinuteLabels
+  +List<String> timerPickerSecondLabels
+  +String cutButtonLabel
+  +String copyButtonLabel
+  +String pasteButtonLabel
+  +String selectAllButtonLabel
+  +String searchTextFieldPlaceholderLabel
+  +String modalBarrierDismissLabel
+  +String datePickerYear()
+  +String datePickerMonth()
+  +String datePickerDayOfMonth()
+  +String datePickerMediumDate()
+  +String datePickerHour()
+  +String? datePickerHourSemanticsLabel()
+  +String datePickerMinute()
+  +String? datePickerMinuteSemanticsLabel()
+  +String tabSemanticsLabel()
+  +String timerPickerHour()
+  +String timerPickerMinute()
+  +String timerPickerSecond()
+  +String? timerPickerHourLabel()
+  +String? timerPickerMinuteLabel()
+  +String? timerPickerSecondLabel()
+  {static} +CupertinoLocalizations of()
+}
+
+"flutter::lib::src::cupertino::localizations.dart::CupertinoLocalizations" o-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateOrder"
+"flutter::lib::src::cupertino::localizations.dart::CupertinoLocalizations" o-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateTimeOrder"
+
+class "flutter::lib::src::cupertino::localizations.dart::_CupertinoLocalizationsDelegate" {
+  +bool isSupported()
+  +Future<CupertinoLocalizations> load()
+  +bool shouldReload()
+  +String toString()
+}
+
+class "flutter::lib::src::cupertino::localizations.dart::DefaultCupertinoLocalizations" {
+  {static} -List<String> _shortWeekdays
+  {static} -List<String> _shortMonths
+  {static} -List<String> _months
+  {static} +dynamic delegate
+  +DatePickerDateOrder datePickerDateOrder
+  +DatePickerDateTimeOrder datePickerDateTimeOrder
+  +String anteMeridiemAbbreviation
+  +String postMeridiemAbbreviation
+  +String todayLabel
+  +String alertDialogLabel
+  +List<String> timerPickerHourLabels
+  +List<String> timerPickerMinuteLabels
+  +List<String> timerPickerSecondLabels
+  +String cutButtonLabel
+  +String copyButtonLabel
+  +String pasteButtonLabel
+  +String selectAllButtonLabel
+  +String searchTextFieldPlaceholderLabel
+  +String modalBarrierDismissLabel
+  +String datePickerYear()
+  +String datePickerMonth()
+  +String datePickerDayOfMonth()
+  +String datePickerHour()
+  +String datePickerHourSemanticsLabel()
+  +String datePickerMinute()
+  +String datePickerMinuteSemanticsLabel()
+  +String datePickerMediumDate()
+  +String tabSemanticsLabel()
+  +String timerPickerHour()
+  +String timerPickerMinute()
+  +String timerPickerSecond()
+  +String timerPickerHourLabel()
+  +String timerPickerMinuteLabel()
+  +String timerPickerSecondLabel()
+  {static} +Future<CupertinoLocalizations> load()
+}
+
+"flutter::lib::src::cupertino::localizations.dart::DefaultCupertinoLocalizations" o-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateOrder"
+"flutter::lib::src::cupertino::localizations.dart::DefaultCupertinoLocalizations" o-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateTimeOrder"
+"flutter::lib::src::cupertino::localizations.dart::CupertinoLocalizations" <|-- "flutter::lib::src::cupertino::localizations.dart::DefaultCupertinoLocalizations"
+
+class "flutter::lib::src::cupertino::localizations.dart::DatePickerDateTimeOrder" {
+  +int index
+  {static} +List<DatePickerDateTimeOrder> values
+  {static} +DatePickerDateTimeOrder date_time_dayPeriod
+  {static} +DatePickerDateTimeOrder date_dayPeriod_time
+  {static} +DatePickerDateTimeOrder time_dayPeriod_date
+  {static} +DatePickerDateTimeOrder dayPeriod_time_date
+}
+
+"flutter::lib::src::cupertino::localizations.dart::DatePickerDateTimeOrder" o-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateTimeOrder"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateTimeOrder"
+
+class "flutter::lib::src::cupertino::localizations.dart::DatePickerDateOrder" {
+  +int index
+  {static} +List<DatePickerDateOrder> values
+  {static} +DatePickerDateOrder dmy
+  {static} +DatePickerDateOrder mdy
+  {static} +DatePickerDateOrder ymd
+  {static} +DatePickerDateOrder ydm
+}
+
+"flutter::lib::src::cupertino::localizations.dart::DatePickerDateOrder" o-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateOrder"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateOrder"
+
+
+@enduml

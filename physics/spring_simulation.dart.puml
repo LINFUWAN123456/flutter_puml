@@ -1,0 +1,89 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::physics::spring_simulation.dart::SpringDescription" {
+  +double mass
+  +double stiffness
+  +double damping
+  +String toString()
+}
+
+class "flutter::lib::src::physics::spring_simulation.dart::SpringSimulation" {
+  -double _endPosition
+  -_SpringSolution _solution
+  +SpringType type
+  +double x()
+  +double dx()
+  +bool isDone()
+  +String toString()
+}
+
+"flutter::lib::src::physics::spring_simulation.dart::SpringSimulation" o-- "flutter::lib::src::physics::spring_simulation.dart::_SpringSolution"
+"flutter::lib::src::physics::spring_simulation.dart::SpringSimulation" o-- "flutter::lib::src::physics::spring_simulation.dart::SpringType"
+"flutter::lib::src::physics::simulation.dart::Simulation" <|-- "flutter::lib::src::physics::spring_simulation.dart::SpringSimulation"
+
+class "flutter::lib::src::physics::spring_simulation.dart::ScrollSpringSimulation" {
+  +double x()
+}
+
+"flutter::lib::src::physics::spring_simulation.dart::SpringSimulation" <|-- "flutter::lib::src::physics::spring_simulation.dart::ScrollSpringSimulation"
+
+abstract class "flutter::lib::src::physics::spring_simulation.dart::_SpringSolution" {
+  +SpringType type
+  +double x()
+  +double dx()
+}
+
+"flutter::lib::src::physics::spring_simulation.dart::_SpringSolution" o-- "flutter::lib::src::physics::spring_simulation.dart::SpringType"
+
+class "flutter::lib::src::physics::spring_simulation.dart::_CriticalSolution" {
+  -double _r
+  -double _c1
+  -double _c2
+  +SpringType type
+  +double x()
+  +double dx()
+}
+
+"flutter::lib::src::physics::spring_simulation.dart::_CriticalSolution" o-- "flutter::lib::src::physics::spring_simulation.dart::SpringType"
+"flutter::lib::src::physics::spring_simulation.dart::_SpringSolution" <|-- "flutter::lib::src::physics::spring_simulation.dart::_CriticalSolution"
+
+class "flutter::lib::src::physics::spring_simulation.dart::_OverdampedSolution" {
+  -double _r1
+  -double _r2
+  -double _c1
+  -double _c2
+  +SpringType type
+  +double x()
+  +double dx()
+}
+
+"flutter::lib::src::physics::spring_simulation.dart::_OverdampedSolution" o-- "flutter::lib::src::physics::spring_simulation.dart::SpringType"
+"flutter::lib::src::physics::spring_simulation.dart::_SpringSolution" <|-- "flutter::lib::src::physics::spring_simulation.dart::_OverdampedSolution"
+
+class "flutter::lib::src::physics::spring_simulation.dart::_UnderdampedSolution" {
+  -double _w
+  -double _r
+  -double _c1
+  -double _c2
+  +SpringType type
+  +double x()
+  +double dx()
+}
+
+"flutter::lib::src::physics::spring_simulation.dart::_UnderdampedSolution" o-- "flutter::lib::src::physics::spring_simulation.dart::SpringType"
+"flutter::lib::src::physics::spring_simulation.dart::_SpringSolution" <|-- "flutter::lib::src::physics::spring_simulation.dart::_UnderdampedSolution"
+
+class "flutter::lib::src::physics::spring_simulation.dart::SpringType" {
+  +int index
+  {static} +List<SpringType> values
+  {static} +SpringType criticallyDamped
+  {static} +SpringType underDamped
+  {static} +SpringType overDamped
+}
+
+"flutter::lib::src::physics::spring_simulation.dart::SpringType" o-- "flutter::lib::src::physics::spring_simulation.dart::SpringType"
+"dart::core::Enum" <|-- "flutter::lib::src::physics::spring_simulation.dart::SpringType"
+
+
+@enduml

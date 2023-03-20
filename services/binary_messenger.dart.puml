@@ -1,0 +1,11 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::services::binary_messenger.dart::BinaryMessenger" {
+  +Future<void> handlePlatformMessage()
+  +Future<ByteData?>? send()
+  +void setMessageHandler()
+}
+
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::navigation_bar_theme.dart::NavigationBarThemeData" {
+  +double? height
+  +dynamic backgroundColor
+  +dynamic surfaceTintColor
+  +double? elevation
+  +dynamic indicatorColor
+  +dynamic indicatorShape
+  +MaterialStateProperty<dynamic>? labelTextStyle
+  +MaterialStateProperty<dynamic>? iconTheme
+  +NavigationDestinationLabelBehavior? labelBehavior
+  +int hashCode
+  +NavigationBarThemeData copyWith()
+  {static} +NavigationBarThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::navigation_bar_theme.dart::NavigationBarThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::navigation_bar_theme.dart::NavigationBarThemeData" o-- "flutter::lib::src::material::navigation_bar.dart::NavigationDestinationLabelBehavior"
+
+class "flutter::lib::src::material::navigation_bar_theme.dart::NavigationBarTheme" {
+  +NavigationBarThemeData data
+  {static} +NavigationBarThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::navigation_bar_theme.dart::NavigationBarTheme" o-- "flutter::lib::src::material::navigation_bar_theme.dart::NavigationBarThemeData"
+
+
+@enduml

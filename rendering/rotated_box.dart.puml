@@ -1,0 +1,28 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::rotated_box.dart::RenderRotatedBox" {
+  -int _quarterTurns
+  -dynamic _paintTransform
+  -LayerHandle<TransformLayer> _transformLayer
+  +int quarterTurns
+  -bool _isVertical
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +bool hitTestChildren()
+  -void _paintChild()
+  +void paint()
+  +void dispose()
+  +void applyPaintTransform()
+}
+
+"flutter::lib::src::rendering::rotated_box.dart::RenderRotatedBox" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<TransformLayer>"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::rotated_box.dart::RenderRotatedBox"
+"flutter::lib::src::rendering::object.dart::RenderObjectWithChildMixin" <|-- "flutter::lib::src::rendering::rotated_box.dart::RenderRotatedBox"
+
+
+@enduml

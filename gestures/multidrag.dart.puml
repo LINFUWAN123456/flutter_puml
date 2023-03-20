@@ -1,0 +1,112 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::gestures::multidrag.dart::MultiDragPointerState" {
+  +DeviceGestureSettings? gestureSettings
+  +dynamic initialPosition
+  -VelocityTracker _velocityTracker
+  +dynamic kind
+  -Drag? _client
+  -dynamic _pendingDelta
+  -Duration? _lastPendingEventTimestamp
+  -GestureArenaEntry? _arenaEntry
+  +dynamic pendingDelta
+  -void _setArenaEntry()
+  +void resolve()
+  -void _move()
+  +void checkForResolutionAfterMove()
+  +void accepted()
+  +void rejected()
+  -void _startDrag()
+  -void _up()
+  -void _cancel()
+  +void dispose()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::MultiDragPointerState" o-- "flutter::lib::src::gestures::gesture_settings.dart::DeviceGestureSettings"
+"flutter::lib::src::gestures::multidrag.dart::MultiDragPointerState" o-- "flutter::lib::src::gestures::velocity_tracker.dart::VelocityTracker"
+"flutter::lib::src::gestures::multidrag.dart::MultiDragPointerState" o-- "flutter::lib::src::gestures::drag.dart::Drag"
+"flutter::lib::src::gestures::multidrag.dart::MultiDragPointerState" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaEntry"
+
+abstract class "flutter::lib::src::gestures::multidrag.dart::MultiDragGestureRecognizer" {
+  +Drag? Function(dynamic)? onStart
+  -Map<int, MultiDragPointerState>? _pointers
+  +void addAllowedPointer()
+  +MultiDragPointerState createNewPointerState()
+  -void _handleEvent()
+  +void acceptGesture()
+  -Drag? _startDrag()
+  +void rejectGesture()
+  -void _removeState()
+  +void dispose()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::MultiDragGestureRecognizer" o-- "flutter::lib::src::gestures::multidrag.dart::Drag Function(dynamic)"
+"flutter::lib::src::gestures::recognizer.dart::GestureRecognizer" <|-- "flutter::lib::src::gestures::multidrag.dart::MultiDragGestureRecognizer"
+
+class "flutter::lib::src::gestures::multidrag.dart::_ImmediatePointerState" {
+  +void checkForResolutionAfterMove()
+  +void accepted()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::MultiDragPointerState" <|-- "flutter::lib::src::gestures::multidrag.dart::_ImmediatePointerState"
+
+class "flutter::lib::src::gestures::multidrag.dart::ImmediateMultiDragGestureRecognizer" {
+  +String debugDescription
+  +MultiDragPointerState createNewPointerState()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::MultiDragGestureRecognizer" <|-- "flutter::lib::src::gestures::multidrag.dart::ImmediateMultiDragGestureRecognizer"
+
+class "flutter::lib::src::gestures::multidrag.dart::_HorizontalPointerState" {
+  +void checkForResolutionAfterMove()
+  +void accepted()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::MultiDragPointerState" <|-- "flutter::lib::src::gestures::multidrag.dart::_HorizontalPointerState"
+
+class "flutter::lib::src::gestures::multidrag.dart::HorizontalMultiDragGestureRecognizer" {
+  +String debugDescription
+  +MultiDragPointerState createNewPointerState()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::MultiDragGestureRecognizer" <|-- "flutter::lib::src::gestures::multidrag.dart::HorizontalMultiDragGestureRecognizer"
+
+class "flutter::lib::src::gestures::multidrag.dart::_VerticalPointerState" {
+  +void checkForResolutionAfterMove()
+  +void accepted()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::MultiDragPointerState" <|-- "flutter::lib::src::gestures::multidrag.dart::_VerticalPointerState"
+
+class "flutter::lib::src::gestures::multidrag.dart::VerticalMultiDragGestureRecognizer" {
+  +String debugDescription
+  +MultiDragPointerState createNewPointerState()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::MultiDragGestureRecognizer" <|-- "flutter::lib::src::gestures::multidrag.dart::VerticalMultiDragGestureRecognizer"
+
+class "flutter::lib::src::gestures::multidrag.dart::_DelayedPointerState" {
+  -Timer? _timer
+  -Drag? Function(dynamic)? _starter
+  -void _delayPassed()
+  -void _ensureTimerStopped()
+  +void accepted()
+  +void checkForResolutionAfterMove()
+  +void dispose()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::_DelayedPointerState" o-- "dart::async::Timer"
+"flutter::lib::src::gestures::multidrag.dart::_DelayedPointerState" o-- "flutter::lib::src::gestures::multidrag.dart::Drag Function(dynamic)"
+"flutter::lib::src::gestures::multidrag.dart::MultiDragPointerState" <|-- "flutter::lib::src::gestures::multidrag.dart::_DelayedPointerState"
+
+class "flutter::lib::src::gestures::multidrag.dart::DelayedMultiDragGestureRecognizer" {
+  +Duration delay
+  +String debugDescription
+  +MultiDragPointerState createNewPointerState()
+}
+
+"flutter::lib::src::gestures::multidrag.dart::MultiDragGestureRecognizer" <|-- "flutter::lib::src::gestures::multidrag.dart::DelayedMultiDragGestureRecognizer"
+
+
+@enduml

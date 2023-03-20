@@ -1,0 +1,116 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::scheduler::binding.dart::_TaskEntry" {
+  +T Function() task
+  +int priority
+  +String? debugLabel
+  +Flow? flow
+  +StackTrace debugStack
+  +Completer<T> completer
+  +void run()
+}
+
+"flutter::lib::src::scheduler::binding.dart::_TaskEntry" o-- "flutter::lib::src::scheduler::binding.dart::T Function()"
+"flutter::lib::src::scheduler::binding.dart::_TaskEntry" o-- "dart::developer::Flow"
+"flutter::lib::src::scheduler::binding.dart::_TaskEntry" o-- "dart::async::Completer<T>"
+
+class "flutter::lib::src::scheduler::binding.dart::_FrameCallbackEntry" {
+  +void Function(Duration) callback
+  {static} +StackTrace? debugCurrentCallbackStack
+  +StackTrace? debugStack
+}
+
+"flutter::lib::src::scheduler::binding.dart::_FrameCallbackEntry" o-- "flutter::lib::src::scheduler::binding.dart::void Function(Duration)"
+
+class "flutter::lib::src::scheduler::binding.dart::SchedulerPhase" {
+  +int index
+  {static} +List<SchedulerPhase> values
+  {static} +SchedulerPhase idle
+  {static} +SchedulerPhase transientCallbacks
+  {static} +SchedulerPhase midFrameMicrotasks
+  {static} +SchedulerPhase persistentCallbacks
+  {static} +SchedulerPhase postFrameCallbacks
+}
+
+"flutter::lib::src::scheduler::binding.dart::SchedulerPhase" o-- "flutter::lib::src::scheduler::binding.dart::SchedulerPhase"
+"dart::core::Enum" <|-- "flutter::lib::src::scheduler::binding.dart::SchedulerPhase"
+
+abstract class "flutter::lib::src::scheduler::binding.dart::SchedulerBinding" {
+  {static} -SchedulerBinding? _instance
+  -List<dynamic> _timingsCallbacks
+  -dynamic _lifecycleState
+  +bool Function({required int priority, required SchedulerBinding scheduler}) schedulingStrategy
+  -PriorityQueue<_TaskEntry<dynamic>> _taskQueue
+  -bool _hasRequestedAnEventLoopCallback
+  -int _nextFrameCallbackId
+  -Map<int, _FrameCallbackEntry> _transientCallbacks
+  -Set<int> _removedIds
+  -List<void Function(Duration)> _persistentCallbacks
+  -List<void Function(Duration)> _postFrameCallbacks
+  -Completer<void>? _nextFrameCompleter
+  -bool _hasScheduledFrame
+  -SchedulerPhase _schedulerPhase
+  -bool _framesEnabled
+  -bool _warmUpFrame
+  -Duration? _firstRawTimeStampInEpoch
+  -Duration _epochStart
+  -Duration _lastRawTimeStamp
+  -Duration? _currentFrameTimeStamp
+  -int _debugFrameNumber
+  -String? _debugBanner
+  -bool _rescheduleAfterWarmUpFrame
+  -TimelineTask? _frameTimelineTask
+  {static} +SchedulerBinding instance
+  +dynamic lifecycleState
+  +int transientCallbackCount
+  +Future<void> endOfFrame
+  +bool hasScheduledFrame
+  +SchedulerPhase schedulerPhase
+  +bool framesEnabled
+  +Duration currentFrameTimeStamp
+  +Duration currentSystemFrameTimeStamp
+  +void initInstances()
+  +void addTimingsCallback()
+  +void removeTimingsCallback()
+  -void _executeTimingsCallbacks()
+  +void initServiceExtensions()
+  +void handleAppLifecycleStateChanged()
+  {static} -int _taskSorter()
+  +Future<T> scheduleTask()
+  +void unlocked()
+  -void _ensureEventLoopCallback()
+  -void _runTasks()
+  +bool handleEventLoopCallback()
+  +int scheduleFrameCallback()
+  +void cancelFrameCallbackWithId()
+  +bool debugAssertNoTransientCallbacks()
+  {static} +void debugPrintTransientCallbackRegistrationStack()
+  +void addPersistentFrameCallback()
+  +void addPostFrameCallback()
+  -void _setFramesEnabledState()
+  +void ensureFrameCallbacksRegistered()
+  +void ensureVisualUpdate()
+  +void scheduleFrame()
+  +void scheduleForcedFrame()
+  +void scheduleWarmUpFrame()
+  +void resetEpoch()
+  -Duration _adjustForEpoch()
+  -void _handleBeginFrame()
+  -void _handleDrawFrame()
+  +void handleBeginFrame()
+  +void handleDrawFrame()
+  -void _profileFramePostEvent()
+  {static} -void _debugDescribeTimeStamp()
+  -void _invokeFrameCallback()
+}
+
+"flutter::lib::src::scheduler::binding.dart::SchedulerBinding" o-- "flutter::lib::src::scheduler::binding.dart::SchedulerBinding"
+"flutter::lib::src::scheduler::binding.dart::SchedulerBinding" o-- "flutter::lib::src::scheduler::binding.dart::bool Function({required int priority, required SchedulerBinding scheduler})"
+"flutter::lib::src::scheduler::binding.dart::SchedulerBinding" o-- "collection::src::priority_queue.dart::PriorityQueue<_TaskEntry<dynamic>>"
+"flutter::lib::src::scheduler::binding.dart::SchedulerBinding" o-- "dart::async::Completer<void>"
+"flutter::lib::src::scheduler::binding.dart::SchedulerBinding" o-- "flutter::lib::src::scheduler::binding.dart::SchedulerPhase"
+"flutter::lib::src::scheduler::binding.dart::SchedulerBinding" o-- "dart::developer::TimelineTask"
+
+
+@enduml

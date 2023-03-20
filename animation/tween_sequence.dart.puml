@@ -1,0 +1,36 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::animation::tween_sequence.dart::TweenSequence" {
+  -List<TweenSequenceItem<T>> _items
+  -List<_Interval> _intervals
+  -T _evaluateAt()
+  +T transform()
+  +String toString()
+}
+
+"flutter::lib::src::animation::tween.dart::Animatable" <|-- "flutter::lib::src::animation::tween_sequence.dart::TweenSequence"
+
+class "flutter::lib::src::animation::tween_sequence.dart::FlippedTweenSequence" {
+  +double transform()
+}
+
+"flutter::lib::src::animation::tween_sequence.dart::TweenSequence" <|-- "flutter::lib::src::animation::tween_sequence.dart::FlippedTweenSequence"
+
+class "flutter::lib::src::animation::tween_sequence.dart::TweenSequenceItem" {
+  +Animatable<T> tween
+  +double weight
+}
+
+"flutter::lib::src::animation::tween_sequence.dart::TweenSequenceItem" o-- "flutter::lib::src::animation::tween.dart::Animatable<T>"
+
+class "flutter::lib::src::animation::tween_sequence.dart::_Interval" {
+  +double start
+  +double end
+  +bool contains()
+  +double value()
+  +String toString()
+}
+
+
+@enduml

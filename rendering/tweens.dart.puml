@@ -1,0 +1,17 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::tweens.dart::FractionalOffsetTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::rendering::tweens.dart::AlignmentTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::rendering::tweens.dart::AlignmentGeometryTween" {
+  +dynamic lerp()
+}
+
+
+@enduml

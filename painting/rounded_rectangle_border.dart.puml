@@ -1,0 +1,46 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::rounded_rectangle_border.dart::RoundedRectangleBorder" {
+  +BorderRadiusGeometry borderRadius
+  +EdgeInsetsGeometry dimensions
+  +int hashCode
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  +RoundedRectangleBorder copyWith()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::rounded_rectangle_border.dart::RoundedRectangleBorder" o-- "flutter::lib::src::painting::border_radius.dart::BorderRadiusGeometry"
+"flutter::lib::src::painting::rounded_rectangle_border.dart::RoundedRectangleBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::borders.dart::OutlinedBorder" <|-- "flutter::lib::src::painting::rounded_rectangle_border.dart::RoundedRectangleBorder"
+
+class "flutter::lib::src::painting::rounded_rectangle_border.dart::_RoundedRectangleToCircleBorder" {
+  +BorderRadiusGeometry borderRadius
+  +double circleness
+  +EdgeInsetsGeometry dimensions
+  +int hashCode
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  -dynamic _adjustRect()
+  -BorderRadius? _adjustBorderRadius()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +_RoundedRectangleToCircleBorder copyWith()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::rounded_rectangle_border.dart::_RoundedRectangleToCircleBorder" o-- "flutter::lib::src::painting::border_radius.dart::BorderRadiusGeometry"
+"flutter::lib::src::painting::rounded_rectangle_border.dart::_RoundedRectangleToCircleBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::borders.dart::OutlinedBorder" <|-- "flutter::lib::src::painting::rounded_rectangle_border.dart::_RoundedRectangleToCircleBorder"
+
+
+@enduml

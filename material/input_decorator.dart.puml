@@ -1,0 +1,419 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::input_decorator.dart::_InputBorderGap" {
+  -double? _start
+  -double _extent
+  +double? start
+  +double extent
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::material::input_decorator.dart::_InputBorderTween" {
+  +InputBorder lerp()
+}
+
+class "flutter::lib::src::material::input_decorator.dart::_InputBorderPainter" {
+  +dynamic borderAnimation
+  +_InputBorderTween border
+  +dynamic gapAnimation
+  +_InputBorderGap gap
+  +dynamic textDirection
+  +dynamic fillColor
+  +dynamic hoverColorTween
+  +dynamic hoverAnimation
+  +dynamic blendedColor
+  +void paint()
+  +bool shouldRepaint()
+  +String toString()
+}
+
+"flutter::lib::src::material::input_decorator.dart::_InputBorderPainter" o-- "flutter::lib::src::material::input_decorator.dart::_InputBorderTween"
+"flutter::lib::src::material::input_decorator.dart::_InputBorderPainter" o-- "flutter::lib::src::material::input_decorator.dart::_InputBorderGap"
+
+class "flutter::lib::src::material::input_decorator.dart::_BorderContainer" {
+  +InputBorder border
+  +_InputBorderGap gap
+  +dynamic gapAnimation
+  +dynamic fillColor
+  +dynamic hoverColor
+  +bool isHovering
+  +_BorderContainerState createState()
+}
+
+"flutter::lib::src::material::input_decorator.dart::_BorderContainer" o-- "flutter::lib::src::material::input_border.dart::InputBorder"
+"flutter::lib::src::material::input_decorator.dart::_BorderContainer" o-- "flutter::lib::src::material::input_decorator.dart::_InputBorderGap"
+
+class "flutter::lib::src::material::input_decorator.dart::_BorderContainerState" {
+  {static} -Duration _kHoverDuration
+  -dynamic _controller
+  -dynamic _hoverColorController
+  -dynamic _borderAnimation
+  -_InputBorderTween _border
+  -dynamic _hoverAnimation
+  -dynamic _hoverColorTween
+  +void initState()
+  +void dispose()
+  +void didUpdateWidget()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::input_decorator.dart::_BorderContainerState" o-- "flutter::lib::src::material::input_decorator.dart::_InputBorderTween"
+
+class "flutter::lib::src::material::input_decorator.dart::_Shaker" {
+  +dynamic child
+  +dynamic animation
+  +double translateX
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::input_decorator.dart::_HelperError" {
+  +dynamic textAlign
+  +String? helperText
+  +dynamic helperStyle
+  +int? helperMaxLines
+  +String? errorText
+  +dynamic errorStyle
+  +int? errorMaxLines
+  +_HelperErrorState createState()
+}
+
+class "flutter::lib::src::material::input_decorator.dart::_HelperErrorState" {
+  {static} +dynamic empty
+  -dynamic _controller
+  -dynamic _helper
+  -dynamic _error
+  +void initState()
+  +void dispose()
+  -void _handleChange()
+  +void didUpdateWidget()
+  -dynamic _buildHelper()
+  -dynamic _buildError()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::input_decorator.dart::FloatingLabelAlignment" {
+  -double _x
+  {static} +FloatingLabelAlignment start
+  {static} +FloatingLabelAlignment center
+  +int hashCode
+  +bool ==()
+  {static} -String _stringify()
+  +String toString()
+}
+
+"flutter::lib::src::material::input_decorator.dart::FloatingLabelAlignment" o-- "flutter::lib::src::material::input_decorator.dart::FloatingLabelAlignment"
+
+class "flutter::lib::src::material::input_decorator.dart::_Decoration" {
+  +dynamic contentPadding
+  +bool isCollapsed
+  +double floatingLabelHeight
+  +double floatingLabelProgress
+  +FloatingLabelAlignment floatingLabelAlignment
+  +InputBorder border
+  +_InputBorderGap borderGap
+  +bool alignLabelWithHint
+  +bool? isDense
+  +VisualDensity visualDensity
+  +dynamic icon
+  +dynamic input
+  +dynamic label
+  +dynamic hint
+  +dynamic prefix
+  +dynamic suffix
+  +dynamic prefixIcon
+  +dynamic suffixIcon
+  +dynamic helperError
+  +dynamic counter
+  +dynamic container
+  +int hashCode
+  +bool ==()
+}
+
+"flutter::lib::src::material::input_decorator.dart::_Decoration" o-- "flutter::lib::src::material::input_decorator.dart::FloatingLabelAlignment"
+"flutter::lib::src::material::input_decorator.dart::_Decoration" o-- "flutter::lib::src::material::input_border.dart::InputBorder"
+"flutter::lib::src::material::input_decorator.dart::_Decoration" o-- "flutter::lib::src::material::input_decorator.dart::_InputBorderGap"
+"flutter::lib::src::material::input_decorator.dart::_Decoration" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::input_decorator.dart::_RenderDecorationLayout" {
+  +Map<dynamic, double> boxToBaseline
+  +double inputBaseline
+  +double outlineBaseline
+  +double subtextBaseline
+  +double containerHeight
+  +double subtextHeight
+}
+
+class "flutter::lib::src::material::input_decorator.dart::_RenderDecoration" {
+  {static} +double subtextGap
+  -_Decoration _decoration
+  -dynamic _textDirection
+  -dynamic _textBaseline
+  -dynamic _textAlignVertical
+  -bool _isFocused
+  -bool _expands
+  -dynamic _labelTransform
+  +dynamic icon
+  +dynamic input
+  +dynamic label
+  +dynamic hint
+  +dynamic prefix
+  +dynamic suffix
+  +dynamic prefixIcon
+  +dynamic suffixIcon
+  +dynamic helperError
+  +dynamic counter
+  +dynamic container
+  +Iterable<dynamic> children
+  +_Decoration decoration
+  +dynamic textDirection
+  +dynamic textBaseline
+  -dynamic _defaultTextAlignVertical
+  +dynamic textAlignVertical
+  +bool isFocused
+  +bool expands
+  -bool _isOutlineAligned
+  +bool sizedByParent
+  +dynamic contentPadding
+  +void visitChildrenForSemantics()
+  {static} -double _minWidth()
+  {static} -double _maxWidth()
+  {static} -double _minHeight()
+  {static} -dynamic _boxSize()
+  {static} -dynamic _boxParentData()
+  -double _layoutLineBox()
+  -_RenderDecorationLayout _layout()
+  -double _interpolateThree()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  -double _lineHeight()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double computeDistanceToActualBaseline()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  -void _paintLabel()
+  +void paint()
+  +bool hitTestSelf()
+  +bool hitTestChildren()
+  +void applyPaintTransform()
+}
+
+"flutter::lib::src::material::input_decorator.dart::_RenderDecoration" o-- "flutter::lib::src::material::input_decorator.dart::_Decoration"
+
+class "flutter::lib::src::material::input_decorator.dart::_Decorator" {
+  +_Decoration decoration
+  +dynamic textDirection
+  +dynamic textBaseline
+  +dynamic textAlignVertical
+  +bool isFocused
+  +bool expands
+  +Iterable<_DecorationSlot> slots
+  +dynamic childForSlot()
+  +_RenderDecoration createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::material::input_decorator.dart::_Decorator" o-- "flutter::lib::src::material::input_decorator.dart::_Decoration"
+
+class "flutter::lib::src::material::input_decorator.dart::_AffixText" {
+  +bool labelIsFloating
+  +String? text
+  +dynamic style
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::input_decorator.dart::InputDecorator" {
+  +InputDecoration decoration
+  +dynamic baseStyle
+  +dynamic textAlign
+  +dynamic textAlignVertical
+  +bool isFocused
+  +bool isHovering
+  +bool expands
+  +bool isEmpty
+  +dynamic child
+  -bool _labelShouldWithdraw
+  +dynamic createState()
+  {static} +dynamic containerOf()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::input_decorator.dart::InputDecorator" o-- "flutter::lib::src::material::input_decorator.dart::InputDecoration"
+
+class "flutter::lib::src::material::input_decorator.dart::_InputDecoratorState" {
+  -dynamic _floatingLabelController
+  -dynamic _shakingLabelController
+  -_InputBorderGap _borderGap
+  -InputDecoration? _effectiveDecoration
+  +InputDecoration decoration
+  +dynamic textAlign
+  +bool isFocused
+  +bool isHovering
+  +bool isEmpty
+  -bool _floatingLabelEnabled
+  -bool _hasInlineLabel
+  -bool _shouldShowLabel
+  +Set<MaterialState> materialState
+  +void initState()
+  +void didChangeDependencies()
+  +void dispose()
+  -void _handleChange()
+  +void didUpdateWidget()
+  -dynamic _getActiveColor()
+  -dynamic _getDefaultBorderColor()
+  -dynamic _getFillColor()
+  -dynamic _getHoverColor()
+  -dynamic _getIconColor()
+  -dynamic _getPrefixIconColor()
+  -dynamic _getSuffixIconColor()
+  -dynamic _getInlineLabelStyle()
+  -dynamic _getInlineHintStyle()
+  -dynamic _getFloatingLabelStyle()
+  -dynamic _getHelperStyle()
+  -dynamic _getErrorStyle()
+  -InputBorder _getDefaultBorder()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::input_decorator.dart::_InputDecoratorState" o-- "flutter::lib::src::material::input_decorator.dart::_InputBorderGap"
+"flutter::lib::src::material::input_decorator.dart::_InputDecoratorState" o-- "flutter::lib::src::material::input_decorator.dart::InputDecoration"
+
+class "flutter::lib::src::material::input_decorator.dart::InputDecoration" {
+  +dynamic icon
+  +dynamic iconColor
+  +dynamic label
+  +String? labelText
+  +dynamic labelStyle
+  +dynamic floatingLabelStyle
+  +String? helperText
+  +dynamic helperStyle
+  +int? helperMaxLines
+  +String? hintText
+  +dynamic hintStyle
+  +dynamic hintTextDirection
+  +int? hintMaxLines
+  +String? errorText
+  +dynamic errorStyle
+  +int? errorMaxLines
+  +FloatingLabelBehavior? floatingLabelBehavior
+  +FloatingLabelAlignment? floatingLabelAlignment
+  +bool? isDense
+  +dynamic contentPadding
+  +bool isCollapsed
+  +dynamic prefixIcon
+  +dynamic prefixIconConstraints
+  +dynamic prefix
+  +String? prefixText
+  +dynamic prefixStyle
+  +dynamic prefixIconColor
+  +dynamic suffixIcon
+  +dynamic suffix
+  +String? suffixText
+  +dynamic suffixStyle
+  +dynamic suffixIconColor
+  +dynamic suffixIconConstraints
+  +String? counterText
+  +dynamic counter
+  +dynamic counterStyle
+  +bool? filled
+  +dynamic fillColor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +InputBorder? errorBorder
+  +InputBorder? focusedBorder
+  +InputBorder? focusedErrorBorder
+  +InputBorder? disabledBorder
+  +InputBorder? enabledBorder
+  +InputBorder? border
+  +bool enabled
+  +String? semanticCounterText
+  +bool? alignLabelWithHint
+  +dynamic constraints
+  +int hashCode
+  +InputDecoration copyWith()
+  +InputDecoration applyDefaults()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::material::input_decorator.dart::InputDecoration" o-- "flutter::lib::src::material::input_decorator.dart::FloatingLabelBehavior"
+"flutter::lib::src::material::input_decorator.dart::InputDecoration" o-- "flutter::lib::src::material::input_decorator.dart::FloatingLabelAlignment"
+"flutter::lib::src::material::input_decorator.dart::InputDecoration" o-- "flutter::lib::src::material::input_border.dart::InputBorder"
+
+class "flutter::lib::src::material::input_decorator.dart::InputDecorationTheme" {
+  +dynamic labelStyle
+  +dynamic floatingLabelStyle
+  +dynamic helperStyle
+  +int? helperMaxLines
+  +dynamic hintStyle
+  +dynamic errorStyle
+  +int? errorMaxLines
+  +FloatingLabelBehavior floatingLabelBehavior
+  +FloatingLabelAlignment floatingLabelAlignment
+  +bool isDense
+  +dynamic contentPadding
+  +bool isCollapsed
+  +dynamic iconColor
+  +dynamic prefixStyle
+  +dynamic prefixIconColor
+  +dynamic suffixStyle
+  +dynamic suffixIconColor
+  +dynamic counterStyle
+  +bool filled
+  +dynamic fillColor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +InputBorder? errorBorder
+  +InputBorder? focusedBorder
+  +InputBorder? focusedErrorBorder
+  +InputBorder? disabledBorder
+  +InputBorder? enabledBorder
+  +InputBorder? border
+  +bool alignLabelWithHint
+  +dynamic constraints
+  +int hashCode
+  +InputDecorationTheme copyWith()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::input_decorator.dart::InputDecorationTheme" o-- "flutter::lib::src::material::input_decorator.dart::FloatingLabelBehavior"
+"flutter::lib::src::material::input_decorator.dart::InputDecorationTheme" o-- "flutter::lib::src::material::input_decorator.dart::FloatingLabelAlignment"
+"flutter::lib::src::material::input_decorator.dart::InputDecorationTheme" o-- "flutter::lib::src::material::input_border.dart::InputBorder"
+
+class "flutter::lib::src::material::input_decorator.dart::FloatingLabelBehavior" {
+  +int index
+  {static} +List<FloatingLabelBehavior> values
+  {static} +FloatingLabelBehavior never
+  {static} +FloatingLabelBehavior auto
+  {static} +FloatingLabelBehavior always
+}
+
+"flutter::lib::src::material::input_decorator.dart::FloatingLabelBehavior" o-- "flutter::lib::src::material::input_decorator.dart::FloatingLabelBehavior"
+"dart::core::Enum" <|-- "flutter::lib::src::material::input_decorator.dart::FloatingLabelBehavior"
+
+class "flutter::lib::src::material::input_decorator.dart::_DecorationSlot" {
+  +int index
+  {static} +List<_DecorationSlot> values
+  {static} +_DecorationSlot icon
+  {static} +_DecorationSlot input
+  {static} +_DecorationSlot label
+  {static} +_DecorationSlot hint
+  {static} +_DecorationSlot prefix
+  {static} +_DecorationSlot suffix
+  {static} +_DecorationSlot prefixIcon
+  {static} +_DecorationSlot suffixIcon
+  {static} +_DecorationSlot helperError
+  {static} +_DecorationSlot counter
+  {static} +_DecorationSlot container
+}
+
+"flutter::lib::src::material::input_decorator.dart::_DecorationSlot" o-- "flutter::lib::src::material::input_decorator.dart::_DecorationSlot"
+"dart::core::Enum" <|-- "flutter::lib::src::material::input_decorator.dart::_DecorationSlot"
+
+
+@enduml

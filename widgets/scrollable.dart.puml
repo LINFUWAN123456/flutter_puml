@@ -1,0 +1,262 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scrollable.dart::Scrollable" {
+  +dynamic axisDirection
+  +ScrollController? controller
+  +ScrollPhysics? physics
+  +Widget Function(BuildContext, dynamic) viewportBuilder
+  +double Function(ScrollIncrementDetails)? incrementCalculator
+  +bool excludeFromSemantics
+  +int? semanticChildCount
+  +dynamic dragStartBehavior
+  +String? restorationId
+  +ScrollBehavior? scrollBehavior
+  +dynamic clipBehavior
+  +dynamic axis
+  +ScrollableState createState()
+  +void debugFillProperties()
+  {static} +ScrollableState? of()
+  {static} +bool recommendDeferredLoadingForContext()
+  {static} +Future<void> ensureVisible()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::Scrollable" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::scrollable.dart::Scrollable" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::scrollable.dart::Scrollable" o-- "flutter::lib::src::widgets::scrollable.dart::Widget Function(BuildContext, dynamic)"
+"flutter::lib::src::widgets::scrollable.dart::Scrollable" o-- "flutter::lib::src::widgets::scrollable.dart::double Function(ScrollIncrementDetails)"
+"flutter::lib::src::widgets::scrollable.dart::Scrollable" o-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::scrollable.dart::Scrollable"
+
+class "flutter::lib::src::widgets::scrollable.dart::_ScrollableScope" {
+  +ScrollableState scrollable
+  +ScrollPosition position
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::_ScrollableScope" o-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+"flutter::lib::src::widgets::scrollable.dart::_ScrollableScope" o-- "flutter::lib::src::widgets::scroll_position.dart::ScrollPosition"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::scrollable.dart::_ScrollableScope"
+
+class "flutter::lib::src::widgets::scrollable.dart::ScrollableState" {
+  -ScrollPosition? _position
+  -_RestorableScrollOffset _persistedScrollOffset
+  -ScrollBehavior _configuration
+  -ScrollPhysics? _physics
+  -ScrollController? _fallbackScrollController
+  -MediaQueryData? _mediaQueryData
+  -GlobalKey<State<StatefulWidget>> _scrollSemanticsKey
+  -GlobalKey<RawGestureDetectorState> _gestureDetectorKey
+  -GlobalKey<State<StatefulWidget>> _ignorePointerKey
+  -Map<Type, GestureRecognizerFactory<dynamic>> _gestureRecognizers
+  -bool _shouldIgnorePointer
+  -bool? _lastCanDrag
+  -dynamic _lastAxisDirection
+  -dynamic _drag
+  -ScrollHoldController? _hold
+  +ScrollPosition position
+  +dynamic axisDirection
+  -ScrollController _effectiveScrollController
+  +dynamic vsync
+  +BuildContext? notificationContext
+  +BuildContext storageContext
+  +String? restorationId
+  -void _updatePosition()
+  +void restoreState()
+  +void saveOffset()
+  +void initState()
+  +void didChangeDependencies()
+  -bool _shouldUpdatePosition()
+  +void didUpdateWidget()
+  +void dispose()
+  +void setSemanticsActions()
+  +void setCanDrag()
+  +void setIgnorePointer()
+  -void _handleDragDown()
+  -void _handleDragStart()
+  -void _handleDragUpdate()
+  -void _handleDragEnd()
+  -void _handleDragCancel()
+  -void _disposeHold()
+  -void _disposeDrag()
+  -double _targetScrollOffsetForPointerScroll()
+  -double _pointerSignalEventDelta()
+  -void _receivedPointerSignal()
+  -void _handlePointerScroll()
+  -bool _handleScrollMetricsNotification()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::scroll_position.dart::ScrollPosition"
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::scrollable.dart::_RestorableScrollOffset"
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior"
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::media_query.dart::MediaQueryData"
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<RawGestureDetectorState>"
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::scroll_activity.dart::ScrollHoldController"
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+"flutter::lib::src::widgets::restoration.dart::RestorationMixin" <|-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+"flutter::lib::src::widgets::scroll_context.dart::ScrollContext" <|-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+
+class "flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionHandler" {
+  +ScrollableState state
+  +ScrollPosition position
+  +Widget child
+  +dynamic registrar
+  +_ScrollableSelectionHandlerState createState()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionHandler" o-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+"flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionHandler" o-- "flutter::lib::src::widgets::scroll_position.dart::ScrollPosition"
+"flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionHandler" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionHandler"
+
+class "flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionHandlerState" {
+  -_ScrollableSelectionContainerDelegate _selectionDelegate
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionHandlerState" o-- "flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionContainerDelegate"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionHandlerState"
+
+class "flutter::lib::src::widgets::scrollable.dart::EdgeDraggingAutoScroller" {
+  {static} -double _kDefaultAutoScrollVelocityScalar
+  +ScrollableState scrollable
+  +dynamic onScrollViewScrolled
+  +double velocityScalar
+  -dynamic _dragTargetRelatedToScrollOrigin
+  -bool _scrolling
+  +bool scrolling
+  -dynamic _axisDirection
+  -dynamic _scrollDirection
+  -double _offsetExtent()
+  -double _sizeExtent()
+  +void startAutoScrollIfNecessary()
+  +void stopAutoScroll()
+  -Future<void> _scroll()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::EdgeDraggingAutoScroller" o-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+
+class "flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionContainerDelegate" {
+  {static} -double _kDefaultDragTargetSize
+  {static} -double _kDefaultSelectToScrollVelocityScalar
+  +ScrollableState state
+  -EdgeDraggingAutoScroller _autoScroller
+  -bool _scheduledLayoutChange
+  -dynamic _currentDragStartRelatedToOrigin
+  -dynamic _currentDragEndRelatedToOrigin
+  -bool _selectionStartsInScrollable
+  -ScrollPosition _position
+  -Map<dynamic, double> _selectableStartEdgeUpdateRecords
+  -Map<dynamic, double> _selectableEndEdgeUpdateRecords
+  +ScrollPosition position
+  -void _scheduleLayoutChange()
+  +void didChangeSelectables()
+  +dynamic handleClearSelection()
+  +dynamic handleSelectionEdgeUpdate()
+  -dynamic _inferPositionRelatedToOrigin()
+  -void _updateDragLocationsFromGeometries()
+  +dynamic handleSelectAll()
+  +dynamic handleSelectWord()
+  -bool _globalPositionInScrollable()
+  -dynamic _dragTargetFromEvent()
+  +dynamic dispatchSelectionEventToChild()
+  +void ensureChildUpdated()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionContainerDelegate" o-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+"flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionContainerDelegate" o-- "flutter::lib::src::widgets::scrollable.dart::EdgeDraggingAutoScroller"
+"flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionContainerDelegate" o-- "flutter::lib::src::widgets::scroll_position.dart::ScrollPosition"
+"flutter::lib::src::widgets::selectable_region.dart::MultiSelectableSelectionContainerDelegate" <|-- "flutter::lib::src::widgets::scrollable.dart::_ScrollableSelectionContainerDelegate"
+
+class "flutter::lib::src::widgets::scrollable.dart::ScrollableDetails" {
+  +dynamic direction
+  +ScrollController controller
+  +dynamic clipBehavior
+}
+
+"flutter::lib::src::widgets::scrollable.dart::ScrollableDetails" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+
+class "flutter::lib::src::widgets::scrollable.dart::_ScrollSemantics" {
+  +ScrollPosition position
+  +bool allowImplicitScrolling
+  +int? semanticChildCount
+  +_RenderScrollSemantics createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::_ScrollSemantics" o-- "flutter::lib::src::widgets::scroll_position.dart::ScrollPosition"
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::scrollable.dart::_ScrollSemantics"
+
+class "flutter::lib::src::widgets::scrollable.dart::_RenderScrollSemantics" {
+  -ScrollPosition _position
+  -bool _allowImplicitScrolling
+  -int? _semanticChildCount
+  -dynamic _innerNode
+  +ScrollPosition position
+  +bool allowImplicitScrolling
+  +int? semanticChildCount
+  +void describeSemanticsConfiguration()
+  +void assembleSemanticsNode()
+  +void clearSemantics()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::_RenderScrollSemantics" o-- "flutter::lib::src::widgets::scroll_position.dart::ScrollPosition"
+
+class "flutter::lib::src::widgets::scrollable.dart::ScrollIncrementDetails" {
+  +ScrollIncrementType type
+  +ScrollMetrics metrics
+}
+
+"flutter::lib::src::widgets::scrollable.dart::ScrollIncrementDetails" o-- "flutter::lib::src::widgets::scrollable.dart::ScrollIncrementType"
+"flutter::lib::src::widgets::scrollable.dart::ScrollIncrementDetails" o-- "flutter::lib::src::widgets::scroll_metrics.dart::ScrollMetrics"
+
+class "flutter::lib::src::widgets::scrollable.dart::ScrollIntent" {
+  +dynamic direction
+  +ScrollIncrementType type
+}
+
+"flutter::lib::src::widgets::scrollable.dart::ScrollIntent" o-- "flutter::lib::src::widgets::scrollable.dart::ScrollIncrementType"
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::scrollable.dart::ScrollIntent"
+
+class "flutter::lib::src::widgets::scrollable.dart::ScrollAction" {
+  +bool isEnabled()
+  -double _calculateScrollIncrement()
+  -double _getIncrement()
+  +void invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::scrollable.dart::ScrollAction"
+
+class "flutter::lib::src::widgets::scrollable.dart::_RestorableScrollOffset" {
+  +bool enabled
+  +double? createDefaultValue()
+  +void didUpdateValue()
+  +double fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableValue" <|-- "flutter::lib::src::widgets::scrollable.dart::_RestorableScrollOffset"
+
+class "flutter::lib::src::widgets::scrollable.dart::ScrollIncrementType" {
+  +int index
+  {static} +List<ScrollIncrementType> values
+  {static} +ScrollIncrementType line
+  {static} +ScrollIncrementType page
+}
+
+"flutter::lib::src::widgets::scrollable.dart::ScrollIncrementType" o-- "flutter::lib::src::widgets::scrollable.dart::ScrollIncrementType"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::scrollable.dart::ScrollIncrementType"
+
+
+@enduml

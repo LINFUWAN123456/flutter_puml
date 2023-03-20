@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::banner_theme.dart::MaterialBannerThemeData" {
+  +dynamic backgroundColor
+  +dynamic contentTextStyle
+  +double? elevation
+  +dynamic padding
+  +dynamic leadingPadding
+  +int hashCode
+  +MaterialBannerThemeData copyWith()
+  {static} +MaterialBannerThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::banner_theme.dart::MaterialBannerTheme" {
+  +MaterialBannerThemeData? data
+  {static} +MaterialBannerThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::banner_theme.dart::MaterialBannerTheme" o-- "flutter::lib::src::material::banner_theme.dart::MaterialBannerThemeData"
+
+
+@enduml

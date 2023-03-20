@@ -1,0 +1,26 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::painting::decoration.dart::Decoration" {
+  +EdgeInsetsGeometry? padding
+  +bool isComplex
+  +String toStringShort()
+  +bool debugAssertIsValid()
+  +Decoration? lerpFrom()
+  +Decoration? lerpTo()
+  {static} +Decoration? lerp()
+  +bool hitTest()
+  +BoxPainter createBoxPainter()
+  +dynamic getClipPath()
+}
+
+"flutter::lib::src::painting::decoration.dart::Decoration" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+
+abstract class "flutter::lib::src::painting::decoration.dart::BoxPainter" {
+  +dynamic onChanged
+  +void paint()
+  +void dispose()
+}
+
+
+@enduml

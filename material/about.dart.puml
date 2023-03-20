@@ -1,0 +1,242 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::about.dart::AboutListTile" {
+  +dynamic icon
+  +dynamic child
+  +String? applicationName
+  +String? applicationVersion
+  +dynamic applicationIcon
+  +String? applicationLegalese
+  +List<dynamic>? aboutBoxChildren
+  +bool? dense
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::about.dart::AboutDialog" {
+  +String? applicationName
+  +String? applicationVersion
+  +dynamic applicationIcon
+  +String? applicationLegalese
+  +List<dynamic>? children
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::about.dart::LicensePage" {
+  +String? applicationName
+  +String? applicationVersion
+  +dynamic applicationIcon
+  +String? applicationLegalese
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::about.dart::_LicensePageState" {
+  +dynamic selectedId
+  +void dispose()
+  +dynamic build()
+  -dynamic _packageLicensePage()
+  -dynamic _packagesView()
+}
+
+class "flutter::lib::src::material::about.dart::_AboutProgram" {
+  +String name
+  +String version
+  +dynamic icon
+  +String? legalese
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::about.dart::_PackagesView" {
+  +dynamic about
+  +bool isLateral
+  +dynamic selectedId
+  +_PackagesViewState createState()
+}
+
+class "flutter::lib::src::material::about.dart::_PackagesViewState" {
+  +Future<_LicenseData> licenses
+  +dynamic build()
+  -void _initDefaultDetailPage()
+  -dynamic _packagesList()
+}
+
+class "flutter::lib::src::material::about.dart::_PackageListTile" {
+  +String packageName
+  +int? index
+  +bool isSelected
+  +int numberLicenses
+  +dynamic onTap
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::about.dart::_LicenseData" {
+  +List<dynamic> licenses
+  +Map<String, List<int>> packageLicenseBindings
+  +List<String> packages
+  +String? firstPackage
+  +void addLicense()
+  -void _addPackage()
+  +void sortPackages()
+}
+
+class "flutter::lib::src::material::about.dart::_DetailArguments" {
+  +String packageName
+  +List<dynamic> licenseEntries
+  +int hashCode
+  +bool ==()
+}
+
+class "flutter::lib::src::material::about.dart::_PackageLicensePage" {
+  +String packageName
+  +List<dynamic> licenseEntries
+  +dynamic scrollController
+  +_PackageLicensePageState createState()
+}
+
+class "flutter::lib::src::material::about.dart::_PackageLicensePageState" {
+  -List<dynamic> _licenses
+  -bool _loaded
+  +void initState()
+  -Future<void> _initLicenses()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::about.dart::_PackageLicensePageTitle" {
+  +String title
+  +String subtitle
+  +TextTheme theme
+  +dynamic build()
+}
+
+"flutter::lib::src::material::about.dart::_PackageLicensePageTitle" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+
+class "flutter::lib::src::material::about.dart::_MasterDetailFlow" {
+  +dynamic Function(dynamic, bool) masterViewBuilder
+  +dynamic Function(dynamic, Object?, dynamic) detailPageBuilder
+  +double? detailPageFABlessGutterWidth
+  +dynamic title
+  +bool automaticallyImplyLeading
+  +_LayoutMode displayMode
+  +_MasterDetailFlowState createState()
+  {static} +_MasterDetailFlowProxy? of()
+}
+
+"flutter::lib::src::material::about.dart::_MasterDetailFlow" o-- "flutter::lib::src::material::about.dart::dynamic Function(dynamic, bool)"
+"flutter::lib::src::material::about.dart::_MasterDetailFlow" o-- "flutter::lib::src::material::about.dart::dynamic Function(dynamic, Object, dynamic)"
+"flutter::lib::src::material::about.dart::_MasterDetailFlow" o-- "flutter::lib::src::material::about.dart::_LayoutMode"
+
+class "flutter::lib::src::material::about.dart::_MasterDetailFlowProxy" {
+  -_PageOpener _pageOpener
+  +void openDetailPage()
+  +void setInitialDetailPage()
+}
+
+"flutter::lib::src::material::about.dart::_MasterDetailFlowProxy" o-- "flutter::lib::src::material::about.dart::_PageOpener"
+"flutter::lib::src::material::about.dart::_PageOpener" <|-- "flutter::lib::src::material::about.dart::_MasterDetailFlowProxy"
+
+abstract class "flutter::lib::src::material::about.dart::_PageOpener" {
+  +void openDetailPage()
+  +void setInitialDetailPage()
+}
+
+class "flutter::lib::src::material::about.dart::_MasterDetailFlowState" {
+  +_Focus focus
+  -Object? _cachedDetailArguments
+  -_LayoutMode? _builtLayout
+  -dynamic _navigatorKey
+  +void openDetailPage()
+  +void setInitialDetailPage()
+  +dynamic build()
+  -dynamic _nestedUI()
+  -MaterialPageRoute<void> _masterPageRoute()
+  -MaterialPageRoute<void> _detailPageRoute()
+  -dynamic _lateralUI()
+}
+
+"flutter::lib::src::material::about.dart::_MasterDetailFlowState" o-- "flutter::lib::src::material::about.dart::_Focus"
+"flutter::lib::src::material::about.dart::_MasterDetailFlowState" o-- "flutter::lib::src::material::about.dart::_LayoutMode"
+"flutter::lib::src::material::about.dart::_PageOpener" <|-- "flutter::lib::src::material::about.dart::_MasterDetailFlowState"
+
+class "flutter::lib::src::material::about.dart::_MasterPage" {
+  +dynamic Function(dynamic, bool)? masterViewBuilder
+  +dynamic title
+  +dynamic leading
+  +bool automaticallyImplyLeading
+  +dynamic build()
+}
+
+"flutter::lib::src::material::about.dart::_MasterPage" o-- "flutter::lib::src::material::about.dart::dynamic Function(dynamic, bool)"
+
+class "flutter::lib::src::material::about.dart::_MasterDetailScaffold" {
+  +dynamic Function(dynamic, bool) masterViewBuilder
+  +dynamic Function(dynamic, Object?, dynamic) detailPageBuilder
+  +List<dynamic> Function(dynamic, _ActionLevel)? actionBuilder
+  +Object? initialArguments
+  +dynamic title
+  +bool automaticallyImplyLeading
+  +double? detailPageFABlessGutterWidth
+  +_MasterDetailScaffoldState createState()
+}
+
+"flutter::lib::src::material::about.dart::_MasterDetailScaffold" o-- "flutter::lib::src::material::about.dart::dynamic Function(dynamic, bool)"
+"flutter::lib::src::material::about.dart::_MasterDetailScaffold" o-- "flutter::lib::src::material::about.dart::dynamic Function(dynamic, Object, dynamic)"
+"flutter::lib::src::material::about.dart::_MasterDetailScaffold" o-- "flutter::lib::src::material::about.dart::List<dynamic> Function(dynamic, _ActionLevel)"
+
+class "flutter::lib::src::material::about.dart::_MasterDetailScaffoldState" {
+  +FloatingActionButtonLocation floatingActionButtonLocation
+  +double detailPageFABGutterWidth
+  +double detailPageFABlessGutterWidth
+  +double masterViewWidth
+  -dynamic _detailArguments
+  +void initState()
+  +void dispose()
+  +void openDetailPage()
+  +void setInitialDetailPage()
+  +dynamic build()
+  -dynamic _masterPanel()
+}
+
+"flutter::lib::src::material::about.dart::_MasterDetailScaffoldState" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation"
+"flutter::lib::src::material::about.dart::_PageOpener" <|-- "flutter::lib::src::material::about.dart::_MasterDetailScaffoldState"
+
+class "flutter::lib::src::material::about.dart::_DetailView" {
+  -dynamic Function(dynamic, Object?, dynamic) _builder
+  -Object? _arguments
+  +dynamic build()
+}
+
+"flutter::lib::src::material::about.dart::_DetailView" o-- "flutter::lib::src::material::about.dart::dynamic Function(dynamic, Object, dynamic)"
+
+class "flutter::lib::src::material::about.dart::_ActionLevel" {
+  +int index
+  {static} +List<_ActionLevel> values
+  {static} +_ActionLevel top
+  {static} +_ActionLevel view
+}
+
+"flutter::lib::src::material::about.dart::_ActionLevel" o-- "flutter::lib::src::material::about.dart::_ActionLevel"
+"dart::core::Enum" <|-- "flutter::lib::src::material::about.dart::_ActionLevel"
+
+class "flutter::lib::src::material::about.dart::_LayoutMode" {
+  +int index
+  {static} +List<_LayoutMode> values
+  {static} +_LayoutMode auto
+  {static} +_LayoutMode lateral
+  {static} +_LayoutMode nested
+}
+
+"flutter::lib::src::material::about.dart::_LayoutMode" o-- "flutter::lib::src::material::about.dart::_LayoutMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::about.dart::_LayoutMode"
+
+class "flutter::lib::src::material::about.dart::_Focus" {
+  +int index
+  {static} +List<_Focus> values
+  {static} +_Focus master
+  {static} +_Focus detail
+}
+
+"flutter::lib::src::material::about.dart::_Focus" o-- "flutter::lib::src::material::about.dart::_Focus"
+"dart::core::Enum" <|-- "flutter::lib::src::material::about.dart::_Focus"
+
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::painting::placeholder_span.dart::PlaceholderSpan" {
+  {static} +int placeholderCodeUnit
+  +dynamic alignment
+  +dynamic baseline
+  +void computeToPlainText()
+  +void computeSemanticsInformation()
+  +void describeSemantics()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::painting::inline_span.dart::InlineSpan" <|-- "flutter::lib::src::painting::placeholder_span.dart::PlaceholderSpan"
+
+
+@enduml

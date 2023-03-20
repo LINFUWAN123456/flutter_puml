@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::painting::notched_shapes.dart::NotchedShape" {
+  +dynamic getOuterPath()
+}
+
+class "flutter::lib::src::painting::notched_shapes.dart::CircularNotchedRectangle" {
+  +dynamic getOuterPath()
+}
+
+"flutter::lib::src::painting::notched_shapes.dart::NotchedShape" <|-- "flutter::lib::src::painting::notched_shapes.dart::CircularNotchedRectangle"
+
+class "flutter::lib::src::painting::notched_shapes.dart::AutomaticNotchedShape" {
+  +ShapeBorder host
+  +ShapeBorder? guest
+  +dynamic getOuterPath()
+}
+
+"flutter::lib::src::painting::notched_shapes.dart::AutomaticNotchedShape" o-- "flutter::lib::src::painting::borders.dart::ShapeBorder"
+"flutter::lib::src::painting::notched_shapes.dart::NotchedShape" <|-- "flutter::lib::src::painting::notched_shapes.dart::AutomaticNotchedShape"
+
+
+@enduml

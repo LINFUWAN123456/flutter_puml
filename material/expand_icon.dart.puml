@@ -1,0 +1,28 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::expand_icon.dart::ExpandIcon" {
+  +bool isExpanded
+  +double size
+  +dynamic onPressed
+  +dynamic padding
+  +dynamic color
+  +dynamic disabledColor
+  +dynamic expandedColor
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::expand_icon.dart::_ExpandIconState" {
+  -dynamic _controller
+  -dynamic _iconTurns
+  {static} -dynamic _iconTurnTween
+  -dynamic _iconColor
+  +void initState()
+  +void dispose()
+  +void didUpdateWidget()
+  -void _handlePressed()
+  +dynamic build()
+}
+
+
+@enduml

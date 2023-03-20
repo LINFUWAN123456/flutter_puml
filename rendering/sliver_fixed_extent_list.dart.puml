@@ -1,0 +1,26 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::sliver_fixed_extent_list.dart::RenderSliverFixedExtentBoxAdaptor" {
+  +double itemExtent
+  +double indexToLayoutOffset()
+  +int getMinChildIndexForScrollOffset()
+  +int getMaxChildIndexForScrollOffset()
+  +double estimateMaxScrollOffset()
+  +double computeMaxScrollOffset()
+  -int _calculateLeadingGarbage()
+  -int _calculateTrailingGarbage()
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverMultiBoxAdaptor" <|-- "flutter::lib::src::rendering::sliver_fixed_extent_list.dart::RenderSliverFixedExtentBoxAdaptor"
+
+class "flutter::lib::src::rendering::sliver_fixed_extent_list.dart::RenderSliverFixedExtentList" {
+  -double _itemExtent
+  +double itemExtent
+}
+
+"flutter::lib::src::rendering::sliver_fixed_extent_list.dart::RenderSliverFixedExtentBoxAdaptor" <|-- "flutter::lib::src::rendering::sliver_fixed_extent_list.dart::RenderSliverFixedExtentList"
+
+
+@enduml

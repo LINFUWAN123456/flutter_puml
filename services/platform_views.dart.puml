@@ -1,0 +1,194 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::platform_views.dart::PlatformViewsRegistry" {
+  -int _nextPlatformViewId
+  +int getNextPlatformViewId()
+}
+
+class "flutter::lib::src::services::platform_views.dart::PlatformViewsService" {
+  {static} -PlatformViewsService _instance
+  -Map<int, dynamic> _focusCallbacks
+  -Future<void> _onMethodCall()
+  {static} +AndroidViewController initAndroidView()
+  {static} +SurfaceAndroidViewController initSurfaceAndroidView()
+  {static} +ExpensiveAndroidViewController initExpensiveAndroidView()
+  {static} +Future<void> synchronizeToNativeViewHierarchy()
+  {static} +Future<UiKitViewController> initUiKitView()
+}
+
+"flutter::lib::src::services::platform_views.dart::PlatformViewsService" o-- "flutter::lib::src::services::platform_views.dart::PlatformViewsService"
+
+class "flutter::lib::src::services::platform_views.dart::AndroidPointerProperties" {
+  +int id
+  +int toolType
+  {static} +int kToolTypeUnknown
+  {static} +int kToolTypeFinger
+  {static} +int kToolTypeStylus
+  {static} +int kToolTypeMouse
+  {static} +int kToolTypeEraser
+  -List<int> _asList()
+  +String toString()
+}
+
+class "flutter::lib::src::services::platform_views.dart::AndroidPointerCoords" {
+  +double orientation
+  +double pressure
+  +double size
+  +double toolMajor
+  +double toolMinor
+  +double touchMajor
+  +double touchMinor
+  +double x
+  +double y
+  -List<double> _asList()
+  +String toString()
+}
+
+class "flutter::lib::src::services::platform_views.dart::AndroidMotionEvent" {
+  +int downTime
+  +int eventTime
+  +int action
+  +int pointerCount
+  +List<AndroidPointerProperties> pointerProperties
+  +List<AndroidPointerCoords> pointerCoords
+  +int metaState
+  +int buttonState
+  +double xPrecision
+  +double yPrecision
+  +int deviceId
+  +int edgeFlags
+  +int source
+  +int flags
+  +int motionEventId
+  -List<dynamic> _asList()
+  +String toString()
+}
+
+class "flutter::lib::src::services::platform_views.dart::_AndroidMotionEventConverter" {
+  +Map<int, AndroidPointerCoords> pointerPositions
+  +Map<int, AndroidPointerProperties> pointerProperties
+  +Set<int> usedAndroidPointerIds
+  -dynamic Function(dynamic) _pointTransformer
+  +int? downTimeMillis
+  +dynamic Function(dynamic) pointTransformer
+  +void handlePointerDownEvent()
+  +void updatePointerPositions()
+  -void _remove()
+  +void handlePointerUpEvent()
+  +void handlePointerCancelEvent()
+  +AndroidMotionEvent? toAndroidMotionEvent()
+  +AndroidPointerProperties propertiesFor()
+  +bool isSinglePointerAction()
+}
+
+"flutter::lib::src::services::platform_views.dart::_AndroidMotionEventConverter" o-- "flutter::lib::src::services::platform_views.dart::dynamic Function(dynamic)"
+
+abstract class "flutter::lib::src::services::platform_views.dart::AndroidViewController" {
+  {static} +int kActionDown
+  {static} +int kActionUp
+  {static} +int kActionMove
+  {static} +int kActionCancel
+  {static} +int kActionPointerDown
+  {static} +int kActionPointerUp
+  {static} +int kAndroidLayoutDirectionLtr
+  {static} +int kAndroidLayoutDirectionRtl
+  +int viewId
+  -String _viewType
+  -_AndroidMotionEventConverter _motionEventConverter
+  -dynamic _layoutDirection
+  -_AndroidViewState _state
+  -dynamic _creationParams
+  -MessageCodec<dynamic>? _creationParamsCodec
+  -List<void Function(int)> _platformViewCreatedCallbacks
+  -bool _createRequiresSize
+  +bool awaitingCreation
+  +int? textureId
+  +dynamic Function(dynamic) pointTransformer
+  +bool isCreated
+  +List<void Function(int)> createdCallbacks
+  {static} -int _getAndroidDirection()
+  {static} +int pointerAction()
+  -Future<void> _sendDisposeMessage()
+  -Future<void> _sendCreateMessage()
+  -Future<dynamic> _sendResizeMessage()
+  +Future<void> create()
+  +Future<dynamic> setSize()
+  +Future<void> setOffset()
+  +Future<void> sendMotionEvent()
+  +void addOnPlatformViewCreatedListener()
+  +void removeOnPlatformViewCreatedListener()
+  +Future<void> setLayoutDirection()
+  +Future<void> dispatchPointerEvent()
+  +Future<void> clearFocus()
+  +Future<void> dispose()
+}
+
+"flutter::lib::src::services::platform_views.dart::AndroidViewController" o-- "flutter::lib::src::services::platform_views.dart::_AndroidMotionEventConverter"
+"flutter::lib::src::services::platform_views.dart::AndroidViewController" o-- "flutter::lib::src::services::platform_views.dart::_AndroidViewState"
+"flutter::lib::src::services::platform_views.dart::AndroidViewController" o-- "flutter::lib::src::services::message_codec.dart::MessageCodec<dynamic>"
+"flutter::lib::src::services::platform_views.dart::AndroidViewController" o-- "flutter::lib::src::services::platform_views.dart::dynamic Function(dynamic)"
+"flutter::lib::src::services::platform_views.dart::PlatformViewController" <|-- "flutter::lib::src::services::platform_views.dart::AndroidViewController"
+
+class "flutter::lib::src::services::platform_views.dart::SurfaceAndroidViewController" {
+}
+
+"flutter::lib::src::services::platform_views.dart::TextureAndroidViewController" <|-- "flutter::lib::src::services::platform_views.dart::SurfaceAndroidViewController"
+
+class "flutter::lib::src::services::platform_views.dart::ExpensiveAndroidViewController" {
+  -bool _createRequiresSize
+  +int textureId
+  -Future<void> _sendCreateMessage()
+  -Future<void> _sendDisposeMessage()
+  -Future<dynamic> _sendResizeMessage()
+  +Future<void> setOffset()
+}
+
+"flutter::lib::src::services::platform_views.dart::AndroidViewController" <|-- "flutter::lib::src::services::platform_views.dart::ExpensiveAndroidViewController"
+
+class "flutter::lib::src::services::platform_views.dart::TextureAndroidViewController" {
+  -int? _textureId
+  -dynamic _off
+  +int? textureId
+  -bool _createRequiresSize
+  -Future<dynamic> _sendResizeMessage()
+  +Future<void> setOffset()
+  -Future<void> _sendCreateMessage()
+  -Future<void> _sendDisposeMessage()
+}
+
+"flutter::lib::src::services::platform_views.dart::AndroidViewController" <|-- "flutter::lib::src::services::platform_views.dart::TextureAndroidViewController"
+
+class "flutter::lib::src::services::platform_views.dart::UiKitViewController" {
+  +int id
+  -bool _debugDisposed
+  -dynamic _layoutDirection
+  +Future<void> setLayoutDirection()
+  +Future<void> acceptGesture()
+  +Future<void> rejectGesture()
+  +Future<void> dispose()
+}
+
+abstract class "flutter::lib::src::services::platform_views.dart::PlatformViewController" {
+  +int viewId
+  +bool awaitingCreation
+  +Future<void> dispatchPointerEvent()
+  +Future<void> create()
+  +Future<void> dispose()
+  +Future<void> clearFocus()
+}
+
+class "flutter::lib::src::services::platform_views.dart::_AndroidViewState" {
+  +int index
+  {static} +List<_AndroidViewState> values
+  {static} +_AndroidViewState waitingForSize
+  {static} +_AndroidViewState creating
+  {static} +_AndroidViewState created
+  {static} +_AndroidViewState disposed
+}
+
+"flutter::lib::src::services::platform_views.dart::_AndroidViewState" o-- "flutter::lib::src::services::platform_views.dart::_AndroidViewState"
+"dart::core::Enum" <|-- "flutter::lib::src::services::platform_views.dart::_AndroidViewState"
+
+
+@enduml

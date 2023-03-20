@@ -1,0 +1,17 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::box_shadow.dart::BoxShadow" {
+  +double spreadRadius
+  +dynamic blurStyle
+  +int hashCode
+  +dynamic toPaint()
+  +BoxShadow scale()
+  {static} +BoxShadow? lerp()
+  {static} +List<BoxShadow>? lerpList()
+  +bool ==()
+  +String toString()
+}
+
+
+@enduml

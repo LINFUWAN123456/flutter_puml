@@ -1,0 +1,72 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::image_cache.dart::ImageCache" {
+  -Map<Object, _PendingImage> _pendingImages
+  -Map<Object, _CachedImage> _cache
+  -Map<Object, _LiveImage> _liveImages
+  -int _maximumSize
+  -int _maximumSizeBytes
+  -int _currentSizeBytes
+  +int maximumSize
+  +int currentSize
+  +int maximumSizeBytes
+  +int currentSizeBytes
+  +int liveImageCount
+  +int pendingImageCount
+  +void clear()
+  +bool evict()
+  -void _touch()
+  -void _trackLiveImage()
+  +ImageStreamCompleter? putIfAbsent()
+  +ImageCacheStatus statusForKey()
+  +bool containsKey()
+  +void clearLiveImages()
+  -void _checkCacheSize()
+}
+
+class "flutter::lib::src::painting::image_cache.dart::ImageCacheStatus" {
+  +bool pending
+  +bool keepAlive
+  +bool live
+  +bool tracked
+  +bool untracked
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+abstract class "flutter::lib::src::painting::image_cache.dart::_CachedImageBase" {
+  +ImageStreamCompleter completer
+  +int? sizeBytes
+  +ImageStreamCompleterHandle? handle
+  +void dispose()
+}
+
+"flutter::lib::src::painting::image_cache.dart::_CachedImageBase" o-- "flutter::lib::src::painting::image_stream.dart::ImageStreamCompleter"
+"flutter::lib::src::painting::image_cache.dart::_CachedImageBase" o-- "flutter::lib::src::painting::image_stream.dart::ImageStreamCompleterHandle"
+
+class "flutter::lib::src::painting::image_cache.dart::_CachedImage" {
+}
+
+"flutter::lib::src::painting::image_cache.dart::_CachedImageBase" <|-- "flutter::lib::src::painting::image_cache.dart::_CachedImage"
+
+class "flutter::lib::src::painting::image_cache.dart::_LiveImage" {
+  -dynamic _handleRemove
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::painting::image_cache.dart::_CachedImageBase" <|-- "flutter::lib::src::painting::image_cache.dart::_LiveImage"
+
+class "flutter::lib::src::painting::image_cache.dart::_PendingImage" {
+  +ImageStreamCompleter completer
+  +ImageStreamListener listener
+  +void removeListener()
+}
+
+"flutter::lib::src::painting::image_cache.dart::_PendingImage" o-- "flutter::lib::src::painting::image_stream.dart::ImageStreamCompleter"
+"flutter::lib::src::painting::image_cache.dart::_PendingImage" o-- "flutter::lib::src::painting::image_stream.dart::ImageStreamListener"
+
+
+@enduml

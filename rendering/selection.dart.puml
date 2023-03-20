@@ -1,0 +1,144 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::selection.dart::SelectionHandler" {
+  +void pushHandleLayers()
+  +SelectedContent? getSelectedContent()
+  +SelectionResult dispatchSelectionEvent()
+}
+
+class "flutter::lib::src::rendering::selection.dart::SelectedContent" {
+  +String plainText
+}
+
+class "flutter::lib::src::rendering::selection.dart::SelectionUtils" {
+  {static} +SelectionResult getResultBasedOnRect()
+  {static} +dynamic adjustDragOffset()
+}
+
+abstract class "flutter::lib::src::rendering::selection.dart::SelectionEvent" {
+  +SelectionEventType type
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionEvent" o-- "flutter::lib::src::rendering::selection.dart::SelectionEventType"
+
+class "flutter::lib::src::rendering::selection.dart::SelectAllSelectionEvent" {
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionEvent" <|-- "flutter::lib::src::rendering::selection.dart::SelectAllSelectionEvent"
+
+class "flutter::lib::src::rendering::selection.dart::ClearSelectionEvent" {
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionEvent" <|-- "flutter::lib::src::rendering::selection.dart::ClearSelectionEvent"
+
+class "flutter::lib::src::rendering::selection.dart::SelectWordSelectionEvent" {
+  +dynamic globalPosition
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionEvent" <|-- "flutter::lib::src::rendering::selection.dart::SelectWordSelectionEvent"
+
+class "flutter::lib::src::rendering::selection.dart::SelectionEdgeUpdateEvent" {
+  +dynamic globalPosition
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionEvent" <|-- "flutter::lib::src::rendering::selection.dart::SelectionEdgeUpdateEvent"
+
+abstract class "flutter::lib::src::rendering::selection.dart::SelectionRegistrar" {
+  +void add()
+  +void remove()
+}
+
+class "flutter::lib::src::rendering::selection.dart::SelectionGeometry" {
+  +SelectionPoint? startSelectionPoint
+  +SelectionPoint? endSelectionPoint
+  +SelectionStatus status
+  +bool hasContent
+  +bool hasSelection
+  +int hashCode
+  +SelectionGeometry copyWith()
+  +bool ==()
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionGeometry" o-- "flutter::lib::src::rendering::selection.dart::SelectionPoint"
+"flutter::lib::src::rendering::selection.dart::SelectionGeometry" o-- "flutter::lib::src::rendering::selection.dart::SelectionStatus"
+
+class "flutter::lib::src::rendering::selection.dart::SelectionPoint" {
+  +dynamic localPosition
+  +double lineHeight
+  +TextSelectionHandleType handleType
+  +int hashCode
+  +bool ==()
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionPoint" o-- "flutter::lib::src::rendering::selection.dart::TextSelectionHandleType"
+
+class "flutter::lib::src::rendering::selection.dart::SelectionResult" {
+  +int index
+  {static} +List<SelectionResult> values
+  {static} +SelectionResult next
+  {static} +SelectionResult previous
+  {static} +SelectionResult end
+  {static} +SelectionResult pending
+  {static} +SelectionResult none
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionResult" o-- "flutter::lib::src::rendering::selection.dart::SelectionResult"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::selection.dart::SelectionResult"
+
+class "flutter::lib::src::rendering::selection.dart::SelectionEventType" {
+  +int index
+  {static} +List<SelectionEventType> values
+  {static} +SelectionEventType startEdgeUpdate
+  {static} +SelectionEventType endEdgeUpdate
+  {static} +SelectionEventType clear
+  {static} +SelectionEventType selectAll
+  {static} +SelectionEventType selectWord
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionEventType" o-- "flutter::lib::src::rendering::selection.dart::SelectionEventType"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::selection.dart::SelectionEventType"
+
+class "flutter::lib::src::rendering::selection.dart::SelectionStatus" {
+  +int index
+  {static} +List<SelectionStatus> values
+  {static} +SelectionStatus uncollapsed
+  {static} +SelectionStatus collapsed
+  {static} +SelectionStatus none
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionStatus" o-- "flutter::lib::src::rendering::selection.dart::SelectionStatus"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::selection.dart::SelectionStatus"
+
+class "flutter::lib::src::rendering::selection.dart::TextSelectionHandleType" {
+  +int index
+  {static} +List<TextSelectionHandleType> values
+  {static} +TextSelectionHandleType left
+  {static} +TextSelectionHandleType right
+  {static} +TextSelectionHandleType collapsed
+}
+
+"flutter::lib::src::rendering::selection.dart::TextSelectionHandleType" o-- "flutter::lib::src::rendering::selection.dart::TextSelectionHandleType"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::selection.dart::TextSelectionHandleType"
+
+abstract class "flutter::lib::src::rendering::selection.dart::Selectable" {
+  +dynamic size
+  +dynamic getTransformTo()
+  +void dispose()
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionHandler" <|-- "flutter::lib::src::rendering::selection.dart::Selectable"
+
+abstract class "flutter::lib::src::rendering::selection.dart::SelectionRegistrant" {
+  -SelectionRegistrar? _registrar
+  -bool _subscribedToSelectionRegistrar
+  +SelectionRegistrar? registrar
+  +void dispose()
+  -void _updateSelectionRegistrarSubscription()
+  -void _removeSelectionRegistrarSubscription()
+}
+
+"flutter::lib::src::rendering::selection.dart::SelectionRegistrant" o-- "flutter::lib::src::rendering::selection.dart::SelectionRegistrar"
+
+
+@enduml

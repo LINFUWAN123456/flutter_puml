@@ -1,0 +1,53 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::animated_cross_fade.dart::AnimatedCrossFade" {
+  +Widget firstChild
+  +Widget secondChild
+  +CrossFadeState crossFadeState
+  +Duration duration
+  +Duration? reverseDuration
+  +dynamic firstCurve
+  +dynamic secondCurve
+  +dynamic sizeCurve
+  +dynamic alignment
+  +Widget Function(Widget, dynamic, Widget, dynamic) layoutBuilder
+  +bool excludeBottomFocus
+  {static} +Widget defaultLayoutBuilder()
+  +State<AnimatedCrossFade> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::animated_cross_fade.dart::AnimatedCrossFade" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::animated_cross_fade.dart::AnimatedCrossFade" o-- "flutter::lib::src::widgets::animated_cross_fade.dart::CrossFadeState"
+"flutter::lib::src::widgets::animated_cross_fade.dart::AnimatedCrossFade" o-- "flutter::lib::src::widgets::animated_cross_fade.dart::Widget Function(Widget, dynamic, Widget, dynamic)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::animated_cross_fade.dart::AnimatedCrossFade"
+
+class "flutter::lib::src::widgets::animated_cross_fade.dart::_AnimatedCrossFadeState" {
+  -dynamic _controller
+  -dynamic _firstAnimation
+  -dynamic _secondAnimation
+  -bool _isTransitioning
+  +void initState()
+  -dynamic _initAnimation()
+  +void dispose()
+  +void didUpdateWidget()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::animated_cross_fade.dart::_AnimatedCrossFadeState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::animated_cross_fade.dart::_AnimatedCrossFadeState"
+
+class "flutter::lib::src::widgets::animated_cross_fade.dart::CrossFadeState" {
+  +int index
+  {static} +List<CrossFadeState> values
+  {static} +CrossFadeState showFirst
+  {static} +CrossFadeState showSecond
+}
+
+"flutter::lib::src::widgets::animated_cross_fade.dart::CrossFadeState" o-- "flutter::lib::src::widgets::animated_cross_fade.dart::CrossFadeState"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::animated_cross_fade.dart::CrossFadeState"
+
+
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::viewport.dart::Viewport" {
+  +dynamic axisDirection
+  +dynamic crossAxisDirection
+  +double anchor
+  +dynamic offset
+  +dynamic center
+  +double? cacheExtent
+  +dynamic cacheExtentStyle
+  +dynamic clipBehavior
+  {static} +dynamic getDefaultCrossAxisDirection()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +MultiChildRenderObjectElement createElement()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::viewport.dart::Viewport"
+
+class "flutter::lib::src::widgets::viewport.dart::_ViewportElement" {
+  -bool _doingMountOrUpdate
+  -int? _centerSlotIndex
+  +dynamic renderObject
+  +void mount()
+  +void update()
+  -void _updateCenter()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+  +void debugVisitOnstageChildren()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectElement" <|-- "flutter::lib::src::widgets::viewport.dart::_ViewportElement"
+"flutter::lib::src::widgets::framework.dart::NotifiableElementMixin" <|-- "flutter::lib::src::widgets::viewport.dart::_ViewportElement"
+"flutter::lib::src::widgets::scroll_notification.dart::ViewportElementMixin" <|-- "flutter::lib::src::widgets::viewport.dart::_ViewportElement"
+
+class "flutter::lib::src::widgets::viewport.dart::ShrinkWrappingViewport" {
+  +dynamic axisDirection
+  +dynamic crossAxisDirection
+  +dynamic offset
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::viewport.dart::ShrinkWrappingViewport"
+
+
+@enduml

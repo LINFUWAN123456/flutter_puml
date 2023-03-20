@@ -1,0 +1,170 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::popup_menu.dart::PopupMenuEntry" {
+  +double height
+  +bool represents()
+}
+
+class "flutter::lib::src::material::popup_menu.dart::PopupMenuDivider" {
+  +double height
+  +bool represents()
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::popup_menu.dart::PopupMenuEntry" <|-- "flutter::lib::src::material::popup_menu.dart::PopupMenuDivider"
+
+class "flutter::lib::src::material::popup_menu.dart::_PopupMenuDividerState" {
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::popup_menu.dart::_MenuItem" {
+  +dynamic onLayout
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::popup_menu.dart::_RenderMenuItem" {
+  +dynamic onLayout
+  +dynamic computeDryLayout()
+  +void performLayout()
+}
+
+class "flutter::lib::src::material::popup_menu.dart::PopupMenuItem" {
+  +T? value
+  +dynamic onTap
+  +bool enabled
+  +double height
+  +dynamic padding
+  +dynamic textStyle
+  +dynamic mouseCursor
+  +dynamic child
+  +bool represents()
+  +PopupMenuItemState<T, PopupMenuItem<T>> createState()
+}
+
+"flutter::lib::src::material::popup_menu.dart::PopupMenuEntry" <|-- "flutter::lib::src::material::popup_menu.dart::PopupMenuItem"
+
+class "flutter::lib::src::material::popup_menu.dart::PopupMenuItemState" {
+  +dynamic buildChild()
+  +void handleTap()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::popup_menu.dart::CheckedPopupMenuItem" {
+  +bool checked
+  +dynamic child
+  +PopupMenuItemState<T, CheckedPopupMenuItem<T>> createState()
+}
+
+"flutter::lib::src::material::popup_menu.dart::PopupMenuItem" <|-- "flutter::lib::src::material::popup_menu.dart::CheckedPopupMenuItem"
+
+class "flutter::lib::src::material::popup_menu.dart::_CheckedPopupMenuItemState" {
+  {static} -Duration _fadeDuration
+  -dynamic _controller
+  -dynamic _opacity
+  +void initState()
+  +void handleTap()
+  +dynamic buildChild()
+}
+
+"flutter::lib::src::material::popup_menu.dart::PopupMenuItemState" <|-- "flutter::lib::src::material::popup_menu.dart::_CheckedPopupMenuItemState"
+
+class "flutter::lib::src::material::popup_menu.dart::_PopupMenu" {
+  +_PopupMenuRoute<T> route
+  +String? semanticLabel
+  +dynamic constraints
+  +dynamic build()
+}
+
+"flutter::lib::src::material::popup_menu.dart::_PopupMenu" o-- "flutter::lib::src::material::popup_menu.dart::_PopupMenuRoute<T>"
+
+class "flutter::lib::src::material::popup_menu.dart::_PopupMenuRouteLayout" {
+  +dynamic position
+  +List<dynamic> itemSizes
+  +int? selectedItemIndex
+  +dynamic textDirection
+  +dynamic padding
+  +Set<dynamic> avoidBounds
+  +dynamic getConstraintsForChild()
+  +dynamic getPositionForChild()
+  -dynamic _closestScreen()
+  -dynamic _fitInsideScreen()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::material::popup_menu.dart::_PopupMenuRoute" {
+  +dynamic position
+  +List<PopupMenuEntry<T>> items
+  +List<dynamic> itemSizes
+  +T? initialValue
+  +double? elevation
+  +String? semanticLabel
+  +dynamic shape
+  +dynamic color
+  +dynamic capturedThemes
+  +dynamic constraints
+  +String barrierLabel
+  +Duration transitionDuration
+  +bool barrierDismissible
+  +dynamic barrierColor
+  +dynamic createAnimation()
+  +dynamic buildPage()
+  -Set<dynamic> _avoidBounds()
+}
+
+class "flutter::lib::src::material::popup_menu.dart::PopupMenuButton" {
+  +List<PopupMenuEntry<T>> Function(dynamic) itemBuilder
+  +T? initialValue
+  +void Function(T)? onSelected
+  +void Function()? onCanceled
+  +String? tooltip
+  +double? elevation
+  +dynamic padding
+  +double? splashRadius
+  +dynamic child
+  +dynamic icon
+  +dynamic offset
+  +bool enabled
+  +dynamic shape
+  +dynamic color
+  +bool? enableFeedback
+  +double? iconSize
+  +dynamic constraints
+  +PopupMenuPosition position
+  +PopupMenuButtonState<T> createState()
+}
+
+"flutter::lib::src::material::popup_menu.dart::PopupMenuButton" o-- "flutter::lib::src::material::popup_menu.dart::List<PopupMenuEntry<T>> Function(dynamic)"
+"flutter::lib::src::material::popup_menu.dart::PopupMenuButton" o-- "flutter::lib::src::material::popup_menu.dart::void Function(T)"
+"flutter::lib::src::material::popup_menu.dart::PopupMenuButton" o-- "flutter::lib::src::material::popup_menu.dart::void Function()"
+"flutter::lib::src::material::popup_menu.dart::PopupMenuButton" o-- "flutter::lib::src::material::popup_menu.dart::PopupMenuPosition"
+
+class "flutter::lib::src::material::popup_menu.dart::PopupMenuButtonState" {
+  -bool _canRequestFocus
+  +void showButtonMenu()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::popup_menu.dart::_EffectiveMouseCursor" {
+  +dynamic widgetCursor
+  +MaterialStateProperty<dynamic>? themeCursor
+  +String debugDescription
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::popup_menu.dart::_EffectiveMouseCursor" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::material_state.dart::MaterialStateMouseCursor" <|-- "flutter::lib::src::material::popup_menu.dart::_EffectiveMouseCursor"
+
+class "flutter::lib::src::material::popup_menu.dart::PopupMenuPosition" {
+  +int index
+  {static} +List<PopupMenuPosition> values
+  {static} +PopupMenuPosition over
+  {static} +PopupMenuPosition under
+}
+
+"flutter::lib::src::material::popup_menu.dart::PopupMenuPosition" o-- "flutter::lib::src::material::popup_menu.dart::PopupMenuPosition"
+"dart::core::Enum" <|-- "flutter::lib::src::material::popup_menu.dart::PopupMenuPosition"
+
+
+@enduml

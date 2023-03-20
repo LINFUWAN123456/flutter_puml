@@ -1,0 +1,70 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::drawer.dart::Drawer" {
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic shape
+  +double? width
+  +dynamic child
+  +String? semanticLabel
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::drawer.dart::DrawerController" {
+  +dynamic child
+  +DrawerAlignment alignment
+  +void Function(bool)? drawerCallback
+  +dynamic dragStartBehavior
+  +dynamic scrimColor
+  +bool enableOpenDragGesture
+  +double? edgeDragWidth
+  +bool isDrawerOpen
+  +DrawerControllerState createState()
+}
+
+"flutter::lib::src::material::drawer.dart::DrawerController" o-- "flutter::lib::src::material::drawer.dart::DrawerAlignment"
+"flutter::lib::src::material::drawer.dart::DrawerController" o-- "flutter::lib::src::material::drawer.dart::void Function(bool)"
+
+class "flutter::lib::src::material::drawer.dart::DrawerControllerState" {
+  -dynamic _historyEntry
+  -dynamic _focusScopeNode
+  -dynamic _controller
+  -dynamic _drawerKey
+  -bool _previouslyOpened
+  -dynamic _scrimColorTween
+  -dynamic _gestureDetectorKey
+  -double _width
+  -dynamic _drawerOuterAlignment
+  -dynamic _drawerInnerAlignment
+  +void initState()
+  +void dispose()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  -void _animationChanged()
+  -void _ensureHistoryEntry()
+  -void _animationStatusChanged()
+  -void _handleHistoryEntryRemoved()
+  -void _handleDragDown()
+  -void _handleDragCancel()
+  -void _move()
+  -void _settle()
+  +void open()
+  +void close()
+  -dynamic _buildScrimColorTween()
+  -dynamic _buildDrawer()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::drawer.dart::DrawerAlignment" {
+  +int index
+  {static} +List<DrawerAlignment> values
+  {static} +DrawerAlignment start
+  {static} +DrawerAlignment end
+}
+
+"flutter::lib::src::material::drawer.dart::DrawerAlignment" o-- "flutter::lib::src::material::drawer.dart::DrawerAlignment"
+"dart::core::Enum" <|-- "flutter::lib::src::material::drawer.dart::DrawerAlignment"
+
+
+@enduml

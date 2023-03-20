@@ -1,0 +1,38 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::foundation::binding.dart::BindingBase" {
+  -bool _debugConstructed
+  {static} -Type? _debugInitializedType
+  {static} -bool _debugServiceExtensionsRegistered
+  {static} +DebugReassembleConfig? debugReassembleConfig
+  -int _lockCount
+  +dynamic window
+  +dynamic platformDispatcher
+  +bool locked
+  #void initInstances()
+  {static} #T checkInstance()
+  {static} +Type? debugBindingType()
+  #void initServiceExtensions()
+  #Future<void> lockEvents()
+  #void unlocked()
+  +Future<void> reassembleApplication()
+  #Future<void> performReassemble()
+  #void registerSignalServiceExtension()
+  #void registerBoolServiceExtension()
+  #void registerNumericServiceExtension()
+  -void _postExtensionStateChangedEvent()
+  #void postEvent()
+  #void registerStringServiceExtension()
+  #void registerServiceExtension()
+  +String toString()
+}
+
+"flutter::lib::src::foundation::binding.dart::BindingBase" o-- "flutter::lib::src::foundation::binding.dart::DebugReassembleConfig"
+
+class "flutter::lib::src::foundation::binding.dart::DebugReassembleConfig" {
+  +String? widgetName
+}
+
+
+@enduml

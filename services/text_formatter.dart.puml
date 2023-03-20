@@ -1,0 +1,72 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::services::text_formatter.dart::TextInputFormatter" {
+  +TextEditingValue formatEditUpdate()
+  {static} +TextInputFormatter withFunction()
+}
+
+class "flutter::lib::src::services::text_formatter.dart::_SimpleTextInputFormatter" {
+  +TextEditingValue Function(TextEditingValue, TextEditingValue) formatFunction
+  +TextEditingValue formatEditUpdate()
+}
+
+"flutter::lib::src::services::text_formatter.dart::_SimpleTextInputFormatter" o-- "flutter::lib::src::services::text_formatter.dart::TextEditingValue Function(TextEditingValue, TextEditingValue)"
+"flutter::lib::src::services::text_formatter.dart::TextInputFormatter" <|-- "flutter::lib::src::services::text_formatter.dart::_SimpleTextInputFormatter"
+
+class "flutter::lib::src::services::text_formatter.dart::_MutableTextRange" {
+  +int base
+  +int extent
+  {static} +_MutableTextRange? fromComposingRange()
+  {static} +_MutableTextRange? fromTextSelection()
+}
+
+class "flutter::lib::src::services::text_formatter.dart::_TextEditingValueAccumulator" {
+  +TextEditingValue inputValue
+  +StringBuffer stringBuffer
+  +_MutableTextRange? selection
+  +_MutableTextRange? composingRegion
+  +bool debugFinalized
+  +TextEditingValue finalize()
+}
+
+"flutter::lib::src::services::text_formatter.dart::_TextEditingValueAccumulator" o-- "flutter::lib::src::services::text_input.dart::TextEditingValue"
+"flutter::lib::src::services::text_formatter.dart::_TextEditingValueAccumulator" o-- "flutter::lib::src::services::text_formatter.dart::_MutableTextRange"
+
+class "flutter::lib::src::services::text_formatter.dart::FilteringTextInputFormatter" {
+  +Pattern filterPattern
+  +bool allow
+  +String replacementString
+  {static} +TextInputFormatter singleLineFormatter
+  {static} +TextInputFormatter digitsOnly
+  +TextEditingValue formatEditUpdate()
+  -void _processRegion()
+}
+
+"flutter::lib::src::services::text_formatter.dart::FilteringTextInputFormatter" o-- "flutter::lib::src::services::text_formatter.dart::TextInputFormatter"
+"flutter::lib::src::services::text_formatter.dart::TextInputFormatter" <|-- "flutter::lib::src::services::text_formatter.dart::FilteringTextInputFormatter"
+
+class "flutter::lib::src::services::text_formatter.dart::LengthLimitingTextInputFormatter" {
+  +int? maxLength
+  +MaxLengthEnforcement? maxLengthEnforcement
+  {static} +MaxLengthEnforcement getDefaultMaxLengthEnforcement()
+  {static} +TextEditingValue truncate()
+  +TextEditingValue formatEditUpdate()
+}
+
+"flutter::lib::src::services::text_formatter.dart::LengthLimitingTextInputFormatter" o-- "flutter::lib::src::services::text_formatter.dart::MaxLengthEnforcement"
+"flutter::lib::src::services::text_formatter.dart::TextInputFormatter" <|-- "flutter::lib::src::services::text_formatter.dart::LengthLimitingTextInputFormatter"
+
+class "flutter::lib::src::services::text_formatter.dart::MaxLengthEnforcement" {
+  +int index
+  {static} +List<MaxLengthEnforcement> values
+  {static} +MaxLengthEnforcement none
+  {static} +MaxLengthEnforcement enforced
+  {static} +MaxLengthEnforcement truncateAfterCompositionEnds
+}
+
+"flutter::lib::src::services::text_formatter.dart::MaxLengthEnforcement" o-- "flutter::lib::src::services::text_formatter.dart::MaxLengthEnforcement"
+"dart::core::Enum" <|-- "flutter::lib::src::services::text_formatter.dart::MaxLengthEnforcement"
+
+
+@enduml

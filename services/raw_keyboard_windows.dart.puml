@@ -1,0 +1,40 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::raw_keyboard_windows.dart::RawKeyEventDataWindows" {
+  +int keyCode
+  +int scanCode
+  +int characterCodePoint
+  +int modifiers
+  {static} +int modifierShift
+  {static} +int modifierLeftShift
+  {static} +int modifierRightShift
+  {static} +int modifierControl
+  {static} +int modifierLeftControl
+  {static} +int modifierRightControl
+  {static} +int modifierAlt
+  {static} +int modifierLeftAlt
+  {static} +int modifierRightAlt
+  {static} +int modifierLeftMeta
+  {static} +int modifierRightMeta
+  {static} +int modifierCaps
+  {static} +int modifierNumLock
+  {static} +int modifierScrollLock
+  +String keyLabel
+  +PhysicalKeyboardKey physicalKey
+  +LogicalKeyboardKey logicalKey
+  +int hashCode
+  -bool _isLeftRightModifierPressed()
+  +bool isModifierPressed()
+  +KeyboardSide? getModifierSide()
+  +bool shouldDispatchEvent()
+  +void debugFillProperties()
+  +bool ==()
+}
+
+"flutter::lib::src::services::raw_keyboard_windows.dart::RawKeyEventDataWindows" o-- "flutter::lib::src::services::keyboard_key.g.dart::PhysicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard_windows.dart::RawKeyEventDataWindows" o-- "flutter::lib::src::services::keyboard_key.g.dart::LogicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEventData" <|-- "flutter::lib::src::services::raw_keyboard_windows.dart::RawKeyEventDataWindows"
+
+
+@enduml

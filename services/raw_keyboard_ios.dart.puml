@@ -1,0 +1,43 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::raw_keyboard_ios.dart::RawKeyEventDataIos" {
+  +String characters
+  +String charactersIgnoringModifiers
+  +int keyCode
+  +int modifiers
+  {static} +int modifierCapsLock
+  {static} +int modifierShift
+  {static} +int modifierLeftShift
+  {static} +int modifierRightShift
+  {static} +int modifierControl
+  {static} +int modifierLeftControl
+  {static} +int modifierRightControl
+  {static} +int modifierOption
+  {static} +int modifierLeftOption
+  {static} +int modifierRightOption
+  {static} +int modifierCommand
+  {static} +int modifierLeftCommand
+  {static} +int modifierRightCommand
+  {static} +int modifierNumericPad
+  {static} +int modifierHelp
+  {static} +int modifierFunction
+  {static} +int deviceIndependentMask
+  +String keyLabel
+  +PhysicalKeyboardKey physicalKey
+  +LogicalKeyboardKey logicalKey
+  +int hashCode
+  {static} -bool _isUnprintableKey()
+  -bool _isLeftRightModifierPressed()
+  +bool isModifierPressed()
+  +KeyboardSide? getModifierSide()
+  +void debugFillProperties()
+  +bool ==()
+}
+
+"flutter::lib::src::services::raw_keyboard_ios.dart::RawKeyEventDataIos" o-- "flutter::lib::src::services::keyboard_key.g.dart::PhysicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard_ios.dart::RawKeyEventDataIos" o-- "flutter::lib::src::services::keyboard_key.g.dart::LogicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEventData" <|-- "flutter::lib::src::services::raw_keyboard_ios.dart::RawKeyEventDataIos"
+
+
+@enduml

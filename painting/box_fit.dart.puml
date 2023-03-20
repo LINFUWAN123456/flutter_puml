@@ -1,0 +1,25 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::box_fit.dart::FittedSizes" {
+  +dynamic source
+  +dynamic destination
+}
+
+class "flutter::lib::src::painting::box_fit.dart::BoxFit" {
+  +int index
+  {static} +List<BoxFit> values
+  {static} +BoxFit fill
+  {static} +BoxFit contain
+  {static} +BoxFit cover
+  {static} +BoxFit fitWidth
+  {static} +BoxFit fitHeight
+  {static} +BoxFit none
+  {static} +BoxFit scaleDown
+}
+
+"flutter::lib::src::painting::box_fit.dart::BoxFit" o-- "flutter::lib::src::painting::box_fit.dart::BoxFit"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::box_fit.dart::BoxFit"
+
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::orientation_builder.dart::OrientationBuilder" {
+  +Widget Function(BuildContext, Orientation) builder
+  -Widget _buildWithConstraints()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::orientation_builder.dart::OrientationBuilder" o-- "flutter::lib::src::widgets::orientation_builder.dart::Widget Function(BuildContext, Orientation)"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::orientation_builder.dart::OrientationBuilder"
+
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::time_picker_theme.dart::TimePickerThemeData" {
+  +dynamic backgroundColor
+  +dynamic hourMinuteTextColor
+  +dynamic hourMinuteColor
+  +dynamic dayPeriodTextColor
+  +dynamic dayPeriodColor
+  +dynamic dialHandColor
+  +dynamic dialBackgroundColor
+  +dynamic dialTextColor
+  +dynamic entryModeIconColor
+  +dynamic hourMinuteTextStyle
+  +dynamic dayPeriodTextStyle
+  +dynamic helpTextStyle
+  +dynamic shape
+  +dynamic hourMinuteShape
+  +dynamic dayPeriodShape
+  +dynamic dayPeriodBorderSide
+  +InputDecorationTheme? inputDecorationTheme
+  +int hashCode
+  +TimePickerThemeData copyWith()
+  {static} +TimePickerThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::time_picker_theme.dart::TimePickerThemeData" o-- "flutter::lib::src::material::input_decorator.dart::InputDecorationTheme"
+
+class "flutter::lib::src::material::time_picker_theme.dart::TimePickerTheme" {
+  +TimePickerThemeData data
+  {static} +TimePickerThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::time_picker_theme.dart::TimePickerTheme" o-- "flutter::lib::src::material::time_picker_theme.dart::TimePickerThemeData"
+
+
+@enduml

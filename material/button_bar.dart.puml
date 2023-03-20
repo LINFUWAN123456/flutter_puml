@@ -1,0 +1,37 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::button_bar.dart::ButtonBar" {
+  +dynamic alignment
+  +dynamic mainAxisSize
+  +ButtonTextTheme? buttonTextTheme
+  +double? buttonMinWidth
+  +double? buttonHeight
+  +dynamic buttonPadding
+  +bool? buttonAlignedDropdown
+  +ButtonBarLayoutBehavior? layoutBehavior
+  +dynamic overflowDirection
+  +double? overflowButtonSpacing
+  +List<dynamic> children
+  +dynamic build()
+}
+
+"flutter::lib::src::material::button_bar.dart::ButtonBar" o-- "flutter::lib::src::material::button_theme.dart::ButtonTextTheme"
+"flutter::lib::src::material::button_bar.dart::ButtonBar" o-- "flutter::lib::src::material::button_theme.dart::ButtonBarLayoutBehavior"
+
+class "flutter::lib::src::material::button_bar.dart::_ButtonBarRow" {
+  +double? overflowButtonSpacing
+  +_RenderButtonBarRow createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::button_bar.dart::_RenderButtonBarRow" {
+  -bool _hasCheckedLayoutWidth
+  +double? overflowButtonSpacing
+  +dynamic constraints
+  +dynamic computeDryLayout()
+  +void performLayout()
+}
+
+
+@enduml

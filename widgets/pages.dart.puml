@@ -1,0 +1,33 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::pages.dart::PageRoute" {
+  +bool fullscreenDialog
+  +bool opaque
+  +bool barrierDismissible
+  +bool canTransitionTo()
+  +bool canTransitionFrom()
+}
+
+"flutter::lib::src::widgets::routes.dart::ModalRoute" <|-- "flutter::lib::src::widgets::pages.dart::PageRoute"
+
+class "flutter::lib::src::widgets::pages.dart::PageRouteBuilder" {
+  +Widget Function(BuildContext, dynamic, dynamic) pageBuilder
+  +Widget Function(BuildContext, dynamic, dynamic, Widget) transitionsBuilder
+  +Duration transitionDuration
+  +Duration reverseTransitionDuration
+  +bool opaque
+  +bool barrierDismissible
+  +dynamic barrierColor
+  +String? barrierLabel
+  +bool maintainState
+  +Widget buildPage()
+  +Widget buildTransitions()
+}
+
+"flutter::lib::src::widgets::pages.dart::PageRouteBuilder" o-- "flutter::lib::src::widgets::routes.dart::Widget Function(BuildContext, dynamic, dynamic)"
+"flutter::lib::src::widgets::pages.dart::PageRouteBuilder" o-- "flutter::lib::src::widgets::routes.dart::Widget Function(BuildContext, dynamic, dynamic, Widget)"
+"flutter::lib::src::widgets::pages.dart::PageRoute" <|-- "flutter::lib::src::widgets::pages.dart::PageRouteBuilder"
+
+
+@enduml

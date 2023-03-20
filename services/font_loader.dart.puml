@@ -1,0 +1,14 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::font_loader.dart::FontLoader" {
+  +String family
+  -bool _loaded
+  -List<Future<dynamic>> _fontFutures
+  +void addFont()
+  +Future<void> load()
+  +Future<void> loadFont()
+}
+
+
+@enduml

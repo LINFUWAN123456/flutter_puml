@@ -1,0 +1,13 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::thumb_painter.dart::CupertinoThumbPainter" {
+  +dynamic color
+  +List<dynamic> shadows
+  {static} +double radius
+  {static} +double extension
+  +void paint()
+}
+
+
+@enduml

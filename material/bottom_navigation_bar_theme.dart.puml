@@ -1,0 +1,39 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData" {
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic selectedIconTheme
+  +dynamic unselectedIconTheme
+  +dynamic selectedItemColor
+  +dynamic unselectedItemColor
+  +dynamic selectedLabelStyle
+  +dynamic unselectedLabelStyle
+  +bool? showSelectedLabels
+  +bool? showUnselectedLabels
+  +BottomNavigationBarType? type
+  +bool? enableFeedback
+  +BottomNavigationBarLandscapeLayout? landscapeLayout
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +int hashCode
+  +BottomNavigationBarThemeData copyWith()
+  {static} +BottomNavigationBarThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarType"
+"flutter::lib::src::material::bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarLandscapeLayout"
+"flutter::lib::src::material::bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+
+class "flutter::lib::src::material::bottom_navigation_bar_theme.dart::BottomNavigationBarTheme" {
+  +BottomNavigationBarThemeData data
+  {static} +BottomNavigationBarThemeData of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::bottom_navigation_bar_theme.dart::BottomNavigationBarTheme" o-- "flutter::lib::src::material::bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData"
+
+
+@enduml

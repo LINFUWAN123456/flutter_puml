@@ -1,0 +1,181 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::platform_view.dart::AndroidView" {
+  +String viewType
+  +dynamic onPlatformViewCreated
+  +dynamic hitTestBehavior
+  +dynamic layoutDirection
+  +Set<dynamic>? gestureRecognizers
+  +dynamic creationParams
+  +dynamic creationParamsCodec
+  +dynamic clipBehavior
+  +State<AndroidView> createState()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::platform_view.dart::AndroidView"
+
+class "flutter::lib::src::widgets::platform_view.dart::UiKitView" {
+  +String viewType
+  +dynamic onPlatformViewCreated
+  +dynamic hitTestBehavior
+  +dynamic layoutDirection
+  +dynamic creationParams
+  +dynamic creationParamsCodec
+  +Set<dynamic>? gestureRecognizers
+  +State<UiKitView> createState()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::platform_view.dart::UiKitView"
+
+class "flutter::lib::src::widgets::platform_view.dart::HtmlElementView" {
+  +String viewType
+  +dynamic onPlatformViewCreated
+  +Widget build()
+  -_HtmlElementViewController _createHtmlElementView()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::platform_view.dart::HtmlElementView"
+
+class "flutter::lib::src::widgets::platform_view.dart::_HtmlElementViewController" {
+  +int viewId
+  +String viewType
+  -bool _initialized
+  -Future<void> _initialize()
+  +Future<void> clearFocus()
+  +Future<void> dispatchPointerEvent()
+  +Future<void> dispose()
+}
+
+class "flutter::lib::src::widgets::platform_view.dart::_AndroidViewState" {
+  -int? _id
+  -dynamic _controller
+  -dynamic _layoutDirection
+  -bool _initialized
+  -FocusNode? _focusNode
+  {static} -Set<dynamic> _emptyRecognizersSet
+  +Widget build()
+  -void _initializeOnce()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  -dynamic _findLayoutDirection()
+  +void dispose()
+  -void _createNewAndroidView()
+  -void _onFocusChange()
+}
+
+"flutter::lib::src::widgets::platform_view.dart::_AndroidViewState" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::platform_view.dart::_AndroidViewState"
+
+class "flutter::lib::src::widgets::platform_view.dart::_UiKitViewState" {
+  -dynamic _controller
+  -dynamic _layoutDirection
+  -bool _initialized
+  -FocusNode _focusNode
+  {static} -Set<dynamic> _emptyRecognizersSet
+  +Widget build()
+  -void _initializeOnce()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  -dynamic _findLayoutDirection()
+  +void dispose()
+  -Future<void> _createNewUiKitView()
+  -void _onFocusChange()
+}
+
+"flutter::lib::src::widgets::platform_view.dart::_UiKitViewState" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::platform_view.dart::_UiKitViewState"
+
+class "flutter::lib::src::widgets::platform_view.dart::_AndroidPlatformView" {
+  +dynamic controller
+  +dynamic hitTestBehavior
+  +Set<dynamic> gestureRecognizers
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flutter::lib::src::widgets::platform_view.dart::_AndroidPlatformView"
+
+class "flutter::lib::src::widgets::platform_view.dart::_UiKitPlatformView" {
+  +dynamic controller
+  +dynamic hitTestBehavior
+  +Set<dynamic> gestureRecognizers
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flutter::lib::src::widgets::platform_view.dart::_UiKitPlatformView"
+
+class "flutter::lib::src::widgets::platform_view.dart::PlatformViewCreationParams" {
+  +int id
+  +String viewType
+  +dynamic onPlatformViewCreated
+  +dynamic onFocusChanged
+}
+
+class "flutter::lib::src::widgets::platform_view.dart::PlatformViewLink" {
+  -Widget Function(BuildContext, dynamic) _surfaceFactory
+  -dynamic Function(PlatformViewCreationParams) _onCreatePlatformView
+  +String viewType
+  +State<StatefulWidget> createState()
+}
+
+"flutter::lib::src::widgets::platform_view.dart::PlatformViewLink" o-- "flutter::lib::src::widgets::platform_view.dart::Widget Function(BuildContext, dynamic)"
+"flutter::lib::src::widgets::platform_view.dart::PlatformViewLink" o-- "flutter::lib::src::widgets::platform_view.dart::dynamic Function(PlatformViewCreationParams)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::platform_view.dart::PlatformViewLink"
+
+class "flutter::lib::src::widgets::platform_view.dart::_PlatformViewLinkState" {
+  -int? _id
+  -dynamic _controller
+  -bool _platformViewCreated
+  -Widget? _surface
+  -FocusNode? _focusNode
+  +Widget build()
+  +void initState()
+  +void didUpdateWidget()
+  -void _initialize()
+  -void _onPlatformViewCreated()
+  -void _handleFrameworkFocusChanged()
+  -void _handlePlatformFocusChanged()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::platform_view.dart::_PlatformViewLinkState" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::platform_view.dart::_PlatformViewLinkState" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::platform_view.dart::_PlatformViewLinkState"
+
+class "flutter::lib::src::widgets::platform_view.dart::PlatformViewSurface" {
+  +dynamic controller
+  +Set<dynamic> gestureRecognizers
+  +dynamic hitTestBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flutter::lib::src::widgets::platform_view.dart::PlatformViewSurface"
+
+class "flutter::lib::src::widgets::platform_view.dart::AndroidViewSurface" {
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::platform_view.dart::PlatformViewSurface" <|-- "flutter::lib::src::widgets::platform_view.dart::AndroidViewSurface"
+
+class "flutter::lib::src::widgets::platform_view.dart::_PlatformViewPlaceholderBox" {
+  +void Function(dynamic) onLayout
+  +void performLayout()
+}
+
+"flutter::lib::src::widgets::platform_view.dart::_PlatformViewPlaceholderBox" o-- "flutter::lib::src::widgets::platform_view.dart::void Function(dynamic)"
+
+class "flutter::lib::src::widgets::platform_view.dart::_PlatformViewPlaceHolder" {
+  +void Function(dynamic) onLayout
+  +_PlatformViewPlaceholderBox createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::platform_view.dart::_PlatformViewPlaceHolder" o-- "flutter::lib::src::widgets::platform_view.dart::void Function(dynamic)"
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::platform_view.dart::_PlatformViewPlaceHolder"
+
+
+@enduml

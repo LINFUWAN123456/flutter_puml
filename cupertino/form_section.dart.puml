@@ -1,0 +1,29 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::form_section.dart::CupertinoFormSection" {
+  -_CupertinoFormSectionType _type
+  +dynamic header
+  +dynamic footer
+  +dynamic margin
+  +List<dynamic> children
+  +dynamic decoration
+  +dynamic backgroundColor
+  +dynamic clipBehavior
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::form_section.dart::CupertinoFormSection" o-- "flutter::lib::src::cupertino::form_section.dart::_CupertinoFormSectionType"
+
+class "flutter::lib::src::cupertino::form_section.dart::_CupertinoFormSectionType" {
+  +int index
+  {static} +List<_CupertinoFormSectionType> values
+  {static} +_CupertinoFormSectionType base
+  {static} +_CupertinoFormSectionType insetGrouped
+}
+
+"flutter::lib::src::cupertino::form_section.dart::_CupertinoFormSectionType" o-- "flutter::lib::src::cupertino::form_section.dart::_CupertinoFormSectionType"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::form_section.dart::_CupertinoFormSectionType"
+
+
+@enduml

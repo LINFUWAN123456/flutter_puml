@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::_network_image_web.dart::NetworkImage" {
+  +String url
+  +double scale
+  +Map<String, String>? headers
+  +int hashCode
+  +Future<NetworkImage> obtainKey()
+  +ImageStreamCompleter load()
+  +ImageStreamCompleter loadBuffer()
+  -dynamic _imageStreamInformationCollector()
+  -Future<dynamic> _loadAsync()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::image_provider.dart::ImageProvider" <|-- "flutter::lib::src::painting::_network_image_web.dart::NetworkImage"
+"flutter::lib::src::painting::image_provider.dart::NetworkImage" <|-- "flutter::lib::src::painting::_network_image_web.dart::NetworkImage"
+
+
+@enduml

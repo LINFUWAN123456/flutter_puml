@@ -1,0 +1,66 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::flow.dart::FlowPaintingContext" {
+  +dynamic size
+  +int childCount
+  +dynamic getChildSize()
+  +void paintChild()
+}
+
+abstract class "flutter::lib::src::rendering::flow.dart::FlowDelegate" {
+  -dynamic _repaint
+  +dynamic getSize()
+  +BoxConstraints getConstraintsForChild()
+  +void paintChildren()
+  +bool shouldRelayout()
+  +bool shouldRepaint()
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::flow.dart::FlowParentData" {
+  -dynamic _transform
+}
+
+"flutter::lib::src::rendering::box.dart::ContainerBoxParentData" <|-- "flutter::lib::src::rendering::flow.dart::FlowParentData"
+
+class "flutter::lib::src::rendering::flow.dart::RenderFlow" {
+  -FlowDelegate _delegate
+  -dynamic _clipBehavior
+  -List<RenderBox> _randomAccessChildren
+  -List<int> _lastPaintOrder
+  -PaintingContext? _paintingContext
+  -dynamic _paintingOffset
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +FlowDelegate delegate
+  +dynamic clipBehavior
+  +bool isRepaintBoundary
+  +void setupParentData()
+  +void attach()
+  +void detach()
+  -dynamic _getSize()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +dynamic getChildSize()
+  +void paintChild()
+  -void _paintWithDelegate()
+  +void paint()
+  +void dispose()
+  +bool hitTestChildren()
+  +void applyPaintTransform()
+}
+
+"flutter::lib::src::rendering::flow.dart::RenderFlow" o-- "flutter::lib::src::rendering::flow.dart::FlowDelegate"
+"flutter::lib::src::rendering::flow.dart::RenderFlow" o-- "flutter::lib::src::rendering::object.dart::PaintingContext"
+"flutter::lib::src::rendering::flow.dart::RenderFlow" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::flow.dart::RenderFlow"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::flow.dart::RenderFlow"
+"flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin" <|-- "flutter::lib::src::rendering::flow.dart::RenderFlow"
+"flutter::lib::src::rendering::flow.dart::FlowPaintingContext" <|-- "flutter::lib::src::rendering::flow.dart::RenderFlow"
+
+
+@enduml

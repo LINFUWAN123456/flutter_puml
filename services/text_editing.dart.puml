@@ -1,0 +1,20 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::text_editing.dart::TextSelection" {
+  +int baseOffset
+  +int extentOffset
+  +dynamic affinity
+  +bool isDirectional
+  +dynamic base
+  +dynamic extent
+  +int hashCode
+  +String toString()
+  +bool ==()
+  +TextSelection copyWith()
+  +TextSelection expandTo()
+  +TextSelection extendTo()
+}
+
+
+@enduml

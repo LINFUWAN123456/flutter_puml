@@ -1,0 +1,33 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::floating_action_button_theme.dart::FloatingActionButtonThemeData" {
+  +dynamic foregroundColor
+  +dynamic backgroundColor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic splashColor
+  +double? elevation
+  +double? focusElevation
+  +double? hoverElevation
+  +double? disabledElevation
+  +double? highlightElevation
+  +dynamic shape
+  +bool? enableFeedback
+  +double? iconSize
+  +dynamic sizeConstraints
+  +dynamic smallSizeConstraints
+  +dynamic largeSizeConstraints
+  +dynamic extendedSizeConstraints
+  +double? extendedIconLabelSpacing
+  +dynamic extendedPadding
+  +dynamic extendedTextStyle
+  +int hashCode
+  +FloatingActionButtonThemeData copyWith()
+  {static} +FloatingActionButtonThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

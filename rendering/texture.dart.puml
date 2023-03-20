@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::texture.dart::TextureBox" {
+  -int _textureId
+  -bool _freeze
+  -dynamic _filterQuality
+  +int textureId
+  +bool freeze
+  +dynamic filterQuality
+  +bool sizedByParent
+  +bool alwaysNeedsCompositing
+  +bool isRepaintBoundary
+  +dynamic computeDryLayout()
+  +bool hitTestSelf()
+  +void paint()
+}
+
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::texture.dart::TextureBox"
+
+
+@enduml

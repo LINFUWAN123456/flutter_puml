@@ -1,0 +1,31 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::sliver_fill.dart::RenderSliverFillViewport" {
+  -double _viewportFraction
+  +double itemExtent
+  +double viewportFraction
+}
+
+"flutter::lib::src::rendering::sliver_fixed_extent_list.dart::RenderSliverFixedExtentBoxAdaptor" <|-- "flutter::lib::src::rendering::sliver_fill.dart::RenderSliverFillViewport"
+
+class "flutter::lib::src::rendering::sliver_fill.dart::RenderSliverFillRemainingWithScrollable" {
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliverSingleBoxAdapter" <|-- "flutter::lib::src::rendering::sliver_fill.dart::RenderSliverFillRemainingWithScrollable"
+
+class "flutter::lib::src::rendering::sliver_fill.dart::RenderSliverFillRemaining" {
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliverSingleBoxAdapter" <|-- "flutter::lib::src::rendering::sliver_fill.dart::RenderSliverFillRemaining"
+
+class "flutter::lib::src::rendering::sliver_fill.dart::RenderSliverFillRemainingAndOverscroll" {
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliverSingleBoxAdapter" <|-- "flutter::lib::src::rendering::sliver_fill.dart::RenderSliverFillRemainingAndOverscroll"
+
+
+@enduml

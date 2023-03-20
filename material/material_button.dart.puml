@@ -1,0 +1,49 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::material_button.dart::MaterialButton" {
+  +dynamic onPressed
+  +dynamic onLongPress
+  +dynamic onHighlightChanged
+  +dynamic mouseCursor
+  +ButtonTextTheme? textTheme
+  +dynamic textColor
+  +dynamic disabledTextColor
+  +dynamic color
+  +dynamic disabledColor
+  +dynamic splashColor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic highlightColor
+  +double? elevation
+  +double? hoverElevation
+  +double? focusElevation
+  +double? highlightElevation
+  +double? disabledElevation
+  +dynamic colorBrightness
+  +dynamic child
+  +dynamic padding
+  +VisualDensity? visualDensity
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic focusNode
+  +bool autofocus
+  +Duration? animationDuration
+  +MaterialTapTargetSize? materialTapTargetSize
+  +double? minWidth
+  +double? height
+  +bool enableFeedback
+  +bool enabled
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::material_button.dart::MaterialButton" o-- "flutter::lib::src::material::button_theme.dart::ButtonTextTheme"
+"flutter::lib::src::material::material_button.dart::MaterialButton" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::material_button.dart::MaterialButton" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+
+abstract class "flutter::lib::src::material::material_button.dart::MaterialButtonWithIconMixin" {
+}
+
+
+@enduml

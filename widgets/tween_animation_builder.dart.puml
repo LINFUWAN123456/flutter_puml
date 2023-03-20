@@ -1,0 +1,25 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::tween_animation_builder.dart::TweenAnimationBuilder" {
+  +dynamic tween
+  +Widget Function(BuildContext, T, Widget?) builder
+  +Widget? child
+  +ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState()
+}
+
+"flutter::lib::src::widgets::tween_animation_builder.dart::TweenAnimationBuilder" o-- "flutter::lib::src::widgets::value_listenable_builder.dart::Widget Function(BuildContext, T, Widget)"
+"flutter::lib::src::widgets::tween_animation_builder.dart::TweenAnimationBuilder" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::tween_animation_builder.dart::TweenAnimationBuilder"
+
+class "flutter::lib::src::widgets::tween_animation_builder.dart::_TweenAnimationBuilderState" {
+  -dynamic _currentTween
+  +void initState()
+  +void forEachTween()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" <|-- "flutter::lib::src::widgets::tween_animation_builder.dart::_TweenAnimationBuilderState"
+
+
+@enduml

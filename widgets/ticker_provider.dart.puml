@@ -1,0 +1,68 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::ticker_provider.dart::TickerMode" {
+  +bool enabled
+  +Widget child
+  {static} +bool of()
+  {static} +dynamic getNotifier()
+  +State<TickerMode> createState()
+}
+
+"flutter::lib::src::widgets::ticker_provider.dart::TickerMode" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::ticker_provider.dart::TickerMode"
+
+class "flutter::lib::src::widgets::ticker_provider.dart::_TickerModeState" {
+  -bool _ancestorTicketMode
+  -dynamic _effectiveMode
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _updateEffectiveMode()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::ticker_provider.dart::_TickerModeState"
+
+class "flutter::lib::src::widgets::ticker_provider.dart::_EffectiveTickerMode" {
+  +bool enabled
+  +dynamic notifier
+  +bool updateShouldNotify()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::ticker_provider.dart::_EffectiveTickerMode"
+
+class "flutter::lib::src::widgets::ticker_provider.dart::_WidgetTicker" {
+  -TickerProviderStateMixin<StatefulWidget> _creator
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::ticker_provider.dart::_WidgetTicker" o-- "flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin<StatefulWidget>"
+
+abstract class "flutter::lib::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" {
+  -dynamic _ticker
+  -dynamic _tickerModeNotifier
+  +dynamic createTicker()
+  +void dispose()
+  +void activate()
+  -void _updateTicker()
+  -void _updateTickerModeNotifier()
+  +void debugFillProperties()
+}
+
+abstract class "flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" {
+  -Set<dynamic>? _tickers
+  -dynamic _tickerModeNotifier
+  +dynamic createTicker()
+  -void _removeTicker()
+  +void activate()
+  -void _updateTickers()
+  -void _updateTickerModeNotifier()
+  +void dispose()
+  +void debugFillProperties()
+}
+
+
+@enduml

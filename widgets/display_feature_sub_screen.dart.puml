@@ -1,0 +1,20 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::display_feature_sub_screen.dart::DisplayFeatureSubScreen" {
+  +dynamic anchorPoint
+  +Widget child
+  +Widget build()
+  {static} -dynamic _fallbackAnchorPoint()
+  {static} +Iterable<dynamic> avoidBounds()
+  {static} -dynamic _closestToAnchorPoint()
+  {static} -double _distanceFromPointToRect()
+  {static} +Iterable<dynamic> subScreensInBounds()
+  {static} -dynamic _capOffset()
+}
+
+"flutter::lib::src::widgets::display_feature_sub_screen.dart::DisplayFeatureSubScreen" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::display_feature_sub_screen.dart::DisplayFeatureSubScreen"
+
+
+@enduml

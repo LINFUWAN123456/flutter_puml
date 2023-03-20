@@ -1,0 +1,147 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::viewport.dart::RenderAbstractViewport" {
+  {static} +double defaultCacheExtent
+  {static} +RenderAbstractViewport? of()
+  +RevealedOffset getOffsetToReveal()
+}
+
+"flutter::lib::src::rendering::object.dart::RenderObject" <|-- "flutter::lib::src::rendering::viewport.dart::RenderAbstractViewport"
+
+class "flutter::lib::src::rendering::viewport.dart::RevealedOffset" {
+  +double offset
+  +dynamic rect
+  +String toString()
+}
+
+abstract class "flutter::lib::src::rendering::viewport.dart::RenderViewportBase" {
+  -dynamic _axisDirection
+  -dynamic _crossAxisDirection
+  -ViewportOffset _offset
+  -double _cacheExtent
+  -double? _calculatedCacheExtent
+  -CacheExtentStyle _cacheExtentStyle
+  -dynamic _clipBehavior
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +dynamic axisDirection
+  +dynamic crossAxisDirection
+  +dynamic axis
+  +ViewportOffset offset
+  +double? cacheExtent
+  +CacheExtentStyle cacheExtentStyle
+  +dynamic clipBehavior
+  +bool isRepaintBoundary
+  +bool hasVisualOverflow
+  +int indexOfFirstChild
+  +Iterable<RenderSliver> childrenInPaintOrder
+  +Iterable<RenderSliver> childrenInHitTestOrder
+  +void describeSemanticsConfiguration()
+  +void visitChildrenForSemantics()
+  +void attach()
+  +void detach()
+  +bool debugThrowIfNotCheckingIntrinsics()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double layoutChildSequence()
+  +dynamic describeApproximatePaintClip()
+  +dynamic describeSemanticsClip()
+  +void paint()
+  +void dispose()
+  -void _paintContents()
+  +void debugPaintSize()
+  +bool hitTestChildren()
+  +RevealedOffset getOffsetToReveal()
+  +dynamic computeAbsolutePaintOffset()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+  +void updateOutOfBandData()
+  +void updateChildLayoutOffset()
+  +dynamic paintOffsetOf()
+  +double scrollOffsetOf()
+  +double maxScrollObstructionExtentBefore()
+  +double computeChildMainAxisPosition()
+  +String labelForChild()
+  +void showOnScreen()
+  {static} +dynamic showInViewport()
+}
+
+"flutter::lib::src::rendering::viewport.dart::RenderViewportBase" o-- "flutter::lib::src::rendering::viewport_offset.dart::ViewportOffset"
+"flutter::lib::src::rendering::viewport.dart::RenderViewportBase" o-- "flutter::lib::src::rendering::viewport.dart::CacheExtentStyle"
+"flutter::lib::src::rendering::viewport.dart::RenderViewportBase" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::viewport.dart::RenderViewportBase"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::viewport.dart::RenderViewportBase"
+"flutter::lib::src::rendering::viewport.dart::RenderAbstractViewport" <|-- "flutter::lib::src::rendering::viewport.dart::RenderViewportBase"
+
+class "flutter::lib::src::rendering::viewport.dart::RenderViewport" {
+  {static} +dynamic useTwoPaneSemantics
+  {static} +dynamic excludeFromScrolling
+  -double _anchor
+  -RenderSliver? _center
+  {static} -int _maxLayoutCycles
+  -double _minScrollExtent
+  -double _maxScrollExtent
+  -bool _hasVisualOverflow
+  +double anchor
+  +RenderSliver? center
+  +bool sizedByParent
+  +bool hasVisualOverflow
+  +int indexOfFirstChild
+  +Iterable<RenderSliver> childrenInPaintOrder
+  +Iterable<RenderSliver> childrenInHitTestOrder
+  +void setupParentData()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  -double _attemptLayout()
+  +void updateOutOfBandData()
+  +void updateChildLayoutOffset()
+  +dynamic paintOffsetOf()
+  +double scrollOffsetOf()
+  +double maxScrollObstructionExtentBefore()
+  +void applyPaintTransform()
+  +double computeChildMainAxisPosition()
+  +String labelForChild()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::viewport.dart::RenderViewport" o-- "flutter::lib::src::rendering::sliver.dart::RenderSliver"
+"flutter::lib::src::rendering::viewport.dart::RenderViewportBase" <|-- "flutter::lib::src::rendering::viewport.dart::RenderViewport"
+
+class "flutter::lib::src::rendering::viewport.dart::RenderShrinkWrappingViewport" {
+  -double _maxScrollExtent
+  -double _shrinkWrapExtent
+  -bool _hasVisualOverflow
+  +bool hasVisualOverflow
+  +int indexOfFirstChild
+  +Iterable<RenderSliver> childrenInPaintOrder
+  +Iterable<RenderSliver> childrenInHitTestOrder
+  +void setupParentData()
+  +bool debugThrowIfNotCheckingIntrinsics()
+  +void performLayout()
+  -double _attemptLayout()
+  +void updateOutOfBandData()
+  +void updateChildLayoutOffset()
+  +dynamic paintOffsetOf()
+  +double scrollOffsetOf()
+  +double maxScrollObstructionExtentBefore()
+  +void applyPaintTransform()
+  +double computeChildMainAxisPosition()
+  +String labelForChild()
+}
+
+"flutter::lib::src::rendering::viewport.dart::RenderViewportBase" <|-- "flutter::lib::src::rendering::viewport.dart::RenderShrinkWrappingViewport"
+
+class "flutter::lib::src::rendering::viewport.dart::CacheExtentStyle" {
+  +int index
+  {static} +List<CacheExtentStyle> values
+  {static} +CacheExtentStyle pixel
+  {static} +CacheExtentStyle viewport
+}
+
+"flutter::lib::src::rendering::viewport.dart::CacheExtentStyle" o-- "flutter::lib::src::rendering::viewport.dart::CacheExtentStyle"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::viewport.dart::CacheExtentStyle"
+
+
+@enduml

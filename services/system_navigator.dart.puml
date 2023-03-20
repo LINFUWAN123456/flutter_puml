@@ -1,0 +1,13 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::system_navigator.dart::SystemNavigator" {
+  {static} +Future<void> pop()
+  {static} +Future<void> selectSingleEntryHistory()
+  {static} +Future<void> selectMultiEntryHistory()
+  {static} +Future<void> routeInformationUpdated()
+  {static} +Future<void> routeUpdated()
+}
+
+
+@enduml

@@ -1,0 +1,65 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::snack_bar.dart::SnackBarAction" {
+  +dynamic textColor
+  +dynamic disabledTextColor
+  +String label
+  +dynamic onPressed
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::snack_bar.dart::_SnackBarActionState" {
+  -bool _haveTriggeredAction
+  -void _handlePressed()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::snack_bar.dart::SnackBar" {
+  +dynamic content
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic margin
+  +dynamic padding
+  +double? width
+  +dynamic shape
+  +SnackBarBehavior? behavior
+  +SnackBarAction? action
+  +Duration duration
+  +dynamic animation
+  +dynamic onVisible
+  +dynamic dismissDirection
+  +dynamic clipBehavior
+  {static} +dynamic createAnimationController()
+  +SnackBar withAnimation()
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::snack_bar.dart::SnackBar" o-- "flutter::lib::src::material::snack_bar_theme.dart::SnackBarBehavior"
+"flutter::lib::src::material::snack_bar.dart::SnackBar" o-- "flutter::lib::src::material::snack_bar.dart::SnackBarAction"
+
+class "flutter::lib::src::material::snack_bar.dart::_SnackBarState" {
+  -bool _wasVisible
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _onAnimationStatusChanged()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::snack_bar.dart::SnackBarClosedReason" {
+  +int index
+  {static} +List<SnackBarClosedReason> values
+  {static} +SnackBarClosedReason action
+  {static} +SnackBarClosedReason dismiss
+  {static} +SnackBarClosedReason swipe
+  {static} +SnackBarClosedReason hide
+  {static} +SnackBarClosedReason remove
+  {static} +SnackBarClosedReason timeout
+}
+
+"flutter::lib::src::material::snack_bar.dart::SnackBarClosedReason" o-- "flutter::lib::src::material::snack_bar.dart::SnackBarClosedReason"
+"dart::core::Enum" <|-- "flutter::lib::src::material::snack_bar.dart::SnackBarClosedReason"
+
+
+@enduml

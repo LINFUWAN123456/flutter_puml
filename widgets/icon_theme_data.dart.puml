@@ -1,0 +1,21 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::icon_theme_data.dart::IconThemeData" {
+  +dynamic color
+  -double? _opacity
+  +double? size
+  +List<dynamic>? shadows
+  +bool isConcrete
+  +double? opacity
+  +int hashCode
+  +IconThemeData copyWith()
+  +IconThemeData merge()
+  +IconThemeData resolve()
+  {static} +IconThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

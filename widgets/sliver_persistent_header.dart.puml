@@ -1,0 +1,134 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::sliver_persistent_header.dart::SliverPersistentHeaderDelegate" {
+  +double minExtent
+  +double maxExtent
+  +dynamic vsync
+  +dynamic snapConfiguration
+  +dynamic stretchConfiguration
+  +dynamic showOnScreenConfiguration
+  +Widget build()
+  +bool shouldRebuild()
+}
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::SliverPersistentHeader" {
+  +SliverPersistentHeaderDelegate delegate
+  +bool pinned
+  +bool floating
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::SliverPersistentHeader" o-- "flutter::lib::src::widgets::sliver_persistent_header.dart::SliverPersistentHeaderDelegate"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::SliverPersistentHeader"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_FloatingHeader" {
+  +Widget child
+  +_FloatingHeaderState createState()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_FloatingHeader" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_FloatingHeader"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_FloatingHeaderState" {
+  -ScrollPosition? _position
+  +void didChangeDependencies()
+  +void dispose()
+  -dynamic _headerRenderer()
+  -void _isScrollingListener()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_FloatingHeaderState" o-- "flutter::lib::src::widgets::scroll_position.dart::ScrollPosition"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_FloatingHeaderState"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderElement" {
+  +bool floating
+  +Element? child
+  +_RenderSliverPersistentHeaderForWidgetsMixin renderObject
+  +void mount()
+  +void unmount()
+  +void update()
+  +void performRebuild()
+  -void _build()
+  +void forgetChild()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+  +void visitChildren()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderElement" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderElement" o-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverPersistentHeaderForWidgetsMixin"
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderElement"
+
+abstract class "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderRenderObjectWidget" {
+  +SliverPersistentHeaderDelegate delegate
+  +bool floating
+  +_SliverPersistentHeaderElement createElement()
+  +_RenderSliverPersistentHeaderForWidgetsMixin createRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderRenderObjectWidget" o-- "flutter::lib::src::widgets::sliver_persistent_header.dart::SliverPersistentHeaderDelegate"
+"flutter::lib::src::widgets::framework.dart::RenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderRenderObjectWidget"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverScrollingPersistentHeader" {
+  +_RenderSliverPersistentHeaderForWidgetsMixin createRenderObject()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverScrollingPersistentHeader"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverScrollingPersistentHeaderForWidgets" {
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverPersistentHeaderForWidgetsMixin" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverScrollingPersistentHeaderForWidgets"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPinnedPersistentHeader" {
+  +_RenderSliverPersistentHeaderForWidgetsMixin createRenderObject()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPinnedPersistentHeader"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverPinnedPersistentHeaderForWidgets" {
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverPersistentHeaderForWidgetsMixin" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverPinnedPersistentHeaderForWidgets"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverFloatingPersistentHeader" {
+  +_RenderSliverPersistentHeaderForWidgetsMixin createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverFloatingPersistentHeader"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverFloatingPinnedPersistentHeaderForWidgets" {
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverPersistentHeaderForWidgetsMixin" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverFloatingPinnedPersistentHeaderForWidgets"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverFloatingPinnedPersistentHeader" {
+  +_RenderSliverPersistentHeaderForWidgetsMixin createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverFloatingPinnedPersistentHeader"
+
+class "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverFloatingPersistentHeaderForWidgets" {
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverPersistentHeaderForWidgetsMixin" <|-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverFloatingPersistentHeaderForWidgets"
+
+abstract class "flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverPersistentHeaderForWidgetsMixin" {
+  -_SliverPersistentHeaderElement? _element
+  +double minExtent
+  +double maxExtent
+  +void updateChild()
+  +void triggerRebuild()
+}
+
+"flutter::lib::src::widgets::sliver_persistent_header.dart::_RenderSliverPersistentHeaderForWidgetsMixin" o-- "flutter::lib::src::widgets::sliver_persistent_header.dart::_SliverPersistentHeaderElement"
+
+
+@enduml

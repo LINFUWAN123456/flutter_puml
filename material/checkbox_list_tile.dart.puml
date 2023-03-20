@@ -1,0 +1,36 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::checkbox_list_tile.dart::CheckboxListTile" {
+  +bool? value
+  +dynamic onChanged
+  +dynamic activeColor
+  +dynamic checkColor
+  +dynamic tileColor
+  +dynamic title
+  +dynamic subtitle
+  +dynamic secondary
+  +bool isThreeLine
+  +bool? dense
+  +bool selected
+  +ListTileControlAffinity controlAffinity
+  +bool autofocus
+  +dynamic contentPadding
+  +bool tristate
+  +dynamic shape
+  +dynamic checkboxShape
+  +dynamic selectedTileColor
+  +dynamic side
+  +VisualDensity? visualDensity
+  +dynamic focusNode
+  +bool? enableFeedback
+  +bool? enabled
+  -void _handleValueChange()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::checkbox_list_tile.dart::CheckboxListTile" o-- "flutter::lib::src::material::list_tile.dart::ListTileControlAffinity"
+"flutter::lib::src::material::checkbox_list_tile.dart::CheckboxListTile" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+
+@enduml

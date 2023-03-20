@@ -1,0 +1,79 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::toggleable.dart::ToggleablePainter" {
+  -dynamic _position
+  -dynamic _reaction
+  -dynamic _reactionFocusFade
+  -dynamic _reactionHoverFade
+  -dynamic _activeColor
+  -dynamic _inactiveColor
+  -dynamic _inactiveReactionColor
+  -dynamic _reactionColor
+  -dynamic _hoverColor
+  -dynamic _focusColor
+  -double? _splashRadius
+  -dynamic _downPosition
+  -bool? _isFocused
+  -bool? _isHovered
+  +dynamic position
+  +dynamic reaction
+  +dynamic reactionFocusFade
+  +dynamic reactionHoverFade
+  +dynamic activeColor
+  +dynamic inactiveColor
+  +dynamic inactiveReactionColor
+  +dynamic reactionColor
+  +dynamic hoverColor
+  +dynamic focusColor
+  +double splashRadius
+  +dynamic downPosition
+  +bool isFocused
+  +bool isHovered
+  +dynamic semanticsBuilder
+  +void paintRadialReaction()
+  +void dispose()
+  +bool shouldRepaint()
+  +bool? hitTest()
+  +bool shouldRebuildSemantics()
+  +String toString()
+}
+
+abstract class "flutter::lib::src::material::toggleable.dart::ToggleableStateMixin" {
+  -dynamic _positionController
+  -dynamic _position
+  -dynamic _reactionController
+  -dynamic _reaction
+  -dynamic _reactionHoverFade
+  -dynamic _reactionHoverFadeController
+  -dynamic _reactionFocusFade
+  -dynamic _reactionFocusFadeController
+  -Map<Type, dynamic> _actionMap
+  -dynamic _downPosition
+  -bool _focused
+  -bool _hovering
+  +dynamic positionController
+  +dynamic position
+  +dynamic reactionController
+  +dynamic reaction
+  +dynamic reactionHoverFade
+  +dynamic reactionFocusFade
+  +bool isInteractive
+  +dynamic onChanged
+  +bool? value
+  +bool tristate
+  +dynamic downPosition
+  +Set<MaterialState> states
+  +void initState()
+  +void animateToValue()
+  +void dispose()
+  -void _handleTapDown()
+  -void _handleTap()
+  -void _handleTapEnd()
+  -void _handleFocusHighlightChanged()
+  -void _handleHoverChanged()
+  +dynamic buildToggleable()
+}
+
+
+@enduml

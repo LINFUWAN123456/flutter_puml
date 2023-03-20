@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::_network_image_io.dart::NetworkImage" {
+  +String url
+  +double scale
+  +Map<String, String>? headers
+  {static} -HttpClient _sharedHttpClient
+  {static} -HttpClient _httpClient
+  +int hashCode
+  +Future<NetworkImage> obtainKey()
+  +ImageStreamCompleter load()
+  +ImageStreamCompleter loadBuffer()
+  -Future<dynamic> _loadAsync()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::_network_image_io.dart::NetworkImage" o-- "dart::_http::HttpClient"
+"flutter::lib::src::painting::image_provider.dart::ImageProvider" <|-- "flutter::lib::src::painting::_network_image_io.dart::NetworkImage"
+"flutter::lib::src::painting::image_provider.dart::NetworkImage" <|-- "flutter::lib::src::painting::_network_image_io.dart::NetworkImage"
+
+
+@enduml

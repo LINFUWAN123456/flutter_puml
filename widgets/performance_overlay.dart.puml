@@ -1,0 +1,16 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::performance_overlay.dart::PerformanceOverlay" {
+  +int optionsMask
+  +int rasterizerThreshold
+  +bool checkerboardRasterCacheImages
+  +bool checkerboardOffscreenLayers
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flutter::lib::src::widgets::performance_overlay.dart::PerformanceOverlay"
+
+
+@enduml

@@ -1,0 +1,233 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::reorderable_list.dart::ReorderableList" {
+  +Widget Function(BuildContext, int) itemBuilder
+  +int itemCount
+  +void Function(int, int) onReorder
+  +void Function(int)? onReorderStart
+  +void Function(int)? onReorderEnd
+  +Widget Function(Widget, int, dynamic)? proxyDecorator
+  +dynamic padding
+  +dynamic scrollDirection
+  +bool reverse
+  +ScrollController? controller
+  +bool? primary
+  +ScrollPhysics? physics
+  +bool shrinkWrap
+  +double anchor
+  +double? cacheExtent
+  +dynamic dragStartBehavior
+  +ScrollViewKeyboardDismissBehavior keyboardDismissBehavior
+  +String? restorationId
+  +dynamic clipBehavior
+  +double? itemExtent
+  +Widget? prototypeItem
+  {static} +ReorderableListState of()
+  {static} +ReorderableListState? maybeOf()
+  +ReorderableListState createState()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableList" o-- "flutter::lib::src::widgets::framework.dart::Widget Function(BuildContext, int)"
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableList" o-- "flutter::lib::src::widgets::reorderable_list.dart::void Function(int, int)"
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableList" o-- "null::void Function(int)"
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableList" o-- "flutter::lib::src::widgets::reorderable_list.dart::Widget Function(Widget, int, dynamic)"
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableList" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableList" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableList" o-- "flutter::lib::src::widgets::scroll_view.dart::ScrollViewKeyboardDismissBehavior"
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableList" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::reorderable_list.dart::ReorderableList"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::ReorderableListState" {
+  -GlobalKey<SliverReorderableListState> _sliverReorderableListKey
+  +void startItemDragReorder()
+  +void cancelReorder()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableListState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<SliverReorderableListState>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::reorderable_list.dart::ReorderableListState"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableList" {
+  +Widget Function(BuildContext, int) itemBuilder
+  +int? Function(dynamic)? findChildIndexCallback
+  +int itemCount
+  +void Function(int, int) onReorder
+  +void Function(int)? onReorderStart
+  +void Function(int)? onReorderEnd
+  +Widget Function(Widget, int, dynamic)? proxyDecorator
+  +double? itemExtent
+  +Widget? prototypeItem
+  +SliverReorderableListState createState()
+  {static} +SliverReorderableListState of()
+  {static} +SliverReorderableListState? maybeOf()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableList" o-- "flutter::lib::src::widgets::framework.dart::Widget Function(BuildContext, int)"
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableList" o-- "flutter::lib::src::widgets::sliver.dart::int Function(dynamic)"
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableList" o-- "flutter::lib::src::widgets::reorderable_list.dart::void Function(int, int)"
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableList" o-- "null::void Function(int)"
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableList" o-- "flutter::lib::src::widgets::reorderable_list.dart::Widget Function(Widget, int, dynamic)"
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableList" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableList"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState" {
+  -Map<int, _ReorderableItemState> _items
+  -OverlayEntry? _overlayEntry
+  -int? _dragIndex
+  -_DragInfo? _dragInfo
+  -int? _insertIndex
+  -dynamic _finalDropPosition
+  -dynamic _recognizer
+  -int? _recognizerPointer
+  -bool _dragStartTransitionComplete
+  -EdgeDraggingAutoScroller? _autoScroller
+  -ScrollableState _scrollable
+  -dynamic _scrollDirection
+  -bool _reverse
+  -dynamic _dragTargetRect
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  +void startItemDragReorder()
+  +void cancelReorder()
+  -void _registerItem()
+  -void _unregisterItem()
+  -dynamic _dragStart()
+  -void _dragUpdate()
+  -void _dragCancel()
+  -void _dragEnd()
+  -void _dropCompleted()
+  -void _dragReset()
+  -void _resetItemGap()
+  -void _handleScrollableAutoScrolled()
+  -void _dragUpdateItems()
+  -dynamic _itemOffsetAt()
+  -Widget _itemBuilder()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState" o-- "flutter::lib::src::widgets::overlay.dart::OverlayEntry"
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState" o-- "flutter::lib::src::widgets::reorderable_list.dart::_DragInfo"
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState" o-- "flutter::lib::src::widgets::scrollable.dart::EdgeDraggingAutoScroller"
+"flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState" o-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItem" {
+  +int index
+  +Widget child
+  +CapturedThemes capturedThemes
+  +_ReorderableItemState createState()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItem" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItem" o-- "flutter::lib::src::widgets::inherited_theme.dart::CapturedThemes"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItem"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItemState" {
+  -SliverReorderableListState _listState
+  -dynamic _startOffset
+  -dynamic _targetOffset
+  -dynamic _offsetAnimation
+  -bool _dragging
+  +dynamic key
+  +int index
+  +bool dragging
+  +dynamic offset
+  +void initState()
+  +void dispose()
+  +void didUpdateWidget()
+  +Widget build()
+  +void deactivate()
+  +void updateForGap()
+  +void resetGap()
+  +dynamic targetGeometry()
+  +void rebuild()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItemState" o-- "flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItemState"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::ReorderableDragStartListener" {
+  +Widget child
+  +int index
+  +bool enabled
+  +Widget build()
+  +dynamic createRecognizer()
+  -void _startDragging()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableDragStartListener" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::reorderable_list.dart::ReorderableDragStartListener"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::ReorderableDelayedDragStartListener" {
+  +dynamic createRecognizer()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::ReorderableDragStartListener" <|-- "flutter::lib::src::widgets::reorderable_list.dart::ReorderableDelayedDragStartListener"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::_DragInfo" {
+  +dynamic scrollDirection
+  +void Function(_DragInfo, dynamic, dynamic)? onUpdate
+  +void Function(_DragInfo)? onEnd
+  +void Function(_DragInfo)? onCancel
+  +dynamic onDropCompleted
+  +Widget Function(Widget, int, dynamic)? proxyDecorator
+  +dynamic tickerProvider
+  +SliverReorderableListState listState
+  +int index
+  +Widget child
+  +dynamic dragPosition
+  +dynamic dragOffset
+  +dynamic itemSize
+  +double itemExtent
+  +CapturedThemes capturedThemes
+  +ScrollableState? scrollable
+  -dynamic _proxyAnimation
+  +void dispose()
+  +void startDrag()
+  +void update()
+  +void end()
+  +void cancel()
+  -void _dropCompleted()
+  +Widget createProxy()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::_DragInfo" o-- "flutter::lib::src::widgets::reorderable_list.dart::void Function(_DragInfo, dynamic, dynamic)"
+"flutter::lib::src::widgets::reorderable_list.dart::_DragInfo" o-- "flutter::lib::src::widgets::reorderable_list.dart::void Function(_DragInfo)"
+"flutter::lib::src::widgets::reorderable_list.dart::_DragInfo" o-- "flutter::lib::src::widgets::reorderable_list.dart::Widget Function(Widget, int, dynamic)"
+"flutter::lib::src::widgets::reorderable_list.dart::_DragInfo" o-- "flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState"
+"flutter::lib::src::widgets::reorderable_list.dart::_DragInfo" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::reorderable_list.dart::_DragInfo" o-- "flutter::lib::src::widgets::inherited_theme.dart::CapturedThemes"
+"flutter::lib::src::widgets::reorderable_list.dart::_DragInfo" o-- "flutter::lib::src::widgets::scrollable.dart::ScrollableState"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::_DragItemProxy" {
+  +SliverReorderableListState listState
+  +int index
+  +Widget child
+  +dynamic position
+  +dynamic size
+  +dynamic animation
+  +Widget Function(Widget, int, dynamic)? proxyDecorator
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::_DragItemProxy" o-- "flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState"
+"flutter::lib::src::widgets::reorderable_list.dart::_DragItemProxy" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::reorderable_list.dart::_DragItemProxy" o-- "flutter::lib::src::widgets::reorderable_list.dart::Widget Function(Widget, int, dynamic)"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::reorderable_list.dart::_DragItemProxy"
+
+class "flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItemGlobalKey" {
+  +dynamic subKey
+  +int index
+  +SliverReorderableListState state
+  +int hashCode
+  +bool ==()
+}
+
+"flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItemGlobalKey" o-- "flutter::lib::src::widgets::reorderable_list.dart::SliverReorderableListState"
+"flutter::lib::src::widgets::framework.dart::GlobalObjectKey" <|-- "flutter::lib::src::widgets::reorderable_list.dart::_ReorderableItemGlobalKey"
+
+
+@enduml

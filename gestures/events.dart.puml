@@ -1,0 +1,417 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::gestures::events.dart::PointerEvent" {
+  +int embedderId
+  +Duration timeStamp
+  +int pointer
+  +dynamic kind
+  +int device
+  +dynamic position
+  +dynamic delta
+  +int buttons
+  +bool down
+  +bool obscured
+  +double pressure
+  +double pressureMin
+  +double pressureMax
+  +double distance
+  +double distanceMax
+  +double size
+  +double radiusMajor
+  +double radiusMinor
+  +double radiusMin
+  +double radiusMax
+  +double orientation
+  +double tilt
+  +int platformData
+  +bool synthesized
+  +dynamic transform
+  +PointerEvent? original
+  +dynamic localPosition
+  +dynamic localDelta
+  +double distanceMin
+  +PointerEvent transformed()
+  +PointerEvent copyWith()
+  {static} +dynamic transformPosition()
+  {static} +dynamic transformDeltaViaPositions()
+  {static} +dynamic removePerspectiveTransform()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" o-- "flutter::lib::src::gestures::events.dart::PointerEvent"
+
+abstract class "flutter::lib::src::gestures::events.dart::_AbstractPointerEvent" {
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_AbstractPointerEvent"
+
+abstract class "flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" {
+  +dynamic localPosition
+  +dynamic localDelta
+  +PointerEvent original
+  +dynamic transform
+  +int embedderId
+  +Duration timeStamp
+  +int pointer
+  +dynamic kind
+  +int device
+  +dynamic position
+  +dynamic delta
+  +int buttons
+  +bool down
+  +bool obscured
+  +double pressure
+  +double pressureMin
+  +double pressureMax
+  +double distance
+  +double distanceMin
+  +double distanceMax
+  +double size
+  +double radiusMajor
+  +double radiusMinor
+  +double radiusMin
+  +double radiusMax
+  +double orientation
+  +double tilt
+  +int platformData
+  +bool synthesized
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" o-- "flutter::lib::src::gestures::events.dart::PointerEvent"
+"flutter::lib::src::gestures::events.dart::_AbstractPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerAddedEvent" {
+  +PointerAddedEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerAddedEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerAddedEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerAddedEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerAddedEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerAddedEvent" {
+  +PointerAddedEvent original
+  +dynamic transform
+  +PointerAddedEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerAddedEvent" o-- "flutter::lib::src::gestures::events.dart::PointerAddedEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerAddedEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerAddedEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerAddedEvent"
+"flutter::lib::src::gestures::events.dart::PointerAddedEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerAddedEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerRemovedEvent" {
+  +PointerRemovedEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerRemovedEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerRemovedEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerRemovedEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerRemovedEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerRemovedEvent" {
+  +PointerRemovedEvent original
+  +dynamic transform
+  +PointerRemovedEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerRemovedEvent" o-- "flutter::lib::src::gestures::events.dart::PointerRemovedEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerRemovedEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerRemovedEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerRemovedEvent"
+"flutter::lib::src::gestures::events.dart::PointerRemovedEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerRemovedEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerHoverEvent" {
+  +PointerHoverEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerHoverEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerHoverEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerHoverEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerHoverEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerHoverEvent" {
+  +PointerHoverEvent original
+  +dynamic transform
+  +PointerHoverEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerHoverEvent" o-- "flutter::lib::src::gestures::events.dart::PointerHoverEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerHoverEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerHoverEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerHoverEvent"
+"flutter::lib::src::gestures::events.dart::PointerHoverEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerHoverEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerEnterEvent" {
+  +PointerEnterEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerEnterEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerEnterEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerEnterEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerEnterEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerEnterEvent" {
+  +PointerEnterEvent original
+  +dynamic transform
+  +PointerEnterEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEnterEvent" o-- "flutter::lib::src::gestures::events.dart::PointerEnterEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerEnterEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerEnterEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerEnterEvent"
+"flutter::lib::src::gestures::events.dart::PointerEnterEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerEnterEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerExitEvent" {
+  +PointerExitEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerExitEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerExitEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerExitEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerExitEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerExitEvent" {
+  +PointerExitEvent original
+  +dynamic transform
+  +PointerExitEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerExitEvent" o-- "flutter::lib::src::gestures::events.dart::PointerExitEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerExitEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerExitEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerExitEvent"
+"flutter::lib::src::gestures::events.dart::PointerExitEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerExitEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerDownEvent" {
+  +PointerDownEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerDownEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerDownEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerDownEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerDownEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerDownEvent" {
+  +PointerDownEvent original
+  +dynamic transform
+  +PointerDownEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerDownEvent" o-- "flutter::lib::src::gestures::events.dart::PointerDownEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerDownEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerDownEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerDownEvent"
+"flutter::lib::src::gestures::events.dart::PointerDownEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerDownEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerMoveEvent" {
+  +PointerMoveEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerMoveEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerMoveEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerMoveEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerMoveEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerMoveEvent" {
+  +PointerMoveEvent original
+  +dynamic transform
+  +PointerMoveEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerMoveEvent" o-- "flutter::lib::src::gestures::events.dart::PointerMoveEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerMoveEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerMoveEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerMoveEvent"
+"flutter::lib::src::gestures::events.dart::PointerMoveEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerMoveEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerUpEvent" {
+  +PointerUpEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerUpEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerUpEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerUpEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerUpEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerUpEvent" {
+  +PointerUpEvent original
+  +dynamic transform
+  +PointerUpEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerUpEvent" o-- "flutter::lib::src::gestures::events.dart::PointerUpEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerUpEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerUpEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerUpEvent"
+"flutter::lib::src::gestures::events.dart::PointerUpEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerUpEvent"
+
+abstract class "flutter::lib::src::gestures::events.dart::PointerSignalEvent" {
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerSignalEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerScrollEvent" {
+  +dynamic scrollDelta
+  +PointerScrollEvent transformed()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerSignalEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerScrollEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerScrollEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerScrollEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerScrollEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerScrollEvent" {
+  +PointerScrollEvent original
+  +dynamic transform
+  +dynamic scrollDelta
+  +PointerScrollEvent transformed()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerScrollEvent" o-- "flutter::lib::src::gestures::events.dart::PointerScrollEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerScrollEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerScrollEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerScrollEvent"
+"flutter::lib::src::gestures::events.dart::PointerScrollEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerScrollEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerPanZoomStartEvent" {
+  +PointerPanZoomStartEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerPanZoomStartEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerPanZoomStartEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerPanZoomStartEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerPanZoomStartEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomStartEvent" {
+  +PointerPanZoomStartEvent original
+  +dynamic transform
+  +PointerPanZoomStartEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomStartEvent" o-- "flutter::lib::src::gestures::events.dart::PointerPanZoomStartEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomStartEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerPanZoomStartEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomStartEvent"
+"flutter::lib::src::gestures::events.dart::PointerPanZoomStartEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomStartEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerPanZoomUpdateEvent" {
+  +dynamic pan
+  +dynamic panDelta
+  +double scale
+  +double rotation
+  +dynamic localPan
+  +dynamic localPanDelta
+  +PointerPanZoomUpdateEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerPanZoomUpdateEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerPanZoomUpdateEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerPanZoomUpdateEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerPanZoomUpdateEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomUpdateEvent" {
+  +dynamic localPan
+  +dynamic localPanDelta
+  +PointerPanZoomUpdateEvent original
+  +dynamic transform
+  +dynamic pan
+  +dynamic panDelta
+  +double scale
+  +double rotation
+  +PointerPanZoomUpdateEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomUpdateEvent" o-- "flutter::lib::src::gestures::events.dart::PointerPanZoomUpdateEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomUpdateEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerPanZoomUpdateEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomUpdateEvent"
+"flutter::lib::src::gestures::events.dart::PointerPanZoomUpdateEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomUpdateEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerPanZoomEndEvent" {
+  +PointerPanZoomEndEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerPanZoomEndEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerPanZoomEndEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerPanZoomEndEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerPanZoomEndEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomEndEvent" {
+  +PointerPanZoomEndEvent original
+  +dynamic transform
+  +PointerPanZoomEndEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomEndEvent" o-- "flutter::lib::src::gestures::events.dart::PointerPanZoomEndEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomEndEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerPanZoomEndEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomEndEvent"
+"flutter::lib::src::gestures::events.dart::PointerPanZoomEndEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerPanZoomEndEvent"
+
+class "flutter::lib::src::gestures::events.dart::PointerCancelEvent" {
+  +PointerCancelEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::PointerEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerCancelEvent"
+"flutter::lib::src::gestures::events.dart::_PointerEventDescription" <|-- "flutter::lib::src::gestures::events.dart::PointerCancelEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerCancelEvent" <|-- "flutter::lib::src::gestures::events.dart::PointerCancelEvent"
+
+class "flutter::lib::src::gestures::events.dart::_TransformedPointerCancelEvent" {
+  +PointerCancelEvent original
+  +dynamic transform
+  +PointerCancelEvent transformed()
+}
+
+"flutter::lib::src::gestures::events.dart::_TransformedPointerCancelEvent" o-- "flutter::lib::src::gestures::events.dart::PointerCancelEvent"
+"flutter::lib::src::gestures::events.dart::_TransformedPointerEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerCancelEvent"
+"flutter::lib::src::gestures::events.dart::_CopyPointerCancelEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerCancelEvent"
+"flutter::lib::src::gestures::events.dart::PointerCancelEvent" <|-- "flutter::lib::src::gestures::events.dart::_TransformedPointerCancelEvent"
+
+abstract class "flutter::lib::src::gestures::events.dart::_PointerEventDescription" {
+  +void debugFillProperties()
+  +String toStringFull()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerAddedEvent" {
+  +PointerAddedEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerRemovedEvent" {
+  +PointerRemovedEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerHoverEvent" {
+  +PointerHoverEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerEnterEvent" {
+  +PointerEnterEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerExitEvent" {
+  +PointerExitEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerDownEvent" {
+  +PointerDownEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerMoveEvent" {
+  +PointerMoveEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerUpEvent" {
+  +PointerUpEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerScrollEvent" {
+  +dynamic scrollDelta
+  +PointerScrollEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerPanZoomStartEvent" {
+  +PointerPanZoomStartEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerPanZoomUpdateEvent" {
+  +dynamic pan
+  +dynamic localPan
+  +dynamic panDelta
+  +dynamic localPanDelta
+  +double scale
+  +double rotation
+  +PointerPanZoomUpdateEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerPanZoomEndEvent" {
+  +PointerPanZoomEndEvent copyWith()
+}
+
+abstract class "flutter::lib::src::gestures::events.dart::_CopyPointerCancelEvent" {
+  +PointerCancelEvent copyWith()
+}
+
+
+@enduml

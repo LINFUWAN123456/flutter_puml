@@ -1,0 +1,121 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::flex.dart::FlexParentData" {
+  +int? flex
+  +FlexFit? fit
+  +String toString()
+}
+
+"flutter::lib::src::rendering::flex.dart::FlexParentData" o-- "flutter::lib::src::rendering::flex.dart::FlexFit"
+"flutter::lib::src::rendering::box.dart::ContainerBoxParentData" <|-- "flutter::lib::src::rendering::flex.dart::FlexParentData"
+
+class "flutter::lib::src::rendering::flex.dart::RenderFlex" {
+  -dynamic _direction
+  -MainAxisAlignment _mainAxisAlignment
+  -MainAxisSize _mainAxisSize
+  -CrossAxisAlignment _crossAxisAlignment
+  -dynamic _textDirection
+  -dynamic _verticalDirection
+  -dynamic _textBaseline
+  -double _overflow
+  -dynamic _clipBehavior
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +dynamic direction
+  +MainAxisAlignment mainAxisAlignment
+  +MainAxisSize mainAxisSize
+  +CrossAxisAlignment crossAxisAlignment
+  +dynamic textDirection
+  +dynamic verticalDirection
+  +dynamic textBaseline
+  -bool _debugHasNecessaryDirections
+  -bool _hasOverflow
+  +dynamic clipBehavior
+  -bool _canComputeIntrinsics
+  +void setupParentData()
+  -double _getIntrinsicSize()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  -int _getFlex()
+  -FlexFit _getFit()
+  -double _getCrossSize()
+  -double _getMainSize()
+  +dynamic computeDryLayout()
+  -dynamic _debugCheckConstraints()
+  -_LayoutSizes _computeSizes()
+  +void performLayout()
+  +bool hitTestChildren()
+  +void paint()
+  +void dispose()
+  +dynamic describeApproximatePaintClip()
+  +String toStringShort()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::flex.dart::RenderFlex" o-- "flutter::lib::src::rendering::flex.dart::MainAxisAlignment"
+"flutter::lib::src::rendering::flex.dart::RenderFlex" o-- "flutter::lib::src::rendering::flex.dart::MainAxisSize"
+"flutter::lib::src::rendering::flex.dart::RenderFlex" o-- "flutter::lib::src::rendering::flex.dart::CrossAxisAlignment"
+"flutter::lib::src::rendering::flex.dart::RenderFlex" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::flex.dart::RenderFlex"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::flex.dart::RenderFlex"
+"flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin" <|-- "flutter::lib::src::rendering::flex.dart::RenderFlex"
+"flutter::lib::src::rendering::debug_overflow_indicator.dart::DebugOverflowIndicatorMixin" <|-- "flutter::lib::src::rendering::flex.dart::RenderFlex"
+
+class "flutter::lib::src::rendering::flex.dart::_LayoutSizes" {
+  +double mainSize
+  +double crossSize
+  +double allocatedSize
+}
+
+class "flutter::lib::src::rendering::flex.dart::FlexFit" {
+  +int index
+  {static} +List<FlexFit> values
+  {static} +FlexFit tight
+  {static} +FlexFit loose
+}
+
+"flutter::lib::src::rendering::flex.dart::FlexFit" o-- "flutter::lib::src::rendering::flex.dart::FlexFit"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::flex.dart::FlexFit"
+
+class "flutter::lib::src::rendering::flex.dart::MainAxisSize" {
+  +int index
+  {static} +List<MainAxisSize> values
+  {static} +MainAxisSize min
+  {static} +MainAxisSize max
+}
+
+"flutter::lib::src::rendering::flex.dart::MainAxisSize" o-- "flutter::lib::src::rendering::flex.dart::MainAxisSize"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::flex.dart::MainAxisSize"
+
+class "flutter::lib::src::rendering::flex.dart::MainAxisAlignment" {
+  +int index
+  {static} +List<MainAxisAlignment> values
+  {static} +MainAxisAlignment start
+  {static} +MainAxisAlignment end
+  {static} +MainAxisAlignment center
+  {static} +MainAxisAlignment spaceBetween
+  {static} +MainAxisAlignment spaceAround
+  {static} +MainAxisAlignment spaceEvenly
+}
+
+"flutter::lib::src::rendering::flex.dart::MainAxisAlignment" o-- "flutter::lib::src::rendering::flex.dart::MainAxisAlignment"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::flex.dart::MainAxisAlignment"
+
+class "flutter::lib::src::rendering::flex.dart::CrossAxisAlignment" {
+  +int index
+  {static} +List<CrossAxisAlignment> values
+  {static} +CrossAxisAlignment start
+  {static} +CrossAxisAlignment end
+  {static} +CrossAxisAlignment center
+  {static} +CrossAxisAlignment stretch
+  {static} +CrossAxisAlignment baseline
+}
+
+"flutter::lib::src::rendering::flex.dart::CrossAxisAlignment" o-- "flutter::lib::src::rendering::flex.dart::CrossAxisAlignment"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::flex.dart::CrossAxisAlignment"
+
+
+@enduml

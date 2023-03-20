@@ -1,0 +1,182 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::selectable_region.dart::SelectableRegion" {
+  +FocusNode focusNode
+  +Widget child
+  +TextSelectionControls selectionControls
+  +State<StatefulWidget> createState()
+}
+
+"flutter::lib::src::widgets::selectable_region.dart::SelectableRegion" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::selectable_region.dart::SelectableRegion" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::selectable_region.dart::SelectableRegion" o-- "flutter::lib::src::widgets::text_selection.dart::TextSelectionControls"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::selectable_region.dart::SelectableRegion"
+
+class "flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionState" {
+  -Map<Type, Action<Intent>> _actions
+  -Map<Type, GestureRecognizerFactory<dynamic>> _gestureRecognizers
+  -SelectionOverlay? _selectionOverlay
+  -dynamic _startHandleLayerLink
+  -dynamic _endHandleLayerLink
+  -dynamic _toolbarLayerLink
+  -_SelectableRegionContainerDelegate _selectionDelegate
+  -dynamic _selectable
+  -Orientation? _lastOrientation
+  -dynamic _selectionEndPosition
+  -bool _scheduledSelectionEndEdgeUpdate
+  -dynamic _selectionStartPosition
+  -bool _scheduledSelectionStartEdgeUpdate
+  -dynamic _selectionStartHandleDragPosition
+  -dynamic _selectionEndHandleDragPosition
+  +dynamic textEditingValue
+  -bool _hasSelectionOverlayGeometry
+  -bool _userDraggingSelectionEnd
+  -bool _userDraggingSelectionStart
+  +bool cutEnabled
+  +bool pasteEnabled
+  +void initState()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  -Action<T> _makeOverridable()
+  -void _handleFocusChanged()
+  -void _updateSelectionStatus()
+  -void _initMouseGestureRecognizer()
+  -void _initTouchGestureRecognizer()
+  -void _startNewMouseSelectionGesture()
+  -void _handleMouseDragStart()
+  -void _handleMouseDragUpdate()
+  -void _handleMouseDragEnd()
+  -void _handleTouchLongPressStart()
+  -void _handleTouchLongPressMoveUpdate()
+  -void _handleTouchLongPressEnd()
+  -void _handleRightClickDown()
+  -void _triggerSelectionEndEdgeUpdate()
+  -void _stopSelectionEndEdgeUpdate()
+  -void _triggerSelectionStartEdgeUpdate()
+  -void _stopSelectionStartEdgeUpdate()
+  -void _handleSelectionStartHandleDragStart()
+  -void _handleSelectionStartHandleDragUpdate()
+  -void _handleSelectionEndHandleDragStart()
+  -void _handleSelectionEndHandleDragUpdate()
+  -void _createSelectionOverlay()
+  -void _updateSelectionOverlay()
+  -bool _showHandles()
+  -bool _showToolbar()
+  -void _selectEndTo()
+  -void _selectStartTo()
+  -void _selectWordAt()
+  -void _finalizeSelection()
+  -void _clearSelection()
+  -Future<void> _copy()
+  +void hideToolbar()
+  +void selectAll()
+  +void copySelection()
+  +void bringIntoView()
+  +void cutSelection()
+  +void userUpdateTextEditingValue()
+  +Future<void> pasteText()
+  +void add()
+  +void remove()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionState" o-- "flutter::lib::src::widgets::text_selection.dart::SelectionOverlay"
+"flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionState" o-- "flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionContainerDelegate"
+"flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionState" o-- "flutter::lib::src::widgets::media_query.dart::Orientation"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionState"
+
+abstract class "flutter::lib::src::widgets::selectable_region.dart::_NonOverrideAction" {
+  +Object? invokeAction()
+  +Object? invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::ContextAction" <|-- "flutter::lib::src::widgets::selectable_region.dart::_NonOverrideAction"
+
+class "flutter::lib::src::widgets::selectable_region.dart::_SelectAllAction" {
+  +_SelectableRegionState state
+  +void invokeAction()
+}
+
+"flutter::lib::src::widgets::selectable_region.dart::_SelectAllAction" o-- "flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionState"
+"flutter::lib::src::widgets::selectable_region.dart::_NonOverrideAction" <|-- "flutter::lib::src::widgets::selectable_region.dart::_SelectAllAction"
+
+class "flutter::lib::src::widgets::selectable_region.dart::_CopySelectionAction" {
+  +_SelectableRegionState state
+  +void invokeAction()
+}
+
+"flutter::lib::src::widgets::selectable_region.dart::_CopySelectionAction" o-- "flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionState"
+"flutter::lib::src::widgets::selectable_region.dart::_NonOverrideAction" <|-- "flutter::lib::src::widgets::selectable_region.dart::_CopySelectionAction"
+
+class "flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionContainerDelegate" {
+  -Set<dynamic> _hasReceivedStartEvent
+  -Set<dynamic> _hasReceivedEndEvent
+  -dynamic _lastStartEdgeUpdateGlobalPosition
+  -dynamic _lastEndEdgeUpdateGlobalPosition
+  +void remove()
+  -void _updateLastEdgeEventsFromGeometries()
+  +dynamic handleSelectAll()
+  +dynamic handleSelectWord()
+  +dynamic handleClearSelection()
+  +dynamic handleSelectionEdgeUpdate()
+  +void dispose()
+  +dynamic dispatchSelectionEventToChild()
+  +void ensureChildUpdated()
+  +void didChangeSelectables()
+}
+
+"flutter::lib::src::widgets::selectable_region.dart::MultiSelectableSelectionContainerDelegate" <|-- "flutter::lib::src::widgets::selectable_region.dart::_SelectableRegionContainerDelegate"
+
+abstract class "flutter::lib::src::widgets::selectable_region.dart::MultiSelectableSelectionContainerDelegate" {
+  +List<dynamic> selectables
+  {static} -double _kSelectionHandleDrawableAreaPadding
+  +int currentSelectionEndIndex
+  +int currentSelectionStartIndex
+  -dynamic _startHandleLayer
+  -dynamic _startHandleLayerOwner
+  -dynamic _endHandleLayer
+  -dynamic _endHandleLayerOwner
+  -bool _isHandlingSelectionEvent
+  -bool _scheduledSelectableUpdate
+  -bool _selectionInProgress
+  -Set<dynamic> _additions
+  -dynamic _selectionGeometry
+  +dynamic value
+  +int Function(dynamic, dynamic) compareOrder
+  +void add()
+  +void remove()
+  +void layoutDidChange()
+  -void _scheduleSelectableUpdate()
+  -void _updateSelectables()
+  -void _flushAdditions()
+  -void _removeSelectable()
+  +void didChangeSelectables()
+  -void _updateSelectionGeometry()
+  -int _compareScreenOrder()
+  {static} -int _compareVertically()
+  {static} -int _compareHorizontally()
+  -void _handleSelectableGeometryChange()
+  +dynamic getSelectionGeometry()
+  -int _adjustSelectionIndexBasedOnSelectionGeometry()
+  +void pushHandleLayers()
+  -void _updateHandleLayersAndOwners()
+  +dynamic getSelectedContent()
+  +dynamic handleSelectAll()
+  +dynamic handleSelectWord()
+  +dynamic handleClearSelection()
+  +dynamic handleSelectionEdgeUpdate()
+  +dynamic dispatchSelectionEvent()
+  +void dispose()
+  +void ensureChildUpdated()
+  +dynamic dispatchSelectionEventToChild()
+  -dynamic _initSelection()
+  -dynamic _adjustSelection()
+}
+
+"flutter::lib::src::widgets::selectable_region.dart::MultiSelectableSelectionContainerDelegate" o-- "dart::core::int Function(dynamic, dynamic)"
+"flutter::lib::src::widgets::selection_container.dart::SelectionContainerDelegate" <|-- "flutter::lib::src::widgets::selectable_region.dart::MultiSelectableSelectionContainerDelegate"
+
+
+@enduml

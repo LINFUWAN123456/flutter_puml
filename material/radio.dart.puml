@@ -1,0 +1,52 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::radio.dart::Radio" {
+  +T value
+  +T? groupValue
+  +dynamic onChanged
+  +dynamic mouseCursor
+  +bool toggleable
+  +dynamic activeColor
+  +MaterialStateProperty<dynamic>? fillColor
+  +MaterialTapTargetSize? materialTapTargetSize
+  +VisualDensity? visualDensity
+  +dynamic focusColor
+  +dynamic hoverColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +double? splashRadius
+  +dynamic focusNode
+  +bool autofocus
+  -bool _selected
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::radio.dart::Radio" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::radio.dart::Radio" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::radio.dart::Radio" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::radio.dart::_RadioState" {
+  -_RadioPainter _painter
+  +dynamic onChanged
+  +bool tristate
+  +bool? value
+  -MaterialStateProperty<dynamic> _widgetFillColor
+  -MaterialStateProperty<dynamic> _defaultFillColor
+  -void _handleChanged()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::radio.dart::_RadioState" o-- "flutter::lib::src::material::radio.dart::_RadioPainter"
+"flutter::lib::src::material::radio.dart::_RadioState" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::toggleable.dart::ToggleableStateMixin" <|-- "flutter::lib::src::material::radio.dart::_RadioState"
+
+class "flutter::lib::src::material::radio.dart::_RadioPainter" {
+  +void paint()
+}
+
+"flutter::lib::src::material::toggleable.dart::ToggleablePainter" <|-- "flutter::lib::src::material::radio.dart::_RadioPainter"
+
+
+@enduml

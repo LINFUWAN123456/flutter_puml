@@ -1,0 +1,49 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::custom_layout.dart::MultiChildLayoutParentData" {
+  +Object? id
+  +String toString()
+}
+
+"flutter::lib::src::rendering::box.dart::ContainerBoxParentData" <|-- "flutter::lib::src::rendering::custom_layout.dart::MultiChildLayoutParentData"
+
+abstract class "flutter::lib::src::rendering::custom_layout.dart::MultiChildLayoutDelegate" {
+  -dynamic _relayout
+  -Map<Object, RenderBox>? _idToChild
+  -Set<RenderBox>? _debugChildrenNeedingLayout
+  +bool hasChild()
+  +dynamic layoutChild()
+  +void positionChild()
+  -dynamic _debugDescribeChild()
+  -void _callPerformLayout()
+  +dynamic getSize()
+  +void performLayout()
+  +bool shouldRelayout()
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::custom_layout.dart::RenderCustomMultiChildLayoutBox" {
+  -MultiChildLayoutDelegate _delegate
+  +MultiChildLayoutDelegate delegate
+  +void setupParentData()
+  +void attach()
+  +void detach()
+  -dynamic _getSize()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void paint()
+  +bool hitTestChildren()
+}
+
+"flutter::lib::src::rendering::custom_layout.dart::RenderCustomMultiChildLayoutBox" o-- "flutter::lib::src::rendering::custom_layout.dart::MultiChildLayoutDelegate"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::custom_layout.dart::RenderCustomMultiChildLayoutBox"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::custom_layout.dart::RenderCustomMultiChildLayoutBox"
+"flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin" <|-- "flutter::lib::src::rendering::custom_layout.dart::RenderCustomMultiChildLayoutBox"
+
+
+@enduml

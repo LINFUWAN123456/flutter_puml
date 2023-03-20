@@ -1,0 +1,56 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::chip_action.dart::ActionChip" {
+  +dynamic avatar
+  +dynamic label
+  +dynamic labelStyle
+  +dynamic labelPadding
+  +dynamic onPressed
+  +double? pressElevation
+  +String? tooltip
+  +dynamic side
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic backgroundColor
+  +dynamic disabledColor
+  +dynamic padding
+  +VisualDensity? visualDensity
+  +MaterialTapTargetSize? materialTapTargetSize
+  +double? elevation
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic iconTheme
+  +bool isEnabled
+  +dynamic build()
+}
+
+"flutter::lib::src::material::chip_action.dart::ActionChip" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::chip_action.dart::ActionChip" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::chip.dart::ChipAttributes" <|-- "flutter::lib::src::material::chip_action.dart::ActionChip"
+"flutter::lib::src::material::chip.dart::TappableChipAttributes" <|-- "flutter::lib::src::material::chip_action.dart::ActionChip"
+"flutter::lib::src::material::chip.dart::DisabledChipAttributes" <|-- "flutter::lib::src::material::chip_action.dart::ActionChip"
+
+class "flutter::lib::src::material::chip_action.dart::_ActionChipDefaultsM3" {
+  +dynamic context
+  +bool isEnabled
+  +dynamic labelStyle
+  +dynamic backgroundColor
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic selectedColor
+  +dynamic checkmarkColor
+  +dynamic disabledColor
+  +dynamic deleteIconColor
+  +dynamic side
+  +dynamic iconTheme
+  +dynamic padding
+  +dynamic labelPadding
+}
+
+"flutter::lib::src::material::chip_theme.dart::ChipThemeData" <|-- "flutter::lib::src::material::chip_action.dart::_ActionChipDefaultsM3"
+
+
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::semantics::semantics_service.dart::SemanticsService" {
+  {static} +Future<void> announce()
+  {static} +Future<void> tooltip()
+}
+
+
+@enduml

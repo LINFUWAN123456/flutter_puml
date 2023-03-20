@@ -1,0 +1,40 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::sliver_padding.dart::RenderSliverEdgeInsetsPadding" {
+  +dynamic resolvedPadding
+  +double beforePadding
+  +double afterPadding
+  +double mainAxisPadding
+  +double crossAxisPadding
+  +void setupParentData()
+  +void performLayout()
+  +bool hitTestChildren()
+  +double childMainAxisPosition()
+  +double childCrossAxisPosition()
+  +double? childScrollOffset()
+  +void applyPaintTransform()
+  +void paint()
+  +void debugPaint()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliver" <|-- "flutter::lib::src::rendering::sliver_padding.dart::RenderSliverEdgeInsetsPadding"
+"flutter::lib::src::rendering::object.dart::RenderObjectWithChildMixin" <|-- "flutter::lib::src::rendering::sliver_padding.dart::RenderSliverEdgeInsetsPadding"
+
+class "flutter::lib::src::rendering::sliver_padding.dart::RenderSliverPadding" {
+  -dynamic _resolvedPadding
+  -dynamic _padding
+  -dynamic _textDirection
+  +dynamic resolvedPadding
+  +dynamic padding
+  +dynamic textDirection
+  -void _resolve()
+  -void _markNeedsResolution()
+  +void performLayout()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::sliver_padding.dart::RenderSliverEdgeInsetsPadding" <|-- "flutter::lib::src::rendering::sliver_padding.dart::RenderSliverPadding"
+
+
+@enduml

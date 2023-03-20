@@ -1,0 +1,285 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::text_input.dart::TextInputType" {
+  +int index
+  +bool? signed
+  +bool? decimal
+  {static} +TextInputType text
+  {static} +TextInputType multiline
+  {static} +TextInputType number
+  {static} +TextInputType phone
+  {static} +TextInputType datetime
+  {static} +TextInputType emailAddress
+  {static} +TextInputType url
+  {static} +TextInputType visiblePassword
+  {static} +TextInputType name
+  {static} +TextInputType streetAddress
+  {static} +TextInputType none
+  {static} +List<TextInputType> values
+  {static} -List<String> _names
+  -String _name
+  +int hashCode
+  +Map<String, dynamic> toJson()
+  +String toString()
+  +bool ==()
+}
+
+"flutter::lib::src::services::text_input.dart::TextInputType" o-- "flutter::lib::src::services::text_input.dart::TextInputType"
+
+class "flutter::lib::src::services::text_input.dart::TextInputConfiguration" {
+  +TextInputType inputType
+  +bool readOnly
+  +bool obscureText
+  +bool autocorrect
+  +AutofillConfiguration autofillConfiguration
+  +SmartDashesType smartDashesType
+  +SmartQuotesType smartQuotesType
+  +bool enableSuggestions
+  +bool enableInteractiveSelection
+  +String? actionLabel
+  +TextInputAction inputAction
+  +TextCapitalization textCapitalization
+  +dynamic keyboardAppearance
+  +bool enableIMEPersonalizedLearning
+  +bool enableDeltaModel
+  +TextInputConfiguration copyWith()
+  +Map<String, dynamic> toJson()
+}
+
+"flutter::lib::src::services::text_input.dart::TextInputConfiguration" o-- "flutter::lib::src::services::text_input.dart::TextInputType"
+"flutter::lib::src::services::text_input.dart::TextInputConfiguration" o-- "flutter::lib::src::services::autofill.dart::AutofillConfiguration"
+"flutter::lib::src::services::text_input.dart::TextInputConfiguration" o-- "flutter::lib::src::services::text_input.dart::SmartDashesType"
+"flutter::lib::src::services::text_input.dart::TextInputConfiguration" o-- "flutter::lib::src::services::text_input.dart::SmartQuotesType"
+"flutter::lib::src::services::text_input.dart::TextInputConfiguration" o-- "flutter::lib::src::services::text_input.dart::TextInputAction"
+"flutter::lib::src::services::text_input.dart::TextInputConfiguration" o-- "flutter::lib::src::services::text_input.dart::TextCapitalization"
+
+class "flutter::lib::src::services::text_input.dart::RawFloatingCursorPoint" {
+  +dynamic offset
+  +FloatingCursorDragState state
+}
+
+"flutter::lib::src::services::text_input.dart::RawFloatingCursorPoint" o-- "flutter::lib::src::services::text_input.dart::FloatingCursorDragState"
+
+class "flutter::lib::src::services::text_input.dart::TextEditingValue" {
+  +String text
+  +TextSelection selection
+  +dynamic composing
+  {static} +TextEditingValue empty
+  +bool isComposingRangeValid
+  +int hashCode
+  +TextEditingValue copyWith()
+  +TextEditingValue replaced()
+  +Map<String, dynamic> toJSON()
+  +String toString()
+  +bool ==()
+  {static} -bool _textRangeIsValid()
+}
+
+"flutter::lib::src::services::text_input.dart::TextEditingValue" o-- "flutter::lib::src::services::text_editing.dart::TextSelection"
+"flutter::lib::src::services::text_input.dart::TextEditingValue" o-- "flutter::lib::src::services::text_input.dart::TextEditingValue"
+
+abstract class "flutter::lib::src::services::text_input.dart::ScribbleClient" {
+  +String elementIdentifier
+  +dynamic bounds
+  +void onScribbleFocus()
+  +bool isInScribbleRect()
+}
+
+class "flutter::lib::src::services::text_input.dart::SelectionRect" {
+  +int position
+  +dynamic bounds
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::services::text_input.dart::TextInputConnection" {
+  -dynamic _cachedSize
+  -dynamic _cachedTransform
+  -dynamic _cachedRect
+  -dynamic _cachedCaretRect
+  -List<SelectionRect> _cachedSelectionRects
+  {static} -int _nextId
+  -int _id
+  -TextInputClient _client
+  +bool attached
+  +bool scribbleInProgress
+  {static} +void debugResetId()
+  +void show()
+  +void requestAutofill()
+  +void updateConfig()
+  +void setEditingState()
+  +void setEditableSizeAndTransform()
+  +void setComposingRect()
+  +void setCaretRect()
+  +void setSelectionRects()
+  +void setStyle()
+  +void close()
+  +void connectionClosedReceived()
+}
+
+"flutter::lib::src::services::text_input.dart::TextInputConnection" o-- "flutter::lib::src::services::text_input.dart::TextInputClient"
+
+class "flutter::lib::src::services::text_input.dart::TextInput" {
+  {static} -TextInput _instance
+  {static} -List<TextInputAction> _androidSupportedInputActions
+  {static} -List<TextInputAction> _iOSSupportedInputActions
+  -MethodChannel _channel
+  -TextInputConnection? _currentConnection
+  -TextInputConfiguration _currentConfiguration
+  -Map<String, ScribbleClient> _scribbleClients
+  -bool _scribbleInProgress
+  -bool _hidePending
+  {static} +Map<String, ScribbleClient> scribbleClients
+  +bool scribbleInProgress
+  {static} +void setChannel()
+  {static} +void ensureInitialized()
+  {static} +TextInputConnection attach()
+  -void _attach()
+  {static} -bool _debugEnsureInputActionWorksOnPlatform()
+  -Future<dynamic> _loudlyHandleTextInputInvocation()
+  -Future<dynamic> _handleTextInputInvocation()
+  -void _scheduleHide()
+  -void _clearClient()
+  -void _updateConfig()
+  -void _setEditingState()
+  -void _show()
+  -void _requestAutofill()
+  -void _setEditableSizeAndTransform()
+  -void _setComposingTextRect()
+  -void _setCaretRect()
+  -void _setSelectionRects()
+  -void _setStyle()
+  {static} +void finishAutofillContext()
+  {static} +void registerScribbleElement()
+  {static} +void unregisterScribbleElement()
+}
+
+"flutter::lib::src::services::text_input.dart::TextInput" o-- "flutter::lib::src::services::text_input.dart::TextInput"
+"flutter::lib::src::services::text_input.dart::TextInput" o-- "flutter::lib::src::services::platform_channel.dart::MethodChannel"
+"flutter::lib::src::services::text_input.dart::TextInput" o-- "flutter::lib::src::services::text_input.dart::TextInputConnection"
+"flutter::lib::src::services::text_input.dart::TextInput" o-- "flutter::lib::src::services::text_input.dart::TextInputConfiguration"
+
+class "flutter::lib::src::services::text_input.dart::SmartDashesType" {
+  +int index
+  {static} +List<SmartDashesType> values
+  {static} +SmartDashesType disabled
+  {static} +SmartDashesType enabled
+}
+
+"flutter::lib::src::services::text_input.dart::SmartDashesType" o-- "flutter::lib::src::services::text_input.dart::SmartDashesType"
+"dart::core::Enum" <|-- "flutter::lib::src::services::text_input.dart::SmartDashesType"
+
+class "flutter::lib::src::services::text_input.dart::SmartQuotesType" {
+  +int index
+  {static} +List<SmartQuotesType> values
+  {static} +SmartQuotesType disabled
+  {static} +SmartQuotesType enabled
+}
+
+"flutter::lib::src::services::text_input.dart::SmartQuotesType" o-- "flutter::lib::src::services::text_input.dart::SmartQuotesType"
+"dart::core::Enum" <|-- "flutter::lib::src::services::text_input.dart::SmartQuotesType"
+
+class "flutter::lib::src::services::text_input.dart::TextInputAction" {
+  +int index
+  {static} +List<TextInputAction> values
+  {static} +TextInputAction none
+  {static} +TextInputAction unspecified
+  {static} +TextInputAction done
+  {static} +TextInputAction go
+  {static} +TextInputAction search
+  {static} +TextInputAction send
+  {static} +TextInputAction next
+  {static} +TextInputAction previous
+  {static} +TextInputAction continueAction
+  {static} +TextInputAction join
+  {static} +TextInputAction route
+  {static} +TextInputAction emergencyCall
+  {static} +TextInputAction newline
+}
+
+"flutter::lib::src::services::text_input.dart::TextInputAction" o-- "flutter::lib::src::services::text_input.dart::TextInputAction"
+"dart::core::Enum" <|-- "flutter::lib::src::services::text_input.dart::TextInputAction"
+
+class "flutter::lib::src::services::text_input.dart::TextCapitalization" {
+  +int index
+  {static} +List<TextCapitalization> values
+  {static} +TextCapitalization words
+  {static} +TextCapitalization sentences
+  {static} +TextCapitalization characters
+  {static} +TextCapitalization none
+}
+
+"flutter::lib::src::services::text_input.dart::TextCapitalization" o-- "flutter::lib::src::services::text_input.dart::TextCapitalization"
+"dart::core::Enum" <|-- "flutter::lib::src::services::text_input.dart::TextCapitalization"
+
+class "flutter::lib::src::services::text_input.dart::FloatingCursorDragState" {
+  +int index
+  {static} +List<FloatingCursorDragState> values
+  {static} +FloatingCursorDragState Start
+  {static} +FloatingCursorDragState Update
+  {static} +FloatingCursorDragState End
+}
+
+"flutter::lib::src::services::text_input.dart::FloatingCursorDragState" o-- "flutter::lib::src::services::text_input.dart::FloatingCursorDragState"
+"dart::core::Enum" <|-- "flutter::lib::src::services::text_input.dart::FloatingCursorDragState"
+
+class "flutter::lib::src::services::text_input.dart::SelectionChangedCause" {
+  +int index
+  {static} +List<SelectionChangedCause> values
+  {static} +SelectionChangedCause tap
+  {static} +SelectionChangedCause doubleTap
+  {static} +SelectionChangedCause longPress
+  {static} +SelectionChangedCause forcePress
+  {static} +SelectionChangedCause keyboard
+  {static} +SelectionChangedCause toolbar
+  {static} +SelectionChangedCause drag
+  {static} +SelectionChangedCause scribble
+}
+
+"flutter::lib::src::services::text_input.dart::SelectionChangedCause" o-- "flutter::lib::src::services::text_input.dart::SelectionChangedCause"
+"dart::core::Enum" <|-- "flutter::lib::src::services::text_input.dart::SelectionChangedCause"
+
+abstract class "flutter::lib::src::services::text_input.dart::TextSelectionDelegate" {
+  +TextEditingValue textEditingValue
+  +bool cutEnabled
+  +bool copyEnabled
+  +bool pasteEnabled
+  +bool selectAllEnabled
+  +void userUpdateTextEditingValue()
+  +void hideToolbar()
+  +void bringIntoView()
+  +void cutSelection()
+  +Future<void> pasteText()
+  +void selectAll()
+  +void copySelection()
+}
+
+"flutter::lib::src::services::text_input.dart::TextSelectionDelegate" o-- "flutter::lib::src::services::text_input.dart::TextEditingValue"
+
+abstract class "flutter::lib::src::services::text_input.dart::TextInputClient" {
+  +TextEditingValue? currentTextEditingValue
+  +AutofillScope? currentAutofillScope
+  +void updateEditingValue()
+  +void performAction()
+  +void performPrivateCommand()
+  +void updateFloatingCursor()
+  +void showAutocorrectionPromptRect()
+  +void connectionClosed()
+  +void showToolbar()
+  +void insertTextPlaceholder()
+  +void removeTextPlaceholder()
+}
+
+"flutter::lib::src::services::text_input.dart::TextInputClient" o-- "flutter::lib::src::services::text_input.dart::TextEditingValue"
+"flutter::lib::src::services::text_input.dart::TextInputClient" o-- "flutter::lib::src::services::autofill.dart::AutofillScope"
+
+abstract class "flutter::lib::src::services::text_input.dart::DeltaTextInputClient" {
+  +void updateEditingValueWithDeltas()
+}
+
+"flutter::lib::src::services::text_input.dart::TextInputClient" <|-- "flutter::lib::src::services::text_input.dart::DeltaTextInputClient"
+
+
+@enduml

@@ -1,0 +1,114 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::painting::alignment.dart::AlignmentGeometry" {
+  -double _x
+  -double _start
+  -double _y
+  +int hashCode
+  +AlignmentGeometry add()
+  +AlignmentGeometry unary-()
+  +AlignmentGeometry *()
+  +AlignmentGeometry /()
+  +AlignmentGeometry ~/()
+  +AlignmentGeometry %()
+  {static} +AlignmentGeometry? lerp()
+  +Alignment resolve()
+  +String toString()
+  +bool ==()
+}
+
+class "flutter::lib::src::painting::alignment.dart::Alignment" {
+  +double x
+  +double y
+  {static} +Alignment topLeft
+  {static} +Alignment topCenter
+  {static} +Alignment topRight
+  {static} +Alignment centerLeft
+  {static} +Alignment center
+  {static} +Alignment centerRight
+  {static} +Alignment bottomLeft
+  {static} +Alignment bottomCenter
+  {static} +Alignment bottomRight
+  -double _x
+  -double _start
+  -double _y
+  +AlignmentGeometry add()
+  +Alignment -()
+  +Alignment +()
+  +Alignment unary-()
+  +Alignment *()
+  +Alignment /()
+  +Alignment ~/()
+  +Alignment %()
+  +dynamic alongOffset()
+  +dynamic alongSize()
+  +dynamic withinRect()
+  +dynamic inscribe()
+  {static} +Alignment? lerp()
+  +Alignment resolve()
+  {static} -String _stringify()
+  +String toString()
+}
+
+"flutter::lib::src::painting::alignment.dart::Alignment" o-- "flutter::lib::src::painting::alignment.dart::Alignment"
+"flutter::lib::src::painting::alignment.dart::AlignmentGeometry" <|-- "flutter::lib::src::painting::alignment.dart::Alignment"
+
+class "flutter::lib::src::painting::alignment.dart::AlignmentDirectional" {
+  +double start
+  +double y
+  {static} +AlignmentDirectional topStart
+  {static} +AlignmentDirectional topCenter
+  {static} +AlignmentDirectional topEnd
+  {static} +AlignmentDirectional centerStart
+  {static} +AlignmentDirectional center
+  {static} +AlignmentDirectional centerEnd
+  {static} +AlignmentDirectional bottomStart
+  {static} +AlignmentDirectional bottomCenter
+  {static} +AlignmentDirectional bottomEnd
+  -double _x
+  -double _start
+  -double _y
+  +AlignmentGeometry add()
+  +AlignmentDirectional -()
+  +AlignmentDirectional +()
+  +AlignmentDirectional unary-()
+  +AlignmentDirectional *()
+  +AlignmentDirectional /()
+  +AlignmentDirectional ~/()
+  +AlignmentDirectional %()
+  {static} +AlignmentDirectional? lerp()
+  +Alignment resolve()
+  {static} -String _stringify()
+  +String toString()
+}
+
+"flutter::lib::src::painting::alignment.dart::AlignmentDirectional" o-- "flutter::lib::src::painting::alignment.dart::AlignmentDirectional"
+"flutter::lib::src::painting::alignment.dart::AlignmentGeometry" <|-- "flutter::lib::src::painting::alignment.dart::AlignmentDirectional"
+
+class "flutter::lib::src::painting::alignment.dart::_MixedAlignment" {
+  -double _x
+  -double _start
+  -double _y
+  +_MixedAlignment unary-()
+  +_MixedAlignment *()
+  +_MixedAlignment /()
+  +_MixedAlignment ~/()
+  +_MixedAlignment %()
+  +Alignment resolve()
+}
+
+"flutter::lib::src::painting::alignment.dart::AlignmentGeometry" <|-- "flutter::lib::src::painting::alignment.dart::_MixedAlignment"
+
+class "flutter::lib::src::painting::alignment.dart::TextAlignVertical" {
+  +double y
+  {static} +TextAlignVertical top
+  {static} +TextAlignVertical center
+  {static} +TextAlignVertical bottom
+  +String toString()
+}
+
+"flutter::lib::src::painting::alignment.dart::TextAlignVertical" o-- "flutter::lib::src::painting::alignment.dart::TextAlignVertical"
+
+
+@enduml

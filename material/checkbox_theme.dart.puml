@@ -1,0 +1,35 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::checkbox_theme.dart::CheckboxThemeData" {
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +MaterialStateProperty<dynamic>? fillColor
+  +MaterialStateProperty<dynamic>? checkColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +double? splashRadius
+  +MaterialTapTargetSize? materialTapTargetSize
+  +VisualDensity? visualDensity
+  +dynamic shape
+  +dynamic side
+  +int hashCode
+  +CheckboxThemeData copyWith()
+  {static} +CheckboxThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+  {static} -dynamic _lerpSides()
+}
+
+"flutter::lib::src::material::checkbox_theme.dart::CheckboxThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::checkbox_theme.dart::CheckboxThemeData" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::checkbox_theme.dart::CheckboxThemeData" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::checkbox_theme.dart::CheckboxTheme" {
+  +CheckboxThemeData data
+  {static} +CheckboxThemeData of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::checkbox_theme.dart::CheckboxTheme" o-- "flutter::lib::src::material::checkbox_theme.dart::CheckboxThemeData"
+
+
+@enduml

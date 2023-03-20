@@ -1,0 +1,64 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::input_border.dart::InputBorder" {
+  {static} +InputBorder none
+  +dynamic borderSide
+  +bool isOutline
+  +InputBorder copyWith()
+  +void paint()
+}
+
+"flutter::lib::src::material::input_border.dart::InputBorder" o-- "flutter::lib::src::material::input_border.dart::InputBorder"
+
+class "flutter::lib::src::material::input_border.dart::_NoInputBorder" {
+  +bool isOutline
+  +dynamic dimensions
+  +_NoInputBorder copyWith()
+  +_NoInputBorder scale()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +void paint()
+}
+
+"flutter::lib::src::material::input_border.dart::InputBorder" <|-- "flutter::lib::src::material::input_border.dart::_NoInputBorder"
+
+class "flutter::lib::src::material::input_border.dart::UnderlineInputBorder" {
+  +dynamic borderRadius
+  +bool isOutline
+  +dynamic dimensions
+  +int hashCode
+  +UnderlineInputBorder copyWith()
+  +UnderlineInputBorder scale()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +dynamic lerpFrom()
+  +dynamic lerpTo()
+  +void paint()
+  +bool ==()
+}
+
+"flutter::lib::src::material::input_border.dart::InputBorder" <|-- "flutter::lib::src::material::input_border.dart::UnderlineInputBorder"
+
+class "flutter::lib::src::material::input_border.dart::OutlineInputBorder" {
+  +double gapPadding
+  +dynamic borderRadius
+  +bool isOutline
+  +dynamic dimensions
+  +int hashCode
+  {static} -bool _cornersAreCircular()
+  +OutlineInputBorder copyWith()
+  +OutlineInputBorder scale()
+  +dynamic lerpFrom()
+  +dynamic lerpTo()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  -dynamic _gapBorderPath()
+  +void paint()
+  +bool ==()
+}
+
+"flutter::lib::src::material::input_border.dart::InputBorder" <|-- "flutter::lib::src::material::input_border.dart::OutlineInputBorder"
+
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::system_sound.dart::SystemSound" {
+  {static} +Future<void> play()
+}
+
+class "flutter::lib::src::services::system_sound.dart::SystemSoundType" {
+  +int index
+  {static} +List<SystemSoundType> values
+  {static} +SystemSoundType click
+  {static} +SystemSoundType alert
+}
+
+"flutter::lib::src::services::system_sound.dart::SystemSoundType" o-- "flutter::lib::src::services::system_sound.dart::SystemSoundType"
+"dart::core::Enum" <|-- "flutter::lib::src::services::system_sound.dart::SystemSoundType"
+
+
+@enduml

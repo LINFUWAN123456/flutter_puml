@@ -1,0 +1,20 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::widget_span.dart::WidgetSpan" {
+  +Widget child
+  +int hashCode
+  +void build()
+  +bool visitChildren()
+  +dynamic getSpanForPositionVisitor()
+  +int? codeUnitAtVisitor()
+  +dynamic compareTo()
+  +bool ==()
+  +dynamic getSpanForPosition()
+  +bool debugAssertIsValid()
+}
+
+"flutter::lib::src::widgets::widget_span.dart::WidgetSpan" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+
+
+@enduml

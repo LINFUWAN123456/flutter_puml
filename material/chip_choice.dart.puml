@@ -1,0 +1,61 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::chip_choice.dart::ChoiceChip" {
+  +dynamic avatar
+  +dynamic label
+  +dynamic labelStyle
+  +dynamic labelPadding
+  +dynamic onSelected
+  +double? pressElevation
+  +bool selected
+  +dynamic disabledColor
+  +dynamic selectedColor
+  +String? tooltip
+  +dynamic side
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic backgroundColor
+  +dynamic padding
+  +VisualDensity? visualDensity
+  +MaterialTapTargetSize? materialTapTargetSize
+  +double? elevation
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic selectedShadowColor
+  +dynamic avatarBorder
+  +dynamic iconTheme
+  +bool isEnabled
+  +dynamic build()
+}
+
+"flutter::lib::src::material::chip_choice.dart::ChoiceChip" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::chip_choice.dart::ChoiceChip" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::chip.dart::ChipAttributes" <|-- "flutter::lib::src::material::chip_choice.dart::ChoiceChip"
+"flutter::lib::src::material::chip.dart::SelectableChipAttributes" <|-- "flutter::lib::src::material::chip_choice.dart::ChoiceChip"
+"flutter::lib::src::material::chip.dart::DisabledChipAttributes" <|-- "flutter::lib::src::material::chip_choice.dart::ChoiceChip"
+
+class "flutter::lib::src::material::chip_choice.dart::_FilterChipDefaultsM3" {
+  +dynamic context
+  +bool isEnabled
+  +bool isSelected
+  +dynamic labelStyle
+  +dynamic backgroundColor
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic selectedColor
+  +dynamic checkmarkColor
+  +dynamic disabledColor
+  +dynamic deleteIconColor
+  +dynamic side
+  +dynamic iconTheme
+  +dynamic padding
+  +dynamic labelPadding
+}
+
+"flutter::lib::src::material::chip_theme.dart::ChipThemeData" <|-- "flutter::lib::src::material::chip_choice.dart::_FilterChipDefaultsM3"
+
+
+@enduml

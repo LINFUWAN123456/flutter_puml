@@ -1,0 +1,45 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::services::text_editing_delta.dart::TextEditingDelta" {
+  +String oldText
+  +TextSelection selection
+  +dynamic composing
+  +TextEditingValue apply()
+}
+
+"flutter::lib::src::services::text_editing_delta.dart::TextEditingDelta" o-- "flutter::lib::src::services::text_editing.dart::TextSelection"
+
+class "flutter::lib::src::services::text_editing_delta.dart::TextEditingDeltaInsertion" {
+  +String textInserted
+  +int insertionOffset
+  +TextEditingValue apply()
+}
+
+"flutter::lib::src::services::text_editing_delta.dart::TextEditingDelta" <|-- "flutter::lib::src::services::text_editing_delta.dart::TextEditingDeltaInsertion"
+
+class "flutter::lib::src::services::text_editing_delta.dart::TextEditingDeltaDeletion" {
+  +dynamic deletedRange
+  +String textDeleted
+  +TextEditingValue apply()
+}
+
+"flutter::lib::src::services::text_editing_delta.dart::TextEditingDelta" <|-- "flutter::lib::src::services::text_editing_delta.dart::TextEditingDeltaDeletion"
+
+class "flutter::lib::src::services::text_editing_delta.dart::TextEditingDeltaReplacement" {
+  +String replacementText
+  +dynamic replacedRange
+  +String textReplaced
+  +TextEditingValue apply()
+}
+
+"flutter::lib::src::services::text_editing_delta.dart::TextEditingDelta" <|-- "flutter::lib::src::services::text_editing_delta.dart::TextEditingDeltaReplacement"
+
+class "flutter::lib::src::services::text_editing_delta.dart::TextEditingDeltaNonTextUpdate" {
+  +TextEditingValue apply()
+}
+
+"flutter::lib::src::services::text_editing_delta.dart::TextEditingDelta" <|-- "flutter::lib::src::services::text_editing_delta.dart::TextEditingDeltaNonTextUpdate"
+
+
+@enduml

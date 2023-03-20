@@ -1,0 +1,31 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::activity_indicator.dart::CupertinoActivityIndicator" {
+  +dynamic color
+  +bool animating
+  +double radius
+  +double progress
+  +dynamic createState()
+}
+
+class "flutter::lib::src::cupertino::activity_indicator.dart::_CupertinoActivityIndicatorState" {
+  -dynamic _controller
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::activity_indicator.dart::_CupertinoActivityIndicatorPainter" {
+  +dynamic position
+  +dynamic activeColor
+  +double radius
+  +double progress
+  +dynamic tickFundamentalRRect
+  +void paint()
+  +bool shouldRepaint()
+}
+
+
+@enduml

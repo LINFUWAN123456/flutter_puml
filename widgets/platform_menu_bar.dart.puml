@@ -1,0 +1,160 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::platform_menu_bar.dart::ShortcutSerialization" {
+  -Map<String, Object?> _internal
+  -dynamic _trigger
+  -String? _character
+  -bool? _control
+  -bool? _shift
+  -bool? _alt
+  -bool? _meta
+  {static} -int _shortcutModifierMeta
+  {static} -int _shortcutModifierShift
+  {static} -int _shortcutModifierAlt
+  {static} -int _shortcutModifierControl
+  +dynamic trigger
+  +String? character
+  +bool? control
+  +bool? shift
+  +bool? alt
+  +bool? meta
+  +Map<String, Object?> toChannelRepresentation()
+}
+
+abstract class "flutter::lib::src::widgets::platform_menu_bar.dart::MenuItem" {
+  +MenuSerializableShortcut? shortcut
+  +List<MenuItem> menus
+  +List<MenuItem> descendants
+  +dynamic onSelected
+  +Intent? onSelectedIntent
+  +dynamic onOpen
+  +dynamic onClose
+  +List<MenuItem> members
+  +Iterable<Map<String, Object?>> toChannelRepresentation()
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::MenuItem" o-- "flutter::lib::src::widgets::platform_menu_bar.dart::MenuSerializableShortcut"
+"flutter::lib::src::widgets::platform_menu_bar.dart::MenuItem" o-- "flutter::lib::src::widgets::actions.dart::Intent"
+
+abstract class "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuDelegate" {
+  +void setMenus()
+  +void clearMenus()
+  +bool debugLockDelegate()
+  +bool debugUnlockDelegate()
+}
+
+class "flutter::lib::src::widgets::platform_menu_bar.dart::DefaultPlatformMenuDelegate" {
+  -Map<int, MenuItem> _idMap
+  -int _serial
+  -BuildContext? _lockedContext
+  +dynamic channel
+  +void clearMenus()
+  +void setMenus()
+  -int _getId()
+  +bool debugLockDelegate()
+  +bool debugUnlockDelegate()
+  -Future<void> _methodCallHandler()
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::DefaultPlatformMenuDelegate" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuDelegate" <|-- "flutter::lib::src::widgets::platform_menu_bar.dart::DefaultPlatformMenuDelegate"
+
+class "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuBar" {
+  +Widget? child
+  +Widget? body
+  +List<MenuItem> menus
+  +State<PlatformMenuBar> createState()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuBar" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuBar"
+
+class "flutter::lib::src::widgets::platform_menu_bar.dart::_PlatformMenuBarState" {
+  +List<MenuItem> descendants
+  +void initState()
+  +void dispose()
+  +void didUpdateWidget()
+  -void _updateMenu()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::platform_menu_bar.dart::_PlatformMenuBarState"
+
+class "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenu" {
+  +String label
+  +dynamic onOpen
+  +dynamic onClose
+  +List<MenuItem> menus
+  +List<MenuItem> descendants
+  {static} +List<MenuItem> getDescendants()
+  +Iterable<Map<String, Object?>> toChannelRepresentation()
+  {static} +Map<String, Object?> serialize()
+  +List<dynamic> debugDescribeChildren()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::MenuItem" <|-- "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenu"
+
+class "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuItemGroup" {
+  +List<MenuItem> members
+  +Iterable<Map<String, Object?>> toChannelRepresentation()
+  {static} +Iterable<Map<String, Object?>> serialize()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::MenuItem" <|-- "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuItemGroup"
+
+class "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuItem" {
+  +String label
+  +MenuSerializableShortcut? shortcut
+  +dynamic onSelected
+  +Intent? onSelectedIntent
+  +Iterable<Map<String, Object?>> toChannelRepresentation()
+  {static} +Map<String, Object?> serialize()
+  +String toStringShort()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuItem" o-- "flutter::lib::src::widgets::platform_menu_bar.dart::MenuSerializableShortcut"
+"flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuItem" o-- "flutter::lib::src::widgets::actions.dart::Intent"
+"flutter::lib::src::widgets::platform_menu_bar.dart::MenuItem" <|-- "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuItem"
+
+class "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformProvidedMenuItem" {
+  +PlatformProvidedMenuItemType type
+  +bool enabled
+  {static} +bool hasMenu()
+  +Iterable<Map<String, Object?>> toChannelRepresentation()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::PlatformProvidedMenuItem" o-- "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformProvidedMenuItemType"
+"flutter::lib::src::widgets::platform_menu_bar.dart::PlatformMenuItem" <|-- "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformProvidedMenuItem"
+
+class "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformProvidedMenuItemType" {
+  +int index
+  {static} +List<PlatformProvidedMenuItemType> values
+  {static} +PlatformProvidedMenuItemType about
+  {static} +PlatformProvidedMenuItemType quit
+  {static} +PlatformProvidedMenuItemType servicesSubmenu
+  {static} +PlatformProvidedMenuItemType hide
+  {static} +PlatformProvidedMenuItemType hideOtherApplications
+  {static} +PlatformProvidedMenuItemType showAllApplications
+  {static} +PlatformProvidedMenuItemType startSpeaking
+  {static} +PlatformProvidedMenuItemType stopSpeaking
+  {static} +PlatformProvidedMenuItemType toggleFullScreen
+  {static} +PlatformProvidedMenuItemType minimizeWindow
+  {static} +PlatformProvidedMenuItemType zoomWindow
+  {static} +PlatformProvidedMenuItemType arrangeWindowsInFront
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::PlatformProvidedMenuItemType" o-- "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformProvidedMenuItemType"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::platform_menu_bar.dart::PlatformProvidedMenuItemType"
+
+abstract class "flutter::lib::src::widgets::platform_menu_bar.dart::MenuSerializableShortcut" {
+  +ShortcutSerialization serializeForMenu()
+}
+
+
+@enduml

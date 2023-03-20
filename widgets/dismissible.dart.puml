@@ -1,0 +1,110 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::dismissible.dart::Dismissible" {
+  +Widget child
+  +Widget? background
+  +Widget? secondaryBackground
+  +Future<bool?> Function(DismissDirection)? confirmDismiss
+  +dynamic onResize
+  +void Function(DismissDirection)? onDismissed
+  +DismissDirection direction
+  +Duration? resizeDuration
+  +Map<DismissDirection, double> dismissThresholds
+  +Duration movementDuration
+  +double crossAxisEndOffset
+  +dynamic dragStartBehavior
+  +dynamic behavior
+  +void Function(DismissUpdateDetails)? onUpdate
+  +State<Dismissible> createState()
+}
+
+"flutter::lib::src::widgets::dismissible.dart::Dismissible" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::dismissible.dart::Dismissible" o-- "flutter::lib::src::widgets::dismissible.dart::Future<bool> Function(DismissDirection)"
+"flutter::lib::src::widgets::dismissible.dart::Dismissible" o-- "flutter::lib::src::widgets::dismissible.dart::void Function(DismissDirection)"
+"flutter::lib::src::widgets::dismissible.dart::Dismissible" o-- "flutter::lib::src::widgets::dismissible.dart::DismissDirection"
+"flutter::lib::src::widgets::dismissible.dart::Dismissible" o-- "flutter::lib::src::widgets::dismissible.dart::void Function(DismissUpdateDetails)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::dismissible.dart::Dismissible"
+
+class "flutter::lib::src::widgets::dismissible.dart::DismissUpdateDetails" {
+  +DismissDirection direction
+  +bool reached
+  +bool previousReached
+  +double progress
+}
+
+"flutter::lib::src::widgets::dismissible.dart::DismissUpdateDetails" o-- "flutter::lib::src::widgets::dismissible.dart::DismissDirection"
+
+class "flutter::lib::src::widgets::dismissible.dart::_DismissibleClipper" {
+  +dynamic axis
+  +dynamic moveAnimation
+  +dynamic getClip()
+  +dynamic getApproximateClipRect()
+  +bool shouldReclip()
+}
+
+class "flutter::lib::src::widgets::dismissible.dart::_DismissibleState" {
+  -dynamic _moveController
+  -dynamic _moveAnimation
+  -dynamic _resizeController
+  -dynamic _resizeAnimation
+  -double _dragExtent
+  -bool _confirming
+  -bool _dragUnderway
+  -dynamic _sizePriorToCollapse
+  -bool _dismissThresholdReached
+  +bool wantKeepAlive
+  -bool _directionIsXAxis
+  -DismissDirection _dismissDirection
+  -bool _isActive
+  -double _overallDragAxisExtent
+  +void initState()
+  +void dispose()
+  -DismissDirection _extentToDirection()
+  -void _handleDragStart()
+  -void _handleDragUpdate()
+  -void _handleDismissUpdateValueChanged()
+  -void _updateMoveAnimation()
+  -_FlingGestureKind _describeFlingGesture()
+  -void _handleDragEnd()
+  -Future<void> _handleDismissStatusChanged()
+  -Future<void> _handleMoveCompleted()
+  -Future<bool> _confirmStartResizeAnimation()
+  -void _startResizeAnimation()
+  -void _handleResizeProgressChanged()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::dismissible.dart::_DismissibleState" o-- "flutter::lib::src::widgets::dismissible.dart::DismissDirection"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::dismissible.dart::_DismissibleState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::dismissible.dart::_DismissibleState"
+"flutter::lib::src::widgets::automatic_keep_alive.dart::AutomaticKeepAliveClientMixin" <|-- "flutter::lib::src::widgets::dismissible.dart::_DismissibleState"
+
+class "flutter::lib::src::widgets::dismissible.dart::DismissDirection" {
+  +int index
+  {static} +List<DismissDirection> values
+  {static} +DismissDirection vertical
+  {static} +DismissDirection horizontal
+  {static} +DismissDirection endToStart
+  {static} +DismissDirection startToEnd
+  {static} +DismissDirection up
+  {static} +DismissDirection down
+  {static} +DismissDirection none
+}
+
+"flutter::lib::src::widgets::dismissible.dart::DismissDirection" o-- "flutter::lib::src::widgets::dismissible.dart::DismissDirection"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::dismissible.dart::DismissDirection"
+
+class "flutter::lib::src::widgets::dismissible.dart::_FlingGestureKind" {
+  +int index
+  {static} +List<_FlingGestureKind> values
+  {static} +_FlingGestureKind none
+  {static} +_FlingGestureKind forward
+  {static} +_FlingGestureKind reverse
+}
+
+"flutter::lib::src::widgets::dismissible.dart::_FlingGestureKind" o-- "flutter::lib::src::widgets::dismissible.dart::_FlingGestureKind"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::dismissible.dart::_FlingGestureKind"
+
+
+@enduml

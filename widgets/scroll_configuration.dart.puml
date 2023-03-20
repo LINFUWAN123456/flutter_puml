@@ -1,0 +1,71 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior" {
+  -AndroidOverscrollIndicator? _androidOverscrollIndicator
+  {static} -ScrollPhysics _bouncingPhysics
+  {static} -ScrollPhysics _clampingPhysics
+  +AndroidOverscrollIndicator androidOverscrollIndicator
+  +Set<dynamic> dragDevices
+  +ScrollBehavior copyWith()
+  +dynamic getPlatform()
+  +Widget buildViewportChrome()
+  +Widget buildScrollbar()
+  +Widget buildOverscrollIndicator()
+  +dynamic velocityTrackerBuilder()
+  +ScrollPhysics getScrollPhysics()
+  +bool shouldNotify()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior" o-- "flutter::lib::src::widgets::scroll_configuration.dart::AndroidOverscrollIndicator"
+"flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+
+class "flutter::lib::src::widgets::scroll_configuration.dart::_WrappedScrollBehavior" {
+  +ScrollBehavior delegate
+  +bool scrollbars
+  +bool overscroll
+  +ScrollPhysics? physics
+  +dynamic platform
+  -Set<dynamic>? _dragDevices
+  -AndroidOverscrollIndicator? _androidOverscrollIndicator
+  +Set<dynamic> dragDevices
+  +AndroidOverscrollIndicator androidOverscrollIndicator
+  +Widget buildOverscrollIndicator()
+  +Widget buildScrollbar()
+  +Widget buildViewportChrome()
+  +ScrollBehavior copyWith()
+  +dynamic getPlatform()
+  +ScrollPhysics getScrollPhysics()
+  +bool shouldNotify()
+  +dynamic velocityTrackerBuilder()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scroll_configuration.dart::_WrappedScrollBehavior" o-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior"
+"flutter::lib::src::widgets::scroll_configuration.dart::_WrappedScrollBehavior" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::scroll_configuration.dart::_WrappedScrollBehavior" o-- "flutter::lib::src::widgets::scroll_configuration.dart::AndroidOverscrollIndicator"
+"flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior" <|-- "flutter::lib::src::widgets::scroll_configuration.dart::_WrappedScrollBehavior"
+
+class "flutter::lib::src::widgets::scroll_configuration.dart::ScrollConfiguration" {
+  +ScrollBehavior behavior
+  {static} +ScrollBehavior of()
+  +bool updateShouldNotify()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::scroll_configuration.dart::ScrollConfiguration" o-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollConfiguration"
+
+class "flutter::lib::src::widgets::scroll_configuration.dart::AndroidOverscrollIndicator" {
+  +int index
+  {static} +List<AndroidOverscrollIndicator> values
+  {static} +AndroidOverscrollIndicator stretch
+  {static} +AndroidOverscrollIndicator glow
+}
+
+"flutter::lib::src::widgets::scroll_configuration.dart::AndroidOverscrollIndicator" o-- "flutter::lib::src::widgets::scroll_configuration.dart::AndroidOverscrollIndicator"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::scroll_configuration.dart::AndroidOverscrollIndicator"
+
+
+@enduml

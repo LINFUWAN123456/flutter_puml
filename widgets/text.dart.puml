@@ -1,0 +1,60 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::text.dart::DefaultTextStyle" {
+  +dynamic style
+  +dynamic textAlign
+  +bool softWrap
+  +dynamic overflow
+  +int? maxLines
+  +dynamic textWidthBasis
+  +dynamic textHeightBehavior
+  {static} +Widget merge()
+  {static} +DefaultTextStyle of()
+  +bool updateShouldNotify()
+  +Widget wrap()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::inherited_theme.dart::InheritedTheme" <|-- "flutter::lib::src::widgets::text.dart::DefaultTextStyle"
+
+class "flutter::lib::src::widgets::text.dart::_NullWidget" {
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::text.dart::_NullWidget"
+
+class "flutter::lib::src::widgets::text.dart::DefaultTextHeightBehavior" {
+  +dynamic textHeightBehavior
+  {static} +dynamic of()
+  +bool updateShouldNotify()
+  +Widget wrap()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::inherited_theme.dart::InheritedTheme" <|-- "flutter::lib::src::widgets::text.dart::DefaultTextHeightBehavior"
+
+class "flutter::lib::src::widgets::text.dart::Text" {
+  +String? data
+  +dynamic textSpan
+  +dynamic style
+  +dynamic strutStyle
+  +dynamic textAlign
+  +dynamic textDirection
+  +dynamic locale
+  +bool? softWrap
+  +dynamic overflow
+  +double? textScaleFactor
+  +int? maxLines
+  +String? semanticsLabel
+  +dynamic textWidthBasis
+  +dynamic textHeightBehavior
+  +dynamic selectionColor
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::text.dart::Text"
+
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::ink_ripple.dart::_InkRippleFactory" {
+  +InteractiveInkFeature create()
+}
+
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory" <|-- "flutter::lib::src::material::ink_ripple.dart::_InkRippleFactory"
+
+class "flutter::lib::src::material::ink_ripple.dart::InkRipple" {
+  -dynamic _position
+  -dynamic _borderRadius
+  -dynamic _customBorder
+  -double _targetRadius
+  -dynamic Function()? _clipCallback
+  -dynamic _textDirection
+  -dynamic _radius
+  -dynamic _radiusController
+  -dynamic _fadeIn
+  -dynamic _fadeInController
+  -dynamic _fadeOut
+  -dynamic _fadeOutController
+  {static} +InteractiveInkFeatureFactory splashFactory
+  {static} -dynamic _easeCurveTween
+  {static} -dynamic _fadeOutIntervalTween
+  +void confirm()
+  +void cancel()
+  -void _handleAlphaStatusChanged()
+  +void dispose()
+  +void paintFeature()
+}
+
+"flutter::lib::src::material::ink_ripple.dart::InkRipple" o-- "flutter::lib::src::material::material.dart::dynamic Function()"
+"flutter::lib::src::material::ink_ripple.dart::InkRipple" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeature" <|-- "flutter::lib::src::material::ink_ripple.dart::InkRipple"
+
+
+@enduml

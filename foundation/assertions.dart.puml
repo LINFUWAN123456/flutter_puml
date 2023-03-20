@@ -1,0 +1,122 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::assertions.dart::PartialStackFrame" {
+  {static} +PartialStackFrame asynchronousSuspension
+  +Pattern package
+  +String className
+  +String method
+  +bool matches()
+}
+
+"flutter::lib::src::foundation::assertions.dart::PartialStackFrame" o-- "flutter::lib::src::foundation::assertions.dart::PartialStackFrame"
+
+abstract class "flutter::lib::src::foundation::assertions.dart::StackFilter" {
+  +void filter()
+}
+
+class "flutter::lib::src::foundation::assertions.dart::RepetitiveStackFrameFilter" {
+  +List<PartialStackFrame> frames
+  +String replacement
+  +int numFrames
+  -List<String> _replacements
+  +void filter()
+  -bool _matchesFrames()
+}
+
+"flutter::lib::src::foundation::assertions.dart::StackFilter" <|-- "flutter::lib::src::foundation::assertions.dart::RepetitiveStackFrameFilter"
+
+abstract class "flutter::lib::src::foundation::assertions.dart::_ErrorDiagnostic" {
+  +List<Object> value
+  +String valueToString()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::assertions.dart::_ErrorDiagnostic"
+
+class "flutter::lib::src::foundation::assertions.dart::ErrorDescription" {
+}
+
+"flutter::lib::src::foundation::assertions.dart::_ErrorDiagnostic" <|-- "flutter::lib::src::foundation::assertions.dart::ErrorDescription"
+
+class "flutter::lib::src::foundation::assertions.dart::ErrorSummary" {
+}
+
+"flutter::lib::src::foundation::assertions.dart::_ErrorDiagnostic" <|-- "flutter::lib::src::foundation::assertions.dart::ErrorSummary"
+
+class "flutter::lib::src::foundation::assertions.dart::ErrorHint" {
+}
+
+"flutter::lib::src::foundation::assertions.dart::_ErrorDiagnostic" <|-- "flutter::lib::src::foundation::assertions.dart::ErrorHint"
+
+class "flutter::lib::src::foundation::assertions.dart::ErrorSpacer" {
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::assertions.dart::ErrorSpacer"
+
+class "flutter::lib::src::foundation::assertions.dart::FlutterErrorDetails" {
+  {static} +List<Iterable<DiagnosticsNode> Function(Iterable<DiagnosticsNode>)> propertiesTransformers
+  +Object exception
+  +StackTrace? stack
+  +String? library
+  +DiagnosticsNode? context
+  +Iterable<String> Function(Iterable<String>)? stackFilter
+  +Iterable<DiagnosticsNode> Function()? informationCollector
+  +bool silent
+  +DiagnosticsNode summary
+  +FlutterErrorDetails copyWith()
+  +String exceptionAsString()
+  -Diagnosticable? _exceptionToDiagnosticable()
+  +void debugFillProperties()
+  +String toStringShort()
+  +String toString()
+  +DiagnosticsNode toDiagnosticsNode()
+}
+
+"flutter::lib::src::foundation::assertions.dart::FlutterErrorDetails" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsNode"
+"flutter::lib::src::foundation::assertions.dart::FlutterErrorDetails" o-- "flutter::lib::src::foundation::basic_types.dart::Iterable<String> Function(Iterable<String>)"
+"flutter::lib::src::foundation::assertions.dart::FlutterErrorDetails" o-- "flutter::lib::src::foundation::assertions.dart::Iterable<DiagnosticsNode> Function()"
+"flutter::lib::src::foundation::diagnostics.dart::Diagnosticable" <|-- "flutter::lib::src::foundation::assertions.dart::FlutterErrorDetails"
+
+class "flutter::lib::src::foundation::assertions.dart::FlutterError" {
+  +List<DiagnosticsNode> diagnostics
+  {static} +void Function(FlutterErrorDetails)? onError
+  {static} +StackTrace Function(StackTrace) demangleStackTrace
+  {static} +void Function(FlutterErrorDetails) presentError
+  {static} -int _errorCount
+  {static} +int wrapWidth
+  {static} -List<StackFilter> _stackFilters
+  +String message
+  {static} -StackTrace _defaultStackTraceDemangler()
+  {static} +void resetErrorCount()
+  {static} +void dumpErrorToConsole()
+  {static} +void addDefaultStackFilter()
+  {static} +Iterable<String> defaultStackFilter()
+  +void debugFillProperties()
+  +String toStringShort()
+  +String toString()
+  {static} +void reportError()
+}
+
+"flutter::lib::src::foundation::assertions.dart::FlutterError" o-- "flutter::lib::src::foundation::assertions.dart::void Function(FlutterErrorDetails)"
+"flutter::lib::src::foundation::assertions.dart::FlutterError" o-- "flutter::lib::src::foundation::assertions.dart::StackTrace Function(StackTrace)"
+"dart::core::Error" <|-- "flutter::lib::src::foundation::assertions.dart::FlutterError"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticableTreeMixin" <|-- "flutter::lib::src::foundation::assertions.dart::FlutterError"
+"dart::core::AssertionError" <|-- "flutter::lib::src::foundation::assertions.dart::FlutterError"
+
+class "flutter::lib::src::foundation::assertions.dart::DiagnosticsStackTrace" {
+  +bool allowTruncate
+  {static} -List<DiagnosticsNode> _applyStackFilter()
+  {static} -DiagnosticsNode _createStackFrame()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsBlock" <|-- "flutter::lib::src::foundation::assertions.dart::DiagnosticsStackTrace"
+
+class "flutter::lib::src::foundation::assertions.dart::_FlutterErrorDetailsNode" {
+  +DiagnosticPropertiesBuilder? builder
+}
+
+"flutter::lib::src::foundation::assertions.dart::_FlutterErrorDetailsNode" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticPropertiesBuilder"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticableNode" <|-- "flutter::lib::src::foundation::assertions.dart::_FlutterErrorDetailsNode"
+
+
+@enduml

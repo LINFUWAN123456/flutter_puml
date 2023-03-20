@@ -1,0 +1,72 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::list_tile_theme.dart::ListTileThemeData" {
+  +bool? dense
+  +dynamic shape
+  +ListTileStyle? style
+  +dynamic selectedColor
+  +dynamic iconColor
+  +dynamic textColor
+  +dynamic contentPadding
+  +dynamic tileColor
+  +dynamic selectedTileColor
+  +double? horizontalTitleGap
+  +double? minVerticalPadding
+  +double? minLeadingWidth
+  +bool? enableFeedback
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +VisualDensity? visualDensity
+  +int hashCode
+  +ListTileThemeData copyWith()
+  {static} +ListTileThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::list_tile_theme.dart::ListTileThemeData" o-- "flutter::lib::src::material::list_tile.dart::ListTileStyle"
+"flutter::lib::src::material::list_tile_theme.dart::ListTileThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::list_tile_theme.dart::ListTileThemeData" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::list_tile_theme.dart::ListTileTheme" {
+  -ListTileThemeData? _data
+  -bool? _dense
+  -dynamic _shape
+  -ListTileStyle? _style
+  -dynamic _selectedColor
+  -dynamic _iconColor
+  -dynamic _textColor
+  -dynamic _contentPadding
+  -dynamic _tileColor
+  -dynamic _selectedTileColor
+  -double? _horizontalTitleGap
+  -double? _minVerticalPadding
+  -double? _minLeadingWidth
+  -bool? _enableFeedback
+  -MaterialStateProperty<dynamic>? _mouseCursor
+  +ListTileThemeData data
+  +bool? dense
+  +dynamic shape
+  +ListTileStyle? style
+  +dynamic selectedColor
+  +dynamic iconColor
+  +dynamic textColor
+  +dynamic contentPadding
+  +dynamic tileColor
+  +dynamic selectedTileColor
+  +double? horizontalTitleGap
+  +double? minVerticalPadding
+  +double? minLeadingWidth
+  +bool? enableFeedback
+  {static} +ListTileThemeData of()
+  {static} +dynamic merge()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::list_tile_theme.dart::ListTileTheme" o-- "flutter::lib::src::material::list_tile_theme.dart::ListTileThemeData"
+"flutter::lib::src::material::list_tile_theme.dart::ListTileTheme" o-- "flutter::lib::src::material::list_tile.dart::ListTileStyle"
+"flutter::lib::src::material::list_tile_theme.dart::ListTileTheme" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+
+
+@enduml

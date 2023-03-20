@@ -1,0 +1,16 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::clipboard.dart::ClipboardData" {
+  +String? text
+}
+
+class "flutter::lib::src::services::clipboard.dart::Clipboard" {
+  {static} +String kTextPlain
+  {static} +Future<void> setData()
+  {static} +Future<ClipboardData?> getData()
+  {static} +Future<bool> hasStrings()
+}
+
+
+@enduml

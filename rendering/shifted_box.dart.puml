@@ -1,0 +1,190 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::shifted_box.dart::RenderShiftedBox" {
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  +void paint()
+  +bool hitTestChildren()
+}
+
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderShiftedBox"
+"flutter::lib::src::rendering::object.dart::RenderObjectWithChildMixin" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderShiftedBox"
+
+class "flutter::lib::src::rendering::shifted_box.dart::RenderPadding" {
+  -dynamic _resolvedPadding
+  -dynamic _padding
+  -dynamic _textDirection
+  +dynamic padding
+  +dynamic textDirection
+  -void _resolve()
+  -void _markNeedResolution()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void debugPaintSize()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderShiftedBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderPadding"
+
+abstract class "flutter::lib::src::rendering::shifted_box.dart::RenderAligningShiftedBox" {
+  -dynamic _resolvedAlignment
+  -dynamic _alignment
+  -dynamic _textDirection
+  +dynamic alignment
+  +dynamic textDirection
+  -void _resolve()
+  -void _markNeedResolution()
+  +void alignChild()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderShiftedBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderAligningShiftedBox"
+
+class "flutter::lib::src::rendering::shifted_box.dart::RenderPositionedBox" {
+  -double? _widthFactor
+  -double? _heightFactor
+  +double? widthFactor
+  +double? heightFactor
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void debugPaintSize()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderAligningShiftedBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderPositionedBox"
+
+class "flutter::lib::src::rendering::shifted_box.dart::RenderConstrainedOverflowBox" {
+  -double? _minWidth
+  -double? _maxWidth
+  -double? _minHeight
+  -double? _maxHeight
+  +double? minWidth
+  +double? maxWidth
+  +double? minHeight
+  +double? maxHeight
+  +bool sizedByParent
+  -BoxConstraints _getInnerConstraints()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderAligningShiftedBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderConstrainedOverflowBox"
+
+class "flutter::lib::src::rendering::shifted_box.dart::RenderConstraintsTransformBox" {
+  -BoxConstraints Function(BoxConstraints) _constraintsTransform
+  -dynamic _clipBehavior
+  -dynamic _overflowContainerRect
+  -dynamic _overflowChildRect
+  -bool _isOverflowing
+  -BoxConstraints? _childConstraints
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +BoxConstraints Function(BoxConstraints) constraintsTransform
+  +dynamic clipBehavior
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void paint()
+  +void dispose()
+  +dynamic describeApproximatePaintClip()
+  +String toStringShort()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderConstraintsTransformBox" o-- "flutter::lib::src::rendering::shifted_box.dart::BoxConstraints Function(BoxConstraints)"
+"flutter::lib::src::rendering::shifted_box.dart::RenderConstraintsTransformBox" o-- "flutter::lib::src::rendering::box.dart::BoxConstraints"
+"flutter::lib::src::rendering::shifted_box.dart::RenderConstraintsTransformBox" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::shifted_box.dart::RenderAligningShiftedBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderConstraintsTransformBox"
+"flutter::lib::src::rendering::debug_overflow_indicator.dart::DebugOverflowIndicatorMixin" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderConstraintsTransformBox"
+
+class "flutter::lib::src::rendering::shifted_box.dart::RenderUnconstrainedBox" {
+  -dynamic _constrainedAxis
+  +dynamic constrainedAxis
+  {static} -BoxConstraints _unconstrained()
+  {static} -BoxConstraints _widthConstrained()
+  {static} -BoxConstraints _heightConstrained()
+  {static} -BoxConstraints Function(BoxConstraints) _convertAxis()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderConstraintsTransformBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderUnconstrainedBox"
+
+class "flutter::lib::src::rendering::shifted_box.dart::RenderSizedOverflowBox" {
+  -dynamic _requestedSize
+  +dynamic requestedSize
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  +dynamic computeDryLayout()
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderAligningShiftedBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderSizedOverflowBox"
+
+class "flutter::lib::src::rendering::shifted_box.dart::RenderFractionallySizedOverflowBox" {
+  -double? _widthFactor
+  -double? _heightFactor
+  +double? widthFactor
+  +double? heightFactor
+  -BoxConstraints _getInnerConstraints()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderAligningShiftedBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderFractionallySizedOverflowBox"
+
+abstract class "flutter::lib::src::rendering::shifted_box.dart::SingleChildLayoutDelegate" {
+  -dynamic _relayout
+  +dynamic getSize()
+  +BoxConstraints getConstraintsForChild()
+  +dynamic getPositionForChild()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::rendering::shifted_box.dart::RenderCustomSingleChildLayoutBox" {
+  -SingleChildLayoutDelegate _delegate
+  +SingleChildLayoutDelegate delegate
+  +void attach()
+  +void detach()
+  -dynamic _getSize()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderCustomSingleChildLayoutBox" o-- "flutter::lib::src::rendering::shifted_box.dart::SingleChildLayoutDelegate"
+"flutter::lib::src::rendering::shifted_box.dart::RenderShiftedBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderCustomSingleChildLayoutBox"
+
+class "flutter::lib::src::rendering::shifted_box.dart::RenderBaseline" {
+  -double _baseline
+  -dynamic _baselineType
+  +double baseline
+  +dynamic baselineType
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::shifted_box.dart::RenderShiftedBox" <|-- "flutter::lib::src::rendering::shifted_box.dart::RenderBaseline"
+
+
+@enduml

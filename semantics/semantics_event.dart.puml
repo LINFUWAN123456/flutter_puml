@@ -1,0 +1,39 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::semantics::semantics_event.dart::SemanticsEvent" {
+  +String type
+  +Map<String, dynamic> toMap()
+  +Map<String, dynamic> getDataMap()
+  +String toString()
+}
+
+class "flutter::lib::src::semantics::semantics_event.dart::AnnounceSemanticsEvent" {
+  +String message
+  +dynamic textDirection
+  +Map<String, dynamic> getDataMap()
+}
+
+"flutter::lib::src::semantics::semantics_event.dart::SemanticsEvent" <|-- "flutter::lib::src::semantics::semantics_event.dart::AnnounceSemanticsEvent"
+
+class "flutter::lib::src::semantics::semantics_event.dart::TooltipSemanticsEvent" {
+  +String message
+  +Map<String, dynamic> getDataMap()
+}
+
+"flutter::lib::src::semantics::semantics_event.dart::SemanticsEvent" <|-- "flutter::lib::src::semantics::semantics_event.dart::TooltipSemanticsEvent"
+
+class "flutter::lib::src::semantics::semantics_event.dart::LongPressSemanticsEvent" {
+  +Map<String, dynamic> getDataMap()
+}
+
+"flutter::lib::src::semantics::semantics_event.dart::SemanticsEvent" <|-- "flutter::lib::src::semantics::semantics_event.dart::LongPressSemanticsEvent"
+
+class "flutter::lib::src::semantics::semantics_event.dart::TapSemanticEvent" {
+  +Map<String, dynamic> getDataMap()
+}
+
+"flutter::lib::src::semantics::semantics_event.dart::SemanticsEvent" <|-- "flutter::lib::src::semantics::semantics_event.dart::TapSemanticEvent"
+
+
+@enduml

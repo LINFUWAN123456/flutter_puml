@@ -1,0 +1,52 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::foundation::change_notifier.dart::Listenable" {
+  +void addListener()
+  +void removeListener()
+}
+
+abstract class "flutter::lib::src::foundation::change_notifier.dart::ValueListenable" {
+  +T value
+}
+
+"flutter::lib::src::foundation::change_notifier.dart::Listenable" <|-- "flutter::lib::src::foundation::change_notifier.dart::ValueListenable"
+
+class "flutter::lib::src::foundation::change_notifier.dart::ChangeNotifier" {
+  -int _count
+  {static} -List<dynamic> _emptyListeners
+  -List<dynamic> _listeners
+  -int _notificationCallStackDepth
+  -int _reentrantlyRemovedListeners
+  -bool _debugDisposed
+  +bool hasListeners
+  {static} +bool debugAssertNotDisposed()
+  +void addListener()
+  -void _removeAt()
+  +void removeListener()
+  +void dispose()
+  #void notifyListeners()
+}
+
+"flutter::lib::src::foundation::change_notifier.dart::Listenable" <|-- "flutter::lib::src::foundation::change_notifier.dart::ChangeNotifier"
+
+class "flutter::lib::src::foundation::change_notifier.dart::_MergingListenable" {
+  -List<Listenable?> _children
+  +void addListener()
+  +void removeListener()
+  +String toString()
+}
+
+"flutter::lib::src::foundation::change_notifier.dart::Listenable" <|-- "flutter::lib::src::foundation::change_notifier.dart::_MergingListenable"
+
+class "flutter::lib::src::foundation::change_notifier.dart::ValueNotifier" {
+  -T _value
+  +T value
+  +String toString()
+}
+
+"flutter::lib::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "flutter::lib::src::foundation::change_notifier.dart::ValueNotifier"
+"flutter::lib::src::foundation::change_notifier.dart::ValueListenable" <|-- "flutter::lib::src::foundation::change_notifier.dart::ValueNotifier"
+
+
+@enduml

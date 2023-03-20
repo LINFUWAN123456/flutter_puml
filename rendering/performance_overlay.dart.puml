@@ -1,0 +1,39 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::performance_overlay.dart::RenderPerformanceOverlay" {
+  -int _optionsMask
+  -int _rasterizerThreshold
+  -bool _checkerboardRasterCacheImages
+  -bool _checkerboardOffscreenLayers
+  +int optionsMask
+  +int rasterizerThreshold
+  +bool checkerboardRasterCacheImages
+  +bool checkerboardOffscreenLayers
+  +bool sizedByParent
+  +bool alwaysNeedsCompositing
+  -double _intrinsicHeight
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void paint()
+}
+
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::performance_overlay.dart::RenderPerformanceOverlay"
+
+class "flutter::lib::src::rendering::performance_overlay.dart::PerformanceOverlayOption" {
+  +int index
+  {static} +List<PerformanceOverlayOption> values
+  {static} +PerformanceOverlayOption displayRasterizerStatistics
+  {static} +PerformanceOverlayOption visualizeRasterizerStatistics
+  {static} +PerformanceOverlayOption displayEngineStatistics
+  {static} +PerformanceOverlayOption visualizeEngineStatistics
+}
+
+"flutter::lib::src::rendering::performance_overlay.dart::PerformanceOverlayOption" o-- "flutter::lib::src::rendering::performance_overlay.dart::PerformanceOverlayOption"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::performance_overlay.dart::PerformanceOverlayOption"
+
+
+@enduml

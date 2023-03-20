@@ -1,0 +1,13 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::feedback.dart::Feedback" {
+  {static} +Future<void> forTap()
+  {static} +dynamic wrapForTap()
+  {static} +Future<void> forLongPress()
+  {static} +dynamic wrapForLongPress()
+  {static} -dynamic _platform()
+}
+
+
+@enduml

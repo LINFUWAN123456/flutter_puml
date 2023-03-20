@@ -1,0 +1,64 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::layout_builder.dart::ConstrainedLayoutBuilder" {
+  +Widget Function(BuildContext, ConstraintType) builder
+  +RenderObjectElement createElement()
+}
+
+"flutter::lib::src::widgets::layout_builder.dart::ConstrainedLayoutBuilder" o-- "null::Widget Function(BuildContext, ConstraintType)"
+"flutter::lib::src::widgets::framework.dart::RenderObjectWidget" <|-- "flutter::lib::src::widgets::layout_builder.dart::ConstrainedLayoutBuilder"
+
+class "flutter::lib::src::widgets::layout_builder.dart::_LayoutBuilderElement" {
+  -Element? _child
+  +RenderConstrainedLayoutBuilder<ConstraintType, dynamic> renderObject
+  +void visitChildren()
+  +void forgetChild()
+  +void mount()
+  +void update()
+  +void performRebuild()
+  +void unmount()
+  -void _layout()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+}
+
+"flutter::lib::src::widgets::layout_builder.dart::_LayoutBuilderElement" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::widgets::layout_builder.dart::_LayoutBuilderElement" o-- "flutter::lib::src::widgets::layout_builder.dart::RenderConstrainedLayoutBuilder<ConstraintType, dynamic>"
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::layout_builder.dart::_LayoutBuilderElement"
+
+class "flutter::lib::src::widgets::layout_builder.dart::LayoutBuilder" {
+  +Widget Function(BuildContext, dynamic) builder
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::layout_builder.dart::LayoutBuilder" o-- "flutter::lib::src::widgets::layout_builder.dart::Widget Function(BuildContext, dynamic)"
+"flutter::lib::src::widgets::layout_builder.dart::ConstrainedLayoutBuilder" <|-- "flutter::lib::src::widgets::layout_builder.dart::LayoutBuilder"
+
+class "flutter::lib::src::widgets::layout_builder.dart::_RenderLayoutBuilder" {
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +double? computeDistanceToActualBaseline()
+  +bool hitTestChildren()
+  +void paint()
+  -bool _debugThrowIfNotCheckingIntrinsics()
+}
+
+"flutter::lib::src::widgets::layout_builder.dart::RenderConstrainedLayoutBuilder" <|-- "flutter::lib::src::widgets::layout_builder.dart::_RenderLayoutBuilder"
+
+abstract class "flutter::lib::src::widgets::layout_builder.dart::RenderConstrainedLayoutBuilder" {
+  -dynamic _callback
+  -bool _needsBuild
+  -dynamic _previousConstraints
+  +void updateCallback()
+  +void markNeedsBuild()
+  +void rebuildIfNecessary()
+}
+
+
+@enduml

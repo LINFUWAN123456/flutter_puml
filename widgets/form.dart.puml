@@ -1,0 +1,100 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::form.dart::Form" {
+  +Widget child
+  +Future<bool> Function()? onWillPop
+  +dynamic onChanged
+  +AutovalidateMode autovalidateMode
+  {static} +FormState? of()
+  +FormState createState()
+}
+
+"flutter::lib::src::widgets::form.dart::Form" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::form.dart::Form" o-- "flutter::lib::src::widgets::navigator.dart::Future<bool> Function()"
+"flutter::lib::src::widgets::form.dart::Form" o-- "flutter::lib::src::widgets::form.dart::AutovalidateMode"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::form.dart::Form"
+
+class "flutter::lib::src::widgets::form.dart::FormState" {
+  -int _generation
+  -bool _hasInteractedByUser
+  -Set<FormFieldState<dynamic>> _fields
+  -void _fieldDidChange()
+  -void _forceRebuild()
+  -void _register()
+  -void _unregister()
+  +Widget build()
+  +void save()
+  +void reset()
+  +bool validate()
+  -bool _validate()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::form.dart::FormState"
+
+class "flutter::lib::src::widgets::form.dart::_FormScope" {
+  -FormState _formState
+  -int _generation
+  +Form form
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::form.dart::_FormScope" o-- "flutter::lib::src::widgets::form.dart::FormState"
+"flutter::lib::src::widgets::form.dart::_FormScope" o-- "flutter::lib::src::widgets::form.dart::Form"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::form.dart::_FormScope"
+
+class "flutter::lib::src::widgets::form.dart::FormField" {
+  +void Function(T?)? onSaved
+  +String? Function(T?)? validator
+  +Widget Function(FormFieldState<T>) builder
+  +T? initialValue
+  +bool enabled
+  +AutovalidateMode autovalidateMode
+  +String? restorationId
+  +FormFieldState<T> createState()
+}
+
+"flutter::lib::src::widgets::form.dart::FormField" o-- "flutter::lib::src::widgets::form.dart::void Function(T)"
+"flutter::lib::src::widgets::form.dart::FormField" o-- "flutter::lib::src::widgets::form.dart::String Function(T)"
+"flutter::lib::src::widgets::form.dart::FormField" o-- "flutter::lib::src::widgets::form.dart::Widget Function(FormFieldState<T>)"
+"flutter::lib::src::widgets::form.dart::FormField" o-- "flutter::lib::src::widgets::form.dart::AutovalidateMode"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::form.dart::FormField"
+
+class "flutter::lib::src::widgets::form.dart::FormFieldState" {
+  -T? _value
+  -RestorableStringN _errorText
+  -RestorableBool _hasInteractedByUser
+  +T? value
+  +String? errorText
+  +bool hasError
+  +bool isValid
+  +String? restorationId
+  +void save()
+  +void reset()
+  +bool validate()
+  -void _validate()
+  +void didChange()
+  +void setValue()
+  +void restoreState()
+  +void deactivate()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::form.dart::FormFieldState" o-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableStringN"
+"flutter::lib::src::widgets::form.dart::FormFieldState" o-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableBool"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::form.dart::FormFieldState"
+"flutter::lib::src::widgets::restoration.dart::RestorationMixin" <|-- "flutter::lib::src::widgets::form.dart::FormFieldState"
+
+class "flutter::lib::src::widgets::form.dart::AutovalidateMode" {
+  +int index
+  {static} +List<AutovalidateMode> values
+  {static} +AutovalidateMode disabled
+  {static} +AutovalidateMode always
+  {static} +AutovalidateMode onUserInteraction
+}
+
+"flutter::lib::src::widgets::form.dart::AutovalidateMode" o-- "flutter::lib::src::widgets::form.dart::AutovalidateMode"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::form.dart::AutovalidateMode"
+
+
+@enduml

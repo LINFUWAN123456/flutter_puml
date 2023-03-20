@@ -1,0 +1,72 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::button_style_button.dart::ButtonStyleButton" {
+  +dynamic onPressed
+  +dynamic onLongPress
+  +dynamic onHover
+  +dynamic onFocusChange
+  +ButtonStyle? style
+  +dynamic clipBehavior
+  +dynamic focusNode
+  +bool autofocus
+  +MaterialStatesController? statesController
+  +dynamic child
+  +bool enabled
+  +ButtonStyle defaultStyleOf()
+  +ButtonStyle? themeStyleOf()
+  +dynamic createState()
+  +void debugFillProperties()
+  {static} +MaterialStateProperty<T>? allOrNull()
+  {static} +dynamic scaledPadding()
+}
+
+"flutter::lib::src::material::button_style_button.dart::ButtonStyleButton" o-- "flutter::lib::src::material::button_style.dart::ButtonStyle"
+"flutter::lib::src::material::button_style_button.dart::ButtonStyleButton" o-- "flutter::lib::src::material::material_state.dart::MaterialStatesController"
+
+class "flutter::lib::src::material::button_style_button.dart::_ButtonStyleState" {
+  +dynamic controller
+  +double? elevation
+  +dynamic backgroundColor
+  +MaterialStatesController? internalStatesController
+  +MaterialStatesController statesController
+  +void handleStatesControllerChange()
+  +void initStatesController()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::button_style_button.dart::_ButtonStyleState" o-- "flutter::lib::src::material::material_state.dart::MaterialStatesController"
+
+class "flutter::lib::src::material::button_style_button.dart::_MouseCursor" {
+  +dynamic Function(Set<MaterialState>) resolveCallback
+  +String debugDescription
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::button_style_button.dart::_MouseCursor" o-- "flutter::lib::src::material::material_state.dart::dynamic Function(Set<MaterialState>)"
+"flutter::lib::src::material::material_state.dart::MaterialStateMouseCursor" <|-- "flutter::lib::src::material::button_style_button.dart::_MouseCursor"
+
+class "flutter::lib::src::material::button_style_button.dart::_InputPadding" {
+  +dynamic minSize
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::button_style_button.dart::_RenderInputPadding" {
+  -dynamic _minSize
+  +dynamic minSize
+  +double computeMinIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicWidth()
+  +double computeMaxIntrinsicHeight()
+  -dynamic _computeSize()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +bool hitTest()
+}
+
+
+@enduml

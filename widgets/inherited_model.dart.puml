@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::inherited_model.dart::InheritedModel" {
+  +InheritedModelElement<T> createElement()
+  +bool updateShouldNotifyDependent()
+  +bool isSupportedAspect()
+  {static} -void _findModels()
+  {static} +T? inheritFrom()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::inherited_model.dart::InheritedModel"
+
+class "flutter::lib::src::widgets::inherited_model.dart::InheritedModelElement" {
+  +void updateDependencies()
+  +void notifyDependent()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedElement" <|-- "flutter::lib::src::widgets::inherited_model.dart::InheritedModelElement"
+
+
+@enduml

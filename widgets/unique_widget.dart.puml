@@ -1,0 +1,12 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::unique_widget.dart::UniqueWidget" {
+  +T? currentState
+  +T createState()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::unique_widget.dart::UniqueWidget"
+
+
+@enduml

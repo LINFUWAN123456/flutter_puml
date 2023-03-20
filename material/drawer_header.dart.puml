@@ -1,0 +1,15 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::drawer_header.dart::DrawerHeader" {
+  +dynamic decoration
+  +dynamic padding
+  +dynamic margin
+  +Duration duration
+  +dynamic curve
+  +dynamic child
+  +dynamic build()
+}
+
+
+@enduml

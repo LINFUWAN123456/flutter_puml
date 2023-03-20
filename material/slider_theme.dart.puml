@@ -1,0 +1,314 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::slider_theme.dart::SliderTheme" {
+  +SliderThemeData data
+  {static} +SliderThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderTheme" o-- "flutter::lib::src::material::slider_theme.dart::SliderThemeData"
+
+class "flutter::lib::src::material::slider_theme.dart::SliderThemeData" {
+  +double? trackHeight
+  +dynamic activeTrackColor
+  +dynamic inactiveTrackColor
+  +dynamic disabledActiveTrackColor
+  +dynamic disabledInactiveTrackColor
+  +dynamic activeTickMarkColor
+  +dynamic inactiveTickMarkColor
+  +dynamic disabledActiveTickMarkColor
+  +dynamic disabledInactiveTickMarkColor
+  +dynamic thumbColor
+  +dynamic overlappingShapeStrokeColor
+  +dynamic disabledThumbColor
+  +dynamic overlayColor
+  +dynamic valueIndicatorColor
+  +SliderComponentShape? overlayShape
+  +SliderTickMarkShape? tickMarkShape
+  +SliderComponentShape? thumbShape
+  +SliderTrackShape? trackShape
+  +SliderComponentShape? valueIndicatorShape
+  +RangeSliderTickMarkShape? rangeTickMarkShape
+  +RangeSliderThumbShape? rangeThumbShape
+  +RangeSliderTrackShape? rangeTrackShape
+  +RangeSliderValueIndicatorShape? rangeValueIndicatorShape
+  +ShowValueIndicator? showValueIndicator
+  +dynamic valueIndicatorTextStyle
+  +double? minThumbSeparation
+  +Thumb? Function(dynamic, RangeValues, double, dynamic, dynamic, double)? thumbSelector
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +int hashCode
+  +SliderThemeData copyWith()
+  {static} +SliderThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::slider_theme.dart::SliderComponentShape"
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::slider_theme.dart::SliderTickMarkShape"
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::slider_theme.dart::SliderTrackShape"
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::slider_theme.dart::RangeSliderTickMarkShape"
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::slider_theme.dart::RangeSliderThumbShape"
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::slider_theme.dart::RangeSliderTrackShape"
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::slider_theme.dart::RangeSliderValueIndicatorShape"
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::slider_theme.dart::ShowValueIndicator"
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::slider_theme.dart::Thumb Function(dynamic, RangeValues, double, dynamic, dynamic, double)"
+"flutter::lib::src::material::slider_theme.dart::SliderThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+
+abstract class "flutter::lib::src::material::slider_theme.dart::SliderComponentShape" {
+  {static} +SliderComponentShape noThumb
+  {static} +SliderComponentShape noOverlay
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderComponentShape" o-- "flutter::lib::src::material::slider_theme.dart::SliderComponentShape"
+
+abstract class "flutter::lib::src::material::slider_theme.dart::SliderTickMarkShape" {
+  {static} +SliderTickMarkShape noTickMark
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderTickMarkShape" o-- "flutter::lib::src::material::slider_theme.dart::SliderTickMarkShape"
+
+abstract class "flutter::lib::src::material::slider_theme.dart::SliderTrackShape" {
+  +dynamic getPreferredRect()
+  +void paint()
+}
+
+abstract class "flutter::lib::src::material::slider_theme.dart::RangeSliderThumbShape" {
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+abstract class "flutter::lib::src::material::slider_theme.dart::RangeSliderValueIndicatorShape" {
+  +dynamic getPreferredSize()
+  +double getHorizontalShift()
+  +void paint()
+}
+
+abstract class "flutter::lib::src::material::slider_theme.dart::RangeSliderTickMarkShape" {
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+abstract class "flutter::lib::src::material::slider_theme.dart::RangeSliderTrackShape" {
+  +dynamic getPreferredRect()
+  +void paint()
+}
+
+class "flutter::lib::src::material::slider_theme.dart::RectangularSliderTrackShape" {
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderTrackShape" <|-- "flutter::lib::src::material::slider_theme.dart::RectangularSliderTrackShape"
+"flutter::lib::src::material::slider_theme.dart::BaseSliderTrackShape" <|-- "flutter::lib::src::material::slider_theme.dart::RectangularSliderTrackShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RoundedRectSliderTrackShape" {
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderTrackShape" <|-- "flutter::lib::src::material::slider_theme.dart::RoundedRectSliderTrackShape"
+"flutter::lib::src::material::slider_theme.dart::BaseSliderTrackShape" <|-- "flutter::lib::src::material::slider_theme.dart::RoundedRectSliderTrackShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RectangularRangeSliderTrackShape" {
+  +dynamic getPreferredRect()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::RangeSliderTrackShape" <|-- "flutter::lib::src::material::slider_theme.dart::RectangularRangeSliderTrackShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RoundedRectRangeSliderTrackShape" {
+  +dynamic getPreferredRect()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::RangeSliderTrackShape" <|-- "flutter::lib::src::material::slider_theme.dart::RoundedRectRangeSliderTrackShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RoundSliderTickMarkShape" {
+  +double? tickMarkRadius
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderTickMarkShape" <|-- "flutter::lib::src::material::slider_theme.dart::RoundSliderTickMarkShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RoundRangeSliderTickMarkShape" {
+  +double? tickMarkRadius
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::RangeSliderTickMarkShape" <|-- "flutter::lib::src::material::slider_theme.dart::RoundRangeSliderTickMarkShape"
+
+class "flutter::lib::src::material::slider_theme.dart::_EmptySliderTickMarkShape" {
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderTickMarkShape" <|-- "flutter::lib::src::material::slider_theme.dart::_EmptySliderTickMarkShape"
+
+class "flutter::lib::src::material::slider_theme.dart::_EmptySliderComponentShape" {
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderComponentShape" <|-- "flutter::lib::src::material::slider_theme.dart::_EmptySliderComponentShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RoundSliderThumbShape" {
+  +double enabledThumbRadius
+  +double? disabledThumbRadius
+  +double elevation
+  +double pressedElevation
+  -double _disabledThumbRadius
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderComponentShape" <|-- "flutter::lib::src::material::slider_theme.dart::RoundSliderThumbShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RoundRangeSliderThumbShape" {
+  +double enabledThumbRadius
+  +double? disabledThumbRadius
+  +double elevation
+  +double pressedElevation
+  -double _disabledThumbRadius
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::RangeSliderThumbShape" <|-- "flutter::lib::src::material::slider_theme.dart::RoundRangeSliderThumbShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RoundSliderOverlayShape" {
+  +double overlayRadius
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::SliderComponentShape" <|-- "flutter::lib::src::material::slider_theme.dart::RoundSliderOverlayShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RectangularSliderValueIndicatorShape" {
+  {static} -_RectangularSliderValueIndicatorPathPainter _pathPainter
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::RectangularSliderValueIndicatorShape" o-- "flutter::lib::src::material::slider_theme.dart::_RectangularSliderValueIndicatorPathPainter"
+"flutter::lib::src::material::slider_theme.dart::SliderComponentShape" <|-- "flutter::lib::src::material::slider_theme.dart::RectangularSliderValueIndicatorShape"
+
+class "flutter::lib::src::material::slider_theme.dart::RectangularRangeSliderValueIndicatorShape" {
+  {static} -_RectangularSliderValueIndicatorPathPainter _pathPainter
+  +dynamic getPreferredSize()
+  +double getHorizontalShift()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::RectangularRangeSliderValueIndicatorShape" o-- "flutter::lib::src::material::slider_theme.dart::_RectangularSliderValueIndicatorPathPainter"
+"flutter::lib::src::material::slider_theme.dart::RangeSliderValueIndicatorShape" <|-- "flutter::lib::src::material::slider_theme.dart::RectangularRangeSliderValueIndicatorShape"
+
+class "flutter::lib::src::material::slider_theme.dart::_RectangularSliderValueIndicatorPathPainter" {
+  {static} -double _triangleHeight
+  {static} -double _labelPadding
+  {static} -double _preferredHeight
+  {static} -double _minLabelWidth
+  {static} -double _bottomTipYOffset
+  {static} -double _preferredHalfHeight
+  {static} -double _upperRectRadius
+  +dynamic getPreferredSize()
+  +double getHorizontalShift()
+  -double _upperRectangleWidth()
+  +void paint()
+}
+
+class "flutter::lib::src::material::slider_theme.dart::PaddleSliderValueIndicatorShape" {
+  {static} -_PaddleSliderValueIndicatorPathPainter _pathPainter
+  +dynamic getPreferredSize()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::PaddleSliderValueIndicatorShape" o-- "flutter::lib::src::material::slider_theme.dart::_PaddleSliderValueIndicatorPathPainter"
+"flutter::lib::src::material::slider_theme.dart::SliderComponentShape" <|-- "flutter::lib::src::material::slider_theme.dart::PaddleSliderValueIndicatorShape"
+
+class "flutter::lib::src::material::slider_theme.dart::PaddleRangeSliderValueIndicatorShape" {
+  {static} -_PaddleSliderValueIndicatorPathPainter _pathPainter
+  +dynamic getPreferredSize()
+  +double getHorizontalShift()
+  +void paint()
+}
+
+"flutter::lib::src::material::slider_theme.dart::PaddleRangeSliderValueIndicatorShape" o-- "flutter::lib::src::material::slider_theme.dart::_PaddleSliderValueIndicatorPathPainter"
+"flutter::lib::src::material::slider_theme.dart::RangeSliderValueIndicatorShape" <|-- "flutter::lib::src::material::slider_theme.dart::PaddleRangeSliderValueIndicatorShape"
+
+class "flutter::lib::src::material::slider_theme.dart::_PaddleSliderValueIndicatorPathPainter" {
+  {static} -double _topLobeRadius
+  {static} -double _minLabelWidth
+  {static} -double _bottomLobeRadius
+  {static} -double _labelPadding
+  {static} -double _distanceBetweenTopBottomCenters
+  {static} -double _middleNeckWidth
+  {static} -double _bottomNeckRadius
+  {static} -double _neckTriangleBase
+  {static} -double _rightBottomNeckCenterX
+  {static} -double _rightBottomNeckAngleStart
+  {static} -dynamic _topLobeCenter
+  {static} -double _topNeckRadius
+  {static} -double _neckTriangleHypotenuse
+  {static} -double _twoSeventyDegrees
+  {static} -double _ninetyDegrees
+  {static} -double _thirtyDegrees
+  {static} -double _preferredHeight
+  {static} -bool _debuggingLabelLocation
+  +dynamic getPreferredSize()
+  {static} -void _addArc()
+  +double getHorizontalShift()
+  -double _getIdealOffset()
+  +void paint()
+}
+
+class "flutter::lib::src::material::slider_theme.dart::RangeValues" {
+  +double start
+  +double end
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::material::slider_theme.dart::RangeLabels" {
+  +String start
+  +String end
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::material::slider_theme.dart::ShowValueIndicator" {
+  +int index
+  {static} +List<ShowValueIndicator> values
+  {static} +ShowValueIndicator onlyForDiscrete
+  {static} +ShowValueIndicator onlyForContinuous
+  {static} +ShowValueIndicator always
+  {static} +ShowValueIndicator never
+}
+
+"flutter::lib::src::material::slider_theme.dart::ShowValueIndicator" o-- "flutter::lib::src::material::slider_theme.dart::ShowValueIndicator"
+"dart::core::Enum" <|-- "flutter::lib::src::material::slider_theme.dart::ShowValueIndicator"
+
+class "flutter::lib::src::material::slider_theme.dart::Thumb" {
+  +int index
+  {static} +List<Thumb> values
+  {static} +Thumb start
+  {static} +Thumb end
+}
+
+"flutter::lib::src::material::slider_theme.dart::Thumb" o-- "flutter::lib::src::material::slider_theme.dart::Thumb"
+"dart::core::Enum" <|-- "flutter::lib::src::material::slider_theme.dart::Thumb"
+
+abstract class "flutter::lib::src::material::slider_theme.dart::BaseSliderTrackShape" {
+  +dynamic getPreferredRect()
+}
+
+
+@enduml

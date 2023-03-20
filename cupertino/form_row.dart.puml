@@ -1,0 +1,14 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::form_row.dart::CupertinoFormRow" {
+  +dynamic prefix
+  +dynamic padding
+  +dynamic helper
+  +dynamic error
+  +dynamic child
+  +dynamic build()
+}
+
+
+@enduml

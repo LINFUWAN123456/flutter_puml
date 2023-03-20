@@ -1,0 +1,159 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::sliver.dart::SliverConstraints" {
+  +dynamic axisDirection
+  +GrowthDirection growthDirection
+  +ScrollDirection userScrollDirection
+  +double scrollOffset
+  +double precedingScrollExtent
+  +double overlap
+  +double remainingPaintExtent
+  +double crossAxisExtent
+  +dynamic crossAxisDirection
+  +double viewportMainAxisExtent
+  +double cacheOrigin
+  +double remainingCacheExtent
+  +dynamic axis
+  +GrowthDirection normalizedGrowthDirection
+  +bool isTight
+  +bool isNormalized
+  +int hashCode
+  +SliverConstraints copyWith()
+  +BoxConstraints asBoxConstraints()
+  +bool debugAssertIsValid()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::sliver.dart::SliverConstraints" o-- "flutter::lib::src::rendering::sliver.dart::GrowthDirection"
+"flutter::lib::src::rendering::sliver.dart::SliverConstraints" o-- "flutter::lib::src::rendering::viewport_offset.dart::ScrollDirection"
+"flutter::lib::src::rendering::object.dart::Constraints" <|-- "flutter::lib::src::rendering::sliver.dart::SliverConstraints"
+
+class "flutter::lib::src::rendering::sliver.dart::SliverGeometry" {
+  {static} +SliverGeometry zero
+  +double scrollExtent
+  +double paintOrigin
+  +double paintExtent
+  +double layoutExtent
+  +double maxPaintExtent
+  +double maxScrollObstructionExtent
+  +double hitTestExtent
+  +bool visible
+  +bool hasVisualOverflow
+  +double? scrollOffsetCorrection
+  +double cacheExtent
+  +bool debugAssertIsValid()
+  +String toStringShort()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::sliver.dart::SliverGeometry" o-- "flutter::lib::src::rendering::sliver.dart::SliverGeometry"
+
+class "flutter::lib::src::rendering::sliver.dart::SliverHitTestResult" {
+  +bool addWithAxisOffset()
+}
+
+class "flutter::lib::src::rendering::sliver.dart::SliverHitTestEntry" {
+  +double mainAxisPosition
+  +double crossAxisPosition
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::sliver.dart::SliverLogicalParentData" {
+  +double? layoutOffset
+  +String toString()
+}
+
+"flutter::lib::src::rendering::object.dart::ParentData" <|-- "flutter::lib::src::rendering::sliver.dart::SliverLogicalParentData"
+
+class "flutter::lib::src::rendering::sliver.dart::SliverLogicalContainerParentData" {
+}
+
+"flutter::lib::src::rendering::sliver.dart::SliverLogicalParentData" <|-- "flutter::lib::src::rendering::sliver.dart::SliverLogicalContainerParentData"
+"flutter::lib::src::rendering::object.dart::ContainerParentDataMixin" <|-- "flutter::lib::src::rendering::sliver.dart::SliverLogicalContainerParentData"
+
+class "flutter::lib::src::rendering::sliver.dart::SliverPhysicalParentData" {
+  +dynamic paintOffset
+  +void applyPaintTransform()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::object.dart::ParentData" <|-- "flutter::lib::src::rendering::sliver.dart::SliverPhysicalParentData"
+
+class "flutter::lib::src::rendering::sliver.dart::SliverPhysicalContainerParentData" {
+}
+
+"flutter::lib::src::rendering::sliver.dart::SliverPhysicalParentData" <|-- "flutter::lib::src::rendering::sliver.dart::SliverPhysicalContainerParentData"
+"flutter::lib::src::rendering::object.dart::ContainerParentDataMixin" <|-- "flutter::lib::src::rendering::sliver.dart::SliverPhysicalContainerParentData"
+
+abstract class "flutter::lib::src::rendering::sliver.dart::RenderSliver" {
+  -SliverGeometry? _geometry
+  +SliverConstraints constraints
+  +SliverGeometry? geometry
+  +dynamic semanticBounds
+  +dynamic paintBounds
+  +double centerOffsetAdjustment
+  +void debugResetSize()
+  +void debugAssertDoesMeetConstraints()
+  +void performResize()
+  +bool hitTest()
+  +bool hitTestSelf()
+  +bool hitTestChildren()
+  +double calculatePaintOffset()
+  +double calculateCacheOffset()
+  +double childMainAxisPosition()
+  +double childCrossAxisPosition()
+  +double? childScrollOffset()
+  +void applyPaintTransform()
+  +dynamic getAbsoluteSizeRelativeToOrigin()
+  +dynamic getAbsoluteSize()
+  -void _debugDrawArrow()
+  +void debugPaint()
+  +void handleEvent()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliver" o-- "flutter::lib::src::rendering::sliver.dart::SliverGeometry"
+"flutter::lib::src::rendering::sliver.dart::RenderSliver" o-- "flutter::lib::src::rendering::sliver.dart::SliverConstraints"
+"flutter::lib::src::rendering::object.dart::RenderObject" <|-- "flutter::lib::src::rendering::sliver.dart::RenderSliver"
+
+abstract class "flutter::lib::src::rendering::sliver.dart::RenderSliverSingleBoxAdapter" {
+  +void setupParentData()
+  +void setChildParentData()
+  +bool hitTestChildren()
+  +double childMainAxisPosition()
+  +void applyPaintTransform()
+  +void paint()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliver" <|-- "flutter::lib::src::rendering::sliver.dart::RenderSliverSingleBoxAdapter"
+"flutter::lib::src::rendering::object.dart::RenderObjectWithChildMixin" <|-- "flutter::lib::src::rendering::sliver.dart::RenderSliverSingleBoxAdapter"
+"flutter::lib::src::rendering::sliver.dart::RenderSliverHelpers" <|-- "flutter::lib::src::rendering::sliver.dart::RenderSliverSingleBoxAdapter"
+
+class "flutter::lib::src::rendering::sliver.dart::RenderSliverToBoxAdapter" {
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliverSingleBoxAdapter" <|-- "flutter::lib::src::rendering::sliver.dart::RenderSliverToBoxAdapter"
+
+class "flutter::lib::src::rendering::sliver.dart::GrowthDirection" {
+  +int index
+  {static} +List<GrowthDirection> values
+  {static} +GrowthDirection forward
+  {static} +GrowthDirection reverse
+}
+
+"flutter::lib::src::rendering::sliver.dart::GrowthDirection" o-- "flutter::lib::src::rendering::sliver.dart::GrowthDirection"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::sliver.dart::GrowthDirection"
+
+abstract class "flutter::lib::src::rendering::sliver.dart::RenderSliverHelpers" {
+  -bool _getRightWayUp()
+  +bool hitTestBoxChild()
+  +void applyPaintTransformForBoxChild()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliver" <|-- "flutter::lib::src::rendering::sliver.dart::RenderSliverHelpers"
+
+
+@enduml

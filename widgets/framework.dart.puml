@@ -1,0 +1,550 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::framework.dart::_DebugOnly" {
+}
+
+class "flutter::lib::src::widgets::framework.dart::ObjectKey" {
+  +Object? value
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+abstract class "flutter::lib::src::widgets::framework.dart::GlobalKey" {
+  -Element? _currentElement
+  +BuildContext? currentContext
+  +Widget? currentWidget
+  +T? currentState
+}
+
+"flutter::lib::src::widgets::framework.dart::GlobalKey" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::widgets::framework.dart::GlobalKey" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::framework.dart::GlobalKey" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+
+class "flutter::lib::src::widgets::framework.dart::LabeledGlobalKey" {
+  -String? _debugLabel
+  +String toString()
+}
+
+"flutter::lib::src::widgets::framework.dart::GlobalKey" <|-- "flutter::lib::src::widgets::framework.dart::LabeledGlobalKey"
+
+class "flutter::lib::src::widgets::framework.dart::GlobalObjectKey" {
+  +Object value
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::framework.dart::GlobalKey" <|-- "flutter::lib::src::widgets::framework.dart::GlobalObjectKey"
+
+abstract class "flutter::lib::src::widgets::framework.dart::Widget" {
+  +dynamic key
+  +int hashCode
+  +Element createElement()
+  +String toStringShort()
+  +void debugFillProperties()
+  +bool ==()
+  {static} +bool canUpdate()
+  {static} -int _debugConcreteSubtype()
+}
+
+abstract class "flutter::lib::src::widgets::framework.dart::StatelessWidget" {
+  +StatelessElement createElement()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::Widget" <|-- "flutter::lib::src::widgets::framework.dart::StatelessWidget"
+
+abstract class "flutter::lib::src::widgets::framework.dart::StatefulWidget" {
+  +StatefulElement createElement()
+  +State<StatefulWidget> createState()
+}
+
+"flutter::lib::src::widgets::framework.dart::Widget" <|-- "flutter::lib::src::widgets::framework.dart::StatefulWidget"
+
+abstract class "flutter::lib::src::widgets::framework.dart::State" {
+  -T? _widget
+  -_StateLifecycle _debugLifecycleState
+  -StatefulElement? _element
+  +T widget
+  +BuildContext context
+  +bool mounted
+  -bool _debugTypesAreRight()
+  +void initState()
+  +void didUpdateWidget()
+  +void reassemble()
+  +void setState()
+  +void deactivate()
+  +void activate()
+  +void dispose()
+  +Widget build()
+  +void didChangeDependencies()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" o-- "flutter::lib::src::widgets::framework.dart::_StateLifecycle"
+"flutter::lib::src::widgets::framework.dart::State" o-- "flutter::lib::src::widgets::framework.dart::StatefulElement"
+"flutter::lib::src::widgets::framework.dart::State" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+
+abstract class "flutter::lib::src::widgets::framework.dart::ProxyWidget" {
+  +Widget child
+}
+
+"flutter::lib::src::widgets::framework.dart::ProxyWidget" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::Widget" <|-- "flutter::lib::src::widgets::framework.dart::ProxyWidget"
+
+abstract class "flutter::lib::src::widgets::framework.dart::ParentDataWidget" {
+  +Type debugTypicalAncestorWidgetClass
+  +ParentDataElement<T> createElement()
+  +bool debugIsValidRenderObject()
+  -Iterable<dynamic> _debugDescribeIncorrectParentDataType()
+  +void applyParentData()
+  +bool debugCanApplyOutOfTurn()
+}
+
+"flutter::lib::src::widgets::framework.dart::ProxyWidget" <|-- "flutter::lib::src::widgets::framework.dart::ParentDataWidget"
+
+abstract class "flutter::lib::src::widgets::framework.dart::InheritedWidget" {
+  +InheritedElement createElement()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::framework.dart::ProxyWidget" <|-- "flutter::lib::src::widgets::framework.dart::InheritedWidget"
+
+abstract class "flutter::lib::src::widgets::framework.dart::RenderObjectWidget" {
+  +RenderObjectElement createElement()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void didUnmountRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::Widget" <|-- "flutter::lib::src::widgets::framework.dart::RenderObjectWidget"
+
+abstract class "flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" {
+  +LeafRenderObjectElement createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::RenderObjectWidget" <|-- "flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget"
+
+abstract class "flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" {
+  +Widget? child
+  +SingleChildRenderObjectElement createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::RenderObjectWidget" <|-- "flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget"
+
+abstract class "flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" {
+  +List<Widget> children
+  +MultiChildRenderObjectElement createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::RenderObjectWidget" <|-- "flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget"
+
+class "flutter::lib::src::widgets::framework.dart::_InactiveElements" {
+  -bool _locked
+  -Set<Element> _elements
+  -void _unmount()
+  -void _unmountAll()
+  {static} -void _deactivateRecursively()
+  +void add()
+  +void remove()
+  +bool debugContains()
+}
+
+abstract class "flutter::lib::src::widgets::framework.dart::BuildContext" {
+  +Widget widget
+  +BuildOwner? owner
+  +bool debugDoingBuild
+  +dynamic size
+  +dynamic findRenderObject()
+  +InheritedWidget dependOnInheritedElement()
+  +T? dependOnInheritedWidgetOfExactType()
+  +InheritedElement? getElementForInheritedWidgetOfExactType()
+  +T? findAncestorWidgetOfExactType()
+  +T? findAncestorStateOfType()
+  +T? findRootAncestorStateOfType()
+  +T? findAncestorRenderObjectOfType()
+  +void visitAncestorElements()
+  +void visitChildElements()
+  +void dispatchNotification()
+  +dynamic describeElement()
+  +dynamic describeWidget()
+  +List<dynamic> describeMissingAncestor()
+  +dynamic describeOwnershipChain()
+}
+
+"flutter::lib::src::widgets::framework.dart::BuildContext" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::BuildContext" o-- "flutter::lib::src::widgets::framework.dart::BuildOwner"
+
+class "flutter::lib::src::widgets::framework.dart::BuildOwner" {
+  +dynamic onBuildScheduled
+  -_InactiveElements _inactiveElements
+  -List<Element> _dirtyElements
+  -bool _scheduledFlushDirtyElements
+  -bool? _dirtyElementsNeedsResorting
+  +FocusManager focusManager
+  -int _debugStateLockLevel
+  -bool _debugBuilding
+  -Element? _debugCurrentBuildTarget
+  -Map<Element, Set<GlobalKey<State<StatefulWidget>>>>? _debugElementsThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans
+  -Map<GlobalKey<State<StatefulWidget>>, Element> _globalKeyRegistry
+  -Set<Element>? _debugIllFatedElements
+  -Map<Element, Map<Element, GlobalKey<State<StatefulWidget>>>>? _debugGlobalKeyReservations
+  -bool _debugIsInBuildScope
+  -bool _debugStateLocked
+  +bool debugBuilding
+  +int globalKeyCount
+  +void scheduleBuildFor()
+  +void lockState()
+  +void buildScope()
+  -void _debugTrackElementThatWillNeedToBeRebuiltDueToGlobalKeyShenanigans()
+  -void _debugElementWasRebuilt()
+  -void _debugRemoveGlobalKeyReservationFor()
+  -void _registerGlobalKey()
+  -void _unregisterGlobalKey()
+  -void _debugReserveGlobalKeyFor()
+  -void _debugVerifyGlobalKeyReservation()
+  -void _debugVerifyIllFatedPopulation()
+  +void finalizeTree()
+  +void reassemble()
+}
+
+"flutter::lib::src::widgets::framework.dart::BuildOwner" o-- "flutter::lib::src::widgets::framework.dart::_InactiveElements"
+"flutter::lib::src::widgets::framework.dart::BuildOwner" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusManager"
+"flutter::lib::src::widgets::framework.dart::BuildOwner" o-- "flutter::lib::src::widgets::framework.dart::Element"
+
+class "flutter::lib::src::widgets::framework.dart::_NotificationNode" {
+  +NotifiableElementMixin? current
+  +_NotificationNode? parent
+  +void dispatchNotification()
+}
+
+"flutter::lib::src::widgets::framework.dart::_NotificationNode" o-- "flutter::lib::src::widgets::framework.dart::NotifiableElementMixin"
+"flutter::lib::src::widgets::framework.dart::_NotificationNode" o-- "flutter::lib::src::widgets::framework.dart::_NotificationNode"
+
+abstract class "flutter::lib::src::widgets::framework.dart::Element" {
+  -Element? _parent
+  -dynamic _debugReassembleConfig
+  -_NotificationNode? _notificationTree
+  -Object? _slot
+  -int _depth
+  -Widget? _widget
+  -BuildOwner? _owner
+  -_ElementLifecycle _lifecycleState
+  -Set<Element>? _debugForgottenChildrenWithGlobalKey
+  -Map<Type, InheritedElement>? _inheritedWidgets
+  -Set<InheritedElement>? _dependencies
+  -bool _hadUnsatisfiedDependencies
+  -bool _dirty
+  -bool _inDirtyList
+  -bool _debugBuiltOnce
+  -bool _debugAllowIgnoredCallsToMarkNeedsBuild
+  +Object? slot
+  +int depth
+  +Widget widget
+  +bool debugIsDefunct
+  +bool debugIsActive
+  +BuildOwner? owner
+  +dynamic renderObject
+  +dynamic size
+  +bool dirty
+  +bool ==()
+  {static} -int _sort()
+  {static} -int _debugConcreteSubtype()
+  +void reassemble()
+  -bool _debugIsInScope()
+  +List<dynamic> describeMissingAncestor()
+  {static} +dynamic describeElements()
+  +dynamic describeElement()
+  +dynamic describeWidget()
+  +dynamic describeOwnershipChain()
+  +void visitChildren()
+  +void debugVisitOnstageChildren()
+  +void visitChildElements()
+  +Element? updateChild()
+  +void mount()
+  -void _debugRemoveGlobalKeyReservation()
+  +void update()
+  +void updateSlotForChild()
+  -void _updateSlot()
+  -void _updateDepth()
+  +void detachRenderObject()
+  +void attachRenderObject()
+  -Element? _retakeInactiveElement()
+  +Element inflateWidget()
+  -void _debugCheckForCycles()
+  +void deactivateChild()
+  +void forgetChild()
+  -void _activateWithParent()
+  {static} -void _activateRecursively()
+  +void activate()
+  +void deactivate()
+  +void debugDeactivated()
+  +void unmount()
+  +dynamic findRenderObject()
+  -bool _debugCheckStateIsActiveForAncestorLookup()
+  +bool doesDependOnInheritedElement()
+  +InheritedWidget dependOnInheritedElement()
+  +T? dependOnInheritedWidgetOfExactType()
+  +InheritedElement? getElementForInheritedWidgetOfExactType()
+  +void attachNotificationTree()
+  -void _updateInheritance()
+  +T? findAncestorWidgetOfExactType()
+  +T? findAncestorStateOfType()
+  +T? findRootAncestorStateOfType()
+  +T? findAncestorRenderObjectOfType()
+  +void visitAncestorElements()
+  +void didChangeDependencies()
+  -bool _debugCheckOwnerBuildTargetExists()
+  +String debugGetCreatorChain()
+  +List<Element> debugGetDiagnosticChain()
+  +void dispatchNotification()
+  +String toStringShort()
+  +dynamic toDiagnosticsNode()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+  -bool _debugSetAllowIgnoredCallsToMarkNeedsBuild()
+  +void markNeedsBuild()
+  +void rebuild()
+  +void performRebuild()
+}
+
+"flutter::lib::src::widgets::framework.dart::Element" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::widgets::framework.dart::Element" o-- "flutter::lib::src::widgets::framework.dart::_NotificationNode"
+"flutter::lib::src::widgets::framework.dart::Element" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::Element" o-- "flutter::lib::src::widgets::framework.dart::BuildOwner"
+"flutter::lib::src::widgets::framework.dart::Element" o-- "flutter::lib::src::widgets::framework.dart::_ElementLifecycle"
+"flutter::lib::src::widgets::framework.dart::BuildContext" <|-- "flutter::lib::src::widgets::framework.dart::Element"
+
+class "flutter::lib::src::widgets::framework.dart::_ElementDiagnosticableTreeNode" {
+  +bool stateful
+  +Map<String, Object?> toJsonMap()
+}
+
+class "flutter::lib::src::widgets::framework.dart::ErrorWidget" {
+  {static} +Widget Function(dynamic) builder
+  +String message
+  -dynamic _flutterError
+  {static} -Widget _defaultErrorWidgetBuilder()
+  {static} -String _stringify()
+  +dynamic createRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::ErrorWidget" o-- "flutter::lib::src::widgets::framework.dart::Widget Function(dynamic)"
+"flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flutter::lib::src::widgets::framework.dart::ErrorWidget"
+
+abstract class "flutter::lib::src::widgets::framework.dart::ComponentElement" {
+  -Element? _child
+  -bool _debugDoingBuild
+  +bool debugDoingBuild
+  +void mount()
+  -void _firstBuild()
+  +void performRebuild()
+  +Widget build()
+  +void visitChildren()
+  +void forgetChild()
+}
+
+"flutter::lib::src::widgets::framework.dart::ComponentElement" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::widgets::framework.dart::Element" <|-- "flutter::lib::src::widgets::framework.dart::ComponentElement"
+
+class "flutter::lib::src::widgets::framework.dart::StatelessElement" {
+  +Widget build()
+  +void update()
+}
+
+"flutter::lib::src::widgets::framework.dart::ComponentElement" <|-- "flutter::lib::src::widgets::framework.dart::StatelessElement"
+
+class "flutter::lib::src::widgets::framework.dart::StatefulElement" {
+  -State<StatefulWidget>? _state
+  -bool _didChangeDependencies
+  +State<StatefulWidget> state
+  +Widget build()
+  +void reassemble()
+  -void _firstBuild()
+  +void performRebuild()
+  +void update()
+  +void activate()
+  +void deactivate()
+  +void unmount()
+  +InheritedWidget dependOnInheritedElement()
+  +void didChangeDependencies()
+  +dynamic toDiagnosticsNode()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatefulElement" o-- "flutter::lib::src::widgets::framework.dart::State<StatefulWidget>"
+"flutter::lib::src::widgets::framework.dart::ComponentElement" <|-- "flutter::lib::src::widgets::framework.dart::StatefulElement"
+
+abstract class "flutter::lib::src::widgets::framework.dart::ProxyElement" {
+  +Widget build()
+  +void update()
+  +void updated()
+  +void notifyClients()
+}
+
+"flutter::lib::src::widgets::framework.dart::ComponentElement" <|-- "flutter::lib::src::widgets::framework.dart::ProxyElement"
+
+class "flutter::lib::src::widgets::framework.dart::ParentDataElement" {
+  -void _applyParentData()
+  +void applyWidgetOutOfTurn()
+  +void notifyClients()
+}
+
+"flutter::lib::src::widgets::framework.dart::ProxyElement" <|-- "flutter::lib::src::widgets::framework.dart::ParentDataElement"
+
+class "flutter::lib::src::widgets::framework.dart::InheritedElement" {
+  -Map<Element, Object?> _dependents
+  -void _updateInheritance()
+  +void debugDeactivated()
+  +Object? getDependencies()
+  +void setDependencies()
+  +void updateDependencies()
+  +void notifyDependent()
+  +void updated()
+  +void notifyClients()
+}
+
+"flutter::lib::src::widgets::framework.dart::ProxyElement" <|-- "flutter::lib::src::widgets::framework.dart::InheritedElement"
+
+abstract class "flutter::lib::src::widgets::framework.dart::RenderObjectElement" {
+  -dynamic _renderObject
+  -bool _debugDoingBuild
+  -RenderObjectElement? _ancestorRenderObjectElement
+  +dynamic renderObject
+  +bool debugDoingBuild
+  -RenderObjectElement? _findAncestorRenderObjectElement()
+  -ParentDataElement<dynamic>? _findAncestorParentDataElement()
+  +void mount()
+  +void update()
+  -void _debugUpdateRenderObjectOwner()
+  +void performRebuild()
+  -void _performRebuild()
+  +List<Element> updateChildren()
+  +void deactivate()
+  +void unmount()
+  -void _updateParentData()
+  -void _updateSlot()
+  +void attachRenderObject()
+  +void detachRenderObject()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" o-- "flutter::lib::src::widgets::framework.dart::RenderObjectElement"
+"flutter::lib::src::widgets::framework.dart::Element" <|-- "flutter::lib::src::widgets::framework.dart::RenderObjectElement"
+
+abstract class "flutter::lib::src::widgets::framework.dart::RootRenderObjectElement" {
+  +void assignOwner()
+  +void mount()
+}
+
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::framework.dart::RootRenderObjectElement"
+
+class "flutter::lib::src::widgets::framework.dart::LeafRenderObjectElement" {
+  +void forgetChild()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::framework.dart::LeafRenderObjectElement"
+
+class "flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectElement" {
+  -Element? _child
+  +void visitChildren()
+  +void forgetChild()
+  +void mount()
+  +void update()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectElement" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectElement"
+
+class "flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectElement" {
+  -List<Element> _children
+  -Set<Element> _forgottenChildren
+  +dynamic renderObject
+  +Iterable<Element> children
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+  +void visitChildren()
+  +void forgetChild()
+  -bool _debugCheckHasAssociatedRenderObject()
+  +Element inflateWidget()
+  +void mount()
+  +void update()
+}
+
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectElement"
+
+class "flutter::lib::src::widgets::framework.dart::DebugCreator" {
+  +Element element
+  +String toString()
+}
+
+"flutter::lib::src::widgets::framework.dart::DebugCreator" o-- "flutter::lib::src::widgets::framework.dart::Element"
+
+class "flutter::lib::src::widgets::framework.dart::IndexedSlot" {
+  +T value
+  +int index
+  +int hashCode
+  +bool ==()
+}
+
+class "flutter::lib::src::widgets::framework.dart::_NullElement" {
+  {static} +_NullElement instance
+  +bool debugDoingBuild
+  +void performRebuild()
+}
+
+"flutter::lib::src::widgets::framework.dart::_NullElement" o-- "flutter::lib::src::widgets::framework.dart::_NullElement"
+"flutter::lib::src::widgets::framework.dart::Element" <|-- "flutter::lib::src::widgets::framework.dart::_NullElement"
+
+class "flutter::lib::src::widgets::framework.dart::_NullWidget" {
+  +Element createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::Widget" <|-- "flutter::lib::src::widgets::framework.dart::_NullWidget"
+
+class "flutter::lib::src::widgets::framework.dart::_StateLifecycle" {
+  +int index
+  {static} +List<_StateLifecycle> values
+  {static} +_StateLifecycle created
+  {static} +_StateLifecycle initialized
+  {static} +_StateLifecycle ready
+  {static} +_StateLifecycle defunct
+}
+
+"flutter::lib::src::widgets::framework.dart::_StateLifecycle" o-- "flutter::lib::src::widgets::framework.dart::_StateLifecycle"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::framework.dart::_StateLifecycle"
+
+class "flutter::lib::src::widgets::framework.dart::_ElementLifecycle" {
+  +int index
+  {static} +List<_ElementLifecycle> values
+  {static} +_ElementLifecycle initial
+  {static} +_ElementLifecycle active
+  {static} +_ElementLifecycle inactive
+  {static} +_ElementLifecycle defunct
+}
+
+"flutter::lib::src::widgets::framework.dart::_ElementLifecycle" o-- "flutter::lib::src::widgets::framework.dart::_ElementLifecycle"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::framework.dart::_ElementLifecycle"
+
+abstract class "flutter::lib::src::widgets::framework.dart::NotifiableElementMixin" {
+  +bool onNotification()
+  +void attachNotificationTree()
+}
+
+
+@enduml

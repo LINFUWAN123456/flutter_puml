@@ -1,0 +1,98 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::sliver_persistent_header.dart::OverScrollHeaderStretchConfiguration" {
+  +double stretchTriggerOffset
+  +dynamic onStretchTrigger
+}
+
+class "flutter::lib::src::rendering::sliver_persistent_header.dart::PersistentHeaderShowOnScreenConfiguration" {
+  +double minShowOnScreenExtent
+  +double maxShowOnScreenExtent
+}
+
+abstract class "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPersistentHeader" {
+  -double _lastStretchOffset
+  -bool _needsUpdateChild
+  -double _lastShrinkOffset
+  -bool _lastOverlapsContent
+  +OverScrollHeaderStretchConfiguration? stretchConfiguration
+  +double maxExtent
+  +double minExtent
+  +double childExtent
+  +void updateChild()
+  +void markNeedsLayout()
+  +void layoutChild()
+  +double childMainAxisPosition()
+  +bool hitTestChildren()
+  +void applyPaintTransform()
+  +void paint()
+  +void describeSemanticsConfiguration()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPersistentHeader" o-- "flutter::lib::src::rendering::sliver_persistent_header.dart::OverScrollHeaderStretchConfiguration"
+"flutter::lib::src::rendering::sliver.dart::RenderSliver" <|-- "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPersistentHeader"
+"flutter::lib::src::rendering::object.dart::RenderObjectWithChildMixin" <|-- "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPersistentHeader"
+"flutter::lib::src::rendering::sliver.dart::RenderSliverHelpers" <|-- "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPersistentHeader"
+
+abstract class "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverScrollingPersistentHeader" {
+  -double? _childPosition
+  +double updateGeometry()
+  +void performLayout()
+  +double childMainAxisPosition()
+}
+
+"flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPersistentHeader" <|-- "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverScrollingPersistentHeader"
+
+abstract class "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPinnedPersistentHeader" {
+  +PersistentHeaderShowOnScreenConfiguration? showOnScreenConfiguration
+  +void performLayout()
+  +double childMainAxisPosition()
+  +void showOnScreen()
+}
+
+"flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPinnedPersistentHeader" o-- "flutter::lib::src::rendering::sliver_persistent_header.dart::PersistentHeaderShowOnScreenConfiguration"
+"flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPersistentHeader" <|-- "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPinnedPersistentHeader"
+
+class "flutter::lib::src::rendering::sliver_persistent_header.dart::FloatingHeaderSnapConfiguration" {
+  +dynamic curve
+  +Duration duration
+}
+
+abstract class "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverFloatingPersistentHeader" {
+  -dynamic _controller
+  -dynamic _animation
+  -double? _lastActualScrollOffset
+  -double? _effectiveScrollOffset
+  -ScrollDirection? _lastStartedScrollDirection
+  -double? _childPosition
+  -dynamic _vsync
+  +FloatingHeaderSnapConfiguration? snapConfiguration
+  +PersistentHeaderShowOnScreenConfiguration? showOnScreenConfiguration
+  +dynamic vsync
+  +void detach()
+  +double updateGeometry()
+  -void _updateAnimation()
+  +void updateScrollStartDirection()
+  +void maybeStartSnapAnimation()
+  +void maybeStopSnapAnimation()
+  +void performLayout()
+  +void showOnScreen()
+  +double childMainAxisPosition()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverFloatingPersistentHeader" o-- "flutter::lib::src::rendering::viewport_offset.dart::ScrollDirection"
+"flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverFloatingPersistentHeader" o-- "flutter::lib::src::rendering::sliver_persistent_header.dart::FloatingHeaderSnapConfiguration"
+"flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverFloatingPersistentHeader" o-- "flutter::lib::src::rendering::sliver_persistent_header.dart::PersistentHeaderShowOnScreenConfiguration"
+"flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverPersistentHeader" <|-- "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverFloatingPersistentHeader"
+
+abstract class "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverFloatingPinnedPersistentHeader" {
+  +double updateGeometry()
+}
+
+"flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverFloatingPersistentHeader" <|-- "flutter::lib::src::rendering::sliver_persistent_header.dart::RenderSliverFloatingPinnedPersistentHeader"
+
+
+@enduml

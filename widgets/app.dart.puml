@@ -1,0 +1,105 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::app.dart::WidgetsApp" {
+  +GlobalKey<NavigatorState>? navigatorKey
+  +Route<dynamic>? Function(RouteSettings)? onGenerateRoute
+  +List<Route<dynamic>> Function(String)? onGenerateInitialRoutes
+  +PageRoute<T> Function<T>(RouteSettings, Widget Function(BuildContext))? pageRouteBuilder
+  +RouteInformationParser<Object>? routeInformationParser
+  +RouterDelegate<Object>? routerDelegate
+  +BackButtonDispatcher? backButtonDispatcher
+  +RouteInformationProvider? routeInformationProvider
+  +RouterConfig<Object>? routerConfig
+  +Widget? home
+  +Map<String, Widget Function(BuildContext)>? routes
+  +Route<dynamic>? Function(RouteSettings)? onUnknownRoute
+  +String? initialRoute
+  +List<NavigatorObserver>? navigatorObservers
+  +Widget Function(BuildContext, Widget?)? builder
+  +String title
+  +String Function(BuildContext)? onGenerateTitle
+  +dynamic textStyle
+  +dynamic color
+  +dynamic locale
+  +Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates
+  +dynamic Function(List<dynamic>?, Iterable<dynamic>)? localeListResolutionCallback
+  +dynamic Function(dynamic, Iterable<dynamic>)? localeResolutionCallback
+  +Iterable<dynamic> supportedLocales
+  +bool showPerformanceOverlay
+  +bool checkerboardRasterCacheImages
+  +bool checkerboardOffscreenLayers
+  +bool showSemanticsDebugger
+  +bool debugShowWidgetInspector
+  +Widget Function(BuildContext, dynamic)? inspectorSelectButtonBuilder
+  +bool debugShowCheckedModeBanner
+  +Map<ShortcutActivator, Intent>? shortcuts
+  +Map<Type, Action<Intent>>? actions
+  +String? restorationScopeId
+  +bool useInheritedMediaQuery
+  {static} +bool showPerformanceOverlayOverride
+  {static} +bool debugShowWidgetInspectorOverride
+  {static} +bool debugAllowBannerOverride
+  {static} -Map<ShortcutActivator, Intent> _defaultShortcuts
+  {static} -Map<ShortcutActivator, Intent> _defaultWebShortcuts
+  {static} -Map<ShortcutActivator, Intent> _defaultAppleOsShortcuts
+  {static} +Map<Type, Action<Intent>> defaultActions
+  {static} +Map<ShortcutActivator, Intent> defaultShortcuts
+  +State<WidgetsApp> createState()
+}
+
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<NavigatorState>"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::navigator.dart::Route<dynamic> Function(RouteSettings)"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::app.dart::List<Route<dynamic>> Function(String)"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::app.dart::PageRoute<T> Function<T>(RouteSettings, Widget Function(BuildContext))"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::router.dart::RouteInformationParser<Object>"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::router.dart::RouterDelegate<Object>"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::router.dart::BackButtonDispatcher"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::router.dart::RouteInformationProvider"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::router.dart::RouterConfig<Object>"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::framework.dart::Widget Function(BuildContext, Widget)"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::app.dart::String Function(BuildContext)"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::app.dart::dynamic Function(List<dynamic>, Iterable<dynamic>)"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::app.dart::dynamic Function(dynamic, Iterable<dynamic>)"
+"flutter::lib::src::widgets::app.dart::WidgetsApp" o-- "flutter::lib::src::widgets::widget_inspector.dart::Widget Function(BuildContext, dynamic)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::app.dart::WidgetsApp"
+
+class "flutter::lib::src::widgets::app.dart::_WidgetsAppState" {
+  -PlatformRouteInformationProvider? _defaultRouteInformationProvider
+  -RootBackButtonDispatcher? _defaultBackButtonDispatcher
+  -GlobalKey<NavigatorState>? _navigator
+  -dynamic _locale
+  -String _initialRouteName
+  -bool _usesRouterWithDelegates
+  -bool _usesRouterWithConfig
+  -bool _usesNavigator
+  -RouteInformationProvider? _effectiveRouteInformationProvider
+  -BackButtonDispatcher _effectiveBackButtonDispatcher
+  -Iterable<LocalizationsDelegate<dynamic>> _localizationsDelegates
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _clearRouterResource()
+  -void _clearNavigatorResource()
+  -void _updateRouting()
+  -Route<dynamic>? _onGenerateRoute()
+  -Route<dynamic> _onUnknownRoute()
+  +Future<bool> didPopRoute()
+  +Future<bool> didPushRoute()
+  -dynamic _resolveLocales()
+  +void didChangeLocales()
+  -bool _debugCheckLocalizations()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::app.dart::_WidgetsAppState" o-- "flutter::lib::src::widgets::router.dart::PlatformRouteInformationProvider"
+"flutter::lib::src::widgets::app.dart::_WidgetsAppState" o-- "flutter::lib::src::widgets::router.dart::RootBackButtonDispatcher"
+"flutter::lib::src::widgets::app.dart::_WidgetsAppState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<NavigatorState>"
+"flutter::lib::src::widgets::app.dart::_WidgetsAppState" o-- "flutter::lib::src::widgets::router.dart::RouteInformationProvider"
+"flutter::lib::src::widgets::app.dart::_WidgetsAppState" o-- "flutter::lib::src::widgets::router.dart::BackButtonDispatcher"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::app.dart::_WidgetsAppState"
+"flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "flutter::lib::src::widgets::app.dart::_WidgetsAppState"
+
+
+@enduml

@@ -1,0 +1,204 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::date_picker.dart::_DatePickerLayoutDelegate" {
+  +List<double> columnWidths
+  +int textDirectionFactor
+  +void performLayout()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::cupertino::date_picker.dart::CupertinoDatePicker" {
+  +CupertinoDatePickerMode mode
+  +DateTime initialDateTime
+  +DateTime? minimumDate
+  +DateTime? maximumDate
+  +int minimumYear
+  +int? maximumYear
+  +int minuteInterval
+  +bool use24hFormat
+  +DatePickerDateOrder? dateOrder
+  +dynamic onDateTimeChanged
+  +dynamic backgroundColor
+  +dynamic createState()
+  {static} -double _getColumnWidth()
+}
+
+"flutter::lib::src::cupertino::date_picker.dart::CupertinoDatePicker" o-- "flutter::lib::src::cupertino::date_picker.dart::CupertinoDatePickerMode"
+"flutter::lib::src::cupertino::date_picker.dart::CupertinoDatePicker" o-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateOrder"
+
+class "flutter::lib::src::cupertino::date_picker.dart::_CupertinoDatePickerDateTimeState" {
+  {static} -double _kMaximumOffAxisFraction
+  +int textDirectionFactor
+  +CupertinoLocalizations localizations
+  +dynamic alignCenterLeft
+  +dynamic alignCenterRight
+  +DateTime initialDateTime
+  +dynamic dateController
+  +dynamic hourController
+  +dynamic minuteController
+  +int selectedAmPm
+  +int meridiemRegion
+  +dynamic meridiemController
+  +bool isDatePickerScrolling
+  +bool isHourPickerScrolling
+  +bool isMinutePickerScrolling
+  +bool isMeridiemPickerScrolling
+  +Map<int, double> estimatedColumnWidths
+  +int selectedDayFromInitial
+  +int selectedHour
+  -int _selectedHourIndex
+  +int selectedMinute
+  +bool isHourRegionFlipped
+  +bool isScrolling
+  +DateTime selectedDateTime
+  -int _selectedHour()
+  -bool _isHourRegionFlipped()
+  +void initState()
+  -void _handleSystemFontsChange()
+  +void dispose()
+  +void didUpdateWidget()
+  +void didChangeDependencies()
+  -double _getEstimatedColumnWidth()
+  -void _onSelectedItemChange()
+  -dynamic _buildMediumDatePicker()
+  -bool _isValidHour()
+  -dynamic _buildHourPicker()
+  -dynamic _buildMinutePicker()
+  -dynamic _buildAmPmPicker()
+  -void _pickerDidStopScrolling()
+  -void _scrollToDate()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::date_picker.dart::_CupertinoDatePickerDateTimeState" o-- "flutter::lib::src::cupertino::localizations.dart::CupertinoLocalizations"
+
+class "flutter::lib::src::cupertino::date_picker.dart::_CupertinoDatePickerDateState" {
+  +DatePickerDateOrder? dateOrder
+  +int textDirectionFactor
+  +CupertinoLocalizations localizations
+  +dynamic alignCenterLeft
+  +dynamic alignCenterRight
+  +int selectedDay
+  +int selectedMonth
+  +int selectedYear
+  +dynamic dayController
+  +dynamic monthController
+  +dynamic yearController
+  +bool isDayPickerScrolling
+  +bool isMonthPickerScrolling
+  +bool isYearPickerScrolling
+  +Map<int, double> estimatedColumnWidths
+  +bool isScrolling
+  -bool _isCurrentDateValid
+  +void initState()
+  -void _handleSystemFontsChange()
+  +void dispose()
+  +void didChangeDependencies()
+  -void _refreshEstimatedColumnWidths()
+  -DateTime _lastDayInMonth()
+  -dynamic _buildDayPicker()
+  -dynamic _buildMonthPicker()
+  -dynamic _buildYearPicker()
+  -void _pickerDidStopScrolling()
+  -void _scrollToDate()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::date_picker.dart::_CupertinoDatePickerDateState" o-- "flutter::lib::src::cupertino::localizations.dart::DatePickerDateOrder"
+"flutter::lib::src::cupertino::date_picker.dart::_CupertinoDatePickerDateState" o-- "flutter::lib::src::cupertino::localizations.dart::CupertinoLocalizations"
+
+class "flutter::lib::src::cupertino::date_picker.dart::CupertinoTimerPicker" {
+  +CupertinoTimerPickerMode mode
+  +Duration initialTimerDuration
+  +int minuteInterval
+  +int secondInterval
+  +dynamic onTimerDurationChanged
+  +dynamic alignment
+  +dynamic backgroundColor
+  +dynamic createState()
+}
+
+"flutter::lib::src::cupertino::date_picker.dart::CupertinoTimerPicker" o-- "flutter::lib::src::cupertino::date_picker.dart::CupertinoTimerPickerMode"
+
+class "flutter::lib::src::cupertino::date_picker.dart::_CupertinoTimerPickerState" {
+  +dynamic textDirection
+  +CupertinoLocalizations localizations
+  +int? selectedHour
+  +int selectedMinute
+  +int? selectedSecond
+  +int? lastSelectedHour
+  +int? lastSelectedMinute
+  +int? lastSelectedSecond
+  +dynamic textPainter
+  +List<String> numbers
+  +double numberLabelWidth
+  +double numberLabelHeight
+  +double numberLabelBaseline
+  +double hourLabelWidth
+  +double minuteLabelWidth
+  +double secondLabelWidth
+  +double totalWidth
+  +double pickerColumnWidth
+  +int textDirectionFactor
+  +void initState()
+  -void _handleSystemFontsChange()
+  +void dispose()
+  +void didUpdateWidget()
+  +void didChangeDependencies()
+  -void _measureLabelMetrics()
+  -double _measureLabelsMaxWidth()
+  -dynamic _buildLabel()
+  -dynamic _buildPickerNumberLabel()
+  -dynamic _buildHourPicker()
+  -dynamic _buildHourColumn()
+  -dynamic _buildMinutePicker()
+  -dynamic _buildMinuteColumn()
+  -dynamic _buildSecondPicker()
+  -dynamic _buildSecondColumn()
+  -dynamic _textStyleFrom()
+  -double _calculateOffAxisFraction()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::date_picker.dart::_CupertinoTimerPickerState" o-- "flutter::lib::src::cupertino::localizations.dart::CupertinoLocalizations"
+
+class "flutter::lib::src::cupertino::date_picker.dart::CupertinoDatePickerMode" {
+  +int index
+  {static} +List<CupertinoDatePickerMode> values
+  {static} +CupertinoDatePickerMode time
+  {static} +CupertinoDatePickerMode date
+  {static} +CupertinoDatePickerMode dateAndTime
+}
+
+"flutter::lib::src::cupertino::date_picker.dart::CupertinoDatePickerMode" o-- "flutter::lib::src::cupertino::date_picker.dart::CupertinoDatePickerMode"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::date_picker.dart::CupertinoDatePickerMode"
+
+class "flutter::lib::src::cupertino::date_picker.dart::_PickerColumnType" {
+  +int index
+  {static} +List<_PickerColumnType> values
+  {static} +_PickerColumnType dayOfMonth
+  {static} +_PickerColumnType month
+  {static} +_PickerColumnType year
+  {static} +_PickerColumnType date
+  {static} +_PickerColumnType hour
+  {static} +_PickerColumnType minute
+  {static} +_PickerColumnType dayPeriod
+}
+
+"flutter::lib::src::cupertino::date_picker.dart::_PickerColumnType" o-- "flutter::lib::src::cupertino::date_picker.dart::_PickerColumnType"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::date_picker.dart::_PickerColumnType"
+
+class "flutter::lib::src::cupertino::date_picker.dart::CupertinoTimerPickerMode" {
+  +int index
+  {static} +List<CupertinoTimerPickerMode> values
+  {static} +CupertinoTimerPickerMode hm
+  {static} +CupertinoTimerPickerMode ms
+  {static} +CupertinoTimerPickerMode hms
+}
+
+"flutter::lib::src::cupertino::date_picker.dart::CupertinoTimerPickerMode" o-- "flutter::lib::src::cupertino::date_picker.dart::CupertinoTimerPickerMode"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::date_picker.dart::CupertinoTimerPickerMode"
+
+
+@enduml

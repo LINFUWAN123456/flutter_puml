@@ -1,0 +1,155 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::drag_target.dart::Draggable" {
+  +T? data
+  +dynamic axis
+  +Widget child
+  +Widget? childWhenDragging
+  +Widget feedback
+  +dynamic feedbackOffset
+  +DragAnchor dragAnchor
+  +dynamic Function(Draggable<Object>, BuildContext, dynamic)? dragAnchorStrategy
+  +bool ignoringFeedbackSemantics
+  +bool ignoringFeedbackPointer
+  +dynamic affinity
+  +int? maxSimultaneousDrags
+  +dynamic onDragStarted
+  +void Function(dynamic)? onDragUpdate
+  +void Function(dynamic, dynamic)? onDraggableCanceled
+  +dynamic onDragCompleted
+  +void Function(DraggableDetails)? onDragEnd
+  +bool rootOverlay
+  +dynamic hitTestBehavior
+  +dynamic createRecognizer()
+  +State<Draggable<T>> createState()
+}
+
+"flutter::lib::src::widgets::drag_target.dart::Draggable" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::drag_target.dart::Draggable" o-- "flutter::lib::src::widgets::drag_target.dart::DragAnchor"
+"flutter::lib::src::widgets::drag_target.dart::Draggable" o-- "flutter::lib::src::widgets::drag_target.dart::dynamic Function(Draggable<Object>, BuildContext, dynamic)"
+"flutter::lib::src::widgets::drag_target.dart::Draggable" o-- "flutter::lib::src::widgets::drag_target.dart::void Function(dynamic)"
+"flutter::lib::src::widgets::drag_target.dart::Draggable" o-- "flutter::lib::src::widgets::drag_target.dart::void Function(dynamic, dynamic)"
+"flutter::lib::src::widgets::drag_target.dart::Draggable" o-- "flutter::lib::src::widgets::drag_target.dart::void Function(DraggableDetails)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::drag_target.dart::Draggable"
+
+class "flutter::lib::src::widgets::drag_target.dart::LongPressDraggable" {
+  +bool hapticFeedbackOnStart
+  +Duration delay
+  +dynamic createRecognizer()
+}
+
+"flutter::lib::src::widgets::drag_target.dart::Draggable" <|-- "flutter::lib::src::widgets::drag_target.dart::LongPressDraggable"
+
+class "flutter::lib::src::widgets::drag_target.dart::_DraggableState" {
+  -dynamic _recognizer
+  -int _activeCount
+  +void initState()
+  +void dispose()
+  +void didChangeDependencies()
+  -void _disposeRecognizerIfInactive()
+  -void _routePointer()
+  -_DragAvatar<T>? _startDrag()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::drag_target.dart::_DraggableState"
+
+class "flutter::lib::src::widgets::drag_target.dart::DraggableDetails" {
+  +bool wasAccepted
+  +dynamic velocity
+  +dynamic offset
+}
+
+class "flutter::lib::src::widgets::drag_target.dart::DragTargetDetails" {
+  +T data
+  +dynamic offset
+}
+
+class "flutter::lib::src::widgets::drag_target.dart::DragTarget" {
+  +Widget Function(BuildContext, List<T?>, List<dynamic>) builder
+  +bool Function(T?)? onWillAccept
+  +void Function(T)? onAccept
+  +void Function(DragTargetDetails<T>)? onAcceptWithDetails
+  +void Function(T?)? onLeave
+  +void Function(DragTargetDetails<T>)? onMove
+  +dynamic hitTestBehavior
+  +State<DragTarget<T>> createState()
+}
+
+"flutter::lib::src::widgets::drag_target.dart::DragTarget" o-- "flutter::lib::src::widgets::drag_target.dart::Widget Function(BuildContext, List<T>, List<dynamic>)"
+"flutter::lib::src::widgets::drag_target.dart::DragTarget" o-- "flutter::lib::src::widgets::drag_target.dart::bool Function(T)"
+"flutter::lib::src::widgets::drag_target.dart::DragTarget" o-- "flutter::lib::src::widgets::drag_target.dart::void Function(T)"
+"flutter::lib::src::widgets::drag_target.dart::DragTarget" o-- "flutter::lib::src::widgets::drag_target.dart::void Function(DragTargetDetails<T>)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::drag_target.dart::DragTarget"
+
+class "flutter::lib::src::widgets::drag_target.dart::_DragTargetState" {
+  -List<_DragAvatar<Object>> _candidateAvatars
+  -List<_DragAvatar<Object>> _rejectedAvatars
+  +bool isExpectedDataType()
+  +bool didEnter()
+  +void didLeave()
+  +void didDrop()
+  +void didMove()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::drag_target.dart::_DragTargetState"
+
+class "flutter::lib::src::widgets::drag_target.dart::_DragAvatar" {
+  +T? data
+  +dynamic axis
+  +dynamic dragStartPoint
+  +Widget? feedback
+  +dynamic feedbackOffset
+  +void Function(dynamic)? onDragUpdate
+  +void Function(dynamic, dynamic, bool)? onDragEnd
+  +OverlayState overlayState
+  +bool ignoringFeedbackSemantics
+  +bool ignoringFeedbackPointer
+  -_DragTargetState<Object>? _activeTarget
+  -List<_DragTargetState<Object>> _enteredTargets
+  -dynamic _position
+  -dynamic _lastOffset
+  -OverlayEntry? _entry
+  +void update()
+  +void end()
+  +void cancel()
+  +void updateDrag()
+  -Iterable<_DragTargetState<Object>> _getDragTargets()
+  -void _leaveAllEntered()
+  +void finishDrag()
+  -Widget _build()
+  -dynamic _restrictVelocityAxis()
+  -dynamic _restrictAxis()
+}
+
+"flutter::lib::src::widgets::drag_target.dart::_DragAvatar" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::drag_target.dart::_DragAvatar" o-- "flutter::lib::src::widgets::drag_target.dart::void Function(dynamic)"
+"flutter::lib::src::widgets::drag_target.dart::_DragAvatar" o-- "flutter::lib::src::widgets::drag_target.dart::void Function(dynamic, dynamic, bool)"
+"flutter::lib::src::widgets::drag_target.dart::_DragAvatar" o-- "flutter::lib::src::widgets::overlay.dart::OverlayState"
+"flutter::lib::src::widgets::drag_target.dart::_DragAvatar" o-- "flutter::lib::src::widgets::drag_target.dart::_DragTargetState<Object>"
+"flutter::lib::src::widgets::drag_target.dart::_DragAvatar" o-- "flutter::lib::src::widgets::overlay.dart::OverlayEntry"
+
+class "flutter::lib::src::widgets::drag_target.dart::DragAnchor" {
+  +int index
+  {static} +List<DragAnchor> values
+  {static} +DragAnchor child
+  {static} +DragAnchor pointer
+}
+
+"flutter::lib::src::widgets::drag_target.dart::DragAnchor" o-- "flutter::lib::src::widgets::drag_target.dart::DragAnchor"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::drag_target.dart::DragAnchor"
+
+class "flutter::lib::src::widgets::drag_target.dart::_DragEndKind" {
+  +int index
+  {static} +List<_DragEndKind> values
+  {static} +_DragEndKind dropped
+  {static} +_DragEndKind canceled
+}
+
+"flutter::lib::src::widgets::drag_target.dart::_DragEndKind" o-- "flutter::lib::src::widgets::drag_target.dart::_DragEndKind"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::drag_target.dart::_DragEndKind"
+
+
+@enduml

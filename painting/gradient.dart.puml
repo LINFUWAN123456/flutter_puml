@@ -1,0 +1,93 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::gradient.dart::_ColorsAndStops" {
+  +List<dynamic> colors
+  +List<double> stops
+}
+
+abstract class "flutter::lib::src::painting::gradient.dart::GradientTransform" {
+  +dynamic transform()
+}
+
+class "flutter::lib::src::painting::gradient.dart::GradientRotation" {
+  +double radians
+  +int hashCode
+  +dynamic transform()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::gradient.dart::GradientTransform" <|-- "flutter::lib::src::painting::gradient.dart::GradientRotation"
+
+abstract class "flutter::lib::src::painting::gradient.dart::Gradient" {
+  +List<dynamic> colors
+  +List<double>? stops
+  +GradientTransform? transform
+  -List<double> _impliedStops()
+  +dynamic createShader()
+  +Gradient scale()
+  +Gradient? lerpFrom()
+  +Gradient? lerpTo()
+  {static} +Gradient? lerp()
+  -dynamic _resolveTransform()
+}
+
+"flutter::lib::src::painting::gradient.dart::Gradient" o-- "flutter::lib::src::painting::gradient.dart::GradientTransform"
+
+class "flutter::lib::src::painting::gradient.dart::LinearGradient" {
+  +AlignmentGeometry begin
+  +AlignmentGeometry end
+  +dynamic tileMode
+  +int hashCode
+  +dynamic createShader()
+  +LinearGradient scale()
+  +Gradient? lerpFrom()
+  +Gradient? lerpTo()
+  {static} +LinearGradient? lerp()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::gradient.dart::LinearGradient" o-- "flutter::lib::src::painting::alignment.dart::AlignmentGeometry"
+"flutter::lib::src::painting::gradient.dart::Gradient" <|-- "flutter::lib::src::painting::gradient.dart::LinearGradient"
+
+class "flutter::lib::src::painting::gradient.dart::RadialGradient" {
+  +AlignmentGeometry center
+  +double radius
+  +dynamic tileMode
+  +AlignmentGeometry? focal
+  +double focalRadius
+  +int hashCode
+  +dynamic createShader()
+  +RadialGradient scale()
+  +Gradient? lerpFrom()
+  +Gradient? lerpTo()
+  {static} +RadialGradient? lerp()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::gradient.dart::RadialGradient" o-- "flutter::lib::src::painting::alignment.dart::AlignmentGeometry"
+"flutter::lib::src::painting::gradient.dart::Gradient" <|-- "flutter::lib::src::painting::gradient.dart::RadialGradient"
+
+class "flutter::lib::src::painting::gradient.dart::SweepGradient" {
+  +AlignmentGeometry center
+  +double startAngle
+  +double endAngle
+  +dynamic tileMode
+  +int hashCode
+  +dynamic createShader()
+  +SweepGradient scale()
+  +Gradient? lerpFrom()
+  +Gradient? lerpTo()
+  {static} +SweepGradient? lerp()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::gradient.dart::SweepGradient" o-- "flutter::lib::src::painting::alignment.dart::AlignmentGeometry"
+"flutter::lib::src::painting::gradient.dart::Gradient" <|-- "flutter::lib::src::painting::gradient.dart::SweepGradient"
+
+
+@enduml

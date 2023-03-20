@@ -1,0 +1,41 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scroll_metrics.dart::FixedScrollMetrics" {
+  -double? _minScrollExtent
+  -double? _maxScrollExtent
+  -double? _pixels
+  -double? _viewportDimension
+  +dynamic axisDirection
+  +double minScrollExtent
+  +double maxScrollExtent
+  +bool hasContentDimensions
+  +double pixels
+  +bool hasPixels
+  +double viewportDimension
+  +bool hasViewportDimension
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scroll_metrics.dart::ScrollMetrics" <|-- "flutter::lib::src::widgets::scroll_metrics.dart::FixedScrollMetrics"
+
+abstract class "flutter::lib::src::widgets::scroll_metrics.dart::ScrollMetrics" {
+  +double minScrollExtent
+  +double maxScrollExtent
+  +bool hasContentDimensions
+  +double pixels
+  +bool hasPixels
+  +double viewportDimension
+  +bool hasViewportDimension
+  +dynamic axisDirection
+  +dynamic axis
+  +bool outOfRange
+  +bool atEdge
+  +double extentBefore
+  +double extentInside
+  +double extentAfter
+  +ScrollMetrics copyWith()
+}
+
+
+@enduml

@@ -1,0 +1,87 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::sliver_grid.dart::SliverGridGeometry" {
+  +double scrollOffset
+  +double crossAxisOffset
+  +double mainAxisExtent
+  +double crossAxisExtent
+  +double trailingScrollOffset
+  +BoxConstraints getBoxConstraints()
+  +String toString()
+}
+
+abstract class "flutter::lib::src::rendering::sliver_grid.dart::SliverGridLayout" {
+  +int getMinChildIndexForScrollOffset()
+  +int getMaxChildIndexForScrollOffset()
+  +SliverGridGeometry getGeometryForChildIndex()
+  +double computeMaxScrollOffset()
+}
+
+class "flutter::lib::src::rendering::sliver_grid.dart::SliverGridRegularTileLayout" {
+  +int crossAxisCount
+  +double mainAxisStride
+  +double crossAxisStride
+  +double childMainAxisExtent
+  +double childCrossAxisExtent
+  +bool reverseCrossAxis
+  +int getMinChildIndexForScrollOffset()
+  +int getMaxChildIndexForScrollOffset()
+  -double _getOffsetFromStartInCrossAxis()
+  +SliverGridGeometry getGeometryForChildIndex()
+  +double computeMaxScrollOffset()
+}
+
+"flutter::lib::src::rendering::sliver_grid.dart::SliverGridLayout" <|-- "flutter::lib::src::rendering::sliver_grid.dart::SliverGridRegularTileLayout"
+
+abstract class "flutter::lib::src::rendering::sliver_grid.dart::SliverGridDelegate" {
+  +SliverGridLayout getLayout()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::rendering::sliver_grid.dart::SliverGridDelegateWithFixedCrossAxisCount" {
+  +int crossAxisCount
+  +double mainAxisSpacing
+  +double crossAxisSpacing
+  +double childAspectRatio
+  +double? mainAxisExtent
+  -bool _debugAssertIsValid()
+  +SliverGridLayout getLayout()
+  +bool shouldRelayout()
+}
+
+"flutter::lib::src::rendering::sliver_grid.dart::SliverGridDelegate" <|-- "flutter::lib::src::rendering::sliver_grid.dart::SliverGridDelegateWithFixedCrossAxisCount"
+
+class "flutter::lib::src::rendering::sliver_grid.dart::SliverGridDelegateWithMaxCrossAxisExtent" {
+  +double maxCrossAxisExtent
+  +double mainAxisSpacing
+  +double crossAxisSpacing
+  +double childAspectRatio
+  +double? mainAxisExtent
+  -bool _debugAssertIsValid()
+  +SliverGridLayout getLayout()
+  +bool shouldRelayout()
+}
+
+"flutter::lib::src::rendering::sliver_grid.dart::SliverGridDelegate" <|-- "flutter::lib::src::rendering::sliver_grid.dart::SliverGridDelegateWithMaxCrossAxisExtent"
+
+class "flutter::lib::src::rendering::sliver_grid.dart::SliverGridParentData" {
+  +double? crossAxisOffset
+  +String toString()
+}
+
+"flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::SliverMultiBoxAdaptorParentData" <|-- "flutter::lib::src::rendering::sliver_grid.dart::SliverGridParentData"
+
+class "flutter::lib::src::rendering::sliver_grid.dart::RenderSliverGrid" {
+  -SliverGridDelegate _gridDelegate
+  +SliverGridDelegate gridDelegate
+  +void setupParentData()
+  +double childCrossAxisPosition()
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::sliver_grid.dart::RenderSliverGrid" o-- "flutter::lib::src::rendering::sliver_grid.dart::SliverGridDelegate"
+"flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverMultiBoxAdaptor" <|-- "flutter::lib::src::rendering::sliver_grid.dart::RenderSliverGrid"
+
+
+@enduml

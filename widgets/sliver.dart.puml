@@ -1,0 +1,204 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::sliver.dart::SliverChildDelegate" {
+  +int? estimatedChildCount
+  +Widget? build()
+  +double? estimateMaxScrollOffset()
+  +void didFinishLayout()
+  +bool shouldRebuild()
+  +int? findIndexByKey()
+  +String toString()
+  +void debugFillDescription()
+}
+
+class "flutter::lib::src::widgets::sliver.dart::_SaltedValueKey" {
+}
+
+class "flutter::lib::src::widgets::sliver.dart::SliverChildBuilderDelegate" {
+  +Widget? Function(BuildContext, int) builder
+  +int? childCount
+  +bool addAutomaticKeepAlives
+  +bool addRepaintBoundaries
+  +bool addSemanticIndexes
+  +int semanticIndexOffset
+  +int? Function(Widget, int) semanticIndexCallback
+  +int? Function(dynamic)? findChildIndexCallback
+  +int? estimatedChildCount
+  +int? findIndexByKey()
+  +Widget? build()
+  +bool shouldRebuild()
+}
+
+"flutter::lib::src::widgets::sliver.dart::SliverChildBuilderDelegate" o-- "flutter::lib::src::widgets::framework.dart::Widget Function(BuildContext, int)"
+"flutter::lib::src::widgets::sliver.dart::SliverChildBuilderDelegate" o-- "flutter::lib::src::widgets::sliver.dart::int Function(Widget, int)"
+"flutter::lib::src::widgets::sliver.dart::SliverChildBuilderDelegate" o-- "flutter::lib::src::widgets::sliver.dart::int Function(dynamic)"
+"flutter::lib::src::widgets::sliver.dart::SliverChildDelegate" <|-- "flutter::lib::src::widgets::sliver.dart::SliverChildBuilderDelegate"
+
+class "flutter::lib::src::widgets::sliver.dart::SliverChildListDelegate" {
+  +bool addAutomaticKeepAlives
+  +bool addRepaintBoundaries
+  +bool addSemanticIndexes
+  +int semanticIndexOffset
+  +int? Function(Widget, int) semanticIndexCallback
+  +List<Widget> children
+  -Map<dynamic, int>? _keyToIndex
+  -bool _isConstantInstance
+  +int? estimatedChildCount
+  -int? _findChildIndex()
+  +int? findIndexByKey()
+  +Widget? build()
+  +bool shouldRebuild()
+}
+
+"flutter::lib::src::widgets::sliver.dart::SliverChildListDelegate" o-- "flutter::lib::src::widgets::sliver.dart::int Function(Widget, int)"
+"flutter::lib::src::widgets::sliver.dart::SliverChildDelegate" <|-- "flutter::lib::src::widgets::sliver.dart::SliverChildListDelegate"
+
+class "flutter::lib::src::widgets::sliver.dart::_SelectionKeepAlive" {
+  +Widget child
+  +State<_SelectionKeepAlive> createState()
+}
+
+"flutter::lib::src::widgets::sliver.dart::_SelectionKeepAlive" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::sliver.dart::_SelectionKeepAlive"
+
+class "flutter::lib::src::widgets::sliver.dart::_SelectionKeepAliveState" {
+  -Set<dynamic>? _selectablesWithSelections
+  -Map<dynamic, dynamic>? _selectableAttachments
+  -dynamic _registrar
+  -bool _wantKeepAlive
+  +bool wantKeepAlive
+  +dynamic listensTo()
+  -void _updateSelectablesWithSelections()
+  +void didChangeDependencies()
+  +void add()
+  +void remove()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::sliver.dart::_SelectionKeepAliveState"
+"flutter::lib::src::widgets::automatic_keep_alive.dart::AutomaticKeepAliveClientMixin" <|-- "flutter::lib::src::widgets::sliver.dart::_SelectionKeepAliveState"
+
+abstract class "flutter::lib::src::widgets::sliver.dart::SliverWithKeepAliveWidget" {
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::RenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver.dart::SliverWithKeepAliveWidget"
+
+abstract class "flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorWidget" {
+  +SliverChildDelegate delegate
+  +SliverMultiBoxAdaptorElement createElement()
+  +dynamic createRenderObject()
+  +double? estimateMaxScrollOffset()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorWidget" o-- "flutter::lib::src::widgets::sliver.dart::SliverChildDelegate"
+"flutter::lib::src::widgets::sliver.dart::SliverWithKeepAliveWidget" <|-- "flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorWidget"
+
+class "flutter::lib::src::widgets::sliver.dart::SliverList" {
+  +SliverMultiBoxAdaptorElement createElement()
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorWidget" <|-- "flutter::lib::src::widgets::sliver.dart::SliverList"
+
+class "flutter::lib::src::widgets::sliver.dart::SliverFixedExtentList" {
+  +double itemExtent
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorWidget" <|-- "flutter::lib::src::widgets::sliver.dart::SliverFixedExtentList"
+
+class "flutter::lib::src::widgets::sliver.dart::SliverGrid" {
+  +dynamic gridDelegate
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +double estimateMaxScrollOffset()
+}
+
+"flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorWidget" <|-- "flutter::lib::src::widgets::sliver.dart::SliverGrid"
+
+class "flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorElement" {
+  -bool _replaceMovedChildren
+  -SplayTreeMap<int, Element?> _childElements
+  -dynamic _currentBeforeChild
+  -int? _currentlyUpdatingChildIndex
+  -bool _didUnderflow
+  +dynamic renderObject
+  +int? estimatedChildCount
+  +int childCount
+  +void update()
+  +void performRebuild()
+  -Widget? _build()
+  +void createChild()
+  +Element? updateChild()
+  +void forgetChild()
+  +void removeChild()
+  {static} -double _extrapolateMaxScrollOffset()
+  +double estimateMaxScrollOffset()
+  +void didStartLayout()
+  +void didFinishLayout()
+  +bool debugAssertChildListLocked()
+  +void didAdoptChild()
+  +void setDidUnderflow()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+  +void visitChildren()
+  +void debugVisitOnstageChildren()
+}
+
+"flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorElement" o-- "dart::collection::SplayTreeMap<int, Element>"
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorElement"
+
+class "flutter::lib::src::widgets::sliver.dart::SliverOpacity" {
+  +double opacity
+  +bool alwaysIncludeSemantics
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver.dart::SliverOpacity"
+
+class "flutter::lib::src::widgets::sliver.dart::SliverIgnorePointer" {
+  +bool ignoring
+  +bool? ignoringSemantics
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver.dart::SliverIgnorePointer"
+
+class "flutter::lib::src::widgets::sliver.dart::SliverOffstage" {
+  +bool offstage
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+  +SingleChildRenderObjectElement createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::sliver.dart::SliverOffstage"
+
+class "flutter::lib::src::widgets::sliver.dart::_SliverOffstageElement" {
+  +void debugVisitOnstageChildren()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectElement" <|-- "flutter::lib::src::widgets::sliver.dart::_SliverOffstageElement"
+
+class "flutter::lib::src::widgets::sliver.dart::KeepAlive" {
+  +bool keepAlive
+  +Type debugTypicalAncestorWidgetClass
+  +void applyParentData()
+  +bool debugCanApplyOutOfTurn()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::ParentDataWidget" <|-- "flutter::lib::src::widgets::sliver.dart::KeepAlive"
+
+
+@enduml

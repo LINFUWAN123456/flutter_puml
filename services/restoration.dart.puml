@@ -1,0 +1,74 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::restoration.dart::RestorationManager" {
+  -RestorationBucket? _rootBucket
+  -Completer<RestorationBucket?>? _pendingRootBucket
+  -bool _rootBucketIsValid
+  -bool _isReplacing
+  -bool _debugDoingUpdate
+  -bool _serializationScheduled
+  -Set<RestorationBucket> _bucketsNeedingSerialization
+  +Future<RestorationBucket?> rootBucket
+  +bool isReplacing
+  +void initChannels()
+  -Future<void> _getRootBucketFromEngine()
+  -void _parseAndHandleRestorationUpdateFromEngine()
+  +void handleRestorationUpdateFromEngine()
+  +Future<void> sendToEngine()
+  -Future<void> _methodHandler()
+  -Map<Object?, Object?>? _decodeRestorationData()
+  -dynamic _encodeRestorationData()
+  +void scheduleSerializationFor()
+  +void unscheduleSerializationFor()
+  -void _doSerialization()
+  +void flushData()
+}
+
+"flutter::lib::src::services::restoration.dart::RestorationManager" o-- "flutter::lib::src::services::restoration.dart::RestorationBucket"
+"flutter::lib::src::services::restoration.dart::RestorationManager" o-- "dart::async::Completer<RestorationBucket>"
+
+class "flutter::lib::src::services::restoration.dart::RestorationBucket" {
+  {static} -String _childrenMapKey
+  {static} -String _valuesMapKey
+  -Map<Object?, Object?> _rawData
+  -Object? _debugOwner
+  -RestorationManager? _manager
+  -RestorationBucket? _parent
+  -String _restorationId
+  -Map<String, RestorationBucket> _claimedChildren
+  -Map<String, List<RestorationBucket>> _childrenToAdd
+  -bool _needsSerialization
+  -bool _debugDisposed
+  +Object? debugOwner
+  +bool isReplacing
+  +String restorationId
+  -Map<Object?, Object?> _rawChildren
+  -Map<Object?, Object?> _rawValues
+  +P? read()
+  +void write()
+  +P? remove()
+  +bool contains()
+  +RestorationBucket claimChild()
+  +void adoptChild()
+  -void _dropChild()
+  -void _markNeedsSerialization()
+  +void finalize()
+  -void _recursivelyUpdateManager()
+  -void _updateManager()
+  -bool _debugAssertIntegrity()
+  -void _removeChildData()
+  -void _addChildData()
+  -void _finalizeAddChildData()
+  -void _visitChildren()
+  +void rename()
+  +void dispose()
+  +String toString()
+  -bool _debugAssertNotDisposed()
+}
+
+"flutter::lib::src::services::restoration.dart::RestorationBucket" o-- "flutter::lib::src::services::restoration.dart::RestorationManager"
+"flutter::lib::src::services::restoration.dart::RestorationBucket" o-- "flutter::lib::src::services::restoration.dart::RestorationBucket"
+
+
+@enduml

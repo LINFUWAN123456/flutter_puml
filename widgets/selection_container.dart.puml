@@ -1,0 +1,54 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::selection_container.dart::SelectionContainer" {
+  +dynamic registrar
+  +Widget child
+  +SelectionContainerDelegate? delegate
+  -bool _disabled
+  {static} +dynamic maybeOf()
+  +State<SelectionContainer> createState()
+}
+
+"flutter::lib::src::widgets::selection_container.dart::SelectionContainer" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::selection_container.dart::SelectionContainer" o-- "flutter::lib::src::widgets::selection_container.dart::SelectionContainerDelegate"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::selection_container.dart::SelectionContainer"
+
+class "flutter::lib::src::widgets::selection_container.dart::_SelectionContainerState" {
+  -Set<dynamic> _listeners
+  {static} -dynamic _disabledGeometry
+  +dynamic value
+  +dynamic size
+  +void initState()
+  +void didUpdateWidget()
+  +void didChangeDependencies()
+  +void addListener()
+  +void removeListener()
+  +void pushHandleLayers()
+  +dynamic getSelectedContent()
+  +dynamic dispatchSelectionEvent()
+  +dynamic getTransformTo()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::selection_container.dart::_SelectionContainerState"
+
+class "flutter::lib::src::widgets::selection_container.dart::SelectionRegistrarScope" {
+  +dynamic registrar
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::selection_container.dart::SelectionRegistrarScope"
+
+abstract class "flutter::lib::src::widgets::selection_container.dart::SelectionContainerDelegate" {
+  -BuildContext? _selectionContainerContext
+  +dynamic containerSize
+  +dynamic getTransformFrom()
+  +dynamic getTransformTo()
+}
+
+"flutter::lib::src::widgets::selection_container.dart::SelectionContainerDelegate" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+
+
+@enduml

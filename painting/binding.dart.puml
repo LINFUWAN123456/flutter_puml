@@ -1,0 +1,34 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::binding.dart::_SystemFontsNotifier" {
+  -Set<dynamic> _systemFontsCallbacks
+  +void notifyListeners()
+  +void addListener()
+  +void removeListener()
+}
+
+abstract class "flutter::lib::src::painting::binding.dart::PaintingBinding" {
+  {static} -PaintingBinding? _instance
+  {static} +ShaderWarmUp? shaderWarmUp
+  -ImageCache _imageCache
+  -_SystemFontsNotifier _systemFonts
+  {static} +PaintingBinding instance
+  +ImageCache imageCache
+  +dynamic systemFonts
+  +void initInstances()
+  +ImageCache createImageCache()
+  +Future<dynamic> instantiateImageCodec()
+  +Future<dynamic> instantiateImageCodecFromBuffer()
+  +void evict()
+  +void handleMemoryPressure()
+  +Future<void> handleSystemMessage()
+}
+
+"flutter::lib::src::painting::binding.dart::PaintingBinding" o-- "flutter::lib::src::painting::binding.dart::PaintingBinding"
+"flutter::lib::src::painting::binding.dart::PaintingBinding" o-- "flutter::lib::src::painting::shader_warm_up.dart::ShaderWarmUp"
+"flutter::lib::src::painting::binding.dart::PaintingBinding" o-- "flutter::lib::src::painting::image_cache.dart::ImageCache"
+"flutter::lib::src::painting::binding.dart::PaintingBinding" o-- "flutter::lib::src::painting::binding.dart::_SystemFontsNotifier"
+
+
+@enduml

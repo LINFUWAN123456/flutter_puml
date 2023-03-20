@@ -1,0 +1,64 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification" {
+  +ScrollMetrics metrics
+  +BuildContext? context
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification" o-- "flutter::lib::src::widgets::scroll_metrics.dart::ScrollMetrics"
+"flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::notification_listener.dart::LayoutChangedNotification" <|-- "flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification"
+"flutter::lib::src::widgets::scroll_notification.dart::ViewportNotificationMixin" <|-- "flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification"
+
+class "flutter::lib::src::widgets::scroll_notification.dart::ScrollStartNotification" {
+  +dynamic dragDetails
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification" <|-- "flutter::lib::src::widgets::scroll_notification.dart::ScrollStartNotification"
+
+class "flutter::lib::src::widgets::scroll_notification.dart::ScrollUpdateNotification" {
+  +dynamic dragDetails
+  +double? scrollDelta
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification" <|-- "flutter::lib::src::widgets::scroll_notification.dart::ScrollUpdateNotification"
+
+class "flutter::lib::src::widgets::scroll_notification.dart::OverscrollNotification" {
+  +dynamic dragDetails
+  +double overscroll
+  +double velocity
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification" <|-- "flutter::lib::src::widgets::scroll_notification.dart::OverscrollNotification"
+
+class "flutter::lib::src::widgets::scroll_notification.dart::ScrollEndNotification" {
+  +dynamic dragDetails
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification" <|-- "flutter::lib::src::widgets::scroll_notification.dart::ScrollEndNotification"
+
+class "flutter::lib::src::widgets::scroll_notification.dart::UserScrollNotification" {
+  +dynamic direction
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification" <|-- "flutter::lib::src::widgets::scroll_notification.dart::UserScrollNotification"
+
+abstract class "flutter::lib::src::widgets::scroll_notification.dart::ViewportNotificationMixin" {
+  -int _depth
+  +int depth
+  +void debugFillDescription()
+}
+
+abstract class "flutter::lib::src::widgets::scroll_notification.dart::ViewportElementMixin" {
+  +bool onNotification()
+}
+
+
+@enduml

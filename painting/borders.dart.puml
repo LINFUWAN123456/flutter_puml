@@ -1,0 +1,94 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::borders.dart::BorderSide" {
+  +dynamic color
+  +double width
+  +BorderStyle style
+  {static} +BorderSide none
+  +StrokeAlign strokeAlign
+  +int hashCode
+  {static} +BorderSide merge()
+  +BorderSide copyWith()
+  +BorderSide scale()
+  +dynamic toPaint()
+  {static} +bool canMerge()
+  {static} +BorderSide lerp()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::borders.dart::BorderSide" o-- "flutter::lib::src::painting::borders.dart::BorderStyle"
+"flutter::lib::src::painting::borders.dart::BorderSide" o-- "flutter::lib::src::painting::borders.dart::BorderSide"
+"flutter::lib::src::painting::borders.dart::BorderSide" o-- "flutter::lib::src::painting::borders.dart::StrokeAlign"
+
+abstract class "flutter::lib::src::painting::borders.dart::ShapeBorder" {
+  +EdgeInsetsGeometry dimensions
+  +ShapeBorder? add()
+  +ShapeBorder +()
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  {static} +ShapeBorder? lerp()
+  +dynamic getOuterPath()
+  +dynamic getInnerPath()
+  +void paint()
+  +String toString()
+}
+
+"flutter::lib::src::painting::borders.dart::ShapeBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+
+abstract class "flutter::lib::src::painting::borders.dart::OutlinedBorder" {
+  +BorderSide side
+  +OutlinedBorder copyWith()
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  {static} +OutlinedBorder? lerp()
+}
+
+"flutter::lib::src::painting::borders.dart::OutlinedBorder" o-- "flutter::lib::src::painting::borders.dart::BorderSide"
+"flutter::lib::src::painting::borders.dart::ShapeBorder" <|-- "flutter::lib::src::painting::borders.dart::OutlinedBorder"
+
+class "flutter::lib::src::painting::borders.dart::_CompoundBorder" {
+  +List<ShapeBorder> borders
+  +EdgeInsetsGeometry dimensions
+  +int hashCode
+  +ShapeBorder add()
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  {static} +_CompoundBorder lerp()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::borders.dart::_CompoundBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::borders.dart::ShapeBorder" <|-- "flutter::lib::src::painting::borders.dart::_CompoundBorder"
+
+class "flutter::lib::src::painting::borders.dart::BorderStyle" {
+  +int index
+  {static} +List<BorderStyle> values
+  {static} +BorderStyle none
+  {static} +BorderStyle solid
+}
+
+"flutter::lib::src::painting::borders.dart::BorderStyle" o-- "flutter::lib::src::painting::borders.dart::BorderStyle"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::borders.dart::BorderStyle"
+
+class "flutter::lib::src::painting::borders.dart::StrokeAlign" {
+  +int index
+  {static} +List<StrokeAlign> values
+  {static} +StrokeAlign inside
+  {static} +StrokeAlign center
+  {static} +StrokeAlign outside
+}
+
+"flutter::lib::src::painting::borders.dart::StrokeAlign" o-- "flutter::lib::src::painting::borders.dart::StrokeAlign"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::borders.dart::StrokeAlign"
+
+
+@enduml

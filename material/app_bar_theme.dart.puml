@@ -1,0 +1,35 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::app_bar_theme.dart::AppBarTheme" {
+  +dynamic brightness
+  +dynamic backgroundColor
+  +dynamic foregroundColor
+  +double? elevation
+  +double? scrolledUnderElevation
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic shape
+  +dynamic iconTheme
+  +dynamic actionsIconTheme
+  +TextTheme? textTheme
+  +bool? centerTitle
+  +double? titleSpacing
+  +double? toolbarHeight
+  +dynamic toolbarTextStyle
+  +dynamic titleTextStyle
+  +dynamic systemOverlayStyle
+  +bool? backwardsCompatibility
+  +dynamic color
+  +int hashCode
+  +AppBarTheme copyWith()
+  {static} +AppBarTheme of()
+  {static} +AppBarTheme lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::app_bar_theme.dart::AppBarTheme" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+
+
+@enduml

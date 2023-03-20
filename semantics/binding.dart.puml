@@ -1,0 +1,18 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::semantics::binding.dart::SemanticsBinding" {
+  {static} -SemanticsBinding? _instance
+  -dynamic _accessibilityFeatures
+  {static} +SemanticsBinding instance
+  +dynamic accessibilityFeatures
+  +bool disableAnimations
+  +void initInstances()
+  +void handleAccessibilityFeaturesChanged()
+  +dynamic createSemanticsUpdateBuilder()
+}
+
+"flutter::lib::src::semantics::binding.dart::SemanticsBinding" o-- "flutter::lib::src::semantics::binding.dart::SemanticsBinding"
+
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::bottom_app_bar.dart::BottomAppBar" {
+  +dynamic child
+  +dynamic color
+  +double? elevation
+  +dynamic shape
+  +dynamic clipBehavior
+  +double notchMargin
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::bottom_app_bar.dart::_BottomAppBarState" {
+  +dynamic geometryListenable
+  +dynamic materialKey
+  {static} -double _defaultElevation
+  +void didChangeDependencies()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::bottom_app_bar.dart::_BottomAppBarClipper" {
+  +dynamic geometry
+  +dynamic shape
+  +dynamic materialKey
+  +double notchMargin
+  +double bottomNavigationBarTop
+  +dynamic getClip()
+  +bool shouldReclip()
+}
+
+
+@enduml

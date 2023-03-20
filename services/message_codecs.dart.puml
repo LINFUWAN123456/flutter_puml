@@ -1,0 +1,75 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::message_codecs.dart::BinaryCodec" {
+  +ByteData? decodeMessage()
+  +ByteData? encodeMessage()
+}
+
+"flutter::lib::src::services::message_codec.dart::MessageCodec" <|-- "flutter::lib::src::services::message_codecs.dart::BinaryCodec"
+
+class "flutter::lib::src::services::message_codecs.dart::StringCodec" {
+  +String? decodeMessage()
+  +ByteData? encodeMessage()
+}
+
+"flutter::lib::src::services::message_codec.dart::MessageCodec" <|-- "flutter::lib::src::services::message_codecs.dart::StringCodec"
+
+class "flutter::lib::src::services::message_codecs.dart::JSONMessageCodec" {
+  +ByteData? encodeMessage()
+  +dynamic decodeMessage()
+}
+
+"flutter::lib::src::services::message_codec.dart::MessageCodec" <|-- "flutter::lib::src::services::message_codecs.dart::JSONMessageCodec"
+
+class "flutter::lib::src::services::message_codecs.dart::JSONMethodCodec" {
+  +ByteData encodeMethodCall()
+  +MethodCall decodeMethodCall()
+  +dynamic decodeEnvelope()
+  +ByteData encodeSuccessEnvelope()
+  +ByteData encodeErrorEnvelope()
+}
+
+"flutter::lib::src::services::message_codec.dart::MethodCodec" <|-- "flutter::lib::src::services::message_codecs.dart::JSONMethodCodec"
+
+class "flutter::lib::src::services::message_codecs.dart::StandardMessageCodec" {
+  {static} -int _valueNull
+  {static} -int _valueTrue
+  {static} -int _valueFalse
+  {static} -int _valueInt32
+  {static} -int _valueInt64
+  {static} -int _valueLargeInt
+  {static} -int _valueFloat64
+  {static} -int _valueString
+  {static} -int _valueUint8List
+  {static} -int _valueInt32List
+  {static} -int _valueInt64List
+  {static} -int _valueFloat64List
+  {static} -int _valueList
+  {static} -int _valueMap
+  {static} -int _valueFloat32List
+  +ByteData? encodeMessage()
+  +dynamic decodeMessage()
+  +void writeValue()
+  +Object? readValue()
+  +Object? readValueOfType()
+  +void writeSize()
+  +int readSize()
+}
+
+"flutter::lib::src::services::message_codec.dart::MessageCodec" <|-- "flutter::lib::src::services::message_codecs.dart::StandardMessageCodec"
+
+class "flutter::lib::src::services::message_codecs.dart::StandardMethodCodec" {
+  +StandardMessageCodec messageCodec
+  +ByteData encodeMethodCall()
+  +MethodCall decodeMethodCall()
+  +ByteData encodeSuccessEnvelope()
+  +ByteData encodeErrorEnvelope()
+  +dynamic decodeEnvelope()
+}
+
+"flutter::lib::src::services::message_codecs.dart::StandardMethodCodec" o-- "flutter::lib::src::services::message_codecs.dart::StandardMessageCodec"
+"flutter::lib::src::services::message_codec.dart::MethodCodec" <|-- "flutter::lib::src::services::message_codecs.dart::StandardMethodCodec"
+
+
+@enduml

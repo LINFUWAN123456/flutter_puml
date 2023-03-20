@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::divider.dart::Divider" {
+  +double? height
+  +double? thickness
+  +double? indent
+  +double? endIndent
+  +dynamic color
+  {static} +dynamic createBorderSide()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::divider.dart::VerticalDivider" {
+  +double? width
+  +double? thickness
+  +double? indent
+  +double? endIndent
+  +dynamic color
+  +dynamic build()
+}
+
+
+@enduml

@@ -1,0 +1,73 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::raw_keyboard_linux.dart::RawKeyEventDataLinux" {
+  +KeyHelper keyHelper
+  +int unicodeScalarValues
+  +int scanCode
+  +int keyCode
+  +int modifiers
+  +bool isDown
+  +int? specifiedLogicalKey
+  +String keyLabel
+  +PhysicalKeyboardKey physicalKey
+  +LogicalKeyboardKey logicalKey
+  +int hashCode
+  +bool isModifierPressed()
+  +KeyboardSide getModifierSide()
+  +void debugFillProperties()
+  +bool ==()
+}
+
+"flutter::lib::src::services::raw_keyboard_linux.dart::RawKeyEventDataLinux" o-- "flutter::lib::src::services::raw_keyboard_linux.dart::KeyHelper"
+"flutter::lib::src::services::raw_keyboard_linux.dart::RawKeyEventDataLinux" o-- "flutter::lib::src::services::keyboard_key.g.dart::PhysicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard_linux.dart::RawKeyEventDataLinux" o-- "flutter::lib::src::services::keyboard_key.g.dart::LogicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEventData" <|-- "flutter::lib::src::services::raw_keyboard_linux.dart::RawKeyEventDataLinux"
+
+abstract class "flutter::lib::src::services::raw_keyboard_linux.dart::KeyHelper" {
+  +String debugToolkit
+  +int platformPlane
+  +KeyboardSide getModifierSide()
+  +bool isModifierPressed()
+  +LogicalKeyboardKey? numpadKey()
+  +LogicalKeyboardKey? logicalKey()
+}
+
+class "flutter::lib::src::services::raw_keyboard_linux.dart::GLFWKeyHelper" {
+  {static} +int modifierCapsLock
+  {static} +int modifierShift
+  {static} +int modifierControl
+  {static} +int modifierAlt
+  {static} +int modifierMeta
+  {static} +int modifierNumericPad
+  +String debugToolkit
+  +int platformPlane
+  -int _mergeModifiers()
+  +bool isModifierPressed()
+  +KeyboardSide getModifierSide()
+  +LogicalKeyboardKey? numpadKey()
+  +LogicalKeyboardKey? logicalKey()
+}
+
+"flutter::lib::src::services::raw_keyboard_linux.dart::KeyHelper" <|-- "flutter::lib::src::services::raw_keyboard_linux.dart::GLFWKeyHelper"
+
+class "flutter::lib::src::services::raw_keyboard_linux.dart::GtkKeyHelper" {
+  {static} +int modifierShift
+  {static} +int modifierCapsLock
+  {static} +int modifierControl
+  {static} +int modifierMod1
+  {static} +int modifierMod2
+  {static} +int modifierMeta
+  +String debugToolkit
+  +int platformPlane
+  -int _mergeModifiers()
+  +bool isModifierPressed()
+  +KeyboardSide getModifierSide()
+  +LogicalKeyboardKey? numpadKey()
+  +LogicalKeyboardKey? logicalKey()
+}
+
+"flutter::lib::src::services::raw_keyboard_linux.dart::KeyHelper" <|-- "flutter::lib::src::services::raw_keyboard_linux.dart::GtkKeyHelper"
+
+
+@enduml

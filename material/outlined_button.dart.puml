@@ -1,0 +1,74 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::outlined_button.dart::OutlinedButton" {
+  {static} +ButtonStyle styleFrom()
+  +ButtonStyle defaultStyleOf()
+  +ButtonStyle? themeStyleOf()
+}
+
+"flutter::lib::src::material::button_style_button.dart::ButtonStyleButton" <|-- "flutter::lib::src::material::outlined_button.dart::OutlinedButton"
+
+class "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultColor" {
+  +dynamic color
+  +dynamic disabled
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultColor"
+
+class "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultOverlay" {
+  +dynamic foreground
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultOverlay"
+
+class "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultMouseCursor" {
+  +dynamic enabledCursor
+  +dynamic disabledCursor
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultMouseCursor"
+
+class "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonWithIcon" {
+}
+
+"flutter::lib::src::material::outlined_button.dart::OutlinedButton" <|-- "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonWithIcon"
+
+class "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonWithIconChild" {
+  +dynamic label
+  +dynamic icon
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultsM3" {
+  +dynamic context
+  -ColorScheme _colors
+  +MaterialStateProperty<dynamic> textStyle
+  +MaterialStateProperty<dynamic>? backgroundColor
+  +MaterialStateProperty<dynamic>? foregroundColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +MaterialStateProperty<double>? elevation
+  +MaterialStateProperty<dynamic>? padding
+  +MaterialStateProperty<dynamic>? minimumSize
+  +MaterialStateProperty<dynamic>? maximumSize
+  +MaterialStateProperty<dynamic>? side
+  +MaterialStateProperty<dynamic>? shape
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +VisualDensity? visualDensity
+  +MaterialTapTargetSize? tapTargetSize
+  +InteractiveInkFeatureFactory? splashFactory
+}
+
+"flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultsM3" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultsM3" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultsM3" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<double>"
+"flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultsM3" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultsM3" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultsM3" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::button_style.dart::ButtonStyle" <|-- "flutter::lib::src::material::outlined_button.dart::_OutlinedButtonDefaultsM3"
+
+
+@enduml

@@ -1,0 +1,142 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::switch.dart::Switch" {
+  +bool value
+  +dynamic onChanged
+  +dynamic activeColor
+  +dynamic activeTrackColor
+  +dynamic inactiveThumbColor
+  +dynamic inactiveTrackColor
+  +dynamic activeThumbImage
+  +dynamic onActiveThumbImageError
+  +dynamic inactiveThumbImage
+  +dynamic onInactiveThumbImageError
+  +MaterialStateProperty<dynamic>? thumbColor
+  +MaterialStateProperty<dynamic>? trackColor
+  +MaterialTapTargetSize? materialTapTargetSize
+  -_SwitchType _switchType
+  +dynamic dragStartBehavior
+  +dynamic mouseCursor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +double? splashRadius
+  +dynamic focusNode
+  +bool autofocus
+  -dynamic _getSwitchSize()
+  -dynamic _buildCupertinoSwitch()
+  -dynamic _buildMaterialSwitch()
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::switch.dart::Switch" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::switch.dart::Switch" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::switch.dart::Switch" o-- "flutter::lib::src::material::switch.dart::_SwitchType"
+
+class "flutter::lib::src::material::switch.dart::_MaterialSwitch" {
+  +bool value
+  +dynamic onChanged
+  +dynamic activeColor
+  +dynamic activeTrackColor
+  +dynamic inactiveThumbColor
+  +dynamic inactiveTrackColor
+  +dynamic activeThumbImage
+  +dynamic onActiveThumbImageError
+  +dynamic inactiveThumbImage
+  +dynamic onInactiveThumbImageError
+  +MaterialStateProperty<dynamic>? thumbColor
+  +MaterialStateProperty<dynamic>? trackColor
+  +MaterialTapTargetSize? materialTapTargetSize
+  +dynamic dragStartBehavior
+  +dynamic mouseCursor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +double? splashRadius
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic size
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::switch.dart::_MaterialSwitch" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::switch.dart::_MaterialSwitch" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+
+class "flutter::lib::src::material::switch.dart::_MaterialSwitchState" {
+  -_SwitchPainter _painter
+  -bool _needsPositionAnimation
+  +dynamic onChanged
+  +bool tristate
+  +bool? value
+  -MaterialStateProperty<dynamic> _widgetThumbColor
+  -MaterialStateProperty<dynamic> _defaultThumbColor
+  -MaterialStateProperty<dynamic> _widgetTrackColor
+  -MaterialStateProperty<dynamic> _defaultTrackColor
+  -double _trackInnerLength
+  +void didUpdateWidget()
+  +void dispose()
+  -void _handleDragStart()
+  -void _handleDragUpdate()
+  -void _handleDragEnd()
+  -void _handleChanged()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::switch.dart::_MaterialSwitchState" o-- "flutter::lib::src::material::switch.dart::_SwitchPainter"
+"flutter::lib::src::material::switch.dart::_MaterialSwitchState" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::toggleable.dart::ToggleableStateMixin" <|-- "flutter::lib::src::material::switch.dart::_MaterialSwitchState"
+
+class "flutter::lib::src::material::switch.dart::_SwitchPainter" {
+  -dynamic _activeThumbImage
+  -dynamic _onActiveThumbImageError
+  -dynamic _inactiveThumbImage
+  -dynamic _onInactiveThumbImageError
+  -dynamic _activeTrackColor
+  -dynamic _inactiveTrackColor
+  -dynamic _configuration
+  -dynamic _textDirection
+  -dynamic _surfaceColor
+  -bool? _isInteractive
+  -double? _trackInnerLength
+  -dynamic _cachedThumbColor
+  -dynamic _cachedThumbImage
+  -dynamic _cachedThumbErrorListener
+  -dynamic _cachedThumbPainter
+  -bool _isPainting
+  +dynamic activeThumbImage
+  +dynamic onActiveThumbImageError
+  +dynamic inactiveThumbImage
+  +dynamic onInactiveThumbImageError
+  +dynamic activeTrackColor
+  +dynamic inactiveTrackColor
+  +dynamic configuration
+  +dynamic textDirection
+  +dynamic surfaceColor
+  +bool isInteractive
+  +double trackInnerLength
+  -dynamic _createDefaultThumbDecoration()
+  -void _handleDecorationChanged()
+  +void paint()
+  -dynamic _computeTrackPaintOffset()
+  -dynamic _computeThumbPaintOffset()
+  -void _paintTrackWith()
+  -void _paintThumbWith()
+  +void dispose()
+}
+
+"flutter::lib::src::material::toggleable.dart::ToggleablePainter" <|-- "flutter::lib::src::material::switch.dart::_SwitchPainter"
+
+class "flutter::lib::src::material::switch.dart::_SwitchType" {
+  +int index
+  {static} +List<_SwitchType> values
+  {static} +_SwitchType material
+  {static} +_SwitchType adaptive
+}
+
+"flutter::lib::src::material::switch.dart::_SwitchType" o-- "flutter::lib::src::material::switch.dart::_SwitchType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::switch.dart::_SwitchType"
+
+
+@enduml

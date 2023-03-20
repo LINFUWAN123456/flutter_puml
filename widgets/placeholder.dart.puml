@@ -1,0 +1,26 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::placeholder.dart::_PlaceholderPainter" {
+  +dynamic color
+  +double strokeWidth
+  +void paint()
+  +bool shouldRepaint()
+  +bool hitTest()
+}
+
+class "flutter::lib::src::widgets::placeholder.dart::Placeholder" {
+  +dynamic color
+  +double strokeWidth
+  +double fallbackWidth
+  +double fallbackHeight
+  +Widget? child
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::placeholder.dart::Placeholder" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::placeholder.dart::Placeholder"
+
+
+@enduml

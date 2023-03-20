@@ -1,0 +1,297 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::text_selection.dart::ToolbarItemsParentData" {
+  +bool shouldPaint
+  +String toString()
+}
+
+abstract class "flutter::lib::src::widgets::text_selection.dart::TextSelectionControls" {
+  +Widget buildHandle()
+  +dynamic getHandleAnchor()
+  +Widget buildToolbar()
+  +dynamic getHandleSize()
+  +bool canCut()
+  +bool canCopy()
+  +bool canPaste()
+  +bool canSelectAll()
+  +void handleCut()
+  +void handleCopy()
+  +Future<void> handlePaste()
+  +void handleSelectAll()
+}
+
+class "flutter::lib::src::widgets::text_selection.dart::TextSelectionOverlay" {
+  {static} +Duration fadeDuration
+  +dynamic renderObject
+  +TextSelectionControls? selectionControls
+  +dynamic selectionDelegate
+  -SelectionOverlay _selectionOverlay
+  -dynamic _value
+  -dynamic _effectiveStartHandleVisibility
+  -dynamic _effectiveEndHandleVisibility
+  -dynamic _effectiveToolbarVisibility
+  -bool _handlesVisible
+  -dynamic _dragEndPosition
+  -dynamic _dragStartPosition
+  +dynamic value
+  -dynamic _selection
+  +bool handlesVisible
+  +bool handlesAreVisible
+  +bool toolbarIsVisible
+  -void _updateTextSelectionOverlayVisibilities()
+  +void showHandles()
+  +void hideHandles()
+  +void showToolbar()
+  +void update()
+  -void _updateSelectionOverlay()
+  +void updateForScroll()
+  +void hide()
+  +void hideToolbar()
+  +void dispose()
+  -double _getStartGlyphHeight()
+  -double _getEndGlyphHeight()
+  -void _handleSelectionEndHandleDragStart()
+  -void _handleSelectionEndHandleDragUpdate()
+  -void _handleSelectionStartHandleDragStart()
+  -void _handleSelectionStartHandleDragUpdate()
+  -void _handleSelectionHandleChanged()
+  -dynamic _chooseType()
+}
+
+"flutter::lib::src::widgets::text_selection.dart::TextSelectionOverlay" o-- "flutter::lib::src::widgets::text_selection.dart::TextSelectionControls"
+"flutter::lib::src::widgets::text_selection.dart::TextSelectionOverlay" o-- "flutter::lib::src::widgets::text_selection.dart::SelectionOverlay"
+
+class "flutter::lib::src::widgets::text_selection.dart::SelectionOverlay" {
+  +BuildContext context
+  -dynamic _startHandleType
+  -double _lineHeightAtStart
+  +dynamic startHandlesVisible
+  +dynamic onStartHandleDragStart
+  +dynamic onStartHandleDragUpdate
+  +dynamic onStartHandleDragEnd
+  -dynamic _endHandleType
+  -double _lineHeightAtEnd
+  +dynamic endHandlesVisible
+  +dynamic onEndHandleDragStart
+  +dynamic onEndHandleDragUpdate
+  +dynamic onEndHandleDragEnd
+  +dynamic toolbarVisible
+  -List<dynamic> _selectionEndpoints
+  +Widget? debugRequiredFor
+  +dynamic toolbarLayerLink
+  +dynamic startHandleLayerLink
+  +dynamic endHandleLayerLink
+  +TextSelectionControls? selectionControls
+  +dynamic selectionDelegate
+  +dynamic dragStartBehavior
+  +dynamic onSelectionHandleTapped
+  +ClipboardStatusNotifier? clipboardStatus
+  -dynamic _toolbarLocation
+  {static} +Duration fadeDuration
+  -List<OverlayEntry>? _handles
+  -OverlayEntry? _toolbar
+  -bool _buildScheduled
+  +dynamic startHandleType
+  +double lineHeightAtStart
+  +dynamic endHandleType
+  +double lineHeightAtEnd
+  +List<dynamic> selectionEndpoints
+  +dynamic toolbarLocation
+  +void showHandles()
+  +void hideHandles()
+  +void showToolbar()
+  -void _markNeedsBuild()
+  +void hide()
+  +void hideToolbar()
+  +void dispose()
+  -Widget _buildStartHandle()
+  -Widget _buildEndHandle()
+  -Widget _buildToolbar()
+}
+
+"flutter::lib::src::widgets::text_selection.dart::SelectionOverlay" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::text_selection.dart::SelectionOverlay" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::text_selection.dart::SelectionOverlay" o-- "flutter::lib::src::widgets::text_selection.dart::TextSelectionControls"
+"flutter::lib::src::widgets::text_selection.dart::SelectionOverlay" o-- "flutter::lib::src::widgets::text_selection.dart::ClipboardStatusNotifier"
+"flutter::lib::src::widgets::text_selection.dart::SelectionOverlay" o-- "flutter::lib::src::widgets::overlay.dart::OverlayEntry"
+
+class "flutter::lib::src::widgets::text_selection.dart::_SelectionToolbarOverlay" {
+  +double preferredLineHeight
+  +dynamic toolbarLocation
+  +dynamic layerLink
+  +dynamic editingRegion
+  +TextSelectionControls? selectionControls
+  +dynamic visibility
+  +dynamic midpoint
+  +List<dynamic> selectionEndpoints
+  +dynamic selectionDelegate
+  +ClipboardStatusNotifier? clipboardStatus
+  +_SelectionToolbarOverlayState createState()
+}
+
+"flutter::lib::src::widgets::text_selection.dart::_SelectionToolbarOverlay" o-- "flutter::lib::src::widgets::text_selection.dart::TextSelectionControls"
+"flutter::lib::src::widgets::text_selection.dart::_SelectionToolbarOverlay" o-- "flutter::lib::src::widgets::text_selection.dart::ClipboardStatusNotifier"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::text_selection.dart::_SelectionToolbarOverlay"
+
+class "flutter::lib::src::widgets::text_selection.dart::_SelectionToolbarOverlayState" {
+  -dynamic _controller
+  -dynamic _opacity
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _toolbarVisibilityChanged()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::text_selection.dart::_SelectionToolbarOverlayState"
+"flutter::lib::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "flutter::lib::src::widgets::text_selection.dart::_SelectionToolbarOverlayState"
+
+class "flutter::lib::src::widgets::text_selection.dart::_SelectionHandleOverlay" {
+  +dynamic handleLayerLink
+  +dynamic onSelectionHandleTapped
+  +dynamic onSelectionHandleDragStart
+  +dynamic onSelectionHandleDragUpdate
+  +dynamic onSelectionHandleDragEnd
+  +TextSelectionControls selectionControls
+  +dynamic visibility
+  +double preferredLineHeight
+  +dynamic type
+  +dynamic dragStartBehavior
+  +State<_SelectionHandleOverlay> createState()
+}
+
+"flutter::lib::src::widgets::text_selection.dart::_SelectionHandleOverlay" o-- "flutter::lib::src::widgets::text_selection.dart::TextSelectionControls"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::text_selection.dart::_SelectionHandleOverlay"
+
+class "flutter::lib::src::widgets::text_selection.dart::_SelectionHandleOverlayState" {
+  -dynamic _controller
+  -dynamic _opacity
+  +void initState()
+  -void _handleVisibilityChanged()
+  +void didUpdateWidget()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::text_selection.dart::_SelectionHandleOverlayState"
+"flutter::lib::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "flutter::lib::src::widgets::text_selection.dart::_SelectionHandleOverlayState"
+
+abstract class "flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetectorBuilderDelegate" {
+  +GlobalKey<EditableTextState> editableTextKey
+  +bool forcePressEnabled
+  +bool selectionEnabled
+}
+
+"flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetectorBuilderDelegate" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<EditableTextState>"
+
+class "flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetectorBuilder" {
+  +TextSelectionGestureDetectorBuilderDelegate delegate
+  -bool _shouldShowSelectionToolbar
+  -double _dragStartViewportOffset
+  -bool _isShiftTapping
+  -dynamic _shiftTapDragSelection
+  -bool _lastSecondaryTapWasOnSelection
+  +bool shouldShowSelectionToolbar
+  +EditableTextState editableText
+  +dynamic renderEditable
+  -bool _isShiftPressed
+  -void _expandSelection()
+  -void _extendSelection()
+  +void onTapDown()
+  +void onForcePressStart()
+  +void onForcePressEnd()
+  +void onSingleTapUp()
+  +void onSingleTapCancel()
+  +void onSingleLongTapStart()
+  +void onSingleLongTapMoveUpdate()
+  +void onSingleLongTapEnd()
+  +void onSecondaryTap()
+  +void onSecondaryTapDown()
+  +void onDoubleTapDown()
+  +void onDragSelectionStart()
+  +void onDragSelectionUpdate()
+  +void onDragSelectionEnd()
+  +Widget buildGestureDetector()
+}
+
+"flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetectorBuilder" o-- "flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetectorBuilderDelegate"
+"flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetectorBuilder" o-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+
+class "flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetector" {
+  +dynamic onTapDown
+  +dynamic onForcePressStart
+  +dynamic onForcePressEnd
+  +dynamic onSecondaryTap
+  +dynamic onSecondaryTapDown
+  +dynamic onSingleTapUp
+  +dynamic onSingleTapCancel
+  +dynamic onSingleLongTapStart
+  +dynamic onSingleLongTapMoveUpdate
+  +dynamic onSingleLongTapEnd
+  +dynamic onDoubleTapDown
+  +dynamic onDragSelectionStart
+  +void Function(dynamic, dynamic)? onDragSelectionUpdate
+  +dynamic onDragSelectionEnd
+  +dynamic behavior
+  +Widget child
+  +State<StatefulWidget> createState()
+}
+
+"flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetector" o-- "flutter::lib::src::widgets::text_selection.dart::void Function(dynamic, dynamic)"
+"flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetector" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::text_selection.dart::TextSelectionGestureDetector"
+
+class "flutter::lib::src::widgets::text_selection.dart::_TextSelectionGestureDetectorState" {
+  -Timer? _doubleTapTimer
+  -dynamic _lastTapOffset
+  -bool _isDoubleTap
+  -dynamic _lastDragStartDetails
+  -dynamic _lastDragUpdateDetails
+  -Timer? _dragUpdateThrottleTimer
+  +void dispose()
+  -void _handleTapDown()
+  -void _handleTapUp()
+  -void _handleTapCancel()
+  -void _handleDragStart()
+  -void _handleDragUpdate()
+  -void _handleDragUpdateThrottled()
+  -void _handleDragEnd()
+  -void _forcePressStarted()
+  -void _forcePressEnded()
+  -void _handleLongPressStart()
+  -void _handleLongPressMoveUpdate()
+  -void _handleLongPressEnd()
+  -void _doubleTapTimeout()
+  -bool _isWithinDoubleTapTolerance()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::text_selection.dart::_TextSelectionGestureDetectorState" o-- "dart::async::Timer"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::text_selection.dart::_TextSelectionGestureDetectorState"
+
+class "flutter::lib::src::widgets::text_selection.dart::ClipboardStatusNotifier" {
+  -bool _disposed
+  +bool disposed
+  +Future<void> update()
+  +void addListener()
+  +void removeListener()
+  +void didChangeAppLifecycleState()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "flutter::lib::src::widgets::text_selection.dart::ClipboardStatusNotifier"
+
+class "flutter::lib::src::widgets::text_selection.dart::ClipboardStatus" {
+  +int index
+  {static} +List<ClipboardStatus> values
+  {static} +ClipboardStatus pasteable
+  {static} +ClipboardStatus unknown
+  {static} +ClipboardStatus notPasteable
+}
+
+"flutter::lib::src::widgets::text_selection.dart::ClipboardStatus" o-- "flutter::lib::src::widgets::text_selection.dart::ClipboardStatus"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::text_selection.dart::ClipboardStatus"
+
+
+@enduml

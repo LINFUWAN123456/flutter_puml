@@ -1,0 +1,65 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::banner.dart::BannerPainter" {
+  +String message
+  +dynamic textDirection
+  +BannerLocation location
+  +dynamic layoutDirection
+  +dynamic color
+  +dynamic textStyle
+  {static} -dynamic _shadow
+  -bool _prepared
+  -dynamic _textPainter
+  -dynamic _paintShadow
+  -dynamic _paintBanner
+  -double _rotation
+  -void _prepare()
+  +void paint()
+  +bool shouldRepaint()
+  +bool hitTest()
+  -double _translationX()
+  -double _translationY()
+}
+
+"flutter::lib::src::widgets::banner.dart::BannerPainter" o-- "flutter::lib::src::widgets::banner.dart::BannerLocation"
+
+class "flutter::lib::src::widgets::banner.dart::Banner" {
+  +Widget? child
+  +String message
+  +dynamic textDirection
+  +BannerLocation location
+  +dynamic layoutDirection
+  +dynamic color
+  +dynamic textStyle
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::banner.dart::Banner" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::banner.dart::Banner" o-- "flutter::lib::src::widgets::banner.dart::BannerLocation"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::banner.dart::Banner"
+
+class "flutter::lib::src::widgets::banner.dart::CheckedModeBanner" {
+  +Widget child
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::banner.dart::CheckedModeBanner" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::banner.dart::CheckedModeBanner"
+
+class "flutter::lib::src::widgets::banner.dart::BannerLocation" {
+  +int index
+  {static} +List<BannerLocation> values
+  {static} +BannerLocation topStart
+  {static} +BannerLocation topEnd
+  {static} +BannerLocation bottomStart
+  {static} +BannerLocation bottomEnd
+}
+
+"flutter::lib::src::widgets::banner.dart::BannerLocation" o-- "flutter::lib::src::widgets::banner.dart::BannerLocation"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::banner.dart::BannerLocation"
+
+
+@enduml

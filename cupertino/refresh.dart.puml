@@ -1,0 +1,65 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::refresh.dart::_CupertinoSliverRefresh" {
+  +double refreshIndicatorLayoutExtent
+  +bool hasLayoutExtent
+  +_RenderCupertinoSliverRefresh createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::cupertino::refresh.dart::_RenderCupertinoSliverRefresh" {
+  -double _refreshIndicatorExtent
+  -bool _hasLayoutExtent
+  +double layoutExtentOffsetCompensation
+  +double refreshIndicatorLayoutExtent
+  +bool hasLayoutExtent
+  +void performLayout()
+  +void paint()
+  +void applyPaintTransform()
+}
+
+class "flutter::lib::src::cupertino::refresh.dart::CupertinoSliverRefreshControl" {
+  +double refreshTriggerPullDistance
+  +double refreshIndicatorExtent
+  +dynamic Function(dynamic, RefreshIndicatorMode, double, double, double)? builder
+  +Future<void> Function()? onRefresh
+  {static} -double _defaultRefreshTriggerPullDistance
+  {static} -double _defaultRefreshIndicatorExtent
+  {static} +RefreshIndicatorMode state()
+  {static} +dynamic buildRefreshIndicator()
+  {static} -dynamic _buildIndicatorForRefreshState()
+  +dynamic createState()
+}
+
+"flutter::lib::src::cupertino::refresh.dart::CupertinoSliverRefreshControl" o-- "flutter::lib::src::cupertino::refresh.dart::dynamic Function(dynamic, RefreshIndicatorMode, double, double, double)"
+"flutter::lib::src::cupertino::refresh.dart::CupertinoSliverRefreshControl" o-- "flutter::lib::src::cupertino::refresh.dart::Future<void> Function()"
+
+class "flutter::lib::src::cupertino::refresh.dart::_CupertinoSliverRefreshControlState" {
+  {static} -double _inactiveResetOverscrollFraction
+  +RefreshIndicatorMode refreshState
+  +Future<void>? refreshTask
+  +double latestIndicatorBoxExtent
+  +bool hasSliverLayoutExtent
+  +void initState()
+  +RefreshIndicatorMode transitionNextState()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::refresh.dart::_CupertinoSliverRefreshControlState" o-- "flutter::lib::src::cupertino::refresh.dart::RefreshIndicatorMode"
+
+class "flutter::lib::src::cupertino::refresh.dart::RefreshIndicatorMode" {
+  +int index
+  {static} +List<RefreshIndicatorMode> values
+  {static} +RefreshIndicatorMode inactive
+  {static} +RefreshIndicatorMode drag
+  {static} +RefreshIndicatorMode armed
+  {static} +RefreshIndicatorMode refresh
+  {static} +RefreshIndicatorMode done
+}
+
+"flutter::lib::src::cupertino::refresh.dart::RefreshIndicatorMode" o-- "flutter::lib::src::cupertino::refresh.dart::RefreshIndicatorMode"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::refresh.dart::RefreshIndicatorMode"
+
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::icon_theme_data.dart::CupertinoIconThemeData" {
+  +dynamic resolve()
+  +CupertinoIconThemeData copyWith()
+  +void debugFillProperties()
+}
+
+
+@enduml

@@ -1,0 +1,103 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::hardware_keyboard.dart::KeyboardLockMode" {
+  +LogicalKeyboardKey logicalKey
+  {static} +KeyboardLockMode numLock
+  {static} +KeyboardLockMode scrollLock
+  {static} +KeyboardLockMode capsLock
+  {static} -Map<int, KeyboardLockMode> _knownLockModes
+  {static} +KeyboardLockMode? findLockByLogicalKey()
+}
+
+"flutter::lib::src::services::hardware_keyboard.dart::KeyboardLockMode" o-- "flutter::lib::src::services::keyboard_key.g.dart::LogicalKeyboardKey"
+"flutter::lib::src::services::hardware_keyboard.dart::KeyboardLockMode" o-- "flutter::lib::src::services::hardware_keyboard.dart::KeyboardLockMode"
+
+abstract class "flutter::lib::src::services::hardware_keyboard.dart::KeyEvent" {
+  +PhysicalKeyboardKey physicalKey
+  +LogicalKeyboardKey logicalKey
+  +String? character
+  +Duration timeStamp
+  +bool synthesized
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::services::hardware_keyboard.dart::KeyEvent" o-- "flutter::lib::src::services::keyboard_key.g.dart::PhysicalKeyboardKey"
+"flutter::lib::src::services::hardware_keyboard.dart::KeyEvent" o-- "flutter::lib::src::services::keyboard_key.g.dart::LogicalKeyboardKey"
+
+class "flutter::lib::src::services::hardware_keyboard.dart::KeyDownEvent" {
+}
+
+"flutter::lib::src::services::hardware_keyboard.dart::KeyEvent" <|-- "flutter::lib::src::services::hardware_keyboard.dart::KeyDownEvent"
+
+class "flutter::lib::src::services::hardware_keyboard.dart::KeyUpEvent" {
+}
+
+"flutter::lib::src::services::hardware_keyboard.dart::KeyEvent" <|-- "flutter::lib::src::services::hardware_keyboard.dart::KeyUpEvent"
+
+class "flutter::lib::src::services::hardware_keyboard.dart::KeyRepeatEvent" {
+}
+
+"flutter::lib::src::services::hardware_keyboard.dart::KeyEvent" <|-- "flutter::lib::src::services::hardware_keyboard.dart::KeyRepeatEvent"
+
+class "flutter::lib::src::services::hardware_keyboard.dart::HardwareKeyboard" {
+  -Map<PhysicalKeyboardKey, LogicalKeyboardKey> _pressedKeys
+  -Set<KeyboardLockMode> _lockModes
+  -List<bool Function(KeyEvent)> _handlers
+  -bool _duringDispatch
+  -List<bool Function(KeyEvent)>? _modifiedHandlers
+  {static} +HardwareKeyboard instance
+  +Set<PhysicalKeyboardKey> physicalKeysPressed
+  +Set<LogicalKeyboardKey> logicalKeysPressed
+  +Set<KeyboardLockMode> lockModesEnabled
+  +LogicalKeyboardKey? lookUpLayout()
+  -void _assertEventIsRegular()
+  +void addHandler()
+  +void removeHandler()
+  -bool _dispatchKeyEvent()
+  +bool handleKeyEvent()
+  +void clearState()
+}
+
+"flutter::lib::src::services::hardware_keyboard.dart::HardwareKeyboard" o-- "flutter::lib::src::services::hardware_keyboard.dart::HardwareKeyboard"
+
+class "flutter::lib::src::services::hardware_keyboard.dart::KeyMessage" {
+  +List<KeyEvent> events
+  +RawKeyEvent? rawEvent
+  +String toString()
+}
+
+"flutter::lib::src::services::hardware_keyboard.dart::KeyMessage" o-- "flutter::lib::src::services::raw_keyboard.dart::RawKeyEvent"
+
+class "flutter::lib::src::services::hardware_keyboard.dart::KeyEventManager" {
+  +bool Function(KeyMessage)? keyMessageHandler
+  -HardwareKeyboard _hardwareKeyboard
+  -RawKeyboard _rawKeyboard
+  -KeyDataTransitMode? _transitMode
+  -List<KeyEvent> _keyEventsSinceLastMessage
+  -Set<PhysicalKeyboardKey> _skippedRawKeysPressed
+  +bool handleKeyData()
+  -bool _dispatchKeyMessage()
+  +Future<Map<String, dynamic>> handleRawKeyMessage()
+  -void _convertRawEventAndStore()
+  +void clearState()
+  {static} -KeyEvent _eventFromData()
+}
+
+"flutter::lib::src::services::hardware_keyboard.dart::KeyEventManager" o-- "flutter::lib::src::services::hardware_keyboard.dart::bool Function(KeyMessage)"
+"flutter::lib::src::services::hardware_keyboard.dart::KeyEventManager" o-- "flutter::lib::src::services::hardware_keyboard.dart::HardwareKeyboard"
+"flutter::lib::src::services::hardware_keyboard.dart::KeyEventManager" o-- "flutter::lib::src::services::raw_keyboard.dart::RawKeyboard"
+"flutter::lib::src::services::hardware_keyboard.dart::KeyEventManager" o-- "flutter::lib::src::services::hardware_keyboard.dart::KeyDataTransitMode"
+
+class "flutter::lib::src::services::hardware_keyboard.dart::KeyDataTransitMode" {
+  +int index
+  {static} +List<KeyDataTransitMode> values
+  {static} +KeyDataTransitMode rawKeyData
+  {static} +KeyDataTransitMode keyDataThenRawKeyData
+}
+
+"flutter::lib::src::services::hardware_keyboard.dart::KeyDataTransitMode" o-- "flutter::lib::src::services::hardware_keyboard.dart::KeyDataTransitMode"
+"dart::core::Enum" <|-- "flutter::lib::src::services::hardware_keyboard.dart::KeyDataTransitMode"
+
+
+@enduml

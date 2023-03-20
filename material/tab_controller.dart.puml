@@ -1,0 +1,51 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::tab_controller.dart::TabController" {
+  -dynamic _animationController
+  -Duration _animationDuration
+  +int length
+  -int _index
+  -int _previousIndex
+  -int _indexIsChangingCount
+  +dynamic animation
+  +Duration animationDuration
+  +int index
+  +int previousIndex
+  +bool indexIsChanging
+  +double offset
+  -TabController _copyWith()
+  -void _changeIndex()
+  +void animateTo()
+  +void dispose()
+}
+
+class "flutter::lib::src::material::tab_controller.dart::_TabControllerScope" {
+  +TabController controller
+  +bool enabled
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::tab_controller.dart::_TabControllerScope" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+
+class "flutter::lib::src::material::tab_controller.dart::DefaultTabController" {
+  +int length
+  +int initialIndex
+  +Duration? animationDuration
+  +dynamic child
+  {static} +TabController? of()
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::tab_controller.dart::_DefaultTabControllerState" {
+  -TabController _controller
+  +void initState()
+  +void dispose()
+  +dynamic build()
+  +void didUpdateWidget()
+}
+
+"flutter::lib::src::material::tab_controller.dart::_DefaultTabControllerState" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+
+
+@enduml

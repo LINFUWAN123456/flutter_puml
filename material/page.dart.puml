@@ -1,0 +1,42 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::page.dart::MaterialPageRoute" {
+  +dynamic builder
+  +bool maintainState
+  +String debugLabel
+  +dynamic buildContent()
+}
+
+"flutter::lib::src::material::page.dart::MaterialRouteTransitionMixin" <|-- "flutter::lib::src::material::page.dart::MaterialPageRoute"
+
+class "flutter::lib::src::material::page.dart::MaterialPage" {
+  +dynamic child
+  +bool maintainState
+  +bool fullscreenDialog
+  +dynamic createRoute()
+}
+
+class "flutter::lib::src::material::page.dart::_PageBasedMaterialPageRoute" {
+  -MaterialPage<T> _page
+  +bool maintainState
+  +bool fullscreenDialog
+  +String debugLabel
+  +dynamic buildContent()
+}
+
+"flutter::lib::src::material::page.dart::_PageBasedMaterialPageRoute" o-- "flutter::lib::src::material::page.dart::MaterialPage<T>"
+"flutter::lib::src::material::page.dart::MaterialRouteTransitionMixin" <|-- "flutter::lib::src::material::page.dart::_PageBasedMaterialPageRoute"
+
+abstract class "flutter::lib::src::material::page.dart::MaterialRouteTransitionMixin" {
+  +Duration transitionDuration
+  +dynamic barrierColor
+  +String? barrierLabel
+  +dynamic buildContent()
+  +bool canTransitionTo()
+  +dynamic buildPage()
+  +dynamic buildTransitions()
+}
+
+
+@enduml

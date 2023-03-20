@@ -1,0 +1,65 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::color_scheme.dart::ColorScheme" {
+  +dynamic brightness
+  +dynamic primary
+  +dynamic onPrimary
+  -dynamic _primaryContainer
+  -dynamic _onPrimaryContainer
+  +dynamic secondary
+  +dynamic onSecondary
+  -dynamic _secondaryContainer
+  -dynamic _onSecondaryContainer
+  -dynamic _tertiary
+  -dynamic _onTertiary
+  -dynamic _tertiaryContainer
+  -dynamic _onTertiaryContainer
+  +dynamic error
+  +dynamic onError
+  -dynamic _errorContainer
+  -dynamic _onErrorContainer
+  +dynamic background
+  +dynamic onBackground
+  +dynamic surface
+  +dynamic onSurface
+  -dynamic _surfaceVariant
+  -dynamic _onSurfaceVariant
+  -dynamic _outline
+  -dynamic _shadow
+  -dynamic _inverseSurface
+  -dynamic _onInverseSurface
+  -dynamic _inversePrimary
+  -dynamic _surfaceTint
+  -dynamic _primaryVariant
+  -dynamic _secondaryVariant
+  +dynamic primaryContainer
+  +dynamic onPrimaryContainer
+  +dynamic secondaryContainer
+  +dynamic onSecondaryContainer
+  +dynamic tertiary
+  +dynamic onTertiary
+  +dynamic tertiaryContainer
+  +dynamic onTertiaryContainer
+  +dynamic errorContainer
+  +dynamic onErrorContainer
+  +dynamic surfaceVariant
+  +dynamic onSurfaceVariant
+  +dynamic outline
+  +dynamic shadow
+  +dynamic inverseSurface
+  +dynamic onInverseSurface
+  +dynamic inversePrimary
+  +dynamic surfaceTint
+  +dynamic primaryVariant
+  +dynamic secondaryVariant
+  +int hashCode
+  {static} -dynamic _brightnessFor()
+  +ColorScheme copyWith()
+  {static} +ColorScheme lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

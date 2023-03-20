@@ -1,0 +1,219 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::theme_data.dart::ThemeExtension" {
+  +Object type
+  +ThemeExtension<T> copyWith()
+  +ThemeExtension<T> lerp()
+}
+
+class "flutter::lib::src::material::theme_data.dart::ThemeData" {
+  +bool applyElevationOverlayColor
+  +dynamic cupertinoOverrideTheme
+  +Map<Object, ThemeExtension<dynamic>> extensions
+  +InputDecorationTheme inputDecorationTheme
+  +MaterialTapTargetSize materialTapTargetSize
+  +PageTransitionsTheme pageTransitionsTheme
+  +dynamic platform
+  +ScrollbarThemeData scrollbarTheme
+  +InteractiveInkFeatureFactory splashFactory
+  +bool useMaterial3
+  +VisualDensity visualDensity
+  +dynamic backgroundColor
+  +dynamic bottomAppBarColor
+  +dynamic canvasColor
+  +dynamic cardColor
+  +ColorScheme colorScheme
+  +dynamic dialogBackgroundColor
+  +dynamic disabledColor
+  +dynamic dividerColor
+  +dynamic errorColor
+  +dynamic focusColor
+  +dynamic highlightColor
+  +dynamic hintColor
+  +dynamic hoverColor
+  +dynamic indicatorColor
+  +dynamic primaryColor
+  +dynamic primaryColorDark
+  +dynamic primaryColorLight
+  +dynamic scaffoldBackgroundColor
+  +dynamic secondaryHeaderColor
+  +dynamic selectedRowColor
+  +dynamic shadowColor
+  +dynamic splashColor
+  +dynamic toggleableActiveColor
+  +dynamic unselectedWidgetColor
+  +dynamic iconTheme
+  +dynamic primaryIconTheme
+  +TextTheme primaryTextTheme
+  +TextTheme textTheme
+  +Typography typography
+  +AppBarTheme appBarTheme
+  +MaterialBannerThemeData bannerTheme
+  +BottomAppBarTheme bottomAppBarTheme
+  +BottomNavigationBarThemeData bottomNavigationBarTheme
+  +BottomSheetThemeData bottomSheetTheme
+  +ButtonBarThemeData buttonBarTheme
+  +ButtonThemeData buttonTheme
+  +CardTheme cardTheme
+  +CheckboxThemeData checkboxTheme
+  +ChipThemeData chipTheme
+  +DataTableThemeData dataTableTheme
+  +DialogTheme dialogTheme
+  +DividerThemeData dividerTheme
+  +DrawerThemeData drawerTheme
+  +ElevatedButtonThemeData elevatedButtonTheme
+  +ExpansionTileThemeData expansionTileTheme
+  +FloatingActionButtonThemeData floatingActionButtonTheme
+  +ListTileThemeData listTileTheme
+  +NavigationBarThemeData navigationBarTheme
+  +NavigationRailThemeData navigationRailTheme
+  +OutlinedButtonThemeData outlinedButtonTheme
+  +PopupMenuThemeData popupMenuTheme
+  +ProgressIndicatorThemeData progressIndicatorTheme
+  +RadioThemeData radioTheme
+  +SliderThemeData sliderTheme
+  +SnackBarThemeData snackBarTheme
+  +SwitchThemeData switchTheme
+  +TabBarTheme tabBarTheme
+  +TextButtonThemeData textButtonTheme
+  +TextSelectionThemeData textSelectionTheme
+  +TimePickerThemeData timePickerTheme
+  +ToggleButtonsThemeData toggleButtonsTheme
+  +TooltipThemeData tooltipTheme
+  -dynamic _accentColor
+  -dynamic _accentColorBrightness
+  -TextTheme? _accentTextTheme
+  -dynamic _accentIconTheme
+  -dynamic _buttonColor
+  -bool? _fixTextFieldOutlineLabel
+  -dynamic _primaryColorBrightness
+  +dynamic androidOverscrollIndicator
+  {static} -int _localizedThemeDataCacheSize
+  {static} -_FifoCache<_IdentityThemeDataCacheKey, ThemeData> _localizedThemeDataCache
+  +dynamic brightness
+  +dynamic accentColor
+  +dynamic accentColorBrightness
+  +TextTheme accentTextTheme
+  +dynamic accentIconTheme
+  +dynamic buttonColor
+  +bool fixTextFieldOutlineLabel
+  +dynamic primaryColorBrightness
+  +int hashCode
+  +T? extension()
+  +ThemeData copyWith()
+  {static} +ThemeData localize()
+  {static} +dynamic estimateBrightnessForColor()
+  {static} -Map<Object, ThemeExtension<dynamic>> _lerpThemeExtensions()
+  {static} -Map<Object, ThemeExtension<dynamic>> _themeExtensionIterableToMap()
+  {static} +ThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::input_decorator.dart::InputDecorationTheme"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::page_transitions_theme.dart::PageTransitionsTheme"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::scrollbar_theme.dart::ScrollbarThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::typography.dart::Typography"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::app_bar_theme.dart::AppBarTheme"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::banner_theme.dart::MaterialBannerThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::bottom_app_bar_theme.dart::BottomAppBarTheme"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::bottom_navigation_bar_theme.dart::BottomNavigationBarThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::bottom_sheet_theme.dart::BottomSheetThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::button_bar_theme.dart::ButtonBarThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::button_theme.dart::ButtonThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::card_theme.dart::CardTheme"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::checkbox_theme.dart::CheckboxThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::chip_theme.dart::ChipThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::data_table_theme.dart::DataTableThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::dialog_theme.dart::DialogTheme"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::divider_theme.dart::DividerThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::drawer_theme.dart::DrawerThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::elevated_button_theme.dart::ElevatedButtonThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::expansion_tile_theme.dart::ExpansionTileThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::floating_action_button_theme.dart::FloatingActionButtonThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::list_tile_theme.dart::ListTileThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::navigation_bar_theme.dart::NavigationBarThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::navigation_rail_theme.dart::NavigationRailThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::outlined_button_theme.dart::OutlinedButtonThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::popup_menu_theme.dart::PopupMenuThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::progress_indicator_theme.dart::ProgressIndicatorThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::radio_theme.dart::RadioThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::slider_theme.dart::SliderThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::snack_bar_theme.dart::SnackBarThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::switch_theme.dart::SwitchThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::tab_bar_theme.dart::TabBarTheme"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::text_button_theme.dart::TextButtonThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::text_selection_theme.dart::TextSelectionThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::time_picker_theme.dart::TimePickerThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::toggle_buttons_theme.dart::ToggleButtonsThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::tooltip_theme.dart::TooltipThemeData"
+"flutter::lib::src::material::theme_data.dart::ThemeData" o-- "flutter::lib::src::material::theme_data.dart::_FifoCache<_IdentityThemeDataCacheKey, ThemeData>"
+
+class "flutter::lib::src::material::theme_data.dart::MaterialBasedCupertinoThemeData" {
+  -ThemeData _materialTheme
+  -dynamic _cupertinoOverrideTheme
+  +dynamic brightness
+  +dynamic primaryColor
+  +dynamic primaryContrastingColor
+  +dynamic scaffoldBackgroundColor
+  +MaterialBasedCupertinoThemeData copyWith()
+  +dynamic resolveFrom()
+}
+
+"flutter::lib::src::material::theme_data.dart::MaterialBasedCupertinoThemeData" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+
+class "flutter::lib::src::material::theme_data.dart::_IdentityThemeDataCacheKey" {
+  +ThemeData baseTheme
+  +TextTheme localTextGeometry
+  +int hashCode
+  +bool ==()
+}
+
+"flutter::lib::src::material::theme_data.dart::_IdentityThemeDataCacheKey" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+"flutter::lib::src::material::theme_data.dart::_IdentityThemeDataCacheKey" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+
+class "flutter::lib::src::material::theme_data.dart::_FifoCache" {
+  -Map<K, V> _cache
+  -int _maximumSize
+  +V putIfAbsent()
+}
+
+class "flutter::lib::src::material::theme_data.dart::VisualDensity" {
+  {static} +double minimumDensity
+  {static} +double maximumDensity
+  {static} +VisualDensity standard
+  {static} +VisualDensity comfortable
+  {static} +VisualDensity compact
+  +double horizontal
+  +double vertical
+  {static} +VisualDensity adaptivePlatformDensity
+  +dynamic baseSizeAdjustment
+  +int hashCode
+  +VisualDensity copyWith()
+  {static} +VisualDensity lerp()
+  +dynamic effectiveConstraints()
+  +bool ==()
+  +void debugFillProperties()
+  +String toStringShort()
+}
+
+"flutter::lib::src::material::theme_data.dart::VisualDensity" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize" {
+  +int index
+  {static} +List<MaterialTapTargetSize> values
+  {static} +MaterialTapTargetSize padded
+  {static} +MaterialTapTargetSize shrinkWrap
+}
+
+"flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"dart::core::Enum" <|-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+
+
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::default_selection_style.dart::DefaultSelectionStyle" {
+  +dynamic cursorColor
+  +dynamic selectionColor
+  {static} +DefaultSelectionStyle of()
+  +Widget wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::inherited_theme.dart::InheritedTheme" <|-- "flutter::lib::src::widgets::default_selection_style.dart::DefaultSelectionStyle"
+
+class "flutter::lib::src::widgets::default_selection_style.dart::_NullWidget" {
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::default_selection_style.dart::_NullWidget"
+
+
+@enduml

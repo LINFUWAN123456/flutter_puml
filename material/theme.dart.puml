@@ -1,0 +1,46 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::theme.dart::Theme" {
+  +ThemeData data
+  +dynamic child
+  {static} -ThemeData _kFallbackTheme
+  {static} +ThemeData of()
+  -dynamic _wrapsWidgetThemes()
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::theme.dart::Theme" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+
+class "flutter::lib::src::material::theme.dart::_InheritedTheme" {
+  +Theme theme
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::theme.dart::_InheritedTheme" o-- "flutter::lib::src::material::theme.dart::Theme"
+
+class "flutter::lib::src::material::theme.dart::ThemeDataTween" {
+  +ThemeData lerp()
+}
+
+class "flutter::lib::src::material::theme.dart::AnimatedTheme" {
+  +ThemeData data
+  +dynamic child
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::theme.dart::AnimatedTheme" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+
+class "flutter::lib::src::material::theme.dart::_AnimatedThemeState" {
+  -ThemeDataTween? _data
+  +void forEachTween()
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::theme.dart::_AnimatedThemeState" o-- "flutter::lib::src::material::theme.dart::ThemeDataTween"
+
+
+@enduml

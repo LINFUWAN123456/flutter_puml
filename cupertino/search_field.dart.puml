@@ -1,0 +1,51 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::search_field.dart::CupertinoSearchTextField" {
+  +dynamic controller
+  +dynamic onChanged
+  +dynamic onSubmitted
+  +dynamic style
+  +String? placeholder
+  +dynamic placeholderStyle
+  +dynamic decoration
+  +dynamic backgroundColor
+  +dynamic borderRadius
+  +dynamic padding
+  +dynamic itemColor
+  +double itemSize
+  +dynamic prefixInsets
+  +dynamic prefixIcon
+  +dynamic suffixInsets
+  +dynamic suffixIcon
+  +OverlayVisibilityMode suffixMode
+  +dynamic onSuffixTap
+  +String? restorationId
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic onTap
+  +bool autocorrect
+  +dynamic smartQuotesType
+  +dynamic smartDashesType
+  +bool? enabled
+  +dynamic createState()
+}
+
+"flutter::lib::src::cupertino::search_field.dart::CupertinoSearchTextField" o-- "flutter::lib::src::cupertino::text_field.dart::OverlayVisibilityMode"
+
+class "flutter::lib::src::cupertino::search_field.dart::_CupertinoSearchTextFieldState" {
+  -dynamic _kDefaultBorderRadius
+  -dynamic _controller
+  -dynamic _effectiveController
+  +String? restorationId
+  +void initState()
+  +void didUpdateWidget()
+  +void restoreState()
+  -void _registerController()
+  -void _createLocalController()
+  -void _defaultOnSuffixTap()
+  +dynamic build()
+}
+
+
+@enduml

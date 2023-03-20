@@ -1,0 +1,68 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::tap.dart::TapDownDetails" {
+  +dynamic globalPosition
+  +dynamic kind
+  +dynamic localPosition
+}
+
+class "flutter::lib::src::gestures::tap.dart::TapUpDetails" {
+  +dynamic globalPosition
+  +dynamic localPosition
+  +dynamic kind
+}
+
+abstract class "flutter::lib::src::gestures::tap.dart::BaseTapGestureRecognizer" {
+  -bool _sentTapDown
+  -bool _wonArenaForPrimaryPointer
+  -PointerDownEvent? _down
+  -PointerUpEvent? _up
+  +String debugDescription
+  +void handleTapDown()
+  +void handleTapUp()
+  +void handleTapCancel()
+  +void addAllowedPointer()
+  +void startTrackingPointer()
+  +void handlePrimaryPointer()
+  +void resolve()
+  +void didExceedDeadline()
+  +void acceptGesture()
+  +void rejectGesture()
+  -void _checkDown()
+  -void _checkUp()
+  -void _checkCancel()
+  -void _reset()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::gestures::tap.dart::BaseTapGestureRecognizer" o-- "flutter::lib::src::gestures::events.dart::PointerDownEvent"
+"flutter::lib::src::gestures::tap.dart::BaseTapGestureRecognizer" o-- "flutter::lib::src::gestures::events.dart::PointerUpEvent"
+"flutter::lib::src::gestures::recognizer.dart::PrimaryPointerGestureRecognizer" <|-- "flutter::lib::src::gestures::tap.dart::BaseTapGestureRecognizer"
+
+class "flutter::lib::src::gestures::tap.dart::TapGestureRecognizer" {
+  +void Function(TapDownDetails)? onTapDown
+  +void Function(TapUpDetails)? onTapUp
+  +void Function()? onTap
+  +void Function()? onTapCancel
+  +void Function()? onSecondaryTap
+  +void Function(TapDownDetails)? onSecondaryTapDown
+  +void Function(TapUpDetails)? onSecondaryTapUp
+  +void Function()? onSecondaryTapCancel
+  +void Function(TapDownDetails)? onTertiaryTapDown
+  +void Function(TapUpDetails)? onTertiaryTapUp
+  +void Function()? onTertiaryTapCancel
+  +String debugDescription
+  +bool isPointerAllowed()
+  +void handleTapDown()
+  +void handleTapUp()
+  +void handleTapCancel()
+}
+
+"flutter::lib::src::gestures::tap.dart::TapGestureRecognizer" o-- "flutter::lib::src::gestures::tap.dart::void Function(TapDownDetails)"
+"flutter::lib::src::gestures::tap.dart::TapGestureRecognizer" o-- "flutter::lib::src::gestures::tap.dart::void Function(TapUpDetails)"
+"flutter::lib::src::gestures::tap.dart::TapGestureRecognizer" o-- "flutter::lib::src::gestures::tap.dart::void Function()"
+"flutter::lib::src::gestures::tap.dart::BaseTapGestureRecognizer" <|-- "flutter::lib::src::gestures::tap.dart::TapGestureRecognizer"
+
+
+@enduml

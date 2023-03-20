@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::dialog_theme.dart::DialogTheme" {
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic shape
+  +dynamic alignment
+  +dynamic titleTextStyle
+  +dynamic contentTextStyle
+  +dynamic actionsPadding
+  +dynamic iconColor
+  +int hashCode
+  +DialogTheme copyWith()
+  {static} +DialogTheme of()
+  {static} +DialogTheme lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

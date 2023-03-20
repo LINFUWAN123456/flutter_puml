@@ -1,0 +1,131 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::text_field.dart::_CupertinoTextFieldSelectionGestureDetectorBuilder" {
+  -_CupertinoTextFieldState _state
+  +void onSingleTapUp()
+  +void onDragSelectionEnd()
+}
+
+"flutter::lib::src::cupertino::text_field.dart::_CupertinoTextFieldSelectionGestureDetectorBuilder" o-- "flutter::lib::src::cupertino::text_field.dart::_CupertinoTextFieldState"
+
+class "flutter::lib::src::cupertino::text_field.dart::CupertinoTextField" {
+  +dynamic controller
+  +dynamic focusNode
+  +dynamic decoration
+  +dynamic padding
+  +String? placeholder
+  +dynamic placeholderStyle
+  +dynamic prefix
+  +OverlayVisibilityMode prefixMode
+  +dynamic suffix
+  +OverlayVisibilityMode suffixMode
+  +OverlayVisibilityMode clearButtonMode
+  +dynamic keyboardType
+  +dynamic textInputAction
+  +dynamic textCapitalization
+  +dynamic style
+  +dynamic strutStyle
+  +dynamic textAlign
+  +dynamic toolbarOptions
+  +dynamic textAlignVertical
+  +dynamic textDirection
+  +bool readOnly
+  +bool? showCursor
+  +bool autofocus
+  +String obscuringCharacter
+  +bool obscureText
+  +bool autocorrect
+  +dynamic smartDashesType
+  +dynamic smartQuotesType
+  +bool enableSuggestions
+  +int? maxLines
+  +int? minLines
+  +bool expands
+  +int? maxLength
+  +dynamic maxLengthEnforcement
+  +dynamic onChanged
+  +dynamic onEditingComplete
+  +dynamic onSubmitted
+  +List<dynamic>? inputFormatters
+  +bool? enabled
+  +double cursorWidth
+  +double? cursorHeight
+  +dynamic cursorRadius
+  +dynamic cursorColor
+  +dynamic selectionHeightStyle
+  +dynamic selectionWidthStyle
+  +dynamic keyboardAppearance
+  +dynamic scrollPadding
+  +bool enableInteractiveSelection
+  +dynamic selectionControls
+  +dynamic dragStartBehavior
+  +dynamic scrollController
+  +dynamic scrollPhysics
+  +dynamic onTap
+  +Iterable<String>? autofillHints
+  +dynamic clipBehavior
+  +String? restorationId
+  +bool scribbleEnabled
+  +bool enableIMEPersonalizedLearning
+  +bool selectionEnabled
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::cupertino::text_field.dart::CupertinoTextField" o-- "flutter::lib::src::cupertino::text_field.dart::OverlayVisibilityMode"
+
+class "flutter::lib::src::cupertino::text_field.dart::_CupertinoTextFieldState" {
+  -dynamic _clearGlobalKey
+  -dynamic _controller
+  -dynamic _focusNode
+  -bool _showSelectionHandles
+  -_CupertinoTextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder
+  +dynamic editableTextKey
+  -dynamic _effectiveController
+  -dynamic _effectiveFocusNode
+  -dynamic _effectiveMaxLengthEnforcement
+  +bool forcePressEnabled
+  +bool selectionEnabled
+  +String? restorationId
+  -dynamic _editableText
+  +bool wantKeepAlive
+  -bool _hasDecoration
+  -dynamic _textAlignVertical
+  +String autofillId
+  +dynamic textInputConfiguration
+  +void initState()
+  +void didUpdateWidget()
+  +void restoreState()
+  -void _registerController()
+  -void _createLocalController()
+  +void dispose()
+  -void _requestKeyboard()
+  -void _handleFocusChanged()
+  -bool _shouldShowSelectionHandles()
+  -void _handleSelectionChanged()
+  -bool _shouldShowAttachment()
+  -bool _showPrefixWidget()
+  -bool _showSuffixWidget()
+  -bool _showClearButton()
+  -dynamic _addTextDependentAttachments()
+  +void autofill()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::text_field.dart::_CupertinoTextFieldState" o-- "flutter::lib::src::cupertino::text_field.dart::_CupertinoTextFieldSelectionGestureDetectorBuilder"
+
+class "flutter::lib::src::cupertino::text_field.dart::OverlayVisibilityMode" {
+  +int index
+  {static} +List<OverlayVisibilityMode> values
+  {static} +OverlayVisibilityMode never
+  {static} +OverlayVisibilityMode editing
+  {static} +OverlayVisibilityMode notEditing
+  {static} +OverlayVisibilityMode always
+}
+
+"flutter::lib::src::cupertino::text_field.dart::OverlayVisibilityMode" o-- "flutter::lib::src::cupertino::text_field.dart::OverlayVisibilityMode"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::text_field.dart::OverlayVisibilityMode"
+
+
+@enduml

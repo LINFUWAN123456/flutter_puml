@@ -1,0 +1,48 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::tooltip_theme.dart::TooltipThemeData" {
+  +double? height
+  +dynamic padding
+  +dynamic margin
+  +double? verticalOffset
+  +bool? preferBelow
+  +bool? excludeFromSemantics
+  +dynamic decoration
+  +dynamic textStyle
+  +dynamic textAlign
+  +Duration? waitDuration
+  +Duration? showDuration
+  +TooltipTriggerMode? triggerMode
+  +bool? enableFeedback
+  +int hashCode
+  +TooltipThemeData copyWith()
+  {static} +TooltipThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::tooltip_theme.dart::TooltipThemeData" o-- "flutter::lib::src::material::tooltip_theme.dart::TooltipTriggerMode"
+
+class "flutter::lib::src::material::tooltip_theme.dart::TooltipTheme" {
+  +TooltipThemeData data
+  {static} +TooltipThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::tooltip_theme.dart::TooltipTheme" o-- "flutter::lib::src::material::tooltip_theme.dart::TooltipThemeData"
+
+class "flutter::lib::src::material::tooltip_theme.dart::TooltipTriggerMode" {
+  +int index
+  {static} +List<TooltipTriggerMode> values
+  {static} +TooltipTriggerMode manual
+  {static} +TooltipTriggerMode longPress
+  {static} +TooltipTriggerMode tap
+}
+
+"flutter::lib::src::material::tooltip_theme.dart::TooltipTriggerMode" o-- "flutter::lib::src::material::tooltip_theme.dart::TooltipTriggerMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::tooltip_theme.dart::TooltipTriggerMode"
+
+
+@enduml

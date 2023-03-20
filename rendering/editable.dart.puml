@@ -1,0 +1,318 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::editable.dart::TextSelectionPoint" {
+  +dynamic point
+  +dynamic direction
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::editable.dart::VerticalCaretMovementRun" {
+  -dynamic _currentOffset
+  -int _currentLine
+  -dynamic _currentTextPosition
+  -List<dynamic> _lineMetrics
+  -RenderEditable _editable
+  -bool _isValid
+  -Map<int, MapEntry<dynamic, dynamic>> _positionCache
+  +bool isValid
+  +dynamic current
+  -MapEntry<dynamic, dynamic> _getTextPositionForLine()
+  +bool moveNext()
+  +bool movePrevious()
+}
+
+"flutter::lib::src::rendering::editable.dart::VerticalCaretMovementRun" o-- "flutter::lib::src::rendering::editable.dart::RenderEditable"
+"dart::core::Iterator" <|-- "flutter::lib::src::rendering::editable.dart::VerticalCaretMovementRun"
+
+class "flutter::lib::src::rendering::editable.dart::RenderEditable" {
+  -_RenderEditableCustomPaint? _foregroundRenderObject
+  -_RenderEditableCustomPaint? _backgroundRenderObject
+  -List<dynamic> _placeholderSpans
+  -RenderEditablePainter? _foregroundPainter
+  -RenderEditablePainter? _painter
+  -_FloatingCursorPainter _caretPainter
+  -_TextHighlightPainter _selectionPainter
+  -_TextHighlightPainter _autocorrectHighlightPainter
+  -_CompositeRenderEditablePainter? _cachedBuiltInForegroundPainters
+  -_CompositeRenderEditablePainter? _cachedBuiltInPainters
+  -double? _textLayoutLastMaxWidth
+  -double? _textLayoutLastMinWidth
+  -dynamic _lastCaretRect
+  +void Function(dynamic)? onCaretChanged
+  +bool ignorePointer
+  -double _devicePixelRatio
+  -String _obscuringCharacter
+  -bool _obscureText
+  +dynamic textSelectionDelegate
+  -dynamic _selectionStartInViewport
+  -dynamic _selectionEndInViewport
+  -String? _cachedPlainText
+  -dynamic _textPainter
+  -dynamic _cachedAttributedValue
+  -List<dynamic>? _cachedCombinedSemanticsInfos
+  -dynamic _showCursor
+  -bool _hasFocus
+  -bool _forceLine
+  -bool _readOnly
+  -int? _maxLines
+  -int? _minLines
+  -bool _expands
+  -dynamic _selection
+  -ViewportOffset _offset
+  -double _cursorWidth
+  -double? _cursorHeight
+  -bool _paintCursorOnTop
+  -LayerLink _startHandleLayerLink
+  -LayerLink _endHandleLayerLink
+  +dynamic floatingCursorAddedMargin
+  -bool _floatingCursorOn
+  -dynamic _floatingCursorTextPosition
+  -bool? _enableInteractiveSelection
+  -double _maxScrollExtent
+  -dynamic _clipBehavior
+  -List<dynamic>? _semanticsInfo
+  -LinkedHashMap<dynamic, dynamic>? _cachedChildNodes
+  -dynamic _tap
+  -dynamic _longPress
+  -dynamic _lastTapDownPosition
+  -dynamic _lastSecondaryTapDownPosition
+  -List<dynamic>? _placeholderDimensions
+  -dynamic _caretPrototype
+  -dynamic _relativeOrigin
+  -dynamic _previousOffset
+  -bool _resetOriginOnLeft
+  -bool _resetOriginOnRight
+  -bool _resetOriginOnTop
+  -bool _resetOriginOnBottom
+  -double? _resetFloatingCursorAnimationValue
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +RenderEditablePainter? foregroundPainter
+  +RenderEditablePainter? painter
+  -_CompositeRenderEditablePainter _builtInForegroundPainters
+  -_CompositeRenderEditablePainter _builtInPainters
+  +dynamic textHeightBehavior
+  +dynamic textWidthBasis
+  +double devicePixelRatio
+  +String obscuringCharacter
+  +bool obscureText
+  +dynamic selectionHeightStyle
+  +dynamic selectionWidthStyle
+  +dynamic selectionStartInViewport
+  +dynamic selectionEndInViewport
+  -String _plainText
+  +dynamic text
+  +dynamic textAlign
+  +dynamic textDirection
+  +dynamic locale
+  +dynamic strutStyle
+  +dynamic cursorColor
+  +dynamic backgroundCursorColor
+  +dynamic showCursor
+  +bool hasFocus
+  +bool forceLine
+  +bool readOnly
+  +int? maxLines
+  +int? minLines
+  +bool expands
+  +dynamic selectionColor
+  +double textScaleFactor
+  +dynamic selection
+  +ViewportOffset offset
+  +double cursorWidth
+  +double cursorHeight
+  +bool paintCursorAboveText
+  +dynamic cursorOffset
+  +dynamic cursorRadius
+  +LayerLink startHandleLayerLink
+  +LayerLink endHandleLayerLink
+  +bool? enableInteractiveSelection
+  +bool selectionEnabled
+  +dynamic promptRectColor
+  +double maxScrollExtent
+  -double _caretMargin
+  +dynamic clipBehavior
+  -bool _isMultiline
+  -dynamic _viewportAxis
+  -dynamic _paintOffset
+  -double _viewportExtent
+  -bool _hasVisualOverflow
+  +double preferredLineHeight
+  +dynamic lastSecondaryTapDownPosition
+  +void setupParentData()
+  +void dispose()
+  -void _updateForegroundPainter()
+  -void _extractPlaceholderSpans()
+  -void _updatePainter()
+  -_CompositeRenderEditablePainter _createBuiltInForegroundPainters()
+  -_CompositeRenderEditablePainter _createBuiltInPainters()
+  +void debugAssertLayoutUpToDate()
+  -void _onCaretChanged()
+  -dynamic _getTextPositionVertical()
+  +dynamic getLineAtOffset()
+  +dynamic getWordBoundary()
+  +dynamic getTextPositionAbove()
+  +dynamic getTextPositionBelow()
+  -void _updateSelectionExtentsVisibility()
+  -void _setTextEditingValue()
+  -void _setSelection()
+  +void markNeedsPaint()
+  +void markNeedsTextLayout()
+  +void systemFontsDidChange()
+  -void _showHideCursor()
+  +void setPromptRectRange()
+  +List<dynamic> getBoxesForSelection()
+  +void describeSemanticsConfiguration()
+  -void _handleSetText()
+  +void assembleSemanticsNode()
+  -dynamic _createShowOnScreenFor()
+  -void _handleSetSelection()
+  -void _handleMoveCursorForwardByCharacter()
+  -void _handleMoveCursorBackwardByCharacter()
+  -void _handleMoveCursorForwardByWord()
+  -void _handleMoveCursorBackwardByWord()
+  -dynamic _getNextWord()
+  -dynamic _getPreviousWord()
+  -bool _onlyWhitespace()
+  +void attach()
+  +void detach()
+  +void redepthChildren()
+  +void visitChildren()
+  -double _getMaxScrollExtent()
+  +List<TextSelectionPoint> getEndpointsForSelection()
+  +dynamic getRectForComposingRange()
+  +dynamic getPositionForPoint()
+  +dynamic getLocalRectForCaret()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  -double _preferredHeight()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double computeDistanceToActualBaseline()
+  +bool hitTestSelf()
+  +bool hitTestChildren()
+  +void handleEvent()
+  +void handleSecondaryTapDown()
+  +void handleTapDown()
+  -void _handleTapDown()
+  +void handleTap()
+  -void _handleTap()
+  +void handleDoubleTap()
+  +void handleLongPress()
+  -void _handleLongPress()
+  +void selectPosition()
+  +void selectPositionAt()
+  +void selectWord()
+  +void selectWordsInRange()
+  +void selectWordEdge()
+  -dynamic _getWordAtOffset()
+  -List<dynamic> _layoutChildren()
+  -void _setParentData()
+  -void _layoutText()
+  -void _computeTextMetricsIfNeeded()
+  -void _computeCaretPrototype()
+  -dynamic _snapToPhysicalPixel()
+  -bool _canComputeDryLayout()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +dynamic calculateBoundedFloatingCursorOffset()
+  +void setFloatingCursor()
+  -MapEntry<int, dynamic> _lineNumberFor()
+  +VerticalCaretMovementRun startVerticalCaretMovement()
+  -void _paintContents()
+  -void _paintHandleLayers()
+  +void paint()
+  +dynamic describeApproximatePaintClip()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "flutter::lib::src::rendering::editable.dart::_RenderEditableCustomPaint"
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "flutter::lib::src::rendering::editable.dart::RenderEditablePainter"
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "flutter::lib::src::rendering::editable.dart::_FloatingCursorPainter"
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "flutter::lib::src::rendering::editable.dart::_TextHighlightPainter"
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "flutter::lib::src::rendering::editable.dart::_CompositeRenderEditablePainter"
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "flutter::lib::src::rendering::editable.dart::void Function(dynamic)"
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "flutter::lib::src::rendering::viewport_offset.dart::ViewportOffset"
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "flutter::lib::src::rendering::layer.dart::LayerLink"
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "dart::collection::LinkedHashMap<dynamic, dynamic>"
+"flutter::lib::src::rendering::editable.dart::RenderEditable" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::editable.dart::RenderEditable"
+"flutter::lib::src::rendering::object.dart::RelayoutWhenSystemFontsChangeMixin" <|-- "flutter::lib::src::rendering::editable.dart::RenderEditable"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::editable.dart::RenderEditable"
+"flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin" <|-- "flutter::lib::src::rendering::editable.dart::RenderEditable"
+
+class "flutter::lib::src::rendering::editable.dart::_RenderEditableCustomPaint" {
+  -RenderEditablePainter? _painter
+  +RenderEditable? parent
+  +bool isRepaintBoundary
+  +bool sizedByParent
+  +RenderEditablePainter? painter
+  +void paint()
+  +void attach()
+  +void detach()
+  +dynamic computeDryLayout()
+}
+
+"flutter::lib::src::rendering::editable.dart::_RenderEditableCustomPaint" o-- "flutter::lib::src::rendering::editable.dart::RenderEditablePainter"
+"flutter::lib::src::rendering::editable.dart::_RenderEditableCustomPaint" o-- "flutter::lib::src::rendering::editable.dart::RenderEditable"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::editable.dart::_RenderEditableCustomPaint"
+
+abstract class "flutter::lib::src::rendering::editable.dart::RenderEditablePainter" {
+  +bool shouldRepaint()
+  +void paint()
+}
+
+class "flutter::lib::src::rendering::editable.dart::_TextHighlightPainter" {
+  +dynamic highlightPaint
+  -dynamic _highlightColor
+  -dynamic _highlightedRange
+  -dynamic _selectionHeightStyle
+  -dynamic _selectionWidthStyle
+  +dynamic highlightColor
+  +dynamic highlightedRange
+  +dynamic selectionHeightStyle
+  +dynamic selectionWidthStyle
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"flutter::lib::src::rendering::editable.dart::RenderEditablePainter" <|-- "flutter::lib::src::rendering::editable.dart::_TextHighlightPainter"
+
+class "flutter::lib::src::rendering::editable.dart::_FloatingCursorPainter" {
+  -bool _shouldPaint
+  +void Function(dynamic) caretPaintCallback
+  +bool showRegularCaret
+  +dynamic caretPaint
+  +dynamic floatingCursorPaint
+  -dynamic _caretColor
+  -dynamic _cursorRadius
+  -dynamic _cursorOffset
+  -dynamic _backgroundCursorColor
+  -dynamic _floatingCursorRect
+  +bool shouldPaint
+  +dynamic caretColor
+  +dynamic cursorRadius
+  +dynamic cursorOffset
+  +dynamic backgroundCursorColor
+  +dynamic floatingCursorRect
+  +void paintRegularCursor()
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"flutter::lib::src::rendering::editable.dart::_FloatingCursorPainter" o-- "flutter::lib::src::rendering::editable.dart::void Function(dynamic)"
+"flutter::lib::src::rendering::editable.dart::RenderEditablePainter" <|-- "flutter::lib::src::rendering::editable.dart::_FloatingCursorPainter"
+
+class "flutter::lib::src::rendering::editable.dart::_CompositeRenderEditablePainter" {
+  +List<RenderEditablePainter> painters
+  +void addListener()
+  +void removeListener()
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"flutter::lib::src::rendering::editable.dart::RenderEditablePainter" <|-- "flutter::lib::src::rendering::editable.dart::_CompositeRenderEditablePainter"
+
+
+@enduml

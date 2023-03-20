@@ -1,0 +1,80 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::animated_list.dart::_ActiveItem" {
+  +dynamic controller
+  +Widget Function(BuildContext, dynamic)? removedItemBuilder
+  +int itemIndex
+  +int compareTo()
+}
+
+"flutter::lib::src::widgets::animated_list.dart::_ActiveItem" o-- "flutter::lib::src::widgets::animated_list.dart::Widget Function(BuildContext, dynamic)"
+"dart::core::Comparable" <|-- "flutter::lib::src::widgets::animated_list.dart::_ActiveItem"
+
+class "flutter::lib::src::widgets::animated_list.dart::AnimatedList" {
+  +Widget Function(BuildContext, int, dynamic) itemBuilder
+  +int initialItemCount
+  +dynamic scrollDirection
+  +bool reverse
+  +ScrollController? controller
+  +bool? primary
+  +ScrollPhysics? physics
+  +bool shrinkWrap
+  +dynamic padding
+  +dynamic clipBehavior
+  {static} +AnimatedListState of()
+  {static} +AnimatedListState? maybeOf()
+  +AnimatedListState createState()
+}
+
+"flutter::lib::src::widgets::animated_list.dart::AnimatedList" o-- "flutter::lib::src::widgets::animated_list.dart::Widget Function(BuildContext, int, dynamic)"
+"flutter::lib::src::widgets::animated_list.dart::AnimatedList" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::animated_list.dart::AnimatedList" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::animated_list.dart::AnimatedList"
+
+class "flutter::lib::src::widgets::animated_list.dart::AnimatedListState" {
+  -GlobalKey<SliverAnimatedListState> _sliverAnimatedListKey
+  +void insertItem()
+  +void removeItem()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::animated_list.dart::AnimatedListState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<SliverAnimatedListState>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::animated_list.dart::AnimatedListState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::animated_list.dart::AnimatedListState"
+
+class "flutter::lib::src::widgets::animated_list.dart::SliverAnimatedList" {
+  +Widget Function(BuildContext, int, dynamic) itemBuilder
+  +int? Function(dynamic)? findChildIndexCallback
+  +int initialItemCount
+  +SliverAnimatedListState createState()
+  {static} +SliverAnimatedListState of()
+  {static} +SliverAnimatedListState? maybeOf()
+}
+
+"flutter::lib::src::widgets::animated_list.dart::SliverAnimatedList" o-- "flutter::lib::src::widgets::animated_list.dart::Widget Function(BuildContext, int, dynamic)"
+"flutter::lib::src::widgets::animated_list.dart::SliverAnimatedList" o-- "flutter::lib::src::widgets::sliver.dart::int Function(dynamic)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::animated_list.dart::SliverAnimatedList"
+
+class "flutter::lib::src::widgets::animated_list.dart::SliverAnimatedListState" {
+  -List<_ActiveItem> _incomingItems
+  -List<_ActiveItem> _outgoingItems
+  -int _itemsCount
+  +void initState()
+  +void dispose()
+  -_ActiveItem? _removeActiveItemAt()
+  -_ActiveItem? _activeItemAt()
+  -int _indexToItemIndex()
+  -int _itemIndexToIndex()
+  -SliverChildDelegate _createDelegate()
+  +void insertItem()
+  +void removeItem()
+  -Widget _itemBuilder()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::animated_list.dart::SliverAnimatedListState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::animated_list.dart::SliverAnimatedListState"
+
+
+@enduml

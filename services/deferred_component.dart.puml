@@ -1,0 +1,10 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::deferred_component.dart::DeferredComponent" {
+  {static} +Future<void> installDeferredComponent()
+  {static} +Future<void> uninstallDeferredComponent()
+}
+
+
+@enduml

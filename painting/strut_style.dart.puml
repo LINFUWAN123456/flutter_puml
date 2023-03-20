@@ -1,0 +1,29 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::strut_style.dart::StrutStyle" {
+  {static} +StrutStyle disabled
+  +String? fontFamily
+  -List<String>? _fontFamilyFallback
+  -String? _package
+  +double? fontSize
+  +double? height
+  +dynamic leadingDistribution
+  +dynamic fontWeight
+  +dynamic fontStyle
+  +double? leading
+  +bool? forceStrutHeight
+  +String? debugLabel
+  +List<String>? fontFamilyFallback
+  +int hashCode
+  +RenderComparison compareTo()
+  +StrutStyle inheritFromTextStyle()
+  +bool ==()
+  +String toStringShort()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::painting::strut_style.dart::StrutStyle" o-- "flutter::lib::src::painting::strut_style.dart::StrutStyle"
+
+
+@enduml

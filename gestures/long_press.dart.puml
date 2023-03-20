@@ -1,0 +1,80 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::long_press.dart::LongPressDownDetails" {
+  +dynamic globalPosition
+  +dynamic kind
+  +dynamic localPosition
+}
+
+class "flutter::lib::src::gestures::long_press.dart::LongPressStartDetails" {
+  +dynamic globalPosition
+  +dynamic localPosition
+}
+
+class "flutter::lib::src::gestures::long_press.dart::LongPressMoveUpdateDetails" {
+  +dynamic globalPosition
+  +dynamic localPosition
+  +dynamic offsetFromOrigin
+  +dynamic localOffsetFromOrigin
+}
+
+class "flutter::lib::src::gestures::long_press.dart::LongPressEndDetails" {
+  +dynamic globalPosition
+  +dynamic localPosition
+  +Velocity velocity
+}
+
+"flutter::lib::src::gestures::long_press.dart::LongPressEndDetails" o-- "flutter::lib::src::gestures::velocity_tracker.dart::Velocity"
+
+class "flutter::lib::src::gestures::long_press.dart::LongPressGestureRecognizer" {
+  -bool _longPressAccepted
+  -OffsetPair? _longPressOrigin
+  -int? _initialButtons
+  +void Function(LongPressDownDetails)? onLongPressDown
+  +void Function()? onLongPressCancel
+  +void Function()? onLongPress
+  +void Function(LongPressStartDetails)? onLongPressStart
+  +void Function(LongPressMoveUpdateDetails)? onLongPressMoveUpdate
+  +void Function()? onLongPressUp
+  +void Function(LongPressEndDetails)? onLongPressEnd
+  +void Function(LongPressDownDetails)? onSecondaryLongPressDown
+  +void Function()? onSecondaryLongPressCancel
+  +void Function()? onSecondaryLongPress
+  +void Function(LongPressStartDetails)? onSecondaryLongPressStart
+  +void Function(LongPressMoveUpdateDetails)? onSecondaryLongPressMoveUpdate
+  +void Function()? onSecondaryLongPressUp
+  +void Function(LongPressEndDetails)? onSecondaryLongPressEnd
+  +void Function(LongPressDownDetails)? onTertiaryLongPressDown
+  +void Function()? onTertiaryLongPressCancel
+  +void Function()? onTertiaryLongPress
+  +void Function(LongPressStartDetails)? onTertiaryLongPressStart
+  +void Function(LongPressMoveUpdateDetails)? onTertiaryLongPressMoveUpdate
+  +void Function()? onTertiaryLongPressUp
+  +void Function(LongPressEndDetails)? onTertiaryLongPressEnd
+  -VelocityTracker? _velocityTracker
+  +String debugDescription
+  +bool isPointerAllowed()
+  +void didExceedDeadline()
+  +void handlePrimaryPointer()
+  -void _checkLongPressDown()
+  -void _checkLongPressCancel()
+  -void _checkLongPressStart()
+  -void _checkLongPressMoveUpdate()
+  -void _checkLongPressEnd()
+  -void _reset()
+  +void resolve()
+  +void acceptGesture()
+}
+
+"flutter::lib::src::gestures::long_press.dart::LongPressGestureRecognizer" o-- "flutter::lib::src::gestures::recognizer.dart::OffsetPair"
+"flutter::lib::src::gestures::long_press.dart::LongPressGestureRecognizer" o-- "flutter::lib::src::gestures::long_press.dart::void Function(LongPressDownDetails)"
+"flutter::lib::src::gestures::long_press.dart::LongPressGestureRecognizer" o-- "flutter::lib::src::gestures::long_press.dart::void Function()"
+"flutter::lib::src::gestures::long_press.dart::LongPressGestureRecognizer" o-- "flutter::lib::src::gestures::long_press.dart::void Function(LongPressStartDetails)"
+"flutter::lib::src::gestures::long_press.dart::LongPressGestureRecognizer" o-- "flutter::lib::src::gestures::long_press.dart::void Function(LongPressMoveUpdateDetails)"
+"flutter::lib::src::gestures::long_press.dart::LongPressGestureRecognizer" o-- "flutter::lib::src::gestures::long_press.dart::void Function(LongPressEndDetails)"
+"flutter::lib::src::gestures::long_press.dart::LongPressGestureRecognizer" o-- "flutter::lib::src::gestures::velocity_tracker.dart::VelocityTracker"
+"flutter::lib::src::gestures::recognizer.dart::PrimaryPointerGestureRecognizer" <|-- "flutter::lib::src::gestures::long_press.dart::LongPressGestureRecognizer"
+
+
+@enduml

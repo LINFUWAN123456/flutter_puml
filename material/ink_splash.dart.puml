@@ -1,0 +1,35 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::ink_splash.dart::_InkSplashFactory" {
+  +InteractiveInkFeature create()
+}
+
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory" <|-- "flutter::lib::src::material::ink_splash.dart::_InkSplashFactory"
+
+class "flutter::lib::src::material::ink_splash.dart::InkSplash" {
+  -dynamic _position
+  -dynamic _borderRadius
+  -dynamic _customBorder
+  -double _targetRadius
+  -dynamic Function()? _clipCallback
+  -bool _repositionToReferenceBox
+  -dynamic _textDirection
+  -dynamic _radius
+  -dynamic _radiusController
+  -dynamic _alpha
+  -dynamic _alphaController
+  {static} +InteractiveInkFeatureFactory splashFactory
+  +void confirm()
+  +void cancel()
+  -void _handleAlphaStatusChanged()
+  +void dispose()
+  +void paintFeature()
+}
+
+"flutter::lib::src::material::ink_splash.dart::InkSplash" o-- "flutter::lib::src::material::material.dart::dynamic Function()"
+"flutter::lib::src::material::ink_splash.dart::InkSplash" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeature" <|-- "flutter::lib::src::material::ink_splash.dart::InkSplash"
+
+
+@enduml

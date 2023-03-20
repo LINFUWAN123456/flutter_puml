@@ -1,0 +1,60 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::typography.dart::Typography" {
+  +TextTheme black
+  +TextTheme white
+  +TextTheme englishLike
+  +TextTheme dense
+  +TextTheme tall
+  {static} +TextTheme blackMountainView
+  {static} +TextTheme whiteMountainView
+  {static} +TextTheme blackRedmond
+  {static} +TextTheme whiteRedmond
+  {static} -List<String> _helsinkiFontFallbacks
+  {static} +TextTheme blackHelsinki
+  {static} +TextTheme whiteHelsinki
+  {static} +TextTheme blackCupertino
+  {static} +TextTheme whiteCupertino
+  {static} +TextTheme blackRedwoodCity
+  {static} +TextTheme whiteRedwoodCity
+  {static} +TextTheme englishLike2014
+  {static} +TextTheme englishLike2018
+  {static} +TextTheme dense2014
+  {static} +TextTheme dense2018
+  {static} +TextTheme tall2014
+  {static} +TextTheme tall2018
+  {static} +TextTheme englishLike2021
+  {static} +TextTheme dense2021
+  {static} +TextTheme tall2021
+  +int hashCode
+  +TextTheme geometryThemeFor()
+  +Typography copyWith()
+  {static} +Typography lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::typography.dart::Typography" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+
+class "flutter::lib::src::material::typography.dart::_M3Typography" {
+  {static} +TextTheme englishLike
+  {static} +TextTheme dense
+  {static} +TextTheme tall
+}
+
+"flutter::lib::src::material::typography.dart::_M3Typography" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+
+class "flutter::lib::src::material::typography.dart::ScriptCategory" {
+  +int index
+  {static} +List<ScriptCategory> values
+  {static} +ScriptCategory englishLike
+  {static} +ScriptCategory dense
+  {static} +ScriptCategory tall
+}
+
+"flutter::lib::src::material::typography.dart::ScriptCategory" o-- "flutter::lib::src::material::typography.dart::ScriptCategory"
+"dart::core::Enum" <|-- "flutter::lib::src::material::typography.dart::ScriptCategory"
+
+
+@enduml

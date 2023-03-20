@@ -1,0 +1,63 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::scheduler::ticker.dart::TickerProvider" {
+  +Ticker createTicker()
+}
+
+class "flutter::lib::src::scheduler::ticker.dart::Ticker" {
+  -TickerFuture? _future
+  -bool _muted
+  -Duration? _startTime
+  -void Function(Duration) _onTick
+  -int? _animationId
+  +String? debugLabel
+  -StackTrace _debugCreationStack
+  +bool muted
+  +bool isTicking
+  +bool isActive
+  +bool scheduled
+  +bool shouldScheduleTick
+  +TickerFuture start()
+  +dynamic describeForError()
+  +void stop()
+  -void _tick()
+  +void scheduleTick()
+  +void unscheduleTick()
+  +void absorbTicker()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::scheduler::ticker.dart::Ticker" o-- "flutter::lib::src::scheduler::ticker.dart::TickerFuture"
+"flutter::lib::src::scheduler::ticker.dart::Ticker" o-- "flutter::lib::src::scheduler::ticker.dart::void Function(Duration)"
+
+class "flutter::lib::src::scheduler::ticker.dart::TickerFuture" {
+  -Completer<void> _primaryCompleter
+  -Completer<void>? _secondaryCompleter
+  -bool? _completed
+  +Future<void> orCancel
+  -void _complete()
+  -void _cancel()
+  +void whenCompleteOrCancel()
+  +Stream<void> asStream()
+  +Future<void> catchError()
+  +Future<R> then()
+  +Future<void> timeout()
+  +Future<void> whenComplete()
+  +String toString()
+}
+
+"flutter::lib::src::scheduler::ticker.dart::TickerFuture" o-- "dart::async::Completer<void>"
+"dart::async::Future" <|-- "flutter::lib::src::scheduler::ticker.dart::TickerFuture"
+
+class "flutter::lib::src::scheduler::ticker.dart::TickerCanceled" {
+  +Ticker? ticker
+  +String toString()
+}
+
+"flutter::lib::src::scheduler::ticker.dart::TickerCanceled" o-- "flutter::lib::src::scheduler::ticker.dart::Ticker"
+"dart::core::Exception" <|-- "flutter::lib::src::scheduler::ticker.dart::TickerCanceled"
+
+
+@enduml

@@ -1,0 +1,225 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::animation::curves.dart::ParametricCurve" {
+  +T transform()
+  +T transformInternal()
+  +String toString()
+}
+
+abstract class "flutter::lib::src::animation::curves.dart::Curve" {
+  +Curve flipped
+  +double transform()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" o-- "flutter::lib::src::animation::curves.dart::Curve"
+"flutter::lib::src::animation::curves.dart::ParametricCurve" <|-- "flutter::lib::src::animation::curves.dart::Curve"
+
+class "flutter::lib::src::animation::curves.dart::_Linear" {
+  +double transformInternal()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::_Linear"
+
+class "flutter::lib::src::animation::curves.dart::SawTooth" {
+  +int count
+  +double transformInternal()
+  +String toString()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::SawTooth"
+
+class "flutter::lib::src::animation::curves.dart::Interval" {
+  +double begin
+  +double end
+  +Curve curve
+  +double transformInternal()
+  +String toString()
+}
+
+"flutter::lib::src::animation::curves.dart::Interval" o-- "flutter::lib::src::animation::curves.dart::Curve"
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::Interval"
+
+class "flutter::lib::src::animation::curves.dart::Threshold" {
+  +double threshold
+  +double transformInternal()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::Threshold"
+
+class "flutter::lib::src::animation::curves.dart::Cubic" {
+  +double a
+  +double b
+  +double c
+  +double d
+  {static} -double _cubicErrorBound
+  -double _evaluateCubic()
+  +double transformInternal()
+  +String toString()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::Cubic"
+
+class "flutter::lib::src::animation::curves.dart::ThreePointCubic" {
+  +dynamic a1
+  +dynamic b1
+  +dynamic midpoint
+  +dynamic a2
+  +dynamic b2
+  +double transformInternal()
+  +String toString()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::ThreePointCubic"
+
+abstract class "flutter::lib::src::animation::curves.dart::Curve2D" {
+  +int samplingSeed
+  +Iterable<Curve2DSample> generateSamples()
+  +double findInverse()
+}
+
+"flutter::lib::src::animation::curves.dart::ParametricCurve" <|-- "flutter::lib::src::animation::curves.dart::Curve2D"
+
+class "flutter::lib::src::animation::curves.dart::Curve2DSample" {
+  +double t
+  +dynamic value
+  +String toString()
+}
+
+class "flutter::lib::src::animation::curves.dart::CatmullRomSpline" {
+  -List<List<dynamic>> _cubicSegments
+  -List<dynamic>? _controlPoints
+  -dynamic _startHandle
+  -dynamic _endHandle
+  -double? _tension
+  +int samplingSeed
+  {static} -List<List<dynamic>> _computeSegments()
+  -void _initializeIfNeeded()
+  +dynamic transformInternal()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve2D" <|-- "flutter::lib::src::animation::curves.dart::CatmullRomSpline"
+
+class "flutter::lib::src::animation::curves.dart::CatmullRomCurve" {
+  {static} -List<String> _debugAssertReasons
+  -List<Curve2DSample> _precomputedSamples
+  +List<dynamic> controlPoints
+  +double tension
+  {static} -List<Curve2DSample> _computeSamples()
+  {static} +bool validateControlPoints()
+  +double transformInternal()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::CatmullRomCurve"
+
+class "flutter::lib::src::animation::curves.dart::FlippedCurve" {
+  +Curve curve
+  +double transformInternal()
+  +String toString()
+}
+
+"flutter::lib::src::animation::curves.dart::FlippedCurve" o-- "flutter::lib::src::animation::curves.dart::Curve"
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::FlippedCurve"
+
+class "flutter::lib::src::animation::curves.dart::_DecelerateCurve" {
+  +double transformInternal()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::_DecelerateCurve"
+
+class "flutter::lib::src::animation::curves.dart::_BounceInCurve" {
+  +double transformInternal()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::_BounceInCurve"
+
+class "flutter::lib::src::animation::curves.dart::_BounceOutCurve" {
+  +double transformInternal()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::_BounceOutCurve"
+
+class "flutter::lib::src::animation::curves.dart::_BounceInOutCurve" {
+  +double transformInternal()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::_BounceInOutCurve"
+
+class "flutter::lib::src::animation::curves.dart::ElasticInCurve" {
+  +double period
+  +double transformInternal()
+  +String toString()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::ElasticInCurve"
+
+class "flutter::lib::src::animation::curves.dart::ElasticOutCurve" {
+  +double period
+  +double transformInternal()
+  +String toString()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::ElasticOutCurve"
+
+class "flutter::lib::src::animation::curves.dart::ElasticInOutCurve" {
+  +double period
+  +double transformInternal()
+  +String toString()
+}
+
+"flutter::lib::src::animation::curves.dart::Curve" <|-- "flutter::lib::src::animation::curves.dart::ElasticInOutCurve"
+
+class "flutter::lib::src::animation::curves.dart::Curves" {
+  {static} +Curve linear
+  {static} +Curve decelerate
+  {static} +Cubic fastLinearToSlowEaseIn
+  {static} +Cubic ease
+  {static} +Cubic easeIn
+  {static} +Cubic easeInToLinear
+  {static} +Cubic easeInSine
+  {static} +Cubic easeInQuad
+  {static} +Cubic easeInCubic
+  {static} +Cubic easeInQuart
+  {static} +Cubic easeInQuint
+  {static} +Cubic easeInExpo
+  {static} +Cubic easeInCirc
+  {static} +Cubic easeInBack
+  {static} +Cubic easeOut
+  {static} +Cubic linearToEaseOut
+  {static} +Cubic easeOutSine
+  {static} +Cubic easeOutQuad
+  {static} +Cubic easeOutCubic
+  {static} +Cubic easeOutQuart
+  {static} +Cubic easeOutQuint
+  {static} +Cubic easeOutExpo
+  {static} +Cubic easeOutCirc
+  {static} +Cubic easeOutBack
+  {static} +Cubic easeInOut
+  {static} +Cubic easeInOutSine
+  {static} +Cubic easeInOutQuad
+  {static} +Cubic easeInOutCubic
+  {static} +ThreePointCubic easeInOutCubicEmphasized
+  {static} +Cubic easeInOutQuart
+  {static} +Cubic easeInOutQuint
+  {static} +Cubic easeInOutExpo
+  {static} +Cubic easeInOutCirc
+  {static} +Cubic easeInOutBack
+  {static} +Cubic fastOutSlowIn
+  {static} +Cubic slowMiddle
+  {static} +Curve bounceIn
+  {static} +Curve bounceOut
+  {static} +Curve bounceInOut
+  {static} +ElasticInCurve elasticIn
+  {static} +ElasticOutCurve elasticOut
+  {static} +ElasticInOutCurve elasticInOut
+}
+
+"flutter::lib::src::animation::curves.dart::Curves" o-- "flutter::lib::src::animation::curves.dart::Curve"
+"flutter::lib::src::animation::curves.dart::Curves" o-- "flutter::lib::src::animation::curves.dart::Cubic"
+"flutter::lib::src::animation::curves.dart::Curves" o-- "flutter::lib::src::animation::curves.dart::ThreePointCubic"
+"flutter::lib::src::animation::curves.dart::Curves" o-- "flutter::lib::src::animation::curves.dart::ElasticInCurve"
+"flutter::lib::src::animation::curves.dart::Curves" o-- "flutter::lib::src::animation::curves.dart::ElasticOutCurve"
+"flutter::lib::src::animation::curves.dart::Curves" o-- "flutter::lib::src::animation::curves.dart::ElasticInOutCurve"
+
+
+@enduml

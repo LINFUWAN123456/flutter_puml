@@ -1,0 +1,46 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::text_theme.dart::CupertinoTextThemeData" {
+  -_TextThemeDefaultsBuilder _defaults
+  -dynamic _primaryColor
+  -dynamic _textStyle
+  -dynamic _actionTextStyle
+  -dynamic _tabLabelTextStyle
+  -dynamic _navTitleTextStyle
+  -dynamic _navLargeTitleTextStyle
+  -dynamic _navActionTextStyle
+  -dynamic _pickerTextStyle
+  -dynamic _dateTimePickerTextStyle
+  +dynamic textStyle
+  +dynamic actionTextStyle
+  +dynamic tabLabelTextStyle
+  +dynamic navTitleTextStyle
+  +dynamic navLargeTitleTextStyle
+  +dynamic navActionTextStyle
+  +dynamic pickerTextStyle
+  +dynamic dateTimePickerTextStyle
+  +CupertinoTextThemeData resolveFrom()
+  +CupertinoTextThemeData copyWith()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::cupertino::text_theme.dart::CupertinoTextThemeData" o-- "flutter::lib::src::cupertino::text_theme.dart::_TextThemeDefaultsBuilder"
+
+class "flutter::lib::src::cupertino::text_theme.dart::_TextThemeDefaultsBuilder" {
+  +dynamic labelColor
+  +dynamic inactiveGrayColor
+  +dynamic textStyle
+  +dynamic tabLabelTextStyle
+  +dynamic navTitleTextStyle
+  +dynamic navLargeTitleTextStyle
+  +dynamic pickerTextStyle
+  +dynamic dateTimePickerTextStyle
+  {static} -dynamic _applyLabelColor()
+  +dynamic actionTextStyle()
+  +dynamic navActionTextStyle()
+  +_TextThemeDefaultsBuilder resolveFrom()
+}
+
+
+@enduml

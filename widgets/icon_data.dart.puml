@@ -1,0 +1,19 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::icon_data.dart::IconData" {
+  +int codePoint
+  +String? fontFamily
+  +String? fontPackage
+  +bool matchTextDirection
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::widgets::icon_data.dart::IconDataProperty" {
+  +Map<String, Object?> toJsonMap()
+}
+
+
+@enduml

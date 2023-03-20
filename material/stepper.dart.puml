@@ -1,0 +1,100 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::stepper.dart::ControlsDetails" {
+  +int currentStep
+  +int stepIndex
+  +dynamic onStepContinue
+  +dynamic onStepCancel
+  +bool isActive
+}
+
+class "flutter::lib::src::material::stepper.dart::Step" {
+  +dynamic title
+  +dynamic subtitle
+  +dynamic content
+  +StepState state
+  +bool isActive
+  +dynamic label
+}
+
+"flutter::lib::src::material::stepper.dart::Step" o-- "flutter::lib::src::material::stepper.dart::StepState"
+
+class "flutter::lib::src::material::stepper.dart::Stepper" {
+  +List<Step> steps
+  +dynamic physics
+  +StepperType type
+  +int currentStep
+  +dynamic onStepTapped
+  +dynamic onStepContinue
+  +dynamic onStepCancel
+  +dynamic Function(dynamic, ControlsDetails)? controlsBuilder
+  +double? elevation
+  +dynamic margin
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::stepper.dart::Stepper" o-- "flutter::lib::src::material::stepper.dart::StepperType"
+"flutter::lib::src::material::stepper.dart::Stepper" o-- "flutter::lib::src::material::stepper.dart::dynamic Function(dynamic, ControlsDetails)"
+
+class "flutter::lib::src::material::stepper.dart::_StepperState" {
+  -List<dynamic> _keys
+  -Map<int, StepState> _oldStates
+  +void initState()
+  +void didUpdateWidget()
+  -bool _isFirst()
+  -bool _isLast()
+  -bool _isCurrent()
+  -bool _isDark()
+  -bool _isLabel()
+  -dynamic _buildLine()
+  -dynamic _buildCircleChild()
+  -dynamic _circleColor()
+  -dynamic _buildCircle()
+  -dynamic _buildTriangle()
+  -dynamic _buildIcon()
+  -dynamic _buildVerticalControls()
+  -dynamic _titleStyle()
+  -dynamic _subtitleStyle()
+  -dynamic _labelStyle()
+  -dynamic _buildHeaderText()
+  -dynamic _buildLabelText()
+  -dynamic _buildVerticalHeader()
+  -dynamic _buildVerticalBody()
+  -dynamic _buildVertical()
+  -dynamic _buildHorizontal()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::stepper.dart::_TrianglePainter" {
+  +dynamic color
+  +bool hitTest()
+  +bool shouldRepaint()
+  +void paint()
+}
+
+class "flutter::lib::src::material::stepper.dart::StepState" {
+  +int index
+  {static} +List<StepState> values
+  {static} +StepState indexed
+  {static} +StepState editing
+  {static} +StepState complete
+  {static} +StepState disabled
+  {static} +StepState error
+}
+
+"flutter::lib::src::material::stepper.dart::StepState" o-- "flutter::lib::src::material::stepper.dart::StepState"
+"dart::core::Enum" <|-- "flutter::lib::src::material::stepper.dart::StepState"
+
+class "flutter::lib::src::material::stepper.dart::StepperType" {
+  +int index
+  {static} +List<StepperType> values
+  {static} +StepperType vertical
+  {static} +StepperType horizontal
+}
+
+"flutter::lib::src::material::stepper.dart::StepperType" o-- "flutter::lib::src::material::stepper.dart::StepperType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::stepper.dart::StepperType"
+
+
+@enduml

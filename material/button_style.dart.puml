@@ -1,0 +1,64 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::button_style.dart::ButtonStyle" {
+  +MaterialStateProperty<dynamic>? textStyle
+  +MaterialStateProperty<dynamic>? backgroundColor
+  +MaterialStateProperty<dynamic>? foregroundColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +MaterialStateProperty<dynamic>? shadowColor
+  +MaterialStateProperty<dynamic>? surfaceTintColor
+  +MaterialStateProperty<double?>? elevation
+  +MaterialStateProperty<dynamic>? padding
+  +MaterialStateProperty<dynamic>? minimumSize
+  +MaterialStateProperty<dynamic>? fixedSize
+  +MaterialStateProperty<dynamic>? maximumSize
+  +MaterialStateProperty<dynamic>? side
+  +MaterialStateProperty<dynamic>? shape
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +VisualDensity? visualDensity
+  +MaterialTapTargetSize? tapTargetSize
+  +Duration? animationDuration
+  +bool? enableFeedback
+  +dynamic alignment
+  +InteractiveInkFeatureFactory? splashFactory
+  +int hashCode
+  +ButtonStyle copyWith()
+  +ButtonStyle merge()
+  +bool ==()
+  +void debugFillProperties()
+  {static} +ButtonStyle? lerp()
+  {static} -MaterialStateProperty<T?>? _lerpProperties()
+  {static} -MaterialStateProperty<dynamic>? _lerpSides()
+}
+
+"flutter::lib::src::material::button_style.dart::ButtonStyle" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::button_style.dart::ButtonStyle" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<double>"
+"flutter::lib::src::material::button_style.dart::ButtonStyle" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::button_style.dart::ButtonStyle" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::button_style.dart::ButtonStyle" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+
+class "flutter::lib::src::material::button_style.dart::_LerpProperties" {
+  +MaterialStateProperty<T>? a
+  +MaterialStateProperty<T>? b
+  +double t
+  +T? Function(T?, T?, double) lerpFunction
+  +T? resolve()
+}
+
+"flutter::lib::src::material::button_style.dart::_LerpProperties" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<T>"
+"flutter::lib::src::material::button_style.dart::_LerpProperties" o-- "null::T Function(T, T, double)"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::button_style.dart::_LerpProperties"
+
+class "flutter::lib::src::material::button_style.dart::_LerpSides" {
+  +MaterialStateProperty<dynamic>? a
+  +MaterialStateProperty<dynamic>? b
+  +double t
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::button_style.dart::_LerpSides" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::button_style.dart::_LerpSides"
+
+
+@enduml

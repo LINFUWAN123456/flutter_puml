@@ -1,0 +1,17 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::bottom_app_bar_theme.dart::BottomAppBarTheme" {
+  +dynamic color
+  +double? elevation
+  +dynamic shape
+  +int hashCode
+  +BottomAppBarTheme copyWith()
+  {static} +BottomAppBarTheme of()
+  {static} +BottomAppBarTheme lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

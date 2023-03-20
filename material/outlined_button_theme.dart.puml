@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::outlined_button_theme.dart::OutlinedButtonThemeData" {
+  +ButtonStyle? style
+  +int hashCode
+  {static} +OutlinedButtonThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::outlined_button_theme.dart::OutlinedButtonThemeData" o-- "flutter::lib::src::material::button_style.dart::ButtonStyle"
+
+class "flutter::lib::src::material::outlined_button_theme.dart::OutlinedButtonTheme" {
+  +OutlinedButtonThemeData data
+  {static} +OutlinedButtonThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::outlined_button_theme.dart::OutlinedButtonTheme" o-- "flutter::lib::src::material::outlined_button_theme.dart::OutlinedButtonThemeData"
+
+
+@enduml

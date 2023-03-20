@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::text_form_field.dart::TextFormField" {
+  +dynamic controller
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::text_form_field.dart::_TextFormFieldState" {
+  -dynamic _controller
+  -dynamic _effectiveController
+  -TextFormField _textFormField
+  +void restoreState()
+  -void _registerController()
+  -void _createLocalController()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +void didChange()
+  +void reset()
+  -void _handleControllerChanged()
+}
+
+"flutter::lib::src::material::text_form_field.dart::_TextFormFieldState" o-- "flutter::lib::src::material::text_form_field.dart::TextFormField"
+
+
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::colors.dart::HSVColor" {
+  +double alpha
+  +double hue
+  +double saturation
+  +double value
+  +int hashCode
+  +HSVColor withAlpha()
+  +HSVColor withHue()
+  +HSVColor withSaturation()
+  +HSVColor withValue()
+  +dynamic toColor()
+  -HSVColor _scaleAlpha()
+  {static} +HSVColor? lerp()
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::painting::colors.dart::HSLColor" {
+  +double alpha
+  +double hue
+  +double saturation
+  +double lightness
+  +int hashCode
+  +HSLColor withAlpha()
+  +HSLColor withHue()
+  +HSLColor withSaturation()
+  +HSLColor withLightness()
+  +dynamic toColor()
+  -HSLColor _scaleAlpha()
+  {static} +HSLColor? lerp()
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::painting::colors.dart::ColorSwatch" {
+  -Map<T, dynamic> _swatch
+  +int hashCode
+  +dynamic []()
+  +bool ==()
+  +String toString()
+  {static} +ColorSwatch<T>? lerp()
+}
+
+class "flutter::lib::src::painting::colors.dart::ColorProperty" {
+  +Map<String, Object?> toJsonMap()
+}
+
+
+@enduml

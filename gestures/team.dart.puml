@@ -1,0 +1,42 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::team.dart::_CombiningGestureArenaEntry" {
+  -_CombiningGestureArenaMember _combiner
+  -GestureArenaMember _member
+  +void resolve()
+}
+
+"flutter::lib::src::gestures::team.dart::_CombiningGestureArenaEntry" o-- "flutter::lib::src::gestures::team.dart::_CombiningGestureArenaMember"
+"flutter::lib::src::gestures::team.dart::_CombiningGestureArenaEntry" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaMember"
+"flutter::lib::src::gestures::arena.dart::GestureArenaEntry" <|-- "flutter::lib::src::gestures::team.dart::_CombiningGestureArenaEntry"
+
+class "flutter::lib::src::gestures::team.dart::_CombiningGestureArenaMember" {
+  -GestureArenaTeam _owner
+  -List<GestureArenaMember> _members
+  -int _pointer
+  -bool _resolved
+  -GestureArenaMember? _winner
+  -GestureArenaEntry? _entry
+  +void acceptGesture()
+  +void rejectGesture()
+  -void _close()
+  -GestureArenaEntry _add()
+  -void _resolve()
+}
+
+"flutter::lib::src::gestures::team.dart::_CombiningGestureArenaMember" o-- "flutter::lib::src::gestures::team.dart::GestureArenaTeam"
+"flutter::lib::src::gestures::team.dart::_CombiningGestureArenaMember" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaMember"
+"flutter::lib::src::gestures::team.dart::_CombiningGestureArenaMember" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaEntry"
+"flutter::lib::src::gestures::arena.dart::GestureArenaMember" <|-- "flutter::lib::src::gestures::team.dart::_CombiningGestureArenaMember"
+
+class "flutter::lib::src::gestures::team.dart::GestureArenaTeam" {
+  -Map<int, _CombiningGestureArenaMember> _combiners
+  +GestureArenaMember? captain
+  +GestureArenaEntry add()
+}
+
+"flutter::lib::src::gestures::team.dart::GestureArenaTeam" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaMember"
+
+
+@enduml

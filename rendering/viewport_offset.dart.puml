@@ -1,0 +1,49 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::viewport_offset.dart::ViewportOffset" {
+  +double pixels
+  +bool hasPixels
+  +ScrollDirection userScrollDirection
+  +bool allowImplicitScrolling
+  +bool applyViewportDimension()
+  +bool applyContentDimensions()
+  +void correctBy()
+  +void jumpTo()
+  +Future<void> animateTo()
+  +Future<void> moveTo()
+  +String toString()
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::rendering::viewport_offset.dart::ViewportOffset" o-- "flutter::lib::src::rendering::viewport_offset.dart::ScrollDirection"
+
+class "flutter::lib::src::rendering::viewport_offset.dart::_FixedViewportOffset" {
+  -double _pixels
+  +double pixels
+  +bool hasPixels
+  +ScrollDirection userScrollDirection
+  +bool allowImplicitScrolling
+  +bool applyViewportDimension()
+  +bool applyContentDimensions()
+  +void correctBy()
+  +void jumpTo()
+  +Future<void> animateTo()
+}
+
+"flutter::lib::src::rendering::viewport_offset.dart::_FixedViewportOffset" o-- "flutter::lib::src::rendering::viewport_offset.dart::ScrollDirection"
+"flutter::lib::src::rendering::viewport_offset.dart::ViewportOffset" <|-- "flutter::lib::src::rendering::viewport_offset.dart::_FixedViewportOffset"
+
+class "flutter::lib::src::rendering::viewport_offset.dart::ScrollDirection" {
+  +int index
+  {static} +List<ScrollDirection> values
+  {static} +ScrollDirection idle
+  {static} +ScrollDirection forward
+  {static} +ScrollDirection reverse
+}
+
+"flutter::lib::src::rendering::viewport_offset.dart::ScrollDirection" o-- "flutter::lib::src::rendering::viewport_offset.dart::ScrollDirection"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::viewport_offset.dart::ScrollDirection"
+
+
+@enduml

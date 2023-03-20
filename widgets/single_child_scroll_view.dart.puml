@@ -1,0 +1,85 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::single_child_scroll_view.dart::SingleChildScrollView" {
+  +dynamic scrollDirection
+  +bool reverse
+  +dynamic padding
+  +ScrollController? controller
+  +bool? primary
+  +ScrollPhysics? physics
+  +Widget? child
+  +dynamic dragStartBehavior
+  +dynamic clipBehavior
+  +String? restorationId
+  +ScrollViewKeyboardDismissBehavior keyboardDismissBehavior
+  -dynamic _getDirection()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::single_child_scroll_view.dart::SingleChildScrollView" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::single_child_scroll_view.dart::SingleChildScrollView" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::single_child_scroll_view.dart::SingleChildScrollView" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::single_child_scroll_view.dart::SingleChildScrollView" o-- "flutter::lib::src::widgets::scroll_view.dart::ScrollViewKeyboardDismissBehavior"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::single_child_scroll_view.dart::SingleChildScrollView"
+
+class "flutter::lib::src::widgets::single_child_scroll_view.dart::_SingleChildViewport" {
+  +dynamic axisDirection
+  +dynamic offset
+  +dynamic clipBehavior
+  +_RenderSingleChildViewport createRenderObject()
+  +void updateRenderObject()
+  +SingleChildRenderObjectElement createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::single_child_scroll_view.dart::_SingleChildViewport"
+
+class "flutter::lib::src::widgets::single_child_scroll_view.dart::_SingleChildViewportElement" {
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectElement" <|-- "flutter::lib::src::widgets::single_child_scroll_view.dart::_SingleChildViewportElement"
+"flutter::lib::src::widgets::framework.dart::NotifiableElementMixin" <|-- "flutter::lib::src::widgets::single_child_scroll_view.dart::_SingleChildViewportElement"
+"flutter::lib::src::widgets::scroll_notification.dart::ViewportElementMixin" <|-- "flutter::lib::src::widgets::single_child_scroll_view.dart::_SingleChildViewportElement"
+
+class "flutter::lib::src::widgets::single_child_scroll_view.dart::_RenderSingleChildViewport" {
+  -dynamic _axisDirection
+  -dynamic _offset
+  -double _cacheExtent
+  -dynamic _clipBehavior
+  -dynamic _clipRectLayer
+  +dynamic axisDirection
+  +dynamic axis
+  +dynamic offset
+  +double cacheExtent
+  +dynamic clipBehavior
+  +bool isRepaintBoundary
+  -double _viewportExtent
+  -double _minScrollExtent
+  -double _maxScrollExtent
+  -dynamic _paintOffset
+  -void _hasScrolled()
+  +void setupParentData()
+  +void attach()
+  +void detach()
+  -dynamic _getInnerConstraints()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  -dynamic _paintOffsetForPosition()
+  -bool _shouldClipAtPaintOffset()
+  +void paint()
+  +void dispose()
+  +void applyPaintTransform()
+  +dynamic describeApproximatePaintClip()
+  +bool hitTestChildren()
+  +dynamic getOffsetToReveal()
+  +void showOnScreen()
+  +void debugFillProperties()
+  +dynamic describeSemanticsClip()
+}
+
+
+@enduml

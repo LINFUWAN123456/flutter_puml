@@ -1,0 +1,63 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::stadium_border.dart::StadiumBorder" {
+  +EdgeInsetsGeometry dimensions
+  +int hashCode
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  +StadiumBorder copyWith()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::stadium_border.dart::StadiumBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::borders.dart::OutlinedBorder" <|-- "flutter::lib::src::painting::stadium_border.dart::StadiumBorder"
+
+class "flutter::lib::src::painting::stadium_border.dart::_StadiumToCircleBorder" {
+  +double circleness
+  +EdgeInsetsGeometry dimensions
+  +int hashCode
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  -dynamic _adjustRect()
+  -BorderRadius _adjustBorderRadius()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +_StadiumToCircleBorder copyWith()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::stadium_border.dart::_StadiumToCircleBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::borders.dart::OutlinedBorder" <|-- "flutter::lib::src::painting::stadium_border.dart::_StadiumToCircleBorder"
+
+class "flutter::lib::src::painting::stadium_border.dart::_StadiumToRoundedRectangleBorder" {
+  +BorderRadius borderRadius
+  +double rectness
+  +EdgeInsetsGeometry dimensions
+  +int hashCode
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  -BorderRadius _adjustBorderRadius()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +_StadiumToRoundedRectangleBorder copyWith()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::stadium_border.dart::_StadiumToRoundedRectangleBorder" o-- "flutter::lib::src::painting::border_radius.dart::BorderRadius"
+"flutter::lib::src::painting::stadium_border.dart::_StadiumToRoundedRectangleBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::borders.dart::OutlinedBorder" <|-- "flutter::lib::src::painting::stadium_border.dart::_StadiumToRoundedRectangleBorder"
+
+
+@enduml

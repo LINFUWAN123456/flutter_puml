@@ -1,0 +1,11 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::text_selection_toolbar_button.dart::CupertinoTextSelectionToolbarButton" {
+  +dynamic child
+  +dynamic onPressed
+  +dynamic build()
+}
+
+
+@enduml

@@ -1,0 +1,71 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::arc.dart::MaterialPointArcTween" {
+  -bool _dirty
+  -dynamic _center
+  -double? _radius
+  -double? _beginAngle
+  -double? _endAngle
+  +dynamic center
+  +double? radius
+  +double? beginAngle
+  +double? endAngle
+  +dynamic begin
+  +dynamic end
+  -void _initialize()
+  +dynamic lerp()
+  +String toString()
+}
+
+class "flutter::lib::src::material::arc.dart::_Diagonal" {
+  +_CornerId beginId
+  +_CornerId endId
+}
+
+"flutter::lib::src::material::arc.dart::_Diagonal" o-- "flutter::lib::src::material::arc.dart::_CornerId"
+
+class "flutter::lib::src::material::arc.dart::MaterialRectArcTween" {
+  -bool _dirty
+  -MaterialPointArcTween _beginArc
+  -MaterialPointArcTween _endArc
+  +MaterialPointArcTween? beginArc
+  +MaterialPointArcTween? endArc
+  +dynamic begin
+  +dynamic end
+  -void _initialize()
+  -double _diagonalSupport()
+  -dynamic _cornerFor()
+  +dynamic lerp()
+  +String toString()
+}
+
+"flutter::lib::src::material::arc.dart::MaterialRectArcTween" o-- "flutter::lib::src::material::arc.dart::MaterialPointArcTween"
+
+class "flutter::lib::src::material::arc.dart::MaterialRectCenterArcTween" {
+  -bool _dirty
+  -MaterialPointArcTween _centerArc
+  +MaterialPointArcTween? centerArc
+  +dynamic begin
+  +dynamic end
+  -void _initialize()
+  +dynamic lerp()
+  +String toString()
+}
+
+"flutter::lib::src::material::arc.dart::MaterialRectCenterArcTween" o-- "flutter::lib::src::material::arc.dart::MaterialPointArcTween"
+
+class "flutter::lib::src::material::arc.dart::_CornerId" {
+  +int index
+  {static} +List<_CornerId> values
+  {static} +_CornerId topLeft
+  {static} +_CornerId topRight
+  {static} +_CornerId bottomLeft
+  {static} +_CornerId bottomRight
+}
+
+"flutter::lib::src::material::arc.dart::_CornerId" o-- "flutter::lib::src::material::arc.dart::_CornerId"
+"dart::core::Enum" <|-- "flutter::lib::src::material::arc.dart::_CornerId"
+
+
+@enduml

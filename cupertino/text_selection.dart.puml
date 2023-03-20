@@ -1,0 +1,39 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::text_selection.dart::_CupertinoTextSelectionControlsToolbar" {
+  +dynamic clipboardStatus
+  +List<dynamic> endpoints
+  +dynamic globalEditableRegion
+  +dynamic handleCopy
+  +dynamic handleCut
+  +dynamic handlePaste
+  +dynamic handleSelectAll
+  +dynamic selectionMidpoint
+  +double textLineHeight
+  +_CupertinoTextSelectionControlsToolbarState createState()
+}
+
+class "flutter::lib::src::cupertino::text_selection.dart::_CupertinoTextSelectionControlsToolbarState" {
+  -void _onChangedClipboardStatus()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::text_selection.dart::_TextSelectionHandlePainter" {
+  +dynamic color
+  +void paint()
+  +bool shouldRepaint()
+}
+
+class "flutter::lib::src::cupertino::text_selection.dart::CupertinoTextSelectionControls" {
+  +dynamic getHandleSize()
+  +dynamic buildToolbar()
+  +dynamic buildHandle()
+  +dynamic getHandleAnchor()
+}
+
+
+@enduml

@@ -1,0 +1,56 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::gestures::arena.dart::GestureArenaMember" {
+  +void acceptGesture()
+  +void rejectGesture()
+}
+
+class "flutter::lib::src::gestures::arena.dart::GestureArenaEntry" {
+  -GestureArenaManager _arena
+  -int _pointer
+  -GestureArenaMember _member
+  +void resolve()
+}
+
+"flutter::lib::src::gestures::arena.dart::GestureArenaEntry" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaManager"
+"flutter::lib::src::gestures::arena.dart::GestureArenaEntry" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaMember"
+
+class "flutter::lib::src::gestures::arena.dart::_GestureArena" {
+  +List<GestureArenaMember> members
+  +bool isOpen
+  +bool isHeld
+  +bool hasPendingSweep
+  +GestureArenaMember? eagerWinner
+  +void add()
+  +String toString()
+}
+
+"flutter::lib::src::gestures::arena.dart::_GestureArena" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaMember"
+
+class "flutter::lib::src::gestures::arena.dart::GestureArenaManager" {
+  -Map<int, _GestureArena> _arenas
+  +GestureArenaEntry add()
+  +void close()
+  +void sweep()
+  +void hold()
+  +void release()
+  -void _resolve()
+  -void _tryToResolveArena()
+  -void _resolveByDefault()
+  -void _resolveInFavorOf()
+  -bool _debugLogDiagnostic()
+}
+
+class "flutter::lib::src::gestures::arena.dart::GestureDisposition" {
+  +int index
+  {static} +List<GestureDisposition> values
+  {static} +GestureDisposition accepted
+  {static} +GestureDisposition rejected
+}
+
+"flutter::lib::src::gestures::arena.dart::GestureDisposition" o-- "flutter::lib::src::gestures::arena.dart::GestureDisposition"
+"dart::core::Enum" <|-- "flutter::lib::src::gestures::arena.dart::GestureDisposition"
+
+
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::licenses.dart::LicenseParagraph" {
+  +String text
+  +int indent
+  {static} +int centeredIndent
+}
+
+abstract class "flutter::lib::src::foundation::licenses.dart::LicenseEntry" {
+  +Iterable<String> packages
+  +Iterable<LicenseParagraph> paragraphs
+}
+
+class "flutter::lib::src::foundation::licenses.dart::LicenseEntryWithLineBreaks" {
+  +List<String> packages
+  +String text
+  +Iterable<LicenseParagraph> paragraphs
+}
+
+"flutter::lib::src::foundation::licenses.dart::LicenseEntry" <|-- "flutter::lib::src::foundation::licenses.dart::LicenseEntryWithLineBreaks"
+
+class "flutter::lib::src::foundation::licenses.dart::LicenseRegistry" {
+  {static} -List<Stream<LicenseEntry> Function()>? _collectors
+  {static} +Stream<LicenseEntry> licenses
+  {static} +void addLicense()
+  {static} +void reset()
+}
+
+"flutter::lib::src::foundation::licenses.dart::LicenseRegistry" o-- "dart::async::Stream<LicenseEntry>"
+
+class "flutter::lib::src::foundation::licenses.dart::_LicenseEntryWithLineBreaksParserState" {
+  +int index
+  {static} +List<_LicenseEntryWithLineBreaksParserState> values
+  {static} +_LicenseEntryWithLineBreaksParserState beforeParagraph
+  {static} +_LicenseEntryWithLineBreaksParserState inParagraph
+}
+
+"flutter::lib::src::foundation::licenses.dart::_LicenseEntryWithLineBreaksParserState" o-- "flutter::lib::src::foundation::licenses.dart::_LicenseEntryWithLineBreaksParserState"
+"dart::core::Enum" <|-- "flutter::lib::src::foundation::licenses.dart::_LicenseEntryWithLineBreaksParserState"
+
+
+@enduml

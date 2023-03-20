@@ -1,0 +1,37 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::visibility.dart::Visibility" {
+  +Widget child
+  +Widget replacement
+  +bool visible
+  +bool maintainState
+  +bool maintainAnimation
+  +bool maintainSize
+  +bool maintainSemantics
+  +bool maintainInteractivity
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::visibility.dart::Visibility" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::visibility.dart::Visibility"
+
+class "flutter::lib::src::widgets::visibility.dart::SliverVisibility" {
+  +Widget sliver
+  +Widget replacementSliver
+  +bool visible
+  +bool maintainState
+  +bool maintainAnimation
+  +bool maintainSize
+  +bool maintainSemantics
+  +bool maintainInteractivity
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::visibility.dart::SliverVisibility" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::visibility.dart::SliverVisibility"
+
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::annotations.dart::Category" {
+  +List<String> sections
+}
+
+class "flutter::lib::src::foundation::annotations.dart::DocumentationIcon" {
+  +String url
+}
+
+class "flutter::lib::src::foundation::annotations.dart::Summary" {
+  +String text
+}
+
+
+@enduml

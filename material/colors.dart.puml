@@ -1,0 +1,120 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::colors.dart::MaterialColor" {
+  +dynamic shade50
+  +dynamic shade100
+  +dynamic shade200
+  +dynamic shade300
+  +dynamic shade400
+  +dynamic shade500
+  +dynamic shade600
+  +dynamic shade700
+  +dynamic shade800
+  +dynamic shade900
+}
+
+class "flutter::lib::src::material::colors.dart::MaterialAccentColor" {
+  +dynamic shade100
+  +dynamic shade200
+  +dynamic shade400
+  +dynamic shade700
+}
+
+class "flutter::lib::src::material::colors.dart::Colors" {
+  {static} +dynamic transparent
+  {static} +dynamic black
+  {static} +dynamic black87
+  {static} +dynamic black54
+  {static} +dynamic black45
+  {static} +dynamic black38
+  {static} +dynamic black26
+  {static} +dynamic black12
+  {static} +dynamic white
+  {static} +dynamic white70
+  {static} +dynamic white60
+  {static} +dynamic white54
+  {static} +dynamic white38
+  {static} +dynamic white30
+  {static} +dynamic white24
+  {static} +dynamic white12
+  {static} +dynamic white10
+  {static} +MaterialColor red
+  {static} -int _redPrimaryValue
+  {static} +MaterialAccentColor redAccent
+  {static} -int _redAccentValue
+  {static} +MaterialColor pink
+  {static} -int _pinkPrimaryValue
+  {static} +MaterialAccentColor pinkAccent
+  {static} -int _pinkAccentPrimaryValue
+  {static} +MaterialColor purple
+  {static} -int _purplePrimaryValue
+  {static} +MaterialAccentColor purpleAccent
+  {static} -int _purpleAccentPrimaryValue
+  {static} +MaterialColor deepPurple
+  {static} -int _deepPurplePrimaryValue
+  {static} +MaterialAccentColor deepPurpleAccent
+  {static} -int _deepPurpleAccentPrimaryValue
+  {static} +MaterialColor indigo
+  {static} -int _indigoPrimaryValue
+  {static} +MaterialAccentColor indigoAccent
+  {static} -int _indigoAccentPrimaryValue
+  {static} +MaterialColor blue
+  {static} -int _bluePrimaryValue
+  {static} +MaterialAccentColor blueAccent
+  {static} -int _blueAccentPrimaryValue
+  {static} +MaterialColor lightBlue
+  {static} -int _lightBluePrimaryValue
+  {static} +MaterialAccentColor lightBlueAccent
+  {static} -int _lightBlueAccentPrimaryValue
+  {static} +MaterialColor cyan
+  {static} -int _cyanPrimaryValue
+  {static} +MaterialAccentColor cyanAccent
+  {static} -int _cyanAccentPrimaryValue
+  {static} +MaterialColor teal
+  {static} -int _tealPrimaryValue
+  {static} +MaterialAccentColor tealAccent
+  {static} -int _tealAccentPrimaryValue
+  {static} +MaterialColor green
+  {static} -int _greenPrimaryValue
+  {static} +MaterialAccentColor greenAccent
+  {static} -int _greenAccentPrimaryValue
+  {static} +MaterialColor lightGreen
+  {static} -int _lightGreenPrimaryValue
+  {static} +MaterialAccentColor lightGreenAccent
+  {static} -int _lightGreenAccentPrimaryValue
+  {static} +MaterialColor lime
+  {static} -int _limePrimaryValue
+  {static} +MaterialAccentColor limeAccent
+  {static} -int _limeAccentPrimaryValue
+  {static} +MaterialColor yellow
+  {static} -int _yellowPrimaryValue
+  {static} +MaterialAccentColor yellowAccent
+  {static} -int _yellowAccentPrimaryValue
+  {static} +MaterialColor amber
+  {static} -int _amberPrimaryValue
+  {static} +MaterialAccentColor amberAccent
+  {static} -int _amberAccentPrimaryValue
+  {static} +MaterialColor orange
+  {static} -int _orangePrimaryValue
+  {static} +MaterialAccentColor orangeAccent
+  {static} -int _orangeAccentPrimaryValue
+  {static} +MaterialColor deepOrange
+  {static} -int _deepOrangePrimaryValue
+  {static} +MaterialAccentColor deepOrangeAccent
+  {static} -int _deepOrangeAccentPrimaryValue
+  {static} +MaterialColor brown
+  {static} -int _brownPrimaryValue
+  {static} +MaterialColor grey
+  {static} -int _greyPrimaryValue
+  {static} +MaterialColor blueGrey
+  {static} -int _blueGreyPrimaryValue
+  {static} +List<MaterialColor> primaries
+  {static} +List<MaterialAccentColor> accents
+}
+
+"flutter::lib::src::material::colors.dart::Colors" o-- "flutter::lib::src::material::colors.dart::MaterialColor"
+"flutter::lib::src::material::colors.dart::Colors" o-- "flutter::lib::src::material::colors.dart::MaterialAccentColor"
+
+
+@enduml

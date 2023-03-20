@@ -1,0 +1,35 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::lsq_solver.dart::_Vector" {
+  -int _offset
+  -int _length
+  -List<double> _elements
+  +double []()
+  +void []=()
+  +double *()
+  +double norm()
+}
+
+class "flutter::lib::src::gestures::lsq_solver.dart::_Matrix" {
+  -int _columns
+  -List<double> _elements
+  +double get()
+  +void set()
+  +_Vector getRow()
+}
+
+class "flutter::lib::src::gestures::lsq_solver.dart::PolynomialFit" {
+  +List<double> coefficients
+  +double confidence
+}
+
+class "flutter::lib::src::gestures::lsq_solver.dart::LeastSquaresSolver" {
+  +List<double> x
+  +List<double> y
+  +List<double> w
+  +PolynomialFit? solve()
+}
+
+
+@enduml

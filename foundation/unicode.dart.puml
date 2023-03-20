@@ -1,0 +1,20 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::unicode.dart::Unicode" {
+  {static} +String LRE
+  {static} +String RLE
+  {static} +String PDF
+  {static} +String LRO
+  {static} +String RLO
+  {static} +String LRI
+  {static} +String RLI
+  {static} +String FSI
+  {static} +String PDI
+  {static} +String LRM
+  {static} +String RLM
+  {static} +String ALM
+}
+
+
+@enduml

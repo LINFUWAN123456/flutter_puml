@@ -1,0 +1,34 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::data_table_theme.dart::DataTableThemeData" {
+  +dynamic decoration
+  +MaterialStateProperty<dynamic>? dataRowColor
+  +double? dataRowHeight
+  +dynamic dataTextStyle
+  +MaterialStateProperty<dynamic>? headingRowColor
+  +double? headingRowHeight
+  +dynamic headingTextStyle
+  +double? horizontalMargin
+  +double? columnSpacing
+  +double? dividerThickness
+  +double? checkboxHorizontalMargin
+  +int hashCode
+  +DataTableThemeData copyWith()
+  {static} +DataTableThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::data_table_theme.dart::DataTableThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+
+class "flutter::lib::src::material::data_table_theme.dart::DataTableTheme" {
+  +DataTableThemeData data
+  {static} +DataTableThemeData of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::data_table_theme.dart::DataTableTheme" o-- "flutter::lib::src::material::data_table_theme.dart::DataTableThemeData"
+
+
+@enduml

@@ -1,0 +1,121 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::text_field.dart::_TextFieldSelectionGestureDetectorBuilder" {
+  -_TextFieldState _state
+  +void onForcePressStart()
+  +void onForcePressEnd()
+  +void onSingleLongTapMoveUpdate()
+  +void onSingleTapUp()
+  +void onSingleLongTapStart()
+}
+
+"flutter::lib::src::material::text_field.dart::_TextFieldSelectionGestureDetectorBuilder" o-- "flutter::lib::src::material::text_field.dart::_TextFieldState"
+
+class "flutter::lib::src::material::text_field.dart::TextField" {
+  +dynamic controller
+  +dynamic focusNode
+  +InputDecoration? decoration
+  +dynamic keyboardType
+  +dynamic textInputAction
+  +dynamic textCapitalization
+  +dynamic style
+  +dynamic strutStyle
+  +dynamic textAlign
+  +dynamic textAlignVertical
+  +dynamic textDirection
+  +bool autofocus
+  +String obscuringCharacter
+  +bool obscureText
+  +bool autocorrect
+  +dynamic smartDashesType
+  +dynamic smartQuotesType
+  +bool enableSuggestions
+  +int? maxLines
+  +int? minLines
+  +bool expands
+  +bool readOnly
+  +dynamic toolbarOptions
+  +bool? showCursor
+  {static} +int noMaxLength
+  +int? maxLength
+  +dynamic maxLengthEnforcement
+  +dynamic onChanged
+  +dynamic onEditingComplete
+  +dynamic onSubmitted
+  +dynamic onAppPrivateCommand
+  +List<dynamic>? inputFormatters
+  +bool? enabled
+  +double cursorWidth
+  +double? cursorHeight
+  +dynamic cursorRadius
+  +dynamic cursorColor
+  +dynamic selectionHeightStyle
+  +dynamic selectionWidthStyle
+  +dynamic keyboardAppearance
+  +dynamic scrollPadding
+  +bool enableInteractiveSelection
+  +dynamic selectionControls
+  +dynamic dragStartBehavior
+  +dynamic onTap
+  +dynamic mouseCursor
+  +dynamic Function(dynamic, {required int currentLength, required bool isFocused, required int? maxLength})? buildCounter
+  +dynamic scrollPhysics
+  +dynamic scrollController
+  +Iterable<String>? autofillHints
+  +dynamic clipBehavior
+  +String? restorationId
+  +bool scribbleEnabled
+  +bool enableIMEPersonalizedLearning
+  +bool selectionEnabled
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::text_field.dart::TextField" o-- "flutter::lib::src::material::input_decorator.dart::InputDecoration"
+"flutter::lib::src::material::text_field.dart::TextField" o-- "flutter::lib::src::material::text_field.dart::dynamic Function(dynamic, {required int currentLength, required bool isFocused, required int maxLength})"
+
+class "flutter::lib::src::material::text_field.dart::_TextFieldState" {
+  -dynamic _controller
+  -dynamic _focusNode
+  -bool _isHovering
+  -bool _showSelectionHandles
+  -_TextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder
+  +bool forcePressEnabled
+  +dynamic editableTextKey
+  -dynamic _effectiveController
+  -dynamic _effectiveFocusNode
+  -dynamic _effectiveMaxLengthEnforcement
+  +bool needsCounter
+  +bool selectionEnabled
+  -bool _isEnabled
+  -int _currentLength
+  -bool _hasIntrinsicError
+  -bool _hasError
+  -bool _canRequestFocus
+  +String? restorationId
+  -dynamic _editableText
+  +String autofillId
+  +dynamic textInputConfiguration
+  -InputDecoration _getEffectiveDecoration()
+  +void initState()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void restoreState()
+  -void _registerController()
+  -void _createLocalController()
+  +void dispose()
+  -void _requestKeyboard()
+  -bool _shouldShowSelectionHandles()
+  -void _handleFocusChanged()
+  -void _handleSelectionChanged()
+  -void _handleSelectionHandleTapped()
+  -void _handleHover()
+  +void autofill()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::text_field.dart::_TextFieldState" o-- "flutter::lib::src::material::text_field.dart::_TextFieldSelectionGestureDetectorBuilder"
+
+
+@enduml

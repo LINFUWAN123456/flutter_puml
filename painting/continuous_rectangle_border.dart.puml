@@ -1,0 +1,26 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::continuous_rectangle_border.dart::ContinuousRectangleBorder" {
+  +BorderRadiusGeometry borderRadius
+  +EdgeInsetsGeometry dimensions
+  +int hashCode
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  -double _clampToShortest()
+  -dynamic _getPath()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +ContinuousRectangleBorder copyWith()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::continuous_rectangle_border.dart::ContinuousRectangleBorder" o-- "flutter::lib::src::painting::border_radius.dart::BorderRadiusGeometry"
+"flutter::lib::src::painting::continuous_rectangle_border.dart::ContinuousRectangleBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::borders.dart::OutlinedBorder" <|-- "flutter::lib::src::painting::continuous_rectangle_border.dart::ContinuousRectangleBorder"
+
+
+@enduml

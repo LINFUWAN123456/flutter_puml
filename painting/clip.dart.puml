@@ -1,0 +1,13 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::painting::clip.dart::ClipContext" {
+  +dynamic canvas
+  -void _clipAndPaint()
+  +void clipPathAndPaint()
+  +void clipRRectAndPaint()
+  +void clipRectAndPaint()
+}
+
+
+@enduml

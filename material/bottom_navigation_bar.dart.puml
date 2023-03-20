@@ -1,0 +1,163 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBar" {
+  +List<dynamic> items
+  +dynamic onTap
+  +int currentIndex
+  +double? elevation
+  +BottomNavigationBarType? type
+  +dynamic backgroundColor
+  +double iconSize
+  +dynamic selectedItemColor
+  +dynamic unselectedItemColor
+  +dynamic selectedIconTheme
+  +dynamic unselectedIconTheme
+  +dynamic selectedLabelStyle
+  +dynamic unselectedLabelStyle
+  +double selectedFontSize
+  +double unselectedFontSize
+  +bool? showUnselectedLabels
+  +bool? showSelectedLabels
+  +dynamic mouseCursor
+  +bool? enableFeedback
+  +BottomNavigationBarLandscapeLayout? landscapeLayout
+  +dynamic fixedColor
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBar" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarType"
+"flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBar" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarLandscapeLayout"
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::_BottomNavigationTile" {
+  +BottomNavigationBarType type
+  +dynamic item
+  +dynamic animation
+  +double iconSize
+  +dynamic onTap
+  +dynamic colorTween
+  +double? flex
+  +bool selected
+  +dynamic selectedIconTheme
+  +dynamic unselectedIconTheme
+  +dynamic selectedLabelStyle
+  +dynamic unselectedLabelStyle
+  +String? indexLabel
+  +bool showSelectedLabels
+  +bool showUnselectedLabels
+  +dynamic mouseCursor
+  +bool enableFeedback
+  +BottomNavigationBarLandscapeLayout layout
+  +dynamic build()
+}
+
+"flutter::lib::src::material::bottom_navigation_bar.dart::_BottomNavigationTile" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarType"
+"flutter::lib::src::material::bottom_navigation_bar.dart::_BottomNavigationTile" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarLandscapeLayout"
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::_Tile" {
+  +BottomNavigationBarLandscapeLayout layout
+  +dynamic icon
+  +dynamic label
+  +dynamic build()
+}
+
+"flutter::lib::src::material::bottom_navigation_bar.dart::_Tile" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarLandscapeLayout"
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::_TileIcon" {
+  +dynamic colorTween
+  +dynamic animation
+  +double iconSize
+  +bool selected
+  +dynamic item
+  +dynamic selectedIconTheme
+  +dynamic unselectedIconTheme
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::_Label" {
+  +dynamic colorTween
+  +dynamic animation
+  +dynamic item
+  +dynamic selectedLabelStyle
+  +dynamic unselectedLabelStyle
+  +bool showSelectedLabels
+  +bool showUnselectedLabels
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::_BottomNavigationBarState" {
+  -List<dynamic> _controllers
+  -List<dynamic> _animations
+  -Queue<_Circle> _circles
+  -dynamic _backgroundColor
+  {static} -dynamic _flexTween
+  -BottomNavigationBarType _effectiveType
+  -bool _defaultShowUnselected
+  -void _resetState()
+  +void initState()
+  -void _rebuild()
+  +void dispose()
+  -double _evaluateFlex()
+  -void _pushCircle()
+  +void didUpdateWidget()
+  {static} -dynamic _effectiveTextStyle()
+  -List<dynamic> _createTiles()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::bottom_navigation_bar.dart::_BottomNavigationBarState" o-- "dart::collection::Queue<_Circle>"
+"flutter::lib::src::material::bottom_navigation_bar.dart::_BottomNavigationBarState" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarType"
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::_Bar" {
+  +dynamic child
+  +BottomNavigationBarLandscapeLayout layout
+  +double elevation
+  +dynamic color
+  +dynamic build()
+}
+
+"flutter::lib::src::material::bottom_navigation_bar.dart::_Bar" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarLandscapeLayout"
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::_Circle" {
+  +_BottomNavigationBarState state
+  +int index
+  +dynamic color
+  +dynamic controller
+  +dynamic animation
+  +double horizontalLeadingOffset
+  +void dispose()
+}
+
+"flutter::lib::src::material::bottom_navigation_bar.dart::_Circle" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::_BottomNavigationBarState"
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::_RadialPainter" {
+  +List<_Circle> circles
+  +dynamic textDirection
+  {static} -double _maxRadius()
+  +bool shouldRepaint()
+  +void paint()
+}
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarType" {
+  +int index
+  {static} +List<BottomNavigationBarType> values
+  {static} +BottomNavigationBarType fixed
+  {static} +BottomNavigationBarType shifting
+}
+
+"flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarType" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarType"
+
+class "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarLandscapeLayout" {
+  +int index
+  {static} +List<BottomNavigationBarLandscapeLayout> values
+  {static} +BottomNavigationBarLandscapeLayout spread
+  {static} +BottomNavigationBarLandscapeLayout centered
+  {static} +BottomNavigationBarLandscapeLayout linear
+}
+
+"flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarLandscapeLayout" o-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarLandscapeLayout"
+"dart::core::Enum" <|-- "flutter::lib::src::material::bottom_navigation_bar.dart::BottomNavigationBarLandscapeLayout"
+
+
+@enduml

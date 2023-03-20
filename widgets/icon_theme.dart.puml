@@ -1,0 +1,18 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::icon_theme.dart::IconTheme" {
+  +IconThemeData data
+  {static} +Widget merge()
+  {static} +IconThemeData of()
+  {static} -IconThemeData _getInheritedIconThemeData()
+  +bool updateShouldNotify()
+  +Widget wrap()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::icon_theme.dart::IconTheme" o-- "flutter::lib::src::widgets::icon_theme_data.dart::IconThemeData"
+"flutter::lib::src::widgets::inherited_theme.dart::InheritedTheme" <|-- "flutter::lib::src::widgets::icon_theme.dart::IconTheme"
+
+
+@enduml

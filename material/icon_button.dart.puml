@@ -1,0 +1,126 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::icon_button.dart::IconButton" {
+  +double? iconSize
+  +VisualDensity? visualDensity
+  +dynamic padding
+  +dynamic alignment
+  +double? splashRadius
+  +dynamic icon
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic color
+  +dynamic splashColor
+  +dynamic highlightColor
+  +dynamic disabledColor
+  +dynamic onPressed
+  +dynamic mouseCursor
+  +dynamic focusNode
+  +bool autofocus
+  +String? tooltip
+  +bool enableFeedback
+  +dynamic constraints
+  +ButtonStyle? style
+  +bool? isSelected
+  +dynamic selectedIcon
+  {static} +ButtonStyle styleFrom()
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::icon_button.dart::IconButton" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::icon_button.dart::IconButton" o-- "flutter::lib::src::material::button_style.dart::ButtonStyle"
+
+class "flutter::lib::src::material::icon_button.dart::_SelectableIconButton" {
+  +bool? isSelected
+  +ButtonStyle? style
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic onPressed
+  +dynamic child
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::icon_button.dart::_SelectableIconButton" o-- "flutter::lib::src::material::button_style.dart::ButtonStyle"
+
+class "flutter::lib::src::material::icon_button.dart::_SelectableIconButtonState" {
+  +MaterialStatesController statesController
+  +void initState()
+  +void didUpdateWidget()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::icon_button.dart::_SelectableIconButtonState" o-- "flutter::lib::src::material::material_state.dart::MaterialStatesController"
+
+class "flutter::lib::src::material::icon_button.dart::_IconButtonM3" {
+  +ButtonStyle defaultStyleOf()
+  +ButtonStyle? themeStyleOf()
+}
+
+"flutter::lib::src::material::button_style_button.dart::ButtonStyleButton" <|-- "flutter::lib::src::material::icon_button.dart::_IconButtonM3"
+
+class "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultBackground" {
+  +dynamic background
+  +dynamic disabledBackground
+  +dynamic resolve()
+  +String toString()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultBackground"
+
+class "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultForeground" {
+  +dynamic foregroundColor
+  +dynamic disabledForegroundColor
+  +dynamic resolve()
+  +String toString()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultForeground"
+
+class "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultOverlay" {
+  +dynamic foregroundColor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic highlightColor
+  +dynamic resolve()
+  +String toString()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultOverlay"
+
+class "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultMouseCursor" {
+  +dynamic enabledCursor
+  +dynamic disabledCursor
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultMouseCursor"
+
+class "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultsM3" {
+  +dynamic context
+  -ColorScheme _colors
+  +MaterialStateProperty<dynamic>? backgroundColor
+  +MaterialStateProperty<dynamic>? foregroundColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +MaterialStateProperty<double>? elevation
+  +MaterialStateProperty<dynamic>? padding
+  +MaterialStateProperty<dynamic>? minimumSize
+  +MaterialStateProperty<dynamic>? maximumSize
+  +MaterialStateProperty<dynamic>? shape
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +VisualDensity? visualDensity
+  +MaterialTapTargetSize? tapTargetSize
+  +InteractiveInkFeatureFactory? splashFactory
+}
+
+"flutter::lib::src::material::icon_button.dart::_IconButtonDefaultsM3" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::icon_button.dart::_IconButtonDefaultsM3" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::icon_button.dart::_IconButtonDefaultsM3" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<double>"
+"flutter::lib::src::material::icon_button.dart::_IconButtonDefaultsM3" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::icon_button.dart::_IconButtonDefaultsM3" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::icon_button.dart::_IconButtonDefaultsM3" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::button_style.dart::ButtonStyle" <|-- "flutter::lib::src::material::icon_button.dart::_IconButtonDefaultsM3"
+
+
+@enduml

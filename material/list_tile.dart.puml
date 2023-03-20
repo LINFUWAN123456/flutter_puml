@@ -1,0 +1,150 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::list_tile.dart::ListTile" {
+  +dynamic leading
+  +dynamic title
+  +dynamic subtitle
+  +dynamic trailing
+  +bool isThreeLine
+  +bool? dense
+  +VisualDensity? visualDensity
+  +dynamic shape
+  +dynamic selectedColor
+  +dynamic iconColor
+  +dynamic textColor
+  +ListTileStyle? style
+  +dynamic contentPadding
+  +bool enabled
+  +dynamic onTap
+  +dynamic onLongPress
+  +dynamic mouseCursor
+  +bool selected
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic tileColor
+  +dynamic selectedTileColor
+  +bool? enableFeedback
+  +double? horizontalTitleGap
+  +double? minVerticalPadding
+  +double? minLeadingWidth
+  {static} +Iterable<dynamic> divideTiles()
+  -dynamic _iconColor()
+  -dynamic _textColor()
+  -bool _isDenseLayout()
+  -dynamic _titleTextStyle()
+  -dynamic _subtitleTextStyle()
+  -dynamic _trailingAndLeadingTextStyle()
+  -dynamic _tileBackgroundColor()
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::list_tile.dart::ListTile" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::list_tile.dart::ListTile" o-- "flutter::lib::src::material::list_tile.dart::ListTileStyle"
+
+class "flutter::lib::src::material::list_tile.dart::_ListTile" {
+  +dynamic leading
+  +dynamic title
+  +dynamic subtitle
+  +dynamic trailing
+  +bool isThreeLine
+  +bool isDense
+  +VisualDensity visualDensity
+  +dynamic textDirection
+  +dynamic titleBaselineType
+  +dynamic subtitleBaselineType
+  +double horizontalTitleGap
+  +double minVerticalPadding
+  +double minLeadingWidth
+  +Iterable<_ListTileSlot> slots
+  +dynamic childForSlot()
+  +_RenderListTile createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::material::list_tile.dart::_ListTile" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::list_tile.dart::_RenderListTile" {
+  -bool _isDense
+  -VisualDensity _visualDensity
+  -bool _isThreeLine
+  -dynamic _textDirection
+  -dynamic _titleBaselineType
+  -dynamic _subtitleBaselineType
+  -double _horizontalTitleGap
+  -double _minVerticalPadding
+  -double _minLeadingWidth
+  +dynamic leading
+  +dynamic title
+  +dynamic subtitle
+  +dynamic trailing
+  +Iterable<dynamic> children
+  +bool isDense
+  +VisualDensity visualDensity
+  +bool isThreeLine
+  +dynamic textDirection
+  +dynamic titleBaselineType
+  +dynamic subtitleBaselineType
+  +double horizontalTitleGap
+  -double _effectiveHorizontalTitleGap
+  +double minVerticalPadding
+  +double minLeadingWidth
+  +bool sizedByParent
+  -double _defaultTileHeight
+  {static} -double _minWidth()
+  {static} -double _maxWidth()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double computeDistanceToActualBaseline()
+  {static} -double? _boxBaseline()
+  {static} -dynamic _layoutBox()
+  {static} -void _positionBox()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void paint()
+  +bool hitTestSelf()
+  +bool hitTestChildren()
+}
+
+"flutter::lib::src::material::list_tile.dart::_RenderListTile" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::list_tile.dart::ListTileStyle" {
+  +int index
+  {static} +List<ListTileStyle> values
+  {static} +ListTileStyle list
+  {static} +ListTileStyle drawer
+}
+
+"flutter::lib::src::material::list_tile.dart::ListTileStyle" o-- "flutter::lib::src::material::list_tile.dart::ListTileStyle"
+"dart::core::Enum" <|-- "flutter::lib::src::material::list_tile.dart::ListTileStyle"
+
+class "flutter::lib::src::material::list_tile.dart::ListTileControlAffinity" {
+  +int index
+  {static} +List<ListTileControlAffinity> values
+  {static} +ListTileControlAffinity leading
+  {static} +ListTileControlAffinity trailing
+  {static} +ListTileControlAffinity platform
+}
+
+"flutter::lib::src::material::list_tile.dart::ListTileControlAffinity" o-- "flutter::lib::src::material::list_tile.dart::ListTileControlAffinity"
+"dart::core::Enum" <|-- "flutter::lib::src::material::list_tile.dart::ListTileControlAffinity"
+
+class "flutter::lib::src::material::list_tile.dart::_ListTileSlot" {
+  +int index
+  {static} +List<_ListTileSlot> values
+  {static} +_ListTileSlot leading
+  {static} +_ListTileSlot title
+  {static} +_ListTileSlot subtitle
+  {static} +_ListTileSlot trailing
+}
+
+"flutter::lib::src::material::list_tile.dart::_ListTileSlot" o-- "flutter::lib::src::material::list_tile.dart::_ListTileSlot"
+"dart::core::Enum" <|-- "flutter::lib::src::material::list_tile.dart::_ListTileSlot"
+
+
+@enduml

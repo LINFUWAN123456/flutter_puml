@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::divider_theme.dart::DividerThemeData" {
+  +dynamic color
+  +double? space
+  +double? thickness
+  +double? indent
+  +double? endIndent
+  +int hashCode
+  +DividerThemeData copyWith()
+  {static} +DividerThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::divider_theme.dart::DividerTheme" {
+  +DividerThemeData data
+  {static} +DividerThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::divider_theme.dart::DividerTheme" o-- "flutter::lib::src::material::divider_theme.dart::DividerThemeData"
+
+
+@enduml

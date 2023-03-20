@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::inherited_notifier.dart::InheritedNotifier" {
+  +T? notifier
+  +bool updateShouldNotify()
+  +InheritedElement createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::inherited_notifier.dart::InheritedNotifier"
+
+class "flutter::lib::src::widgets::inherited_notifier.dart::_InheritedNotifierElement" {
+  -bool _dirty
+  +void update()
+  +Widget build()
+  -void _handleUpdate()
+  +void notifyClients()
+  +void unmount()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedElement" <|-- "flutter::lib::src::widgets::inherited_notifier.dart::_InheritedNotifierElement"
+
+
+@enduml

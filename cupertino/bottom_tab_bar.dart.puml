@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::bottom_tab_bar.dart::CupertinoTabBar" {
+  +List<dynamic> items
+  +dynamic onTap
+  +int currentIndex
+  +dynamic backgroundColor
+  +dynamic activeColor
+  +dynamic inactiveColor
+  +double iconSize
+  +double height
+  +dynamic border
+  +dynamic preferredSize
+  +bool opaque()
+  +dynamic build()
+  -List<dynamic> _buildTabItems()
+  -List<dynamic> _buildSingleTabItem()
+  -dynamic _wrapActiveItem()
+  +CupertinoTabBar copyWith()
+}
+
+
+@enduml

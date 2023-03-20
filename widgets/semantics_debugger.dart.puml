@@ -1,0 +1,56 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::semantics_debugger.dart::SemanticsDebugger" {
+  +Widget child
+  +dynamic labelStyle
+  +State<SemanticsDebugger> createState()
+}
+
+"flutter::lib::src::widgets::semantics_debugger.dart::SemanticsDebugger" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::semantics_debugger.dart::SemanticsDebugger"
+
+class "flutter::lib::src::widgets::semantics_debugger.dart::_SemanticsDebuggerState" {
+  -_SemanticsClient _client
+  -dynamic _lastPointerDownLocation
+  -dynamic _pipelineOwner
+  +void initState()
+  +void dispose()
+  +void didChangeMetrics()
+  -void _update()
+  -void _handlePointerDown()
+  -void _handleTap()
+  -void _handleLongPress()
+  -void _handlePanEnd()
+  -void _performAction()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::semantics_debugger.dart::_SemanticsDebuggerState" o-- "flutter::lib::src::widgets::semantics_debugger.dart::_SemanticsClient"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::semantics_debugger.dart::_SemanticsDebuggerState"
+"flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "flutter::lib::src::widgets::semantics_debugger.dart::_SemanticsDebuggerState"
+
+class "flutter::lib::src::widgets::semantics_debugger.dart::_SemanticsClient" {
+  -dynamic _semanticsHandle
+  +int generation
+  +void dispose()
+  -void _didUpdateSemantics()
+}
+
+class "flutter::lib::src::widgets::semantics_debugger.dart::_SemanticsDebuggerPainter" {
+  +dynamic owner
+  +int generation
+  +dynamic pointerPosition
+  +double devicePixelRatio
+  +dynamic labelStyle
+  -dynamic _rootSemanticsNode
+  +void paint()
+  +bool shouldRepaint()
+  +String getMessage()
+  -void _paintMessage()
+  -int _findDepth()
+  -void _paint()
+}
+
+
+@enduml

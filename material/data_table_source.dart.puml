@@ -1,0 +1,12 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::data_table_source.dart::DataTableSource" {
+  +int rowCount
+  +bool isRowCountApproximate
+  +int selectedRowCount
+  +DataRow? getRow()
+}
+
+
+@enduml

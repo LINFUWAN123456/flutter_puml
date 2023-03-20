@@ -1,0 +1,128 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::restoration_properties.dart::RestorableValue" {
+  -T? _value
+  +T value
+  +void initWithValue()
+  +void didUpdateValue()
+}
+
+"flutter::lib::src::widgets::restoration.dart::RestorableProperty" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableValue"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValueN" {
+  -T _defaultValue
+  +T createDefaultValue()
+  +void didUpdateValue()
+  +T fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableValue" <|-- "flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValueN"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValue" {
+  +T value
+  +T fromPrimitives()
+  +Object toPrimitives()
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValueN" <|-- "flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValue"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableNum" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValue" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableNum"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableDouble" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableNum" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableDouble"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableInt" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableNum" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableInt"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableString" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValue" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableString"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableBool" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValue" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableBool"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableBoolN" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValueN" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableBoolN"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableNumN" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValueN" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableNumN"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableDoubleN" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableNumN" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableDoubleN"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableIntN" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableNumN" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableIntN"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableStringN" {
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::_RestorablePrimitiveValueN" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableStringN"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableDateTime" {
+  -DateTime _defaultValue
+  +DateTime createDefaultValue()
+  +void didUpdateValue()
+  +DateTime fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableValue" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableDateTime"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableDateTimeN" {
+  -DateTime? _defaultValue
+  +DateTime? createDefaultValue()
+  +void didUpdateValue()
+  +DateTime? fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableValue" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableDateTimeN"
+
+abstract class "flutter::lib::src::widgets::restoration_properties.dart::RestorableListenable" {
+  -T? _value
+  +T value
+  +void initWithValue()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::restoration.dart::RestorableProperty" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableListenable"
+
+abstract class "flutter::lib::src::widgets::restoration_properties.dart::RestorableChangeNotifier" {
+  +void initWithValue()
+  +void dispose()
+  -void _disposeOldValue()
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableListenable" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableChangeNotifier"
+
+class "flutter::lib::src::widgets::restoration_properties.dart::RestorableTextEditingController" {
+  -dynamic _initialValue
+  +TextEditingController createDefaultValue()
+  +TextEditingController fromPrimitives()
+  +Object toPrimitives()
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableChangeNotifier" <|-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableTextEditingController"
+
+
+@enduml

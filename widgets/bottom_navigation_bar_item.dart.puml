@@ -1,0 +1,15 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::bottom_navigation_bar_item.dart::BottomNavigationBarItem" {
+  +Widget icon
+  +Widget activeIcon
+  +String? label
+  +dynamic backgroundColor
+  +String? tooltip
+}
+
+"flutter::lib::src::widgets::bottom_navigation_bar_item.dart::BottomNavigationBarItem" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+
+
+@enduml

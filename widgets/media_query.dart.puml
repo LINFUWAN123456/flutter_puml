@@ -1,0 +1,94 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::media_query.dart::MediaQueryData" {
+  +dynamic size
+  +double devicePixelRatio
+  +double textScaleFactor
+  +dynamic platformBrightness
+  +dynamic viewInsets
+  +dynamic padding
+  +dynamic viewPadding
+  +dynamic systemGestureInsets
+  +bool alwaysUse24HourFormat
+  +bool accessibleNavigation
+  +bool invertColors
+  +bool highContrast
+  +bool disableAnimations
+  +bool boldText
+  +NavigationMode navigationMode
+  +dynamic gestureSettings
+  +List<dynamic> displayFeatures
+  +Orientation orientation
+  +int hashCode
+  +MediaQueryData copyWith()
+  +MediaQueryData removePadding()
+  +MediaQueryData removeViewInsets()
+  +MediaQueryData removeViewPadding()
+  +MediaQueryData removeDisplayFeatures()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::media_query.dart::MediaQueryData" o-- "flutter::lib::src::widgets::media_query.dart::NavigationMode"
+"flutter::lib::src::widgets::media_query.dart::MediaQueryData" o-- "flutter::lib::src::widgets::media_query.dart::Orientation"
+
+class "flutter::lib::src::widgets::media_query.dart::MediaQuery" {
+  +MediaQueryData data
+  {static} +Widget fromWindow()
+  {static} +MediaQueryData of()
+  {static} +MediaQueryData? maybeOf()
+  {static} +double textScaleFactorOf()
+  {static} +dynamic platformBrightnessOf()
+  {static} +bool highContrastOf()
+  {static} +bool boldTextOverride()
+  +bool updateShouldNotify()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::media_query.dart::MediaQuery" o-- "flutter::lib::src::widgets::media_query.dart::MediaQueryData"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::media_query.dart::MediaQuery"
+
+class "flutter::lib::src::widgets::media_query.dart::_MediaQueryFromWindow" {
+  +Widget child
+  +State<_MediaQueryFromWindow> createState()
+}
+
+"flutter::lib::src::widgets::media_query.dart::_MediaQueryFromWindow" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::media_query.dart::_MediaQueryFromWindow"
+
+class "flutter::lib::src::widgets::media_query.dart::_MediaQueryFromWindowState" {
+  +void initState()
+  +void didChangeAccessibilityFeatures()
+  +void didChangeMetrics()
+  +void didChangeTextScaleFactor()
+  +void didChangePlatformBrightness()
+  +Widget build()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::media_query.dart::_MediaQueryFromWindowState"
+"flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "flutter::lib::src::widgets::media_query.dart::_MediaQueryFromWindowState"
+
+class "flutter::lib::src::widgets::media_query.dart::Orientation" {
+  +int index
+  {static} +List<Orientation> values
+  {static} +Orientation portrait
+  {static} +Orientation landscape
+}
+
+"flutter::lib::src::widgets::media_query.dart::Orientation" o-- "flutter::lib::src::widgets::media_query.dart::Orientation"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::media_query.dart::Orientation"
+
+class "flutter::lib::src::widgets::media_query.dart::NavigationMode" {
+  +int index
+  {static} +List<NavigationMode> values
+  {static} +NavigationMode traditional
+  {static} +NavigationMode directional
+}
+
+"flutter::lib::src::widgets::media_query.dart::NavigationMode" o-- "flutter::lib::src::widgets::media_query.dart::NavigationMode"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::media_query.dart::NavigationMode"
+
+
+@enduml

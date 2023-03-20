@@ -1,0 +1,45 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::debug_overflow_indicator.dart::_OverflowRegionData" {
+  +dynamic rect
+  +String label
+  +dynamic labelOffset
+  +double rotation
+  +_OverflowSide side
+}
+
+"flutter::lib::src::rendering::debug_overflow_indicator.dart::_OverflowRegionData" o-- "flutter::lib::src::rendering::debug_overflow_indicator.dart::_OverflowSide"
+
+class "flutter::lib::src::rendering::debug_overflow_indicator.dart::_OverflowSide" {
+  +int index
+  {static} +List<_OverflowSide> values
+  {static} +_OverflowSide left
+  {static} +_OverflowSide top
+  {static} +_OverflowSide bottom
+  {static} +_OverflowSide right
+}
+
+"flutter::lib::src::rendering::debug_overflow_indicator.dart::_OverflowSide" o-- "flutter::lib::src::rendering::debug_overflow_indicator.dart::_OverflowSide"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::debug_overflow_indicator.dart::_OverflowSide"
+
+abstract class "flutter::lib::src::rendering::debug_overflow_indicator.dart::DebugOverflowIndicatorMixin" {
+  {static} -dynamic _black
+  {static} -dynamic _yellow
+  {static} -double _indicatorFraction
+  {static} -double _indicatorFontSizePixels
+  {static} -double _indicatorLabelPaddingPixels
+  {static} -dynamic _indicatorTextStyle
+  {static} -dynamic _indicatorPaint
+  {static} -dynamic _labelBackgroundPaint
+  -List<dynamic> _indicatorLabel
+  -bool _overflowReportNeeded
+  -String _formatPixels()
+  -List<_OverflowRegionData> _calculateOverflowRegions()
+  -void _reportOverflow()
+  +void paintOverflowIndicator()
+  +void reassemble()
+}
+
+
+@enduml

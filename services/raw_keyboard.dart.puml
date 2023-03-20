@@ -1,0 +1,113 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::services::raw_keyboard.dart::RawKeyEventData" {
+  +bool isControlPressed
+  +bool isShiftPressed
+  +bool isAltPressed
+  +bool isMetaPressed
+  +Map<ModifierKey, KeyboardSide> modifiersPressed
+  +PhysicalKeyboardKey physicalKey
+  +LogicalKeyboardKey logicalKey
+  +String keyLabel
+  +bool isModifierPressed()
+  +KeyboardSide? getModifierSide()
+  +bool shouldDispatchEvent()
+}
+
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEventData" o-- "flutter::lib::src::services::keyboard_key.g.dart::PhysicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEventData" o-- "flutter::lib::src::services::keyboard_key.g.dart::LogicalKeyboardKey"
+
+abstract class "flutter::lib::src::services::raw_keyboard.dart::RawKeyEvent" {
+  +String? character
+  +bool repeat
+  +RawKeyEventData data
+  +bool isControlPressed
+  +bool isShiftPressed
+  +bool isAltPressed
+  +bool isMetaPressed
+  +PhysicalKeyboardKey physicalKey
+  +LogicalKeyboardKey logicalKey
+  +bool isKeyPressed()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEvent" o-- "flutter::lib::src::services::raw_keyboard.dart::RawKeyEventData"
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEvent" o-- "flutter::lib::src::services::keyboard_key.g.dart::PhysicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEvent" o-- "flutter::lib::src::services::keyboard_key.g.dart::LogicalKeyboardKey"
+
+class "flutter::lib::src::services::raw_keyboard.dart::RawKeyDownEvent" {
+}
+
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEvent" <|-- "flutter::lib::src::services::raw_keyboard.dart::RawKeyDownEvent"
+
+class "flutter::lib::src::services::raw_keyboard.dart::RawKeyUpEvent" {
+}
+
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEvent" <|-- "flutter::lib::src::services::raw_keyboard.dart::RawKeyUpEvent"
+
+class "flutter::lib::src::services::raw_keyboard.dart::RawKeyboard" {
+  {static} +RawKeyboard instance
+  -List<dynamic> _listeners
+  -bool Function(RawKeyEvent)? _cachedKeyEventHandler
+  -bool Function(KeyMessage)? _cachedKeyMessageHandler
+  {static} -Map<_ModifierSidePair, Set<PhysicalKeyboardKey>> _modifierKeyMap
+  {static} -Map<PhysicalKeyboardKey, LogicalKeyboardKey> _allModifiersExceptFn
+  {static} -Map<PhysicalKeyboardKey, LogicalKeyboardKey> _allModifiers
+  -Map<PhysicalKeyboardKey, LogicalKeyboardKey> _keysPressed
+  +bool Function(RawKeyEvent)? keyEventHandler
+  +Set<LogicalKeyboardKey> keysPressed
+  +Set<PhysicalKeyboardKey> physicalKeysPressed
+  +void addListener()
+  +void removeListener()
+  +bool handleRawKeyEvent()
+  -void _synchronizeModifiers()
+  +LogicalKeyboardKey? lookUpLayout()
+  +void clearKeysPressed()
+}
+
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyboard" o-- "flutter::lib::src::services::raw_keyboard.dart::RawKeyboard"
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyboard" o-- "flutter::lib::src::services::raw_keyboard.dart::bool Function(RawKeyEvent)"
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyboard" o-- "flutter::lib::src::services::hardware_keyboard.dart::bool Function(KeyMessage)"
+
+class "flutter::lib::src::services::raw_keyboard.dart::_ModifierSidePair" {
+  +ModifierKey modifier
+  +KeyboardSide? side
+  +int hashCode
+  +bool ==()
+}
+
+"flutter::lib::src::services::raw_keyboard.dart::_ModifierSidePair" o-- "flutter::lib::src::services::raw_keyboard.dart::ModifierKey"
+"flutter::lib::src::services::raw_keyboard.dart::_ModifierSidePair" o-- "flutter::lib::src::services::raw_keyboard.dart::KeyboardSide"
+
+class "flutter::lib::src::services::raw_keyboard.dart::KeyboardSide" {
+  +int index
+  {static} +List<KeyboardSide> values
+  {static} +KeyboardSide any
+  {static} +KeyboardSide left
+  {static} +KeyboardSide right
+  {static} +KeyboardSide all
+}
+
+"flutter::lib::src::services::raw_keyboard.dart::KeyboardSide" o-- "flutter::lib::src::services::raw_keyboard.dart::KeyboardSide"
+"dart::core::Enum" <|-- "flutter::lib::src::services::raw_keyboard.dart::KeyboardSide"
+
+class "flutter::lib::src::services::raw_keyboard.dart::ModifierKey" {
+  +int index
+  {static} +List<ModifierKey> values
+  {static} +ModifierKey controlModifier
+  {static} +ModifierKey shiftModifier
+  {static} +ModifierKey altModifier
+  {static} +ModifierKey metaModifier
+  {static} +ModifierKey capsLockModifier
+  {static} +ModifierKey numLockModifier
+  {static} +ModifierKey scrollLockModifier
+  {static} +ModifierKey functionModifier
+  {static} +ModifierKey symbolModifier
+}
+
+"flutter::lib::src::services::raw_keyboard.dart::ModifierKey" o-- "flutter::lib::src::services::raw_keyboard.dart::ModifierKey"
+"dart::core::Enum" <|-- "flutter::lib::src::services::raw_keyboard.dart::ModifierKey"
+
+
+@enduml

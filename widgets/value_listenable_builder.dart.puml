@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::value_listenable_builder.dart::ValueListenableBuilder" {
+  +dynamic valueListenable
+  +Widget Function(BuildContext, T, Widget?) builder
+  +Widget? child
+  +State<StatefulWidget> createState()
+}
+
+"flutter::lib::src::widgets::value_listenable_builder.dart::ValueListenableBuilder" o-- "flutter::lib::src::widgets::value_listenable_builder.dart::Widget Function(BuildContext, T, Widget)"
+"flutter::lib::src::widgets::value_listenable_builder.dart::ValueListenableBuilder" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::value_listenable_builder.dart::ValueListenableBuilder"
+
+class "flutter::lib::src::widgets::value_listenable_builder.dart::_ValueListenableBuilderState" {
+  +T value
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _valueChanged()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::value_listenable_builder.dart::_ValueListenableBuilderState"
+
+
+@enduml

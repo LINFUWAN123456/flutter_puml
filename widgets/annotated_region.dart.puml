@@ -1,0 +1,14 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::annotated_region.dart::AnnotatedRegion" {
+  +T value
+  +bool sized
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::annotated_region.dart::AnnotatedRegion"
+
+
+@enduml

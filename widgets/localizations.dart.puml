@@ -1,0 +1,85 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::localizations.dart::_Pending" {
+  +LocalizationsDelegate<dynamic> delegate
+  +Future<dynamic> futureValue
+}
+
+"flutter::lib::src::widgets::localizations.dart::_Pending" o-- "flutter::lib::src::widgets::localizations.dart::LocalizationsDelegate<dynamic>"
+
+abstract class "flutter::lib::src::widgets::localizations.dart::LocalizationsDelegate" {
+  +Type type
+  +bool isSupported()
+  +Future<T> load()
+  +bool shouldReload()
+  +String toString()
+}
+
+abstract class "flutter::lib::src::widgets::localizations.dart::WidgetsLocalizations" {
+  +dynamic textDirection
+  {static} +WidgetsLocalizations of()
+}
+
+class "flutter::lib::src::widgets::localizations.dart::_WidgetsLocalizationsDelegate" {
+  +bool isSupported()
+  +Future<WidgetsLocalizations> load()
+  +bool shouldReload()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::localizations.dart::LocalizationsDelegate" <|-- "flutter::lib::src::widgets::localizations.dart::_WidgetsLocalizationsDelegate"
+
+class "flutter::lib::src::widgets::localizations.dart::DefaultWidgetsLocalizations" {
+  {static} +LocalizationsDelegate<WidgetsLocalizations> delegate
+  +dynamic textDirection
+  {static} +Future<WidgetsLocalizations> load()
+}
+
+"flutter::lib::src::widgets::localizations.dart::DefaultWidgetsLocalizations" o-- "flutter::lib::src::widgets::localizations.dart::LocalizationsDelegate<WidgetsLocalizations>"
+"flutter::lib::src::widgets::localizations.dart::WidgetsLocalizations" <|-- "flutter::lib::src::widgets::localizations.dart::DefaultWidgetsLocalizations"
+
+class "flutter::lib::src::widgets::localizations.dart::_LocalizationsScope" {
+  +dynamic locale
+  +_LocalizationsState localizationsState
+  +Map<Type, dynamic> typeToResources
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::localizations.dart::_LocalizationsScope" o-- "flutter::lib::src::widgets::localizations.dart::_LocalizationsState"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::localizations.dart::_LocalizationsScope"
+
+class "flutter::lib::src::widgets::localizations.dart::Localizations" {
+  +dynamic locale
+  +List<LocalizationsDelegate<dynamic>> delegates
+  +Widget? child
+  {static} +dynamic localeOf()
+  {static} +dynamic maybeLocaleOf()
+  {static} -List<LocalizationsDelegate<dynamic>> _delegatesOf()
+  {static} +T? of()
+  +State<Localizations> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::localizations.dart::Localizations" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::localizations.dart::Localizations"
+
+class "flutter::lib::src::widgets::localizations.dart::_LocalizationsState" {
+  -GlobalKey<State<StatefulWidget>> _localizedResourcesScopeKey
+  -Map<Type, dynamic> _typeToResources
+  -dynamic _locale
+  +dynamic locale
+  -dynamic _textDirection
+  +void initState()
+  -bool _anyDelegatesShouldReload()
+  +void didUpdateWidget()
+  +void load()
+  +T resourcesFor()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::localizations.dart::_LocalizationsState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::localizations.dart::_LocalizationsState"
+
+
+@enduml

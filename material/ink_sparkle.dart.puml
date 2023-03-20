@@ -1,0 +1,59 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::ink_sparkle.dart::InkSparkle" {
+  {static} -Duration _animationDuration
+  {static} -double _targetRadiusMultiplier
+  {static} -double _rotateRight
+  {static} -double _rotateLeft
+  {static} -double _noiseDensity
+  -dynamic _animationController
+  -dynamic _center
+  -dynamic _radiusScale
+  -dynamic _alpha
+  -dynamic _sparkleAlpha
+  -double _turbulenceSeed
+  -dynamic _color
+  -dynamic _position
+  -dynamic _borderRadius
+  -dynamic _customBorder
+  -double _targetRadius
+  -dynamic Function()? _clipCallback
+  -dynamic _textDirection
+  {static} +InteractiveInkFeatureFactory splashFactory
+  {static} +InteractiveInkFeatureFactory constantTurbulenceSeedSplashFactory
+  -double _width
+  -double _height
+  -void _handleStatusChanged()
+  +void dispose()
+  +void paintFeature()
+  -dynamic _createRippleShader()
+  -dynamic _colorToVector4()
+  -void _transformCanvas()
+  -void _clipCanvas()
+}
+
+"flutter::lib::src::material::ink_sparkle.dart::InkSparkle" o-- "flutter::lib::src::material::material.dart::dynamic Function()"
+"flutter::lib::src::material::ink_sparkle.dart::InkSparkle" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeature" <|-- "flutter::lib::src::material::ink_sparkle.dart::InkSparkle"
+
+class "flutter::lib::src::material::ink_sparkle.dart::_InkSparkleFactory" {
+  {static} -bool _initCalled
+  {static} -FragmentShaderManager? _shaderManager
+  +double? turbulenceSeed
+  {static} +void compileShaderIfNeccessary()
+  +InteractiveInkFeature create()
+}
+
+"flutter::lib::src::material::ink_sparkle.dart::_InkSparkleFactory" o-- "flutter::lib::src::material::ink_sparkle.dart::FragmentShaderManager"
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory" <|-- "flutter::lib::src::material::ink_sparkle.dart::_InkSparkleFactory"
+
+class "flutter::lib::src::material::ink_sparkle.dart::FragmentShaderManager" {
+  {static} -dynamic _program
+  {static} +Future<FragmentShaderManager> inkSparkle()
+  -Future<void> _compile()
+  +dynamic shader()
+}
+
+
+@enduml

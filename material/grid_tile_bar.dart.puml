@@ -1,0 +1,14 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::grid_tile_bar.dart::GridTileBar" {
+  +dynamic backgroundColor
+  +dynamic leading
+  +dynamic title
+  +dynamic subtitle
+  +dynamic trailing
+  +dynamic build()
+}
+
+
+@enduml

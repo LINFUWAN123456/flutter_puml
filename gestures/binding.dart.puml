@@ -1,0 +1,77 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::binding.dart::SamplingClock" {
+  +DateTime now()
+  +Stopwatch stopwatch()
+}
+
+class "flutter::lib::src::gestures::binding.dart::_Resampler" {
+  -Map<int, PointerEventResampler> _resamplers
+  -bool _frameCallbackScheduled
+  -Duration _frameTime
+  -Stopwatch _frameTimeAge
+  -Duration _lastSampleTime
+  -Duration _lastEventTime
+  -void Function(PointerEvent) _handlePointerEvent
+  -void Function() _handleSampleTimeChanged
+  -Duration _samplingInterval
+  -Timer? _timer
+  +void addOrDispatch()
+  +void sample()
+  +void stop()
+  -void _onSampleTimeChanged()
+}
+
+"flutter::lib::src::gestures::binding.dart::_Resampler" o-- "flutter::lib::src::gestures::resampler.dart::void Function(PointerEvent)"
+"flutter::lib::src::gestures::binding.dart::_Resampler" o-- "flutter::lib::src::gestures::binding.dart::void Function()"
+"flutter::lib::src::gestures::binding.dart::_Resampler" o-- "dart::async::Timer"
+
+class "flutter::lib::src::gestures::binding.dart::FlutterErrorDetailsForPointerEventDispatcher" {
+  +PointerEvent? event
+  +HitTestEntry<HitTestTarget>? hitTestEntry
+}
+
+"flutter::lib::src::gestures::binding.dart::FlutterErrorDetailsForPointerEventDispatcher" o-- "flutter::lib::src::gestures::events.dart::PointerEvent"
+"flutter::lib::src::gestures::binding.dart::FlutterErrorDetailsForPointerEventDispatcher" o-- "flutter::lib::src::gestures::hit_test.dart::HitTestEntry<HitTestTarget>"
+
+abstract class "flutter::lib::src::gestures::binding.dart::GestureBinding" {
+  {static} -GestureBinding? _instance
+  -Queue<PointerEvent> _pendingPointerEvents
+  +PointerRouter pointerRouter
+  +GestureArenaManager gestureArena
+  +PointerSignalResolver pointerSignalResolver
+  -Map<int, HitTestResult> _hitTests
+  -_Resampler _resampler
+  +bool resamplingEnabled
+  +Duration samplingOffset
+  {static} +GestureBinding instance
+  +SamplingClock? debugSamplingClock
+  -SamplingClock _samplingClock
+  +void initInstances()
+  +void unlocked()
+  -void _handlePointerDataPacket()
+  +void cancelPointer()
+  -void _flushPointerEventQueue()
+  +void handlePointerEvent()
+  -void _handlePointerEventImmediately()
+  +void hitTest()
+  +void dispatchEvent()
+  +void handleEvent()
+  +void resetGestureBinding()
+  -void _handleSampleTimeChanged()
+}
+
+"flutter::lib::src::gestures::binding.dart::GestureBinding" o-- "flutter::lib::src::gestures::binding.dart::GestureBinding"
+"flutter::lib::src::gestures::binding.dart::GestureBinding" o-- "dart::collection::Queue<PointerEvent>"
+"flutter::lib::src::gestures::binding.dart::GestureBinding" o-- "flutter::lib::src::gestures::pointer_router.dart::PointerRouter"
+"flutter::lib::src::gestures::binding.dart::GestureBinding" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaManager"
+"flutter::lib::src::gestures::binding.dart::GestureBinding" o-- "flutter::lib::src::gestures::pointer_signal_resolver.dart::PointerSignalResolver"
+"flutter::lib::src::gestures::binding.dart::GestureBinding" o-- "flutter::lib::src::gestures::binding.dart::_Resampler"
+"flutter::lib::src::gestures::binding.dart::GestureBinding" o-- "flutter::lib::src::gestures::binding.dart::SamplingClock"
+"flutter::lib::src::gestures::hit_test.dart::HitTestable" <|-- "flutter::lib::src::gestures::binding.dart::GestureBinding"
+"flutter::lib::src::gestures::hit_test.dart::HitTestDispatcher" <|-- "flutter::lib::src::gestures::binding.dart::GestureBinding"
+"flutter::lib::src::gestures::hit_test.dart::HitTestTarget" <|-- "flutter::lib::src::gestures::binding.dart::GestureBinding"
+
+
+@enduml

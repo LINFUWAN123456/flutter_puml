@@ -1,0 +1,90 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::wrap.dart::_RunMetrics" {
+  +double mainAxisExtent
+  +double crossAxisExtent
+  +int childCount
+}
+
+class "flutter::lib::src::rendering::wrap.dart::WrapParentData" {
+  -int _runIndex
+}
+
+"flutter::lib::src::rendering::box.dart::ContainerBoxParentData" <|-- "flutter::lib::src::rendering::wrap.dart::WrapParentData"
+
+class "flutter::lib::src::rendering::wrap.dart::RenderWrap" {
+  -dynamic _direction
+  -WrapAlignment _alignment
+  -double _spacing
+  -WrapAlignment _runAlignment
+  -double _runSpacing
+  -WrapCrossAlignment _crossAxisAlignment
+  -dynamic _textDirection
+  -dynamic _verticalDirection
+  -dynamic _clipBehavior
+  -bool _hasVisualOverflow
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +dynamic direction
+  +WrapAlignment alignment
+  +double spacing
+  +WrapAlignment runAlignment
+  +double runSpacing
+  +WrapCrossAlignment crossAxisAlignment
+  +dynamic textDirection
+  +dynamic verticalDirection
+  +dynamic clipBehavior
+  -bool _debugHasNecessaryDirections
+  +void setupParentData()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  -double _getMainAxisExtent()
+  -double _getCrossAxisExtent()
+  -dynamic _getOffset()
+  -double _getChildCrossAxisOffset()
+  +dynamic computeDryLayout()
+  -dynamic _computeDryLayout()
+  +void performLayout()
+  +bool hitTestChildren()
+  +void paint()
+  +void dispose()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::wrap.dart::RenderWrap" o-- "flutter::lib::src::rendering::wrap.dart::WrapAlignment"
+"flutter::lib::src::rendering::wrap.dart::RenderWrap" o-- "flutter::lib::src::rendering::wrap.dart::WrapCrossAlignment"
+"flutter::lib::src::rendering::wrap.dart::RenderWrap" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::wrap.dart::RenderWrap"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::wrap.dart::RenderWrap"
+"flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin" <|-- "flutter::lib::src::rendering::wrap.dart::RenderWrap"
+
+class "flutter::lib::src::rendering::wrap.dart::WrapAlignment" {
+  +int index
+  {static} +List<WrapAlignment> values
+  {static} +WrapAlignment start
+  {static} +WrapAlignment end
+  {static} +WrapAlignment center
+  {static} +WrapAlignment spaceBetween
+  {static} +WrapAlignment spaceAround
+  {static} +WrapAlignment spaceEvenly
+}
+
+"flutter::lib::src::rendering::wrap.dart::WrapAlignment" o-- "flutter::lib::src::rendering::wrap.dart::WrapAlignment"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::wrap.dart::WrapAlignment"
+
+class "flutter::lib::src::rendering::wrap.dart::WrapCrossAlignment" {
+  +int index
+  {static} +List<WrapCrossAlignment> values
+  {static} +WrapCrossAlignment start
+  {static} +WrapCrossAlignment end
+  {static} +WrapCrossAlignment center
+}
+
+"flutter::lib::src::rendering::wrap.dart::WrapCrossAlignment" o-- "flutter::lib::src::rendering::wrap.dart::WrapCrossAlignment"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::wrap.dart::WrapCrossAlignment"
+
+
+@enduml

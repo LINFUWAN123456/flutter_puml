@@ -1,0 +1,301 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::chip.dart::ChipAttributes" {
+  +dynamic label
+  +dynamic avatar
+  +dynamic labelStyle
+  +dynamic side
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic backgroundColor
+  +dynamic padding
+  +VisualDensity? visualDensity
+  +dynamic labelPadding
+  +MaterialTapTargetSize? materialTapTargetSize
+  +double? elevation
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic iconTheme
+}
+
+"flutter::lib::src::material::chip.dart::ChipAttributes" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::chip.dart::ChipAttributes" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+
+abstract class "flutter::lib::src::material::chip.dart::DeletableChipAttributes" {
+  +dynamic deleteIcon
+  +dynamic onDeleted
+  +dynamic deleteIconColor
+  +String? deleteButtonTooltipMessage
+  +bool useDeleteButtonTooltip
+}
+
+abstract class "flutter::lib::src::material::chip.dart::CheckmarkableChipAttributes" {
+  +bool? showCheckmark
+  +dynamic checkmarkColor
+}
+
+abstract class "flutter::lib::src::material::chip.dart::SelectableChipAttributes" {
+  +bool selected
+  +dynamic onSelected
+  +double? pressElevation
+  +dynamic selectedColor
+  +dynamic selectedShadowColor
+  +String? tooltip
+  +dynamic avatarBorder
+}
+
+abstract class "flutter::lib::src::material::chip.dart::DisabledChipAttributes" {
+  +bool isEnabled
+  +dynamic disabledColor
+}
+
+abstract class "flutter::lib::src::material::chip.dart::TappableChipAttributes" {
+  +dynamic onPressed
+  +double? pressElevation
+  +String? tooltip
+}
+
+class "flutter::lib::src::material::chip.dart::Chip" {
+  +dynamic avatar
+  +dynamic label
+  +dynamic labelStyle
+  +dynamic labelPadding
+  +dynamic side
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic backgroundColor
+  +dynamic padding
+  +VisualDensity? visualDensity
+  +dynamic deleteIcon
+  +dynamic onDeleted
+  +dynamic deleteIconColor
+  +String? deleteButtonTooltipMessage
+  +MaterialTapTargetSize? materialTapTargetSize
+  +double? elevation
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic iconTheme
+  +bool useDeleteButtonTooltip
+  +dynamic build()
+}
+
+"flutter::lib::src::material::chip.dart::Chip" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::chip.dart::Chip" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::chip.dart::ChipAttributes" <|-- "flutter::lib::src::material::chip.dart::Chip"
+"flutter::lib::src::material::chip.dart::DeletableChipAttributes" <|-- "flutter::lib::src::material::chip.dart::Chip"
+
+class "flutter::lib::src::material::chip.dart::RawChip" {
+  +ChipThemeData? defaultProperties
+  +dynamic avatar
+  +dynamic label
+  +dynamic labelStyle
+  +dynamic labelPadding
+  +dynamic deleteIcon
+  +dynamic onDeleted
+  +dynamic deleteIconColor
+  +String? deleteButtonTooltipMessage
+  +dynamic onSelected
+  +dynamic onPressed
+  +double? pressElevation
+  +bool selected
+  +bool isEnabled
+  +dynamic disabledColor
+  +dynamic selectedColor
+  +String? tooltip
+  +dynamic side
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic backgroundColor
+  +dynamic padding
+  +VisualDensity? visualDensity
+  +MaterialTapTargetSize? materialTapTargetSize
+  +double? elevation
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic iconTheme
+  +dynamic selectedShadowColor
+  +bool? showCheckmark
+  +dynamic checkmarkColor
+  +dynamic avatarBorder
+  +bool useDeleteButtonTooltip
+  +bool tapEnabled
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::chip.dart::RawChip" o-- "flutter::lib::src::material::chip_theme.dart::ChipThemeData"
+"flutter::lib::src::material::chip.dart::RawChip" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::chip.dart::RawChip" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::chip.dart::ChipAttributes" <|-- "flutter::lib::src::material::chip.dart::RawChip"
+"flutter::lib::src::material::chip.dart::DeletableChipAttributes" <|-- "flutter::lib::src::material::chip.dart::RawChip"
+"flutter::lib::src::material::chip.dart::SelectableChipAttributes" <|-- "flutter::lib::src::material::chip.dart::RawChip"
+"flutter::lib::src::material::chip.dart::CheckmarkableChipAttributes" <|-- "flutter::lib::src::material::chip.dart::RawChip"
+"flutter::lib::src::material::chip.dart::DisabledChipAttributes" <|-- "flutter::lib::src::material::chip.dart::RawChip"
+"flutter::lib::src::material::chip.dart::TappableChipAttributes" <|-- "flutter::lib::src::material::chip.dart::RawChip"
+
+class "flutter::lib::src::material::chip.dart::_RawChipState" {
+  {static} +Duration pressedAnimationDuration
+  +dynamic selectController
+  +dynamic avatarDrawerController
+  +dynamic deleteDrawerController
+  +dynamic enableController
+  +dynamic checkmarkAnimation
+  +dynamic avatarDrawerAnimation
+  +dynamic deleteDrawerAnimation
+  +dynamic enableAnimation
+  +dynamic selectionFade
+  -bool _isTapping
+  +bool hasDeleteButton
+  +bool hasAvatar
+  +bool canTap
+  +bool isTapping
+  +void initState()
+  +void dispose()
+  -void _handleTapDown()
+  -void _handleTapCancel()
+  -void _handleTap()
+  -dynamic _getShape()
+  -dynamic _getBackgroundColor()
+  +void didUpdateWidget()
+  -dynamic _wrapWithTooltip()
+  -dynamic _buildDeleteIcon()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::material_state_mixin.dart::MaterialStateMixin" <|-- "flutter::lib::src::material::chip.dart::_RawChipState"
+
+class "flutter::lib::src::material::chip.dart::_ChipRedirectingHitDetectionWidget" {
+  +dynamic constraints
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::chip.dart::_RenderChipRedirectingHitDetection" {
+  +bool hitTest()
+}
+
+class "flutter::lib::src::material::chip.dart::_ChipRenderWidget" {
+  +_ChipRenderTheme theme
+  +bool? value
+  +bool? isEnabled
+  +dynamic checkmarkAnimation
+  +dynamic avatarDrawerAnimation
+  +dynamic deleteDrawerAnimation
+  +dynamic enableAnimation
+  +dynamic avatarBorder
+  +Iterable<_ChipSlot> slots
+  +dynamic childForSlot()
+  +void updateRenderObject()
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::material::chip.dart::_ChipRenderWidget" o-- "flutter::lib::src::material::chip.dart::_ChipRenderTheme"
+
+class "flutter::lib::src::material::chip.dart::_ChipRenderTheme" {
+  +dynamic avatar
+  +dynamic label
+  +dynamic deleteIcon
+  +dynamic brightness
+  +dynamic padding
+  +VisualDensity visualDensity
+  +dynamic labelPadding
+  +bool showAvatar
+  +bool showCheckmark
+  +dynamic checkmarkColor
+  +bool canTapBody
+  +int hashCode
+  +bool ==()
+}
+
+"flutter::lib::src::material::chip.dart::_ChipRenderTheme" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::chip.dart::_RenderChip" {
+  +bool? value
+  +bool? isEnabled
+  -dynamic _deleteButtonRect
+  -dynamic _pressRect
+  +dynamic checkmarkAnimation
+  +dynamic avatarDrawerAnimation
+  +dynamic deleteDrawerAnimation
+  +dynamic enableAnimation
+  +dynamic avatarBorder
+  -_ChipRenderTheme _theme
+  -dynamic _textDirection
+  {static} +dynamic selectionScrimTween
+  {static} -bool _debugShowTapTargetOutlines
+  +dynamic avatar
+  +dynamic deleteIcon
+  +dynamic label
+  +_ChipRenderTheme theme
+  +dynamic textDirection
+  +Iterable<dynamic> children
+  +bool isDrawingCheckmark
+  +bool deleteIconShowing
+  +bool sizedByParent
+  -dynamic _disabledColor
+  {static} -double _minWidth()
+  {static} -double _maxWidth()
+  {static} -double _minHeight()
+  {static} -dynamic _boxSize()
+  {static} -dynamic _boxRect()
+  {static} -dynamic _boxParentData()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  -dynamic _layoutLabel()
+  -dynamic _layoutAvatar()
+  -dynamic _layoutDeleteIcon()
+  +bool hitTest()
+  +dynamic computeDryLayout()
+  -_ChipSizes _computeSizes()
+  +void performLayout()
+  -void _paintCheck()
+  -void _paintSelectionOverlay()
+  -void _paintAvatar()
+  -void _paintChild()
+  +void paint()
+  +void debugPaint()
+  +bool hitTestSelf()
+}
+
+"flutter::lib::src::material::chip.dart::_RenderChip" o-- "flutter::lib::src::material::chip.dart::_ChipRenderTheme"
+
+class "flutter::lib::src::material::chip.dart::_ChipSizes" {
+  +dynamic size
+  +dynamic overall
+  +double content
+  +dynamic avatar
+  +dynamic label
+  +dynamic deleteIcon
+  +dynamic densityAdjustment
+}
+
+class "flutter::lib::src::material::chip.dart::_UnconstrainedInkSplashFactory" {
+  +InteractiveInkFeatureFactory parentFactory
+  +InteractiveInkFeature create()
+}
+
+"flutter::lib::src::material::chip.dart::_UnconstrainedInkSplashFactory" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory" <|-- "flutter::lib::src::material::chip.dart::_UnconstrainedInkSplashFactory"
+
+class "flutter::lib::src::material::chip.dart::_ChipSlot" {
+  +int index
+  {static} +List<_ChipSlot> values
+  {static} +_ChipSlot label
+  {static} +_ChipSlot avatar
+  {static} +_ChipSlot deleteIcon
+}
+
+"flutter::lib::src::material::chip.dart::_ChipSlot" o-- "flutter::lib::src::material::chip.dart::_ChipSlot"
+"dart::core::Enum" <|-- "flutter::lib::src::material::chip.dart::_ChipSlot"
+
+
+@enduml

@@ -1,0 +1,127 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::heroes.dart::Hero" {
+  +Object tag
+  +dynamic Function(dynamic, dynamic)? createRectTween
+  +Widget child
+  +Widget Function(BuildContext, dynamic, HeroFlightDirection, BuildContext, BuildContext)? flightShuttleBuilder
+  +Widget Function(BuildContext, dynamic, Widget)? placeholderBuilder
+  +bool transitionOnUserGestures
+  {static} -Map<Object, _HeroState> _allHeroesFor()
+  +State<Hero> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::heroes.dart::Hero" o-- "flutter::lib::src::widgets::heroes.dart::dynamic Function(dynamic, dynamic)"
+"flutter::lib::src::widgets::heroes.dart::Hero" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::heroes.dart::Hero" o-- "flutter::lib::src::widgets::heroes.dart::Widget Function(BuildContext, dynamic, HeroFlightDirection, BuildContext, BuildContext)"
+"flutter::lib::src::widgets::heroes.dart::Hero" o-- "flutter::lib::src::widgets::heroes.dart::Widget Function(BuildContext, dynamic, Widget)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::heroes.dart::Hero"
+
+class "flutter::lib::src::widgets::heroes.dart::_HeroState" {
+  -GlobalKey<State<StatefulWidget>> _key
+  -dynamic _placeholderSize
+  -bool _shouldIncludeChild
+  +void startFlight()
+  +void endFlight()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::heroes.dart::_HeroState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::heroes.dart::_HeroState"
+
+class "flutter::lib::src::widgets::heroes.dart::_HeroFlightManifest" {
+  +HeroFlightDirection type
+  +OverlayState overlay
+  +dynamic navigatorSize
+  +PageRoute<dynamic> fromRoute
+  +PageRoute<dynamic> toRoute
+  +_HeroState fromHero
+  +_HeroState toHero
+  +dynamic Function(dynamic, dynamic)? createRectTween
+  +Widget Function(BuildContext, dynamic, HeroFlightDirection, BuildContext, BuildContext) shuttleBuilder
+  +bool isUserGestureTransition
+  +bool isDiverted
+  +dynamic fromHeroLocation
+  +dynamic toHeroLocation
+  +bool isValid
+  +Object tag
+  +dynamic animation
+  +dynamic createHeroRectTween()
+  {static} -dynamic _boundingBoxFor()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::heroes.dart::_HeroFlightManifest" o-- "flutter::lib::src::widgets::heroes.dart::HeroFlightDirection"
+"flutter::lib::src::widgets::heroes.dart::_HeroFlightManifest" o-- "flutter::lib::src::widgets::overlay.dart::OverlayState"
+"flutter::lib::src::widgets::heroes.dart::_HeroFlightManifest" o-- "flutter::lib::src::widgets::pages.dart::PageRoute<dynamic>"
+"flutter::lib::src::widgets::heroes.dart::_HeroFlightManifest" o-- "flutter::lib::src::widgets::heroes.dart::_HeroState"
+"flutter::lib::src::widgets::heroes.dart::_HeroFlightManifest" o-- "flutter::lib::src::widgets::heroes.dart::dynamic Function(dynamic, dynamic)"
+"flutter::lib::src::widgets::heroes.dart::_HeroFlightManifest" o-- "flutter::lib::src::widgets::heroes.dart::Widget Function(BuildContext, dynamic, HeroFlightDirection, BuildContext, BuildContext)"
+
+class "flutter::lib::src::widgets::heroes.dart::_HeroFlight" {
+  +void Function(_HeroFlight) onFlightEnded
+  +dynamic heroRectTween
+  +Widget? shuttle
+  -dynamic _heroOpacity
+  -dynamic _proxyAnimation
+  +_HeroFlightManifest manifest
+  +OverlayEntry? overlayEntry
+  -bool _aborted
+  {static} -dynamic _reverseTween
+  -bool _scheduledPerformAnimationUpdate
+  -Widget _buildOverlay()
+  -void _performAnimationUpdate()
+  -void _handleAnimationUpdate()
+  +void onTick()
+  +void start()
+  +void divert()
+  +void abort()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::heroes.dart::_HeroFlight" o-- "flutter::lib::src::widgets::heroes.dart::void Function(_HeroFlight)"
+"flutter::lib::src::widgets::heroes.dart::_HeroFlight" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::heroes.dart::_HeroFlight" o-- "flutter::lib::src::widgets::heroes.dart::_HeroFlightManifest"
+"flutter::lib::src::widgets::heroes.dart::_HeroFlight" o-- "flutter::lib::src::widgets::overlay.dart::OverlayEntry"
+
+class "flutter::lib::src::widgets::heroes.dart::HeroController" {
+  +dynamic Function(dynamic, dynamic)? createRectTween
+  -Map<Object, _HeroFlight> _flights
+  +void didPush()
+  +void didPop()
+  +void didReplace()
+  +void didStartUserGesture()
+  +void didStopUserGesture()
+  -void _maybeStartHeroTransition()
+  -void _startHeroTransition()
+  -void _handleFlightEnded()
+  -Widget _defaultHeroFlightShuttleBuilder()
+}
+
+"flutter::lib::src::widgets::heroes.dart::HeroController" o-- "flutter::lib::src::widgets::heroes.dart::dynamic Function(dynamic, dynamic)"
+"flutter::lib::src::widgets::navigator.dart::NavigatorObserver" <|-- "flutter::lib::src::widgets::heroes.dart::HeroController"
+
+class "flutter::lib::src::widgets::heroes.dart::HeroMode" {
+  +Widget child
+  +bool enabled
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::heroes.dart::HeroMode" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::heroes.dart::HeroMode"
+
+class "flutter::lib::src::widgets::heroes.dart::HeroFlightDirection" {
+  +int index
+  {static} +List<HeroFlightDirection> values
+  {static} +HeroFlightDirection push
+  {static} +HeroFlightDirection pop
+}
+
+"flutter::lib::src::widgets::heroes.dart::HeroFlightDirection" o-- "flutter::lib::src::widgets::heroes.dart::HeroFlightDirection"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::heroes.dart::HeroFlightDirection"
+
+
+@enduml

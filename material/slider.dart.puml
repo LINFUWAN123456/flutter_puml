@@ -1,0 +1,224 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::slider.dart::Slider" {
+  +double value
+  +dynamic onChanged
+  +dynamic onChangeStart
+  +dynamic onChangeEnd
+  +double min
+  +double max
+  +int? divisions
+  +String? label
+  +dynamic activeColor
+  +dynamic inactiveColor
+  +dynamic thumbColor
+  +dynamic mouseCursor
+  +String Function(double)? semanticFormatterCallback
+  +dynamic focusNode
+  +bool autofocus
+  -_SliderType _sliderType
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::slider.dart::Slider" o-- "flutter::lib::src::material::slider_theme.dart::String Function(double)"
+"flutter::lib::src::material::slider.dart::Slider" o-- "flutter::lib::src::material::slider.dart::_SliderType"
+
+class "flutter::lib::src::material::slider.dart::_SliderState" {
+  {static} +Duration enableAnimationDuration
+  {static} +Duration valueIndicatorAnimationDuration
+  +dynamic overlayController
+  +dynamic valueIndicatorController
+  +dynamic enableController
+  +dynamic positionController
+  +Timer? interactionTimer
+  -dynamic _renderObjectKey
+  {static} -Map<dynamic, dynamic> _traditionalNavShortcutMap
+  {static} -Map<dynamic, dynamic> _directionalNavShortcutMap
+  -Map<Type, dynamic> _actionMap
+  +void Function(dynamic, dynamic)? paintValueIndicator
+  -bool _dragging
+  -dynamic _focusNode
+  -bool _focused
+  -bool _hovering
+  -dynamic _layerLink
+  +dynamic overlayEntry
+  -bool _enabled
+  +dynamic focusNode
+  +void initState()
+  +void dispose()
+  -void _handleChanged()
+  -void _handleDragStart()
+  -void _handleDragEnd()
+  -void _actionHandler()
+  -void _handleFocusHighlightChanged()
+  -void _handleHoverChanged()
+  -double _lerp()
+  -double _discretize()
+  -double _convert()
+  -double _unlerp()
+  +dynamic build()
+  -dynamic _buildMaterialSlider()
+  -dynamic _buildCupertinoSlider()
+  +void showValueIndicator()
+}
+
+"flutter::lib::src::material::slider.dart::_SliderState" o-- "dart::async::Timer"
+"flutter::lib::src::material::slider.dart::_SliderState" o-- "flutter::lib::src::material::slider.dart::void Function(dynamic, dynamic)"
+
+class "flutter::lib::src::material::slider.dart::_SliderRenderObjectWidget" {
+  +double value
+  +int? divisions
+  +String? label
+  +SliderThemeData sliderTheme
+  +double textScaleFactor
+  +dynamic screenSize
+  +dynamic onChanged
+  +dynamic onChangeStart
+  +dynamic onChangeEnd
+  +String Function(double)? semanticFormatterCallback
+  +_SliderState state
+  +bool hasFocus
+  +bool hovering
+  +_RenderSlider createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::material::slider.dart::_SliderRenderObjectWidget" o-- "flutter::lib::src::material::slider_theme.dart::SliderThemeData"
+"flutter::lib::src::material::slider.dart::_SliderRenderObjectWidget" o-- "flutter::lib::src::material::slider_theme.dart::String Function(double)"
+"flutter::lib::src::material::slider.dart::_SliderRenderObjectWidget" o-- "flutter::lib::src::material::slider.dart::_SliderState"
+
+class "flutter::lib::src::material::slider.dart::_RenderSlider" {
+  {static} -Duration _positionAnimationDuration
+  {static} -Duration _minimumInteractionTime
+  {static} -double _minPreferredTrackWidth
+  -_SliderState _state
+  -dynamic _overlayAnimation
+  -dynamic _valueIndicatorAnimation
+  -dynamic _enableAnimation
+  -dynamic _labelPainter
+  -dynamic _drag
+  -dynamic _tap
+  -bool _active
+  -double _currentDragValue
+  -double _value
+  -dynamic _platform
+  -String Function(double)? _semanticFormatterCallback
+  -int? _divisions
+  -String? _label
+  -SliderThemeData _sliderTheme
+  -double _textScaleFactor
+  -dynamic _screenSize
+  -dynamic _onChanged
+  +dynamic onChangeStart
+  +dynamic onChangeEnd
+  -dynamic _textDirection
+  -bool _hasFocus
+  -bool _hovering
+  -double _maxSliderPartWidth
+  -double _maxSliderPartHeight
+  -List<dynamic> _sliderPartSizes
+  -double _minPreferredTrackHeight
+  -dynamic _trackRect
+  +bool isInteractive
+  +bool isDiscrete
+  +double value
+  +dynamic gestureSettings
+  +dynamic platform
+  +String Function(double)? semanticFormatterCallback
+  +int? divisions
+  +String? label
+  +SliderThemeData sliderTheme
+  +double textScaleFactor
+  +dynamic screenSize
+  +dynamic onChanged
+  +dynamic textDirection
+  +bool hasFocus
+  +bool hovering
+  +bool showValueIndicator
+  -double _adjustmentUnit
+  +bool sizedByParent
+  -double _semanticActionUnit
+  -void _updateForFocusOrHover()
+  -void _updateLabelPainter()
+  +void systemFontsDidChange()
+  +void attach()
+  +void detach()
+  -double _getValueFromVisualPosition()
+  -double _getValueFromGlobalPosition()
+  -double _discretize()
+  -void _startInteraction()
+  -void _endInteraction()
+  -void _handleDragStart()
+  -void _handleDragUpdate()
+  -void _handleDragEnd()
+  -void _handleTapDown()
+  -void _handleTapUp()
+  +bool hitTestSelf()
+  +void handleEvent()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void paint()
+  +void describeSemanticsConfiguration()
+  +void increaseAction()
+  +void decreaseAction()
+}
+
+"flutter::lib::src::material::slider.dart::_RenderSlider" o-- "flutter::lib::src::material::slider.dart::_SliderState"
+"flutter::lib::src::material::slider.dart::_RenderSlider" o-- "flutter::lib::src::material::slider_theme.dart::String Function(double)"
+"flutter::lib::src::material::slider.dart::_RenderSlider" o-- "flutter::lib::src::material::slider_theme.dart::SliderThemeData"
+
+class "flutter::lib::src::material::slider.dart::_AdjustSliderIntent" {
+  +_SliderAdjustmentType type
+}
+
+"flutter::lib::src::material::slider.dart::_AdjustSliderIntent" o-- "flutter::lib::src::material::slider.dart::_SliderAdjustmentType"
+
+class "flutter::lib::src::material::slider.dart::_ValueIndicatorRenderObjectWidget" {
+  +_SliderState state
+  +_RenderValueIndicator createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::material::slider.dart::_ValueIndicatorRenderObjectWidget" o-- "flutter::lib::src::material::slider.dart::_SliderState"
+
+class "flutter::lib::src::material::slider.dart::_RenderValueIndicator" {
+  -dynamic _valueIndicatorAnimation
+  -_SliderState _state
+  +bool sizedByParent
+  +void attach()
+  +void detach()
+  +void paint()
+  +dynamic computeDryLayout()
+}
+
+"flutter::lib::src::material::slider.dart::_RenderValueIndicator" o-- "flutter::lib::src::material::slider.dart::_SliderState"
+
+class "flutter::lib::src::material::slider.dart::_SliderType" {
+  +int index
+  {static} +List<_SliderType> values
+  {static} +_SliderType material
+  {static} +_SliderType adaptive
+}
+
+"flutter::lib::src::material::slider.dart::_SliderType" o-- "flutter::lib::src::material::slider.dart::_SliderType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::slider.dart::_SliderType"
+
+class "flutter::lib::src::material::slider.dart::_SliderAdjustmentType" {
+  +int index
+  {static} +List<_SliderAdjustmentType> values
+  {static} +_SliderAdjustmentType right
+  {static} +_SliderAdjustmentType left
+  {static} +_SliderAdjustmentType up
+  {static} +_SliderAdjustmentType down
+}
+
+"flutter::lib::src::material::slider.dart::_SliderAdjustmentType" o-- "flutter::lib::src::material::slider.dart::_SliderAdjustmentType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::slider.dart::_SliderAdjustmentType"
+
+
+@enduml

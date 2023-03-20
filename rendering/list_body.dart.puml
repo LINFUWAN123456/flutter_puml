@@ -1,0 +1,34 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::list_body.dart::ListBodyParentData" {
+}
+
+"flutter::lib::src::rendering::box.dart::ContainerBoxParentData" <|-- "flutter::lib::src::rendering::list_body.dart::ListBodyParentData"
+
+class "flutter::lib::src::rendering::list_body.dart::RenderListBody" {
+  -dynamic _axisDirection
+  +dynamic axisDirection
+  +dynamic mainAxis
+  +void setupParentData()
+  +dynamic computeDryLayout()
+  -bool _debugCheckConstraints()
+  +void performLayout()
+  +void debugFillProperties()
+  -double _getIntrinsicCrossAxis()
+  -double _getIntrinsicMainAxis()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  +void paint()
+  +bool hitTestChildren()
+}
+
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::list_body.dart::RenderListBody"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::list_body.dart::RenderListBody"
+"flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin" <|-- "flutter::lib::src::rendering::list_body.dart::RenderListBody"
+
+
+@enduml

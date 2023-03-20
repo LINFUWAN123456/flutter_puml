@@ -1,0 +1,90 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::TextSelectionToolbar" {
+  +dynamic anchorAbove
+  +dynamic anchorBelow
+  +List<dynamic> children
+  +dynamic toolbarBuilder
+  {static} -dynamic _defaultToolbarBuilder()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::_TextSelectionToolbarOverflowable" {
+  +List<dynamic> children
+  +bool isAbove
+  +dynamic toolbarBuilder
+  +_TextSelectionToolbarOverflowableState createState()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::_TextSelectionToolbarOverflowableState" {
+  -bool _overflowOpen
+  -dynamic _containerKey
+  -void _reset()
+  +void didUpdateWidget()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::_TextSelectionToolbarTrailingEdgeAlign" {
+  +bool overflowOpen
+  +dynamic textDirection
+  +_TextSelectionToolbarTrailingEdgeAlignRenderBox createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::_TextSelectionToolbarTrailingEdgeAlignRenderBox" {
+  -double? _closedWidth
+  -bool _overflowOpen
+  -dynamic _textDirection
+  +bool overflowOpen
+  +dynamic textDirection
+  +void performLayout()
+  +void paint()
+  +bool hitTestChildren()
+  +void setupParentData()
+  +void applyPaintTransform()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::_TextSelectionToolbarItemsLayout" {
+  +bool isAbove
+  +bool overflowOpen
+  +_RenderTextSelectionToolbarItemsLayout createRenderObject()
+  +void updateRenderObject()
+  +_TextSelectionToolbarItemsLayoutElement createElement()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::_TextSelectionToolbarItemsLayoutElement" {
+  {static} -bool _shouldPaint()
+  +void debugVisitOnstageChildren()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::_RenderTextSelectionToolbarItemsLayout" {
+  -int _lastIndexThatFits
+  -bool _isAbove
+  -bool _overflowOpen
+  +bool isAbove
+  +bool overflowOpen
+  -void _layoutChildren()
+  -bool _shouldPaintChild()
+  -void _placeChildren()
+  +void performLayout()
+  +void paint()
+  +void setupParentData()
+  +bool hitTestChildren()
+  +void visitChildrenForSemantics()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::_TextSelectionToolbarContainer" {
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar.dart::_TextSelectionToolbarOverflowButton" {
+  +dynamic icon
+  +dynamic onPressed
+  +String? tooltip
+  +dynamic build()
+}
+
+
+@enduml

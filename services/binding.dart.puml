@@ -1,0 +1,51 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::binding.dart::_DefaultBinaryMessenger" {
+  +Future<void> handlePlatformMessage()
+  +Future<ByteData?> send()
+  +void setMessageHandler()
+}
+
+"flutter::lib::src::services::binary_messenger.dart::BinaryMessenger" <|-- "flutter::lib::src::services::binding.dart::_DefaultBinaryMessenger"
+
+abstract class "flutter::lib::src::services::binding.dart::ServicesBinding" {
+  {static} -ServicesBinding? _instance
+  -HardwareKeyboard _keyboard
+  -KeyEventManager _keyEventManager
+  -BinaryMessenger _defaultBinaryMessenger
+  -RestorationManager _restorationManager
+  -Future<void> Function(bool)? _systemUiChangeCallback
+  {static} +ServicesBinding instance
+  +HardwareKeyboard keyboard
+  +KeyEventManager keyEventManager
+  +BinaryMessenger defaultBinaryMessenger
+  +dynamic channelBuffers
+  +RestorationManager restorationManager
+  +void initInstances()
+  -void _initKeyboard()
+  +BinaryMessenger createBinaryMessenger()
+  +void handleMemoryPressure()
+  +Future<void> handleSystemMessage()
+  +void initLicenses()
+  -Stream<dynamic> _addLicenses()
+  {static} -List<dynamic> _parseLicenses()
+  +void initServiceExtensions()
+  +void evict()
+  +void readInitialLifecycleStateFromNativeWindow()
+  -Future<String?> _handleLifecycleMessage()
+  -Future<void> _handlePlatformMessage()
+  {static} -dynamic _parseAppLifecycleMessage()
+  +RestorationManager createRestorationManager()
+  +void setSystemUiChangeCallback()
+}
+
+"flutter::lib::src::services::binding.dart::ServicesBinding" o-- "flutter::lib::src::services::binding.dart::ServicesBinding"
+"flutter::lib::src::services::binding.dart::ServicesBinding" o-- "flutter::lib::src::services::hardware_keyboard.dart::HardwareKeyboard"
+"flutter::lib::src::services::binding.dart::ServicesBinding" o-- "flutter::lib::src::services::hardware_keyboard.dart::KeyEventManager"
+"flutter::lib::src::services::binding.dart::ServicesBinding" o-- "flutter::lib::src::services::binary_messenger.dart::BinaryMessenger"
+"flutter::lib::src::services::binding.dart::ServicesBinding" o-- "flutter::lib::src::services::restoration.dart::RestorationManager"
+"flutter::lib::src::services::binding.dart::ServicesBinding" o-- "flutter::lib::src::services::binding.dart::Future<void> Function(bool)"
+
+
+@enduml

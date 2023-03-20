@@ -1,0 +1,42 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::container.dart::DecoratedBox" {
+  +dynamic decoration
+  +dynamic position
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::container.dart::DecoratedBox"
+
+class "flutter::lib::src::widgets::container.dart::Container" {
+  +Widget? child
+  +dynamic alignment
+  +dynamic padding
+  +dynamic color
+  +dynamic decoration
+  +dynamic foregroundDecoration
+  +dynamic constraints
+  +dynamic margin
+  +dynamic transform
+  +dynamic transformAlignment
+  +dynamic clipBehavior
+  -dynamic _paddingIncludingDecoration
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::container.dart::Container" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::container.dart::Container"
+
+class "flutter::lib::src::widgets::container.dart::_DecorationClipper" {
+  +dynamic textDirection
+  +dynamic decoration
+  +dynamic getClip()
+  +bool shouldReclip()
+}
+
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::system_channels.dart::SystemChannels" {
+  {static} +MethodChannel navigation
+  {static} +MethodChannel platform
+  {static} +MethodChannel textInput
+  {static} +BasicMessageChannel<Object?> keyEvent
+  {static} +BasicMessageChannel<String?> lifecycle
+  {static} +BasicMessageChannel<Object?> system
+  {static} +BasicMessageChannel<Object?> accessibility
+  {static} +MethodChannel platform_views
+  {static} +MethodChannel skia
+  {static} +MethodChannel mouseCursor
+  {static} +MethodChannel restoration
+  {static} +MethodChannel deferredComponent
+  {static} +MethodChannel localization
+  {static} +MethodChannel menu
+}
+
+"flutter::lib::src::services::system_channels.dart::SystemChannels" o-- "flutter::lib::src::services::platform_channel.dart::MethodChannel"
+"flutter::lib::src::services::system_channels.dart::SystemChannels" o-- "flutter::lib::src::services::platform_channel.dart::BasicMessageChannel<Object>"
+"flutter::lib::src::services::system_channels.dart::SystemChannels" o-- "flutter::lib::src::services::platform_channel.dart::BasicMessageChannel<String>"
+
+
+@enduml

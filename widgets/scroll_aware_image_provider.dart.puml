@@ -1,0 +1,16 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scroll_aware_image_provider.dart::ScrollAwareImageProvider" {
+  +DisposableBuildContext<State<StatefulWidget>> context
+  +dynamic imageProvider
+  +void resolveStreamForKey()
+  +dynamic load()
+  +dynamic loadBuffer()
+  +Future<T> obtainKey()
+}
+
+"flutter::lib::src::widgets::scroll_aware_image_provider.dart::ScrollAwareImageProvider" o-- "flutter::lib::src::widgets::disposable_build_context.dart::DisposableBuildContext<State<StatefulWidget>>"
+
+
+@enduml

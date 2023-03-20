@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::image_filter.dart::ImageFiltered" {
+  +dynamic imageFilter
+  +bool enabled
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::image_filter.dart::ImageFiltered"
+
+class "flutter::lib::src::widgets::image_filter.dart::_ImageFilterRenderObject" {
+  -bool _enabled
+  -dynamic _imageFilter
+  +bool enabled
+  +dynamic imageFilter
+  +bool alwaysNeedsCompositing
+  +void paint()
+}
+
+
+@enduml

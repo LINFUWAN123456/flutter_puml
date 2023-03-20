@@ -1,0 +1,96 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::list_wheel_viewport.dart::ListWheelChildManager" {
+  +int? childCount
+  +bool childExistsAt()
+  +void createChild()
+  +void removeChild()
+}
+
+class "flutter::lib::src::rendering::list_wheel_viewport.dart::ListWheelParentData" {
+  +int? index
+}
+
+"flutter::lib::src::rendering::box.dart::ContainerBoxParentData" <|-- "flutter::lib::src::rendering::list_wheel_viewport.dart::ListWheelParentData"
+
+class "flutter::lib::src::rendering::list_wheel_viewport.dart::RenderListWheelViewport" {
+  {static} +double defaultDiameterRatio
+  {static} +double defaultPerspective
+  {static} +String diameterRatioZeroMessage
+  {static} +String perspectiveTooHighMessage
+  {static} +String clipBehaviorAndRenderChildrenOutsideViewportConflict
+  +ListWheelChildManager childManager
+  -ViewportOffset _offset
+  -double _diameterRatio
+  -double _perspective
+  -double _offAxisFraction
+  -bool _useMagnifier
+  -double _magnification
+  -double _overAndUnderCenterOpacity
+  -double _itemExtent
+  -double _squeeze
+  -bool _renderChildrenOutsideViewport
+  -dynamic _clipBehavior
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +ViewportOffset offset
+  +double diameterRatio
+  +double perspective
+  +double offAxisFraction
+  +bool useMagnifier
+  +double magnification
+  +double overAndUnderCenterOpacity
+  +double itemExtent
+  +double squeeze
+  +bool renderChildrenOutsideViewport
+  +dynamic clipBehavior
+  +bool isRepaintBoundary
+  -double _viewportExtent
+  -double _minEstimatedScrollExtent
+  -double _maxEstimatedScrollExtent
+  -double _topScrollMarginExtent
+  -double _maxVisibleRadian
+  +bool sizedByParent
+  -void _hasScrolled()
+  +void setupParentData()
+  +void attach()
+  +void detach()
+  -double _getUntransformedPaintingCoordinateY()
+  -double _getIntrinsicCrossAxis()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +int indexOf()
+  +int scrollOffsetToIndex()
+  +double indexToScrollOffset()
+  -void _createChild()
+  -void _destroyChild()
+  -void _layoutChild()
+  +void performLayout()
+  -bool _shouldClipAtCurrentOffset()
+  +void paint()
+  +void dispose()
+  -void _paintVisibleChildren()
+  -void _paintTransformedChild()
+  -void _paintChildWithMagnifier()
+  -void _paintChildCylindrically()
+  -dynamic _magnifyTransform()
+  -dynamic _centerOriginTransform()
+  +void applyPaintTransform()
+  +dynamic describeApproximatePaintClip()
+  +bool hitTestChildren()
+  +RevealedOffset getOffsetToReveal()
+  +void showOnScreen()
+}
+
+"flutter::lib::src::rendering::list_wheel_viewport.dart::RenderListWheelViewport" o-- "flutter::lib::src::rendering::list_wheel_viewport.dart::ListWheelChildManager"
+"flutter::lib::src::rendering::list_wheel_viewport.dart::RenderListWheelViewport" o-- "flutter::lib::src::rendering::viewport_offset.dart::ViewportOffset"
+"flutter::lib::src::rendering::list_wheel_viewport.dart::RenderListWheelViewport" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::list_wheel_viewport.dart::RenderListWheelViewport"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::list_wheel_viewport.dart::RenderListWheelViewport"
+"flutter::lib::src::rendering::viewport.dart::RenderAbstractViewport" <|-- "flutter::lib::src::rendering::list_wheel_viewport.dart::RenderListWheelViewport"
+
+
+@enduml

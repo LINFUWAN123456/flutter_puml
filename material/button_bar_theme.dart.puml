@@ -1,0 +1,33 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::button_bar_theme.dart::ButtonBarThemeData" {
+  +dynamic alignment
+  +dynamic mainAxisSize
+  +ButtonTextTheme? buttonTextTheme
+  +double? buttonMinWidth
+  +double? buttonHeight
+  +dynamic buttonPadding
+  +bool? buttonAlignedDropdown
+  +ButtonBarLayoutBehavior? layoutBehavior
+  +dynamic overflowDirection
+  +int hashCode
+  +ButtonBarThemeData copyWith()
+  {static} +ButtonBarThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::button_bar_theme.dart::ButtonBarThemeData" o-- "flutter::lib::src::material::button_theme.dart::ButtonTextTheme"
+"flutter::lib::src::material::button_bar_theme.dart::ButtonBarThemeData" o-- "flutter::lib::src::material::button_theme.dart::ButtonBarLayoutBehavior"
+
+class "flutter::lib::src::material::button_bar_theme.dart::ButtonBarTheme" {
+  +ButtonBarThemeData data
+  {static} +ButtonBarThemeData of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::button_bar_theme.dart::ButtonBarTheme" o-- "flutter::lib::src::material::button_bar_theme.dart::ButtonBarThemeData"
+
+
+@enduml

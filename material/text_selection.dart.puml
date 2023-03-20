@@ -1,0 +1,46 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::text_selection.dart::MaterialTextSelectionControls" {
+  +dynamic getHandleSize()
+  +dynamic buildToolbar()
+  +dynamic buildHandle()
+  +dynamic getHandleAnchor()
+  +bool canSelectAll()
+}
+
+class "flutter::lib::src::material::text_selection.dart::_TextSelectionToolbarItemData" {
+  +String label
+  +dynamic onPressed
+}
+
+class "flutter::lib::src::material::text_selection.dart::_TextSelectionControlsToolbar" {
+  +dynamic clipboardStatus
+  +dynamic delegate
+  +List<dynamic> endpoints
+  +dynamic globalEditableRegion
+  +dynamic handleCut
+  +dynamic handleCopy
+  +dynamic handlePaste
+  +dynamic handleSelectAll
+  +dynamic selectionMidpoint
+  +double textLineHeight
+  +_TextSelectionControlsToolbarState createState()
+}
+
+class "flutter::lib::src::material::text_selection.dart::_TextSelectionControlsToolbarState" {
+  -void _onChangedClipboardStatus()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::text_selection.dart::_TextSelectionHandlePainter" {
+  +dynamic color
+  +void paint()
+  +bool shouldRepaint()
+}
+
+
+@enduml

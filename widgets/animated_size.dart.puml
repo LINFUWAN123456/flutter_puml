@@ -1,0 +1,39 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::animated_size.dart::AnimatedSize" {
+  +Widget? child
+  +dynamic alignment
+  +dynamic curve
+  +Duration duration
+  +Duration? reverseDuration
+  +dynamic clipBehavior
+  +State<AnimatedSize> createState()
+}
+
+"flutter::lib::src::widgets::animated_size.dart::AnimatedSize" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::animated_size.dart::AnimatedSize"
+
+class "flutter::lib::src::widgets::animated_size.dart::_AnimatedSizeState" {
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::animated_size.dart::_AnimatedSizeState"
+"flutter::lib::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "flutter::lib::src::widgets::animated_size.dart::_AnimatedSizeState"
+
+class "flutter::lib::src::widgets::animated_size.dart::_AnimatedSize" {
+  +dynamic alignment
+  +dynamic curve
+  +Duration duration
+  +Duration? reverseDuration
+  +dynamic vsync
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::animated_size.dart::_AnimatedSize"
+
+
+@enduml

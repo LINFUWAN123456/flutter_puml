@@ -1,0 +1,16 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::print.dart::_WordWrapParseMode" {
+  +int index
+  {static} +List<_WordWrapParseMode> values
+  {static} +_WordWrapParseMode inSpace
+  {static} +_WordWrapParseMode inWord
+  {static} +_WordWrapParseMode atBreak
+}
+
+"flutter::lib::src::foundation::print.dart::_WordWrapParseMode" o-- "flutter::lib::src::foundation::print.dart::_WordWrapParseMode"
+"dart::core::Enum" <|-- "flutter::lib::src::foundation::print.dart::_WordWrapParseMode"
+
+
+@enduml

@@ -1,0 +1,109 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::painting::border_radius.dart::BorderRadiusGeometry" {
+  -dynamic _topLeft
+  -dynamic _topRight
+  -dynamic _bottomLeft
+  -dynamic _bottomRight
+  -dynamic _topStart
+  -dynamic _topEnd
+  -dynamic _bottomStart
+  -dynamic _bottomEnd
+  +int hashCode
+  +BorderRadiusGeometry subtract()
+  +BorderRadiusGeometry add()
+  +BorderRadiusGeometry unary-()
+  +BorderRadiusGeometry *()
+  +BorderRadiusGeometry /()
+  +BorderRadiusGeometry ~/()
+  +BorderRadiusGeometry %()
+  {static} +BorderRadiusGeometry? lerp()
+  +BorderRadius resolve()
+  +String toString()
+  +bool ==()
+}
+
+class "flutter::lib::src::painting::border_radius.dart::BorderRadius" {
+  {static} +BorderRadius zero
+  +dynamic topLeft
+  +dynamic topRight
+  +dynamic bottomLeft
+  +dynamic bottomRight
+  -dynamic _topLeft
+  -dynamic _topRight
+  -dynamic _bottomLeft
+  -dynamic _bottomRight
+  -dynamic _topStart
+  -dynamic _topEnd
+  -dynamic _bottomStart
+  -dynamic _bottomEnd
+  +BorderRadius copyWith()
+  +dynamic toRRect()
+  +BorderRadiusGeometry subtract()
+  +BorderRadiusGeometry add()
+  +BorderRadius -()
+  +BorderRadius +()
+  +BorderRadius unary-()
+  +BorderRadius *()
+  +BorderRadius /()
+  +BorderRadius ~/()
+  +BorderRadius %()
+  {static} +BorderRadius? lerp()
+  +BorderRadius resolve()
+}
+
+"flutter::lib::src::painting::border_radius.dart::BorderRadius" o-- "flutter::lib::src::painting::border_radius.dart::BorderRadius"
+"flutter::lib::src::painting::border_radius.dart::BorderRadiusGeometry" <|-- "flutter::lib::src::painting::border_radius.dart::BorderRadius"
+
+class "flutter::lib::src::painting::border_radius.dart::BorderRadiusDirectional" {
+  {static} +BorderRadiusDirectional zero
+  +dynamic topStart
+  +dynamic topEnd
+  +dynamic bottomStart
+  +dynamic bottomEnd
+  -dynamic _topStart
+  -dynamic _topEnd
+  -dynamic _bottomStart
+  -dynamic _bottomEnd
+  -dynamic _topLeft
+  -dynamic _topRight
+  -dynamic _bottomLeft
+  -dynamic _bottomRight
+  +BorderRadiusGeometry subtract()
+  +BorderRadiusGeometry add()
+  +BorderRadiusDirectional -()
+  +BorderRadiusDirectional +()
+  +BorderRadiusDirectional unary-()
+  +BorderRadiusDirectional *()
+  +BorderRadiusDirectional /()
+  +BorderRadiusDirectional ~/()
+  +BorderRadiusDirectional %()
+  {static} +BorderRadiusDirectional? lerp()
+  +BorderRadius resolve()
+}
+
+"flutter::lib::src::painting::border_radius.dart::BorderRadiusDirectional" o-- "flutter::lib::src::painting::border_radius.dart::BorderRadiusDirectional"
+"flutter::lib::src::painting::border_radius.dart::BorderRadiusGeometry" <|-- "flutter::lib::src::painting::border_radius.dart::BorderRadiusDirectional"
+
+class "flutter::lib::src::painting::border_radius.dart::_MixedBorderRadius" {
+  -dynamic _topLeft
+  -dynamic _topRight
+  -dynamic _bottomLeft
+  -dynamic _bottomRight
+  -dynamic _topStart
+  -dynamic _topEnd
+  -dynamic _bottomStart
+  -dynamic _bottomEnd
+  +_MixedBorderRadius unary-()
+  +_MixedBorderRadius *()
+  +_MixedBorderRadius /()
+  +_MixedBorderRadius ~/()
+  +_MixedBorderRadius %()
+  +BorderRadius resolve()
+}
+
+"flutter::lib::src::painting::border_radius.dart::BorderRadiusGeometry" <|-- "flutter::lib::src::painting::border_radius.dart::_MixedBorderRadius"
+
+
+@enduml

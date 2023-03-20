@@ -1,0 +1,57 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::box_decoration.dart::BoxDecoration" {
+  +dynamic color
+  +DecorationImage? image
+  +BoxBorder? border
+  +BorderRadiusGeometry? borderRadius
+  +List<BoxShadow>? boxShadow
+  +Gradient? gradient
+  +dynamic backgroundBlendMode
+  +BoxShape shape
+  +EdgeInsetsGeometry? padding
+  +bool isComplex
+  +int hashCode
+  +BoxDecoration copyWith()
+  +bool debugAssertIsValid()
+  +dynamic getClipPath()
+  +BoxDecoration scale()
+  +BoxDecoration? lerpFrom()
+  +BoxDecoration? lerpTo()
+  {static} +BoxDecoration? lerp()
+  +bool ==()
+  +void debugFillProperties()
+  +bool hitTest()
+  +BoxPainter createBoxPainter()
+}
+
+"flutter::lib::src::painting::box_decoration.dart::BoxDecoration" o-- "flutter::lib::src::painting::decoration_image.dart::DecorationImage"
+"flutter::lib::src::painting::box_decoration.dart::BoxDecoration" o-- "flutter::lib::src::painting::box_border.dart::BoxBorder"
+"flutter::lib::src::painting::box_decoration.dart::BoxDecoration" o-- "flutter::lib::src::painting::border_radius.dart::BorderRadiusGeometry"
+"flutter::lib::src::painting::box_decoration.dart::BoxDecoration" o-- "flutter::lib::src::painting::gradient.dart::Gradient"
+"flutter::lib::src::painting::box_decoration.dart::BoxDecoration" o-- "flutter::lib::src::painting::box_border.dart::BoxShape"
+"flutter::lib::src::painting::box_decoration.dart::BoxDecoration" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::decoration.dart::Decoration" <|-- "flutter::lib::src::painting::box_decoration.dart::BoxDecoration"
+
+class "flutter::lib::src::painting::box_decoration.dart::_BoxDecorationPainter" {
+  -BoxDecoration _decoration
+  -dynamic _cachedBackgroundPaint
+  -dynamic _rectForCachedBackgroundPaint
+  -DecorationImagePainter? _imagePainter
+  -dynamic _getBackgroundPaint()
+  -void _paintBox()
+  -void _paintShadows()
+  -void _paintBackgroundColor()
+  -void _paintBackgroundImage()
+  +void dispose()
+  +void paint()
+  +String toString()
+}
+
+"flutter::lib::src::painting::box_decoration.dart::_BoxDecorationPainter" o-- "flutter::lib::src::painting::box_decoration.dart::BoxDecoration"
+"flutter::lib::src::painting::box_decoration.dart::_BoxDecorationPainter" o-- "flutter::lib::src::painting::decoration_image.dart::DecorationImagePainter"
+"flutter::lib::src::painting::decoration.dart::BoxPainter" <|-- "flutter::lib::src::painting::box_decoration.dart::_BoxDecorationPainter"
+
+
+@enduml

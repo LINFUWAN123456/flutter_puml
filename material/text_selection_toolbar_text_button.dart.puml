@@ -1,0 +1,30 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::text_selection_toolbar_text_button.dart::TextSelectionToolbarTextButton" {
+  {static} -double _kMiddlePadding
+  {static} -double _kEndPadding
+  +dynamic child
+  +dynamic onPressed
+  +dynamic padding
+  {static} +dynamic getPadding()
+  {static} -double _getLeftPadding()
+  {static} -double _getRightPadding()
+  {static} -_TextSelectionToolbarItemPosition _getPosition()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::text_selection_toolbar_text_button.dart::_TextSelectionToolbarItemPosition" {
+  +int index
+  {static} +List<_TextSelectionToolbarItemPosition> values
+  {static} +_TextSelectionToolbarItemPosition first
+  {static} +_TextSelectionToolbarItemPosition middle
+  {static} +_TextSelectionToolbarItemPosition last
+  {static} +_TextSelectionToolbarItemPosition only
+}
+
+"flutter::lib::src::material::text_selection_toolbar_text_button.dart::_TextSelectionToolbarItemPosition" o-- "flutter::lib::src::material::text_selection_toolbar_text_button.dart::_TextSelectionToolbarItemPosition"
+"dart::core::Enum" <|-- "flutter::lib::src::material::text_selection_toolbar_text_button.dart::_TextSelectionToolbarItemPosition"
+
+
+@enduml

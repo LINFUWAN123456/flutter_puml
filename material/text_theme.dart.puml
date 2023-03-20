@@ -1,0 +1,43 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::text_theme.dart::TextTheme" {
+  +dynamic displayLarge
+  +dynamic displayMedium
+  +dynamic displaySmall
+  +dynamic headlineLarge
+  +dynamic headlineMedium
+  +dynamic headlineSmall
+  +dynamic titleLarge
+  +dynamic titleMedium
+  +dynamic titleSmall
+  +dynamic bodyLarge
+  +dynamic bodyMedium
+  +dynamic bodySmall
+  +dynamic labelLarge
+  +dynamic labelMedium
+  +dynamic labelSmall
+  +dynamic headline1
+  +dynamic headline2
+  +dynamic headline3
+  +dynamic headline4
+  +dynamic headline5
+  +dynamic headline6
+  +dynamic subtitle1
+  +dynamic subtitle2
+  +dynamic bodyText1
+  +dynamic bodyText2
+  +dynamic caption
+  +dynamic button
+  +dynamic overline
+  +int hashCode
+  +TextTheme copyWith()
+  +TextTheme merge()
+  +TextTheme apply()
+  {static} +TextTheme lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

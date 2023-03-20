@@ -1,0 +1,115 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::scale.dart::_PointerPanZoomData" {
+  +dynamic focalPoint
+  +double scale
+  +double rotation
+  +String toString()
+}
+
+class "flutter::lib::src::gestures::scale.dart::ScaleStartDetails" {
+  +dynamic focalPoint
+  +dynamic localFocalPoint
+  +int pointerCount
+  +String toString()
+}
+
+class "flutter::lib::src::gestures::scale.dart::ScaleUpdateDetails" {
+  +dynamic focalPointDelta
+  +dynamic focalPoint
+  +dynamic localFocalPoint
+  +double scale
+  +double horizontalScale
+  +double verticalScale
+  +double rotation
+  +int pointerCount
+  +String toString()
+}
+
+class "flutter::lib::src::gestures::scale.dart::ScaleEndDetails" {
+  +Velocity velocity
+  +int pointerCount
+  +String toString()
+}
+
+"flutter::lib::src::gestures::scale.dart::ScaleEndDetails" o-- "flutter::lib::src::gestures::velocity_tracker.dart::Velocity"
+
+class "flutter::lib::src::gestures::scale.dart::_LineBetweenPointers" {
+  +dynamic pointerStartLocation
+  +int pointerStartId
+  +dynamic pointerEndLocation
+  +int pointerEndId
+}
+
+class "flutter::lib::src::gestures::scale.dart::ScaleGestureRecognizer" {
+  +DragStartBehavior dragStartBehavior
+  +void Function(ScaleStartDetails)? onStart
+  +void Function(ScaleUpdateDetails)? onUpdate
+  +void Function(ScaleEndDetails)? onEnd
+  -_ScaleState _state
+  -dynamic _lastTransform
+  -dynamic _initialFocalPoint
+  -dynamic _currentFocalPoint
+  -double _initialSpan
+  -double _currentSpan
+  -double _initialHorizontalSpan
+  -double _currentHorizontalSpan
+  -double _initialVerticalSpan
+  -double _currentVerticalSpan
+  -dynamic _localFocalPoint
+  -_LineBetweenPointers? _initialLine
+  -_LineBetweenPointers? _currentLine
+  -Map<int, dynamic> _pointerLocations
+  -List<int> _pointerQueue
+  -Map<int, VelocityTracker> _velocityTrackers
+  -dynamic _delta
+  -Map<int, _PointerPanZoomData> _pointerPanZooms
+  -double _initialPanZoomScaleFactor
+  -double _initialPanZoomRotationFactor
+  -double _pointerScaleFactor
+  -double _pointerHorizontalScaleFactor
+  -double _pointerVerticalScaleFactor
+  -double _scaleFactor
+  -double _horizontalScaleFactor
+  -double _verticalScaleFactor
+  -int _pointerCount
+  +String debugDescription
+  -double _computeRotationFactor()
+  +void addAllowedPointer()
+  +bool isPointerPanZoomAllowed()
+  +void addAllowedPointerPanZoom()
+  +void handleEvent()
+  -void _update()
+  -void _updateLines()
+  -bool _reconfigure()
+  -void _advanceStateMachine()
+  -void _dispatchOnStartCallbackIfNeeded()
+  +void acceptGesture()
+  +void rejectGesture()
+  +void didStopTrackingLastPointer()
+  +void dispose()
+}
+
+"flutter::lib::src::gestures::scale.dart::ScaleGestureRecognizer" o-- "flutter::lib::src::gestures::recognizer.dart::DragStartBehavior"
+"flutter::lib::src::gestures::scale.dart::ScaleGestureRecognizer" o-- "flutter::lib::src::gestures::scale.dart::void Function(ScaleStartDetails)"
+"flutter::lib::src::gestures::scale.dart::ScaleGestureRecognizer" o-- "flutter::lib::src::gestures::scale.dart::void Function(ScaleUpdateDetails)"
+"flutter::lib::src::gestures::scale.dart::ScaleGestureRecognizer" o-- "flutter::lib::src::gestures::scale.dart::void Function(ScaleEndDetails)"
+"flutter::lib::src::gestures::scale.dart::ScaleGestureRecognizer" o-- "flutter::lib::src::gestures::scale.dart::_ScaleState"
+"flutter::lib::src::gestures::scale.dart::ScaleGestureRecognizer" o-- "flutter::lib::src::gestures::scale.dart::_LineBetweenPointers"
+"flutter::lib::src::gestures::recognizer.dart::OneSequenceGestureRecognizer" <|-- "flutter::lib::src::gestures::scale.dart::ScaleGestureRecognizer"
+
+class "flutter::lib::src::gestures::scale.dart::_ScaleState" {
+  +int index
+  {static} +List<_ScaleState> values
+  {static} +_ScaleState ready
+  {static} +_ScaleState possible
+  {static} +_ScaleState accepted
+  {static} +_ScaleState started
+}
+
+"flutter::lib::src::gestures::scale.dart::_ScaleState" o-- "flutter::lib::src::gestures::scale.dart::_ScaleState"
+"dart::core::Enum" <|-- "flutter::lib::src::gestures::scale.dart::_ScaleState"
+
+
+@enduml

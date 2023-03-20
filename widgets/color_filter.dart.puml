@@ -1,0 +1,21 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::color_filter.dart::ColorFiltered" {
+  +dynamic colorFilter
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::color_filter.dart::ColorFiltered"
+
+class "flutter::lib::src::widgets::color_filter.dart::_ColorFilterRenderObject" {
+  -dynamic _colorFilter
+  +dynamic colorFilter
+  +bool alwaysNeedsCompositing
+  +void paint()
+}
+
+
+@enduml

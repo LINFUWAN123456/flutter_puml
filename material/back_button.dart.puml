@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::back_button.dart::BackButtonIcon" {
+  {static} -dynamic _getIconData()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::back_button.dart::BackButton" {
+  +dynamic color
+  +dynamic onPressed
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::back_button.dart::CloseButton" {
+  +dynamic color
+  +dynamic onPressed
+  +dynamic build()
+}
+
+
+@enduml

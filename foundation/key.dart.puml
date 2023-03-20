@@ -1,0 +1,32 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::foundation::key.dart::Key" {
+}
+
+abstract class "flutter::lib::src::foundation::key.dart::LocalKey" {
+}
+
+"flutter::lib::src::foundation::key.dart::Key" <|-- "flutter::lib::src::foundation::key.dart::LocalKey"
+
+class "flutter::lib::src::foundation::key.dart::UniqueKey" {
+  +String toString()
+}
+
+"flutter::lib::src::foundation::key.dart::LocalKey" <|-- "flutter::lib::src::foundation::key.dart::UniqueKey"
+
+class "flutter::lib::src::foundation::key.dart::ValueKey" {
+  +T value
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::foundation::key.dart::LocalKey" <|-- "flutter::lib::src::foundation::key.dart::ValueKey"
+
+class "flutter::lib::src::foundation::key.dart::_TypeLiteral" {
+  +Type type
+}
+
+
+@enduml

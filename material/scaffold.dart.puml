@@ -1,0 +1,352 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::scaffold.dart::ScaffoldMessenger" {
+  +dynamic child
+  {static} +ScaffoldMessengerState of()
+  {static} +ScaffoldMessengerState? maybeOf()
+  +ScaffoldMessengerState createState()
+}
+
+class "flutter::lib::src::material::scaffold.dart::ScaffoldMessengerState" {
+  -LinkedHashSet<ScaffoldState> _scaffolds
+  -Queue<ScaffoldFeatureController<MaterialBanner, MaterialBannerClosedReason>> _materialBanners
+  -dynamic _materialBannerController
+  -Queue<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>> _snackBars
+  -dynamic _snackBarController
+  -Timer? _snackBarTimer
+  -bool? _accessibleNavigation
+  +void didChangeDependencies()
+  -void _register()
+  -void _unregister()
+  -void _updateScaffolds()
+  -bool _isRoot()
+  +ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar()
+  -void _handleSnackBarStatusChanged()
+  +void removeCurrentSnackBar()
+  +void hideCurrentSnackBar()
+  +void clearSnackBars()
+  +ScaffoldFeatureController<MaterialBanner, MaterialBannerClosedReason> showMaterialBanner()
+  -void _handleMaterialBannerStatusChanged()
+  +void removeCurrentMaterialBanner()
+  +void hideCurrentMaterialBanner()
+  +void clearMaterialBanners()
+  +dynamic build()
+  +void dispose()
+}
+
+"flutter::lib::src::material::scaffold.dart::ScaffoldMessengerState" o-- "dart::collection::LinkedHashSet<ScaffoldState>"
+"flutter::lib::src::material::scaffold.dart::ScaffoldMessengerState" o-- "dart::collection::Queue<ScaffoldFeatureController<MaterialBanner, MaterialBannerClosedReason>>"
+"flutter::lib::src::material::scaffold.dart::ScaffoldMessengerState" o-- "dart::collection::Queue<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>>"
+"flutter::lib::src::material::scaffold.dart::ScaffoldMessengerState" o-- "dart::async::Timer"
+
+class "flutter::lib::src::material::scaffold.dart::_ScaffoldMessengerScope" {
+  -ScaffoldMessengerState _scaffoldMessengerState
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::scaffold.dart::_ScaffoldMessengerScope" o-- "flutter::lib::src::material::scaffold.dart::ScaffoldMessengerState"
+
+class "flutter::lib::src::material::scaffold.dart::ScaffoldPrelayoutGeometry" {
+  +dynamic floatingActionButtonSize
+  +dynamic bottomSheetSize
+  +double contentBottom
+  +double contentTop
+  +dynamic minInsets
+  +dynamic minViewPadding
+  +dynamic scaffoldSize
+  +dynamic snackBarSize
+  +dynamic materialBannerSize
+  +dynamic textDirection
+}
+
+class "flutter::lib::src::material::scaffold.dart::_TransitionSnapshotFabLocation" {
+  +FloatingActionButtonLocation begin
+  +FloatingActionButtonLocation end
+  +FloatingActionButtonAnimator animator
+  +double progress
+  +dynamic getOffset()
+  +String toString()
+}
+
+"flutter::lib::src::material::scaffold.dart::_TransitionSnapshotFabLocation" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation"
+"flutter::lib::src::material::scaffold.dart::_TransitionSnapshotFabLocation" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonAnimator"
+"flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation" <|-- "flutter::lib::src::material::scaffold.dart::_TransitionSnapshotFabLocation"
+
+class "flutter::lib::src::material::scaffold.dart::ScaffoldGeometry" {
+  +double? bottomNavigationBarTop
+  +dynamic floatingActionButtonArea
+  -ScaffoldGeometry _scaleFloatingActionButton()
+  +ScaffoldGeometry copyWith()
+}
+
+class "flutter::lib::src::material::scaffold.dart::_ScaffoldGeometryNotifier" {
+  +dynamic context
+  +double? floatingActionButtonScale
+  +ScaffoldGeometry geometry
+  +ScaffoldGeometry value
+  -void _updateWith()
+}
+
+"flutter::lib::src::material::scaffold.dart::_ScaffoldGeometryNotifier" o-- "flutter::lib::src::material::scaffold.dart::ScaffoldGeometry"
+
+class "flutter::lib::src::material::scaffold.dart::_BodyBoxConstraints" {
+  +double bottomWidgetsHeight
+  +double appBarHeight
+  +double materialBannerHeight
+  +int hashCode
+  +bool ==()
+}
+
+class "flutter::lib::src::material::scaffold.dart::_BodyBuilder" {
+  +dynamic body
+  +bool extendBody
+  +bool extendBodyBehindAppBar
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::scaffold.dart::_ScaffoldLayout" {
+  +bool extendBody
+  +bool extendBodyBehindAppBar
+  +dynamic minInsets
+  +dynamic minViewPadding
+  +dynamic textDirection
+  +_ScaffoldGeometryNotifier geometryNotifier
+  +FloatingActionButtonLocation previousFloatingActionButtonLocation
+  +FloatingActionButtonLocation currentFloatingActionButtonLocation
+  +double floatingActionButtonMoveAnimationProgress
+  +FloatingActionButtonAnimator floatingActionButtonMotionAnimator
+  +bool isSnackBarFloating
+  +double? snackBarWidth
+  +bool extendBodyBehindMaterialBanner
+  +void performLayout()
+  +bool shouldRelayout()
+}
+
+"flutter::lib::src::material::scaffold.dart::_ScaffoldLayout" o-- "flutter::lib::src::material::scaffold.dart::_ScaffoldGeometryNotifier"
+"flutter::lib::src::material::scaffold.dart::_ScaffoldLayout" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation"
+"flutter::lib::src::material::scaffold.dart::_ScaffoldLayout" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonAnimator"
+
+class "flutter::lib::src::material::scaffold.dart::_FloatingActionButtonTransition" {
+  +dynamic child
+  +dynamic fabMoveAnimation
+  +FloatingActionButtonAnimator fabMotionAnimator
+  +_ScaffoldGeometryNotifier geometryNotifier
+  +dynamic currentController
+  +_FloatingActionButtonTransitionState createState()
+}
+
+"flutter::lib::src::material::scaffold.dart::_FloatingActionButtonTransition" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonAnimator"
+"flutter::lib::src::material::scaffold.dart::_FloatingActionButtonTransition" o-- "flutter::lib::src::material::scaffold.dart::_ScaffoldGeometryNotifier"
+
+class "flutter::lib::src::material::scaffold.dart::_FloatingActionButtonTransitionState" {
+  -dynamic _previousController
+  -dynamic _previousScaleAnimation
+  -dynamic _previousRotationAnimation
+  -dynamic _currentScaleAnimation
+  -dynamic _extendedCurrentScaleAnimation
+  -dynamic _currentRotationAnimation
+  -dynamic _previousChild
+  {static} -dynamic _entranceTurnTween
+  +void initState()
+  +void dispose()
+  +void didUpdateWidget()
+  -void _updateAnimations()
+  -void _handlePreviousAnimationStatusChanged()
+  -bool _isExtendedFloatingActionButton()
+  +dynamic build()
+  -void _onProgressChanged()
+  -void _updateGeometryScale()
+}
+
+class "flutter::lib::src::material::scaffold.dart::Scaffold" {
+  +bool extendBody
+  +bool extendBodyBehindAppBar
+  +dynamic appBar
+  +dynamic body
+  +dynamic floatingActionButton
+  +FloatingActionButtonLocation? floatingActionButtonLocation
+  +FloatingActionButtonAnimator? floatingActionButtonAnimator
+  +List<dynamic>? persistentFooterButtons
+  +dynamic persistentFooterAlignment
+  +dynamic drawer
+  +void Function(bool)? onDrawerChanged
+  +dynamic endDrawer
+  +void Function(bool)? onEndDrawerChanged
+  +dynamic drawerScrimColor
+  +dynamic backgroundColor
+  +dynamic bottomNavigationBar
+  +dynamic bottomSheet
+  +bool? resizeToAvoidBottomInset
+  +bool primary
+  +dynamic drawerDragStartBehavior
+  +double? drawerEdgeDragWidth
+  +bool drawerEnableOpenDragGesture
+  +bool endDrawerEnableOpenDragGesture
+  +String? restorationId
+  {static} +ScaffoldState of()
+  {static} +ScaffoldState? maybeOf()
+  {static} +dynamic geometryOf()
+  {static} +bool hasDrawer()
+  +ScaffoldState createState()
+}
+
+"flutter::lib::src::material::scaffold.dart::Scaffold" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation"
+"flutter::lib::src::material::scaffold.dart::Scaffold" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonAnimator"
+"flutter::lib::src::material::scaffold.dart::Scaffold" o-- "flutter::lib::src::material::drawer.dart::void Function(bool)"
+
+class "flutter::lib::src::material::scaffold.dart::ScaffoldState" {
+  -dynamic _drawerKey
+  -dynamic _endDrawerKey
+  -dynamic _bodyKey
+  -double? _appBarMaxHeight
+  -dynamic _drawerOpened
+  -dynamic _endDrawerOpened
+  -ScaffoldMessengerState? _scaffoldMessenger
+  -ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? _messengerSnackBar
+  -ScaffoldFeatureController<MaterialBanner, MaterialBannerClosedReason>? _messengerMaterialBanner
+  -List<_StandardBottomSheet> _dismissedBottomSheets
+  -PersistentBottomSheetController<dynamic>? _currentBottomSheet
+  -dynamic _currentBottomSheetKey
+  -dynamic _floatingActionButtonMoveController
+  -FloatingActionButtonAnimator _floatingActionButtonAnimator
+  -FloatingActionButtonLocation? _previousFloatingActionButtonLocation
+  -FloatingActionButtonLocation? _floatingActionButtonLocation
+  -dynamic _floatingActionButtonVisibilityController
+  -_ScaffoldGeometryNotifier _geometryNotifier
+  -bool _showBodyScrim
+  -dynamic _bodyScrimColor
+  +String? restorationId
+  +bool hasAppBar
+  +bool hasDrawer
+  +bool hasEndDrawer
+  +bool hasFloatingActionButton
+  +double? appBarMaxHeight
+  +bool isDrawerOpen
+  +bool isEndDrawerOpen
+  -double _floatingActionButtonVisibilityValue
+  -bool _resizeToAvoidBottomInset
+  +void restoreState()
+  -void _drawerOpenedCallback()
+  -void _endDrawerOpenedCallback()
+  +void openDrawer()
+  +void openEndDrawer()
+  -void _updateSnackBar()
+  -void _updateMaterialBanner()
+  -void _maybeBuildPersistentBottomSheet()
+  -void _closeCurrentBottomSheet()
+  +void closeDrawer()
+  +void closeEndDrawer()
+  -void _updatePersistentBottomSheet()
+  -PersistentBottomSheetController<T> _buildBottomSheet()
+  +PersistentBottomSheetController<T> showBottomSheet()
+  -dynamic _showFloatingActionButton()
+  -void _moveFloatingActionButton()
+  -void _handleStatusBarTap()
+  +void initState()
+  +void didUpdateWidget()
+  +void didChangeDependencies()
+  +void dispose()
+  -void _addIfNonNull()
+  -void _buildEndDrawer()
+  -void _buildDrawer()
+  +void showBodyScrim()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::scaffold.dart::ScaffoldState" o-- "flutter::lib::src::material::scaffold.dart::ScaffoldMessengerState"
+"flutter::lib::src::material::scaffold.dart::ScaffoldState" o-- "flutter::lib::src::material::scaffold.dart::ScaffoldFeatureController<SnackBar, SnackBarClosedReason>"
+"flutter::lib::src::material::scaffold.dart::ScaffoldState" o-- "flutter::lib::src::material::scaffold.dart::ScaffoldFeatureController<MaterialBanner, MaterialBannerClosedReason>"
+"flutter::lib::src::material::scaffold.dart::ScaffoldState" o-- "flutter::lib::src::material::scaffold.dart::PersistentBottomSheetController<dynamic>"
+"flutter::lib::src::material::scaffold.dart::ScaffoldState" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonAnimator"
+"flutter::lib::src::material::scaffold.dart::ScaffoldState" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation"
+"flutter::lib::src::material::scaffold.dart::ScaffoldState" o-- "flutter::lib::src::material::scaffold.dart::_ScaffoldGeometryNotifier"
+
+class "flutter::lib::src::material::scaffold.dart::_DismissDrawerAction" {
+  +dynamic context
+  +bool isEnabled()
+  +void invoke()
+}
+
+class "flutter::lib::src::material::scaffold.dart::ScaffoldFeatureController" {
+  -T _widget
+  -Completer<U> _completer
+  +dynamic close
+  +dynamic setState
+  +Future<U> closed
+}
+
+"flutter::lib::src::material::scaffold.dart::ScaffoldFeatureController" o-- "dart::async::Completer<U>"
+
+class "flutter::lib::src::material::scaffold.dart::_BottomSheetSuspendedCurve" {
+  +double startingPoint
+  +dynamic curve
+  +double transform()
+  +String toString()
+}
+
+class "flutter::lib::src::material::scaffold.dart::_StandardBottomSheet" {
+  +dynamic animationController
+  +bool enableDrag
+  +dynamic onClosing
+  +dynamic onDismissed
+  +dynamic onDispose
+  +dynamic builder
+  +bool isPersistent
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic constraints
+  +_StandardBottomSheetState createState()
+}
+
+class "flutter::lib::src::material::scaffold.dart::_StandardBottomSheetState" {
+  +dynamic animationCurve
+  +void initState()
+  +void dispose()
+  +void didUpdateWidget()
+  +void close()
+  -void _handleDragStart()
+  -void _handleDragEnd()
+  -void _handleStatusChange()
+  +bool extentChanged()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::scaffold.dart::PersistentBottomSheetController" {
+  -bool _isLocalHistoryEntry
+}
+
+"flutter::lib::src::material::scaffold.dart::ScaffoldFeatureController" <|-- "flutter::lib::src::material::scaffold.dart::PersistentBottomSheetController"
+
+class "flutter::lib::src::material::scaffold.dart::_ScaffoldScope" {
+  +bool hasDrawer
+  +_ScaffoldGeometryNotifier geometryNotifier
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::scaffold.dart::_ScaffoldScope" o-- "flutter::lib::src::material::scaffold.dart::_ScaffoldGeometryNotifier"
+
+class "flutter::lib::src::material::scaffold.dart::_ScaffoldSlot" {
+  +int index
+  {static} +List<_ScaffoldSlot> values
+  {static} +_ScaffoldSlot body
+  {static} +_ScaffoldSlot appBar
+  {static} +_ScaffoldSlot bodyScrim
+  {static} +_ScaffoldSlot bottomSheet
+  {static} +_ScaffoldSlot snackBar
+  {static} +_ScaffoldSlot materialBanner
+  {static} +_ScaffoldSlot persistentFooter
+  {static} +_ScaffoldSlot bottomNavigationBar
+  {static} +_ScaffoldSlot floatingActionButton
+  {static} +_ScaffoldSlot drawer
+  {static} +_ScaffoldSlot endDrawer
+  {static} +_ScaffoldSlot statusBar
+}
+
+"flutter::lib::src::material::scaffold.dart::_ScaffoldSlot" o-- "flutter::lib::src::material::scaffold.dart::_ScaffoldSlot"
+"dart::core::Enum" <|-- "flutter::lib::src::material::scaffold.dart::_ScaffoldSlot"
+
+
+@enduml

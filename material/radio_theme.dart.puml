@@ -1,0 +1,31 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::radio_theme.dart::RadioThemeData" {
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +MaterialStateProperty<dynamic>? fillColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +double? splashRadius
+  +MaterialTapTargetSize? materialTapTargetSize
+  +VisualDensity? visualDensity
+  +int hashCode
+  +RadioThemeData copyWith()
+  {static} +RadioThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::radio_theme.dart::RadioThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::radio_theme.dart::RadioThemeData" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::radio_theme.dart::RadioThemeData" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::radio_theme.dart::RadioTheme" {
+  +RadioThemeData data
+  {static} +RadioThemeData of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::radio_theme.dart::RadioTheme" o-- "flutter::lib::src::material::radio_theme.dart::RadioThemeData"
+
+
+@enduml

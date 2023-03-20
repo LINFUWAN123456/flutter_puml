@@ -1,0 +1,32 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::autocomplete.dart::Autocomplete" {
+  +dynamic displayStringForOption
+  +dynamic fieldViewBuilder
+  +dynamic onSelected
+  +dynamic optionsBuilder
+  +dynamic optionsViewBuilder
+  +double optionsMaxHeight
+  +dynamic initialValue
+  {static} -dynamic _defaultFieldViewBuilder()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::autocomplete.dart::_AutocompleteField" {
+  +dynamic focusNode
+  +dynamic onFieldSubmitted
+  +dynamic textEditingController
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::autocomplete.dart::_AutocompleteOptions" {
+  +dynamic displayStringForOption
+  +dynamic onSelected
+  +Iterable<T> options
+  +double maxOptionsHeight
+  +dynamic build()
+}
+
+
+@enduml

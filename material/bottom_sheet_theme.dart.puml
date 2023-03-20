@@ -1,0 +1,20 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::bottom_sheet_theme.dart::BottomSheetThemeData" {
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic modalBackgroundColor
+  +double? modalElevation
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic constraints
+  +int hashCode
+  +BottomSheetThemeData copyWith()
+  {static} +BottomSheetThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

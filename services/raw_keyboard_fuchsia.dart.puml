@@ -1,0 +1,38 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::raw_keyboard_fuchsia.dart::RawKeyEventDataFuchsia" {
+  +int hidUsage
+  +int codePoint
+  +int modifiers
+  {static} +int modifierNone
+  {static} +int modifierCapsLock
+  {static} +int modifierLeftShift
+  {static} +int modifierRightShift
+  {static} +int modifierShift
+  {static} +int modifierLeftControl
+  {static} +int modifierRightControl
+  {static} +int modifierControl
+  {static} +int modifierLeftAlt
+  {static} +int modifierRightAlt
+  {static} +int modifierAlt
+  {static} +int modifierLeftMeta
+  {static} +int modifierRightMeta
+  {static} +int modifierMeta
+  +String keyLabel
+  +LogicalKeyboardKey logicalKey
+  +PhysicalKeyboardKey physicalKey
+  +int hashCode
+  -bool _isLeftRightModifierPressed()
+  +bool isModifierPressed()
+  +KeyboardSide? getModifierSide()
+  +void debugFillProperties()
+  +bool ==()
+}
+
+"flutter::lib::src::services::raw_keyboard_fuchsia.dart::RawKeyEventDataFuchsia" o-- "flutter::lib::src::services::keyboard_key.g.dart::LogicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard_fuchsia.dart::RawKeyEventDataFuchsia" o-- "flutter::lib::src::services::keyboard_key.g.dart::PhysicalKeyboardKey"
+"flutter::lib::src::services::raw_keyboard.dart::RawKeyEventData" <|-- "flutter::lib::src::services::raw_keyboard_fuchsia.dart::RawKeyEventDataFuchsia"
+
+
+@enduml

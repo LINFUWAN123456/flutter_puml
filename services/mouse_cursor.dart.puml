@@ -1,0 +1,116 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::mouse_cursor.dart::MouseCursorManager" {
+  +MouseCursor fallbackMouseCursor
+  -Map<int, MouseCursorSession> _lastSession
+  +MouseCursor? debugDeviceActiveCursor()
+  +void handleDeviceCursorUpdate()
+}
+
+"flutter::lib::src::services::mouse_cursor.dart::MouseCursorManager" o-- "flutter::lib::src::services::mouse_cursor.dart::MouseCursor"
+
+abstract class "flutter::lib::src::services::mouse_cursor.dart::MouseCursorSession" {
+  +MouseCursor cursor
+  +int device
+  +Future<void> activate()
+  +void dispose()
+}
+
+"flutter::lib::src::services::mouse_cursor.dart::MouseCursorSession" o-- "flutter::lib::src::services::mouse_cursor.dart::MouseCursor"
+
+abstract class "flutter::lib::src::services::mouse_cursor.dart::MouseCursor" {
+  {static} +MouseCursor defer
+  {static} +MouseCursor uncontrolled
+  +String debugDescription
+  +MouseCursorSession createSession()
+  +String toString()
+}
+
+"flutter::lib::src::services::mouse_cursor.dart::MouseCursor" o-- "flutter::lib::src::services::mouse_cursor.dart::MouseCursor"
+
+class "flutter::lib::src::services::mouse_cursor.dart::_DeferringMouseCursor" {
+  +String debugDescription
+  +MouseCursorSession createSession()
+  {static} +MouseCursor? firstNonDeferred()
+}
+
+"flutter::lib::src::services::mouse_cursor.dart::MouseCursor" <|-- "flutter::lib::src::services::mouse_cursor.dart::_DeferringMouseCursor"
+
+class "flutter::lib::src::services::mouse_cursor.dart::_NoopMouseCursorSession" {
+  +Future<void> activate()
+  +void dispose()
+}
+
+"flutter::lib::src::services::mouse_cursor.dart::MouseCursorSession" <|-- "flutter::lib::src::services::mouse_cursor.dart::_NoopMouseCursorSession"
+
+class "flutter::lib::src::services::mouse_cursor.dart::_NoopMouseCursor" {
+  +String debugDescription
+  +_NoopMouseCursorSession createSession()
+}
+
+"flutter::lib::src::services::mouse_cursor.dart::MouseCursor" <|-- "flutter::lib::src::services::mouse_cursor.dart::_NoopMouseCursor"
+
+class "flutter::lib::src::services::mouse_cursor.dart::_SystemMouseCursorSession" {
+  +SystemMouseCursor cursor
+  +Future<void> activate()
+  +void dispose()
+}
+
+"flutter::lib::src::services::mouse_cursor.dart::_SystemMouseCursorSession" o-- "flutter::lib::src::services::mouse_cursor.dart::SystemMouseCursor"
+"flutter::lib::src::services::mouse_cursor.dart::MouseCursorSession" <|-- "flutter::lib::src::services::mouse_cursor.dart::_SystemMouseCursorSession"
+
+class "flutter::lib::src::services::mouse_cursor.dart::SystemMouseCursor" {
+  +String kind
+  +String debugDescription
+  +int hashCode
+  +MouseCursorSession createSession()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::services::mouse_cursor.dart::MouseCursor" <|-- "flutter::lib::src::services::mouse_cursor.dart::SystemMouseCursor"
+
+class "flutter::lib::src::services::mouse_cursor.dart::SystemMouseCursors" {
+  {static} +SystemMouseCursor none
+  {static} +SystemMouseCursor basic
+  {static} +SystemMouseCursor click
+  {static} +SystemMouseCursor forbidden
+  {static} +SystemMouseCursor wait
+  {static} +SystemMouseCursor progress
+  {static} +SystemMouseCursor contextMenu
+  {static} +SystemMouseCursor help
+  {static} +SystemMouseCursor text
+  {static} +SystemMouseCursor verticalText
+  {static} +SystemMouseCursor cell
+  {static} +SystemMouseCursor precise
+  {static} +SystemMouseCursor move
+  {static} +SystemMouseCursor grab
+  {static} +SystemMouseCursor grabbing
+  {static} +SystemMouseCursor noDrop
+  {static} +SystemMouseCursor alias
+  {static} +SystemMouseCursor copy
+  {static} +SystemMouseCursor disappearing
+  {static} +SystemMouseCursor allScroll
+  {static} +SystemMouseCursor resizeLeftRight
+  {static} +SystemMouseCursor resizeUpDown
+  {static} +SystemMouseCursor resizeUpLeftDownRight
+  {static} +SystemMouseCursor resizeUpRightDownLeft
+  {static} +SystemMouseCursor resizeUp
+  {static} +SystemMouseCursor resizeDown
+  {static} +SystemMouseCursor resizeLeft
+  {static} +SystemMouseCursor resizeRight
+  {static} +SystemMouseCursor resizeUpLeft
+  {static} +SystemMouseCursor resizeUpRight
+  {static} +SystemMouseCursor resizeDownLeft
+  {static} +SystemMouseCursor resizeDownRight
+  {static} +SystemMouseCursor resizeColumn
+  {static} +SystemMouseCursor resizeRow
+  {static} +SystemMouseCursor zoomIn
+  {static} +SystemMouseCursor zoomOut
+}
+
+"flutter::lib::src::services::mouse_cursor.dart::SystemMouseCursors" o-- "flutter::lib::src::services::mouse_cursor.dart::SystemMouseCursor"
+
+
+@enduml

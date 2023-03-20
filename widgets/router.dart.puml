@@ -1,0 +1,212 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::router.dart::RouteInformation" {
+  +String? location
+  +Object? state
+}
+
+class "flutter::lib::src::widgets::router.dart::RouterConfig" {
+  +RouteInformationProvider? routeInformationProvider
+  +RouteInformationParser<T>? routeInformationParser
+  +RouterDelegate<T> routerDelegate
+  +BackButtonDispatcher? backButtonDispatcher
+}
+
+"flutter::lib::src::widgets::router.dart::RouterConfig" o-- "flutter::lib::src::widgets::router.dart::RouteInformationProvider"
+"flutter::lib::src::widgets::router.dart::RouterConfig" o-- "flutter::lib::src::widgets::router.dart::RouteInformationParser<T>"
+"flutter::lib::src::widgets::router.dart::RouterConfig" o-- "flutter::lib::src::widgets::router.dart::RouterDelegate<T>"
+"flutter::lib::src::widgets::router.dart::RouterConfig" o-- "flutter::lib::src::widgets::router.dart::BackButtonDispatcher"
+
+class "flutter::lib::src::widgets::router.dart::Router" {
+  +RouteInformationProvider? routeInformationProvider
+  +RouteInformationParser<T>? routeInformationParser
+  +RouterDelegate<T> routerDelegate
+  +BackButtonDispatcher? backButtonDispatcher
+  +String? restorationScopeId
+  {static} +Router<T> of()
+  {static} +Router<T>? maybeOf()
+  {static} +void navigate()
+  {static} +void neglect()
+  +State<Router<T>> createState()
+}
+
+"flutter::lib::src::widgets::router.dart::Router" o-- "flutter::lib::src::widgets::router.dart::RouteInformationProvider"
+"flutter::lib::src::widgets::router.dart::Router" o-- "flutter::lib::src::widgets::router.dart::RouteInformationParser<T>"
+"flutter::lib::src::widgets::router.dart::Router" o-- "flutter::lib::src::widgets::router.dart::RouterDelegate<T>"
+"flutter::lib::src::widgets::router.dart::Router" o-- "flutter::lib::src::widgets::router.dart::BackButtonDispatcher"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::router.dart::Router"
+
+class "flutter::lib::src::widgets::router.dart::_RouterState" {
+  -Object? _currentRouterTransaction
+  -RouteInformationReportingType? _currentIntentionToReport
+  -_RestorableRouteInformation _routeInformation
+  -bool _routeParsePending
+  -bool _routeInformationReportingTaskScheduled
+  +String? restorationId
+  +void initState()
+  +void restoreState()
+  -void _scheduleRouteInformationReportingTask()
+  -void _reportRouteInformation()
+  -RouteInformation? _retrieveNewRouteInformation()
+  -void _setStateWithExplicitReportStatus()
+  -void _maybeNeedToReportRouteInformation()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _processRouteInformation()
+  -Future<void> Function(T) _processParsedRouteInformation()
+  -void _handleRouteInformationProviderNotification()
+  -Future<bool> _handleBackButtonDispatcherNotification()
+  -Future<bool> Function(bool) _handleRoutePopped()
+  -Future<void> _rebuild()
+  -void _handleRouterDelegateNotification()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::router.dart::_RouterState" o-- "flutter::lib::src::widgets::router.dart::RouteInformationReportingType"
+"flutter::lib::src::widgets::router.dart::_RouterState" o-- "flutter::lib::src::widgets::router.dart::_RestorableRouteInformation"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::router.dart::_RouterState"
+"flutter::lib::src::widgets::restoration.dart::RestorationMixin" <|-- "flutter::lib::src::widgets::router.dart::_RouterState"
+
+class "flutter::lib::src::widgets::router.dart::_RouterScope" {
+  +dynamic routeInformationProvider
+  +BackButtonDispatcher? backButtonDispatcher
+  +RouteInformationParser<Object?>? routeInformationParser
+  +RouterDelegate<Object?> routerDelegate
+  +_RouterState<Object?> routerState
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::router.dart::_RouterScope" o-- "flutter::lib::src::widgets::router.dart::BackButtonDispatcher"
+"flutter::lib::src::widgets::router.dart::_RouterScope" o-- "flutter::lib::src::widgets::router.dart::RouteInformationParser<Object>"
+"flutter::lib::src::widgets::router.dart::_RouterScope" o-- "flutter::lib::src::widgets::router.dart::RouterDelegate<Object>"
+"flutter::lib::src::widgets::router.dart::_RouterScope" o-- "flutter::lib::src::widgets::router.dart::_RouterState<Object>"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::router.dart::_RouterScope"
+
+class "flutter::lib::src::widgets::router.dart::_CallbackHookProvider" {
+  -dynamic _callbacks
+  +bool hasCallbacks
+  +void addCallback()
+  +void removeCallback()
+  +T invokeCallback()
+}
+
+abstract class "flutter::lib::src::widgets::router.dart::BackButtonDispatcher" {
+  -LinkedHashSet<ChildBackButtonDispatcher> _children
+  +bool hasCallbacks
+  +Future<bool> invokeCallback()
+  +ChildBackButtonDispatcher createChildBackButtonDispatcher()
+  +void takePriority()
+  +void deferTo()
+  +void forget()
+}
+
+"flutter::lib::src::widgets::router.dart::BackButtonDispatcher" o-- "dart::collection::LinkedHashSet<ChildBackButtonDispatcher>"
+"flutter::lib::src::widgets::router.dart::_CallbackHookProvider" <|-- "flutter::lib::src::widgets::router.dart::BackButtonDispatcher"
+
+class "flutter::lib::src::widgets::router.dart::RootBackButtonDispatcher" {
+  +void addCallback()
+  +void removeCallback()
+  +Future<bool> didPopRoute()
+}
+
+"flutter::lib::src::widgets::router.dart::BackButtonDispatcher" <|-- "flutter::lib::src::widgets::router.dart::RootBackButtonDispatcher"
+"flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "flutter::lib::src::widgets::router.dart::RootBackButtonDispatcher"
+
+class "flutter::lib::src::widgets::router.dart::ChildBackButtonDispatcher" {
+  +BackButtonDispatcher parent
+  +Future<bool> notifiedByParent()
+  +void takePriority()
+  +void deferTo()
+  +void removeCallback()
+}
+
+"flutter::lib::src::widgets::router.dart::ChildBackButtonDispatcher" o-- "flutter::lib::src::widgets::router.dart::BackButtonDispatcher"
+"flutter::lib::src::widgets::router.dart::BackButtonDispatcher" <|-- "flutter::lib::src::widgets::router.dart::ChildBackButtonDispatcher"
+
+class "flutter::lib::src::widgets::router.dart::BackButtonListener" {
+  +Widget child
+  +dynamic onBackButtonPressed
+  +State<BackButtonListener> createState()
+}
+
+"flutter::lib::src::widgets::router.dart::BackButtonListener" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::router.dart::BackButtonListener"
+
+class "flutter::lib::src::widgets::router.dart::_BackButtonListenerState" {
+  +BackButtonDispatcher? dispatcher
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::router.dart::_BackButtonListenerState" o-- "flutter::lib::src::widgets::router.dart::BackButtonDispatcher"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::router.dart::_BackButtonListenerState"
+
+abstract class "flutter::lib::src::widgets::router.dart::RouteInformationParser" {
+  +Future<T> parseRouteInformation()
+  +Future<T> parseRouteInformationWithDependencies()
+  +RouteInformation? restoreRouteInformation()
+}
+
+abstract class "flutter::lib::src::widgets::router.dart::RouterDelegate" {
+  +T? currentConfiguration
+  +Future<void> setInitialRoutePath()
+  +Future<void> setRestoredRoutePath()
+  +Future<void> setNewRoutePath()
+  +Future<bool> popRoute()
+  +Widget build()
+}
+
+abstract class "flutter::lib::src::widgets::router.dart::RouteInformationProvider" {
+  +void routerReportsNewRouteInformation()
+}
+
+class "flutter::lib::src::widgets::router.dart::PlatformRouteInformationProvider" {
+  -RouteInformation _value
+  -RouteInformation _valueInEngine
+  +RouteInformation value
+  +void routerReportsNewRouteInformation()
+  -void _platformReportsNewRouteInformation()
+  +void addListener()
+  +void removeListener()
+  +void dispose()
+  +Future<bool> didPushRouteInformation()
+  +Future<bool> didPushRoute()
+}
+
+"flutter::lib::src::widgets::router.dart::PlatformRouteInformationProvider" o-- "flutter::lib::src::widgets::router.dart::RouteInformation"
+"flutter::lib::src::widgets::router.dart::RouteInformationProvider" <|-- "flutter::lib::src::widgets::router.dart::PlatformRouteInformationProvider"
+"flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "flutter::lib::src::widgets::router.dart::PlatformRouteInformationProvider"
+
+class "flutter::lib::src::widgets::router.dart::_RestorableRouteInformation" {
+  +RouteInformation? createDefaultValue()
+  +void didUpdateValue()
+  +RouteInformation? fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::widgets::restoration_properties.dart::RestorableValue" <|-- "flutter::lib::src::widgets::router.dart::_RestorableRouteInformation"
+
+class "flutter::lib::src::widgets::router.dart::RouteInformationReportingType" {
+  +int index
+  {static} +List<RouteInformationReportingType> values
+  {static} +RouteInformationReportingType none
+  {static} +RouteInformationReportingType neglect
+  {static} +RouteInformationReportingType navigate
+}
+
+"flutter::lib::src::widgets::router.dart::RouteInformationReportingType" o-- "flutter::lib::src::widgets::router.dart::RouteInformationReportingType"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::router.dart::RouteInformationReportingType"
+
+abstract class "flutter::lib::src::widgets::router.dart::PopNavigatorRouterDelegateMixin" {
+  +GlobalKey<NavigatorState>? navigatorKey
+  +Future<bool> popRoute()
+}
+
+"flutter::lib::src::widgets::router.dart::PopNavigatorRouterDelegateMixin" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<NavigatorState>"
+
+
+@enduml

@@ -1,0 +1,123 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry" {
+  {static} +EdgeInsetsGeometry infinity
+  -double _bottom
+  -double _end
+  -double _left
+  -double _right
+  -double _start
+  -double _top
+  +bool isNonNegative
+  +double horizontal
+  +double vertical
+  +dynamic collapsedSize
+  +EdgeInsetsGeometry flipped
+  +int hashCode
+  +double along()
+  +dynamic inflateSize()
+  +dynamic deflateSize()
+  +EdgeInsetsGeometry subtract()
+  +EdgeInsetsGeometry add()
+  +EdgeInsetsGeometry clamp()
+  +EdgeInsetsGeometry unary-()
+  +EdgeInsetsGeometry *()
+  +EdgeInsetsGeometry /()
+  +EdgeInsetsGeometry ~/()
+  +EdgeInsetsGeometry %()
+  {static} +EdgeInsetsGeometry? lerp()
+  +EdgeInsets resolve()
+  +String toString()
+  +bool ==()
+}
+
+"flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+
+class "flutter::lib::src::painting::edge_insets.dart::EdgeInsets" {
+  {static} +EdgeInsets zero
+  +double left
+  +double top
+  +double right
+  +double bottom
+  -double _left
+  -double _top
+  -double _right
+  -double _bottom
+  -double _start
+  -double _end
+  +dynamic topLeft
+  +dynamic topRight
+  +dynamic bottomLeft
+  +dynamic bottomRight
+  +EdgeInsets flipped
+  +dynamic inflateRect()
+  +dynamic deflateRect()
+  +EdgeInsetsGeometry subtract()
+  +EdgeInsetsGeometry add()
+  +EdgeInsetsGeometry clamp()
+  +EdgeInsets -()
+  +EdgeInsets +()
+  +EdgeInsets unary-()
+  +EdgeInsets *()
+  +EdgeInsets /()
+  +EdgeInsets ~/()
+  +EdgeInsets %()
+  {static} +EdgeInsets? lerp()
+  +EdgeInsets resolve()
+  +EdgeInsets copyWith()
+}
+
+"flutter::lib::src::painting::edge_insets.dart::EdgeInsets" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsets"
+"flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry" <|-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsets"
+
+class "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsDirectional" {
+  {static} +EdgeInsetsDirectional zero
+  +double start
+  +double top
+  +double end
+  +double bottom
+  -double _start
+  -double _top
+  -double _end
+  -double _bottom
+  -double _left
+  -double _right
+  +bool isNonNegative
+  +EdgeInsetsDirectional flipped
+  +EdgeInsetsGeometry subtract()
+  +EdgeInsetsGeometry add()
+  +EdgeInsetsDirectional -()
+  +EdgeInsetsDirectional +()
+  +EdgeInsetsDirectional unary-()
+  +EdgeInsetsDirectional *()
+  +EdgeInsetsDirectional /()
+  +EdgeInsetsDirectional ~/()
+  +EdgeInsetsDirectional %()
+  {static} +EdgeInsetsDirectional? lerp()
+  +EdgeInsets resolve()
+}
+
+"flutter::lib::src::painting::edge_insets.dart::EdgeInsetsDirectional" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsDirectional"
+"flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry" <|-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsDirectional"
+
+class "flutter::lib::src::painting::edge_insets.dart::_MixedEdgeInsets" {
+  -double _left
+  -double _right
+  -double _start
+  -double _end
+  -double _top
+  -double _bottom
+  +bool isNonNegative
+  +_MixedEdgeInsets unary-()
+  +_MixedEdgeInsets *()
+  +_MixedEdgeInsets /()
+  +_MixedEdgeInsets ~/()
+  +_MixedEdgeInsets %()
+  +EdgeInsets resolve()
+}
+
+"flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry" <|-- "flutter::lib::src::painting::edge_insets.dart::_MixedEdgeInsets"
+
+
+@enduml

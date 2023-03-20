@@ -1,0 +1,36 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::navigation_rail_theme.dart::NavigationRailThemeData" {
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic unselectedLabelTextStyle
+  +dynamic selectedLabelTextStyle
+  +dynamic unselectedIconTheme
+  +dynamic selectedIconTheme
+  +double? groupAlignment
+  +NavigationRailLabelType? labelType
+  +bool? useIndicator
+  +dynamic indicatorColor
+  +double? minWidth
+  +double? minExtendedWidth
+  +int hashCode
+  +NavigationRailThemeData copyWith()
+  {static} +NavigationRailThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::navigation_rail_theme.dart::NavigationRailThemeData" o-- "flutter::lib::src::material::navigation_rail.dart::NavigationRailLabelType"
+
+class "flutter::lib::src::material::navigation_rail_theme.dart::NavigationRailTheme" {
+  +NavigationRailThemeData data
+  {static} +NavigationRailThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::navigation_rail_theme.dart::NavigationRailTheme" o-- "flutter::lib::src::material::navigation_rail_theme.dart::NavigationRailThemeData"
+
+
+@enduml

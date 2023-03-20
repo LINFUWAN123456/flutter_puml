@@ -1,0 +1,26 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::matrix_utils.dart::MatrixUtils" {
+  {static} -dynamic _minMax
+  {static} +dynamic getAsTranslation()
+  {static} +double? getAsScale()
+  {static} +bool matrixEquals()
+  {static} +bool isIdentity()
+  {static} +dynamic transformPoint()
+  {static} -dynamic _safeTransformRect()
+  {static} -void _accumulate()
+  {static} +dynamic transformRect()
+  {static} -double _min4()
+  {static} -double _max4()
+  {static} +dynamic inverseTransformRect()
+  {static} +dynamic createCylindricalProjectionTransform()
+  {static} +dynamic forceToPoint()
+}
+
+class "flutter::lib::src::painting::matrix_utils.dart::TransformProperty" {
+  +String valueToString()
+}
+
+
+@enduml

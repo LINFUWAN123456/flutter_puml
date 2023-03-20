@@ -1,0 +1,65 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::overflow_bar.dart::OverflowBar" {
+  +double spacing
+  +dynamic alignment
+  +double overflowSpacing
+  +OverflowBarAlignment overflowAlignment
+  +dynamic overflowDirection
+  +dynamic textDirection
+  +dynamic clipBehavior
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::overflow_bar.dart::OverflowBar" o-- "flutter::lib::src::widgets::overflow_bar.dart::OverflowBarAlignment"
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::overflow_bar.dart::OverflowBar"
+
+class "flutter::lib::src::widgets::overflow_bar.dart::_OverflowBarParentData" {
+}
+
+class "flutter::lib::src::widgets::overflow_bar.dart::_RenderOverflowBar" {
+  -double _spacing
+  -dynamic _alignment
+  -double _overflowSpacing
+  -OverflowBarAlignment _overflowAlignment
+  -dynamic _overflowDirection
+  -dynamic _textDirection
+  -dynamic _clipBehavior
+  +double spacing
+  +dynamic alignment
+  +double overflowSpacing
+  +OverflowBarAlignment overflowAlignment
+  +dynamic overflowDirection
+  +dynamic textDirection
+  +dynamic clipBehavior
+  +void setupParentData()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double? computeDistanceToActualBaseline()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +bool hitTestChildren()
+  +void paint()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::overflow_bar.dart::_RenderOverflowBar" o-- "flutter::lib::src::widgets::overflow_bar.dart::OverflowBarAlignment"
+
+class "flutter::lib::src::widgets::overflow_bar.dart::OverflowBarAlignment" {
+  +int index
+  {static} +List<OverflowBarAlignment> values
+  {static} +OverflowBarAlignment start
+  {static} +OverflowBarAlignment end
+  {static} +OverflowBarAlignment center
+}
+
+"flutter::lib::src::widgets::overflow_bar.dart::OverflowBarAlignment" o-- "flutter::lib::src::widgets::overflow_bar.dart::OverflowBarAlignment"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::overflow_bar.dart::OverflowBarAlignment"
+
+
+@enduml

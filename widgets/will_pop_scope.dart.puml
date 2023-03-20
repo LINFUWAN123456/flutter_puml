@@ -1,0 +1,26 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::will_pop_scope.dart::WillPopScope" {
+  +Widget child
+  +Future<bool> Function()? onWillPop
+  +State<WillPopScope> createState()
+}
+
+"flutter::lib::src::widgets::will_pop_scope.dart::WillPopScope" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::will_pop_scope.dart::WillPopScope" o-- "flutter::lib::src::widgets::navigator.dart::Future<bool> Function()"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::will_pop_scope.dart::WillPopScope"
+
+class "flutter::lib::src::widgets::will_pop_scope.dart::_WillPopScopeState" {
+  -ModalRoute<dynamic>? _route
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::will_pop_scope.dart::_WillPopScopeState" o-- "flutter::lib::src::widgets::routes.dart::ModalRoute<dynamic>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::will_pop_scope.dart::_WillPopScopeState"
+
+
+@enduml

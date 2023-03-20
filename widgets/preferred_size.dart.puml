@@ -1,0 +1,21 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::preferred_size.dart::PreferredSizeWidget" {
+  +dynamic preferredSize
+}
+
+"flutter::lib::src::widgets::framework.dart::Widget" <|-- "flutter::lib::src::widgets::preferred_size.dart::PreferredSizeWidget"
+
+class "flutter::lib::src::widgets::preferred_size.dart::PreferredSize" {
+  +Widget child
+  +dynamic preferredSize
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::preferred_size.dart::PreferredSize" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::preferred_size.dart::PreferredSize"
+"flutter::lib::src::widgets::preferred_size.dart::PreferredSizeWidget" <|-- "flutter::lib::src::widgets::preferred_size.dart::PreferredSize"
+
+
+@enduml

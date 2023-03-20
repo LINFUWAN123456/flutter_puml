@@ -1,0 +1,36 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::drag_details.dart::DragDownDetails" {
+  +dynamic globalPosition
+  +dynamic localPosition
+  +String toString()
+}
+
+class "flutter::lib::src::gestures::drag_details.dart::DragStartDetails" {
+  +Duration? sourceTimeStamp
+  +dynamic globalPosition
+  +dynamic localPosition
+  +dynamic kind
+  +String toString()
+}
+
+class "flutter::lib::src::gestures::drag_details.dart::DragUpdateDetails" {
+  +Duration? sourceTimeStamp
+  +dynamic delta
+  +double? primaryDelta
+  +dynamic globalPosition
+  +dynamic localPosition
+  +String toString()
+}
+
+class "flutter::lib::src::gestures::drag_details.dart::DragEndDetails" {
+  +Velocity velocity
+  +double? primaryVelocity
+  +String toString()
+}
+
+"flutter::lib::src::gestures::drag_details.dart::DragEndDetails" o-- "flutter::lib::src::gestures::velocity_tracker.dart::Velocity"
+
+
+@enduml

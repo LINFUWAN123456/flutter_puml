@@ -1,0 +1,79 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::platform_channel.dart::_ProfiledBinaryMessenger" {
+  +BinaryMessenger proxy
+  +String channelTypeName
+  +String codecTypeName
+  +Future<void> handlePlatformMessage()
+  +Future<ByteData?>? sendWithPostfix()
+  +Future<ByteData?>? send()
+  +void setMessageHandler()
+}
+
+"flutter::lib::src::services::platform_channel.dart::_ProfiledBinaryMessenger" o-- "flutter::lib::src::services::binary_messenger.dart::BinaryMessenger"
+"flutter::lib::src::services::binary_messenger.dart::BinaryMessenger" <|-- "flutter::lib::src::services::platform_channel.dart::_ProfiledBinaryMessenger"
+
+class "flutter::lib::src::services::platform_channel.dart::_PlatformChannelStats" {
+  +String channel
+  +String codec
+  +String type
+  -int _upCount
+  -int _upBytes
+  -int _downCount
+  -int _downBytes
+  +int upBytes
+  +int downBytes
+  +double averageUpPayload
+  +double averageDownPayload
+  +void addUpStream()
+  +void addDownStream()
+}
+
+class "flutter::lib::src::services::platform_channel.dart::BasicMessageChannel" {
+  +String name
+  +MessageCodec<T> codec
+  -BinaryMessenger? _binaryMessenger
+  +BinaryMessenger binaryMessenger
+  +Future<T?> send()
+  +void setMessageHandler()
+}
+
+"flutter::lib::src::services::platform_channel.dart::BasicMessageChannel" o-- "flutter::lib::src::services::message_codec.dart::MessageCodec<T>"
+"flutter::lib::src::services::platform_channel.dart::BasicMessageChannel" o-- "flutter::lib::src::services::binary_messenger.dart::BinaryMessenger"
+
+class "flutter::lib::src::services::platform_channel.dart::MethodChannel" {
+  +String name
+  +MethodCodec codec
+  -BinaryMessenger? _binaryMessenger
+  +BinaryMessenger binaryMessenger
+  -Future<T?> _invokeMethod()
+  +Future<T?> invokeMethod()
+  +Future<List<T>?> invokeListMethod()
+  +Future<Map<K, V>?> invokeMapMethod()
+  +void setMethodCallHandler()
+  -Future<ByteData?> _handleAsMethodCall()
+}
+
+"flutter::lib::src::services::platform_channel.dart::MethodChannel" o-- "flutter::lib::src::services::message_codec.dart::MethodCodec"
+"flutter::lib::src::services::platform_channel.dart::MethodChannel" o-- "flutter::lib::src::services::binary_messenger.dart::BinaryMessenger"
+
+class "flutter::lib::src::services::platform_channel.dart::OptionalMethodChannel" {
+  +Future<T?> invokeMethod()
+}
+
+"flutter::lib::src::services::platform_channel.dart::MethodChannel" <|-- "flutter::lib::src::services::platform_channel.dart::OptionalMethodChannel"
+
+class "flutter::lib::src::services::platform_channel.dart::EventChannel" {
+  +String name
+  +MethodCodec codec
+  -BinaryMessenger? _binaryMessenger
+  +BinaryMessenger binaryMessenger
+  +Stream<dynamic> receiveBroadcastStream()
+}
+
+"flutter::lib::src::services::platform_channel.dart::EventChannel" o-- "flutter::lib::src::services::message_codec.dart::MethodCodec"
+"flutter::lib::src::services::platform_channel.dart::EventChannel" o-- "flutter::lib::src::services::binary_messenger.dart::BinaryMessenger"
+
+
+@enduml

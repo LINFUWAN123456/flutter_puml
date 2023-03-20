@@ -1,0 +1,168 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableController" {
+  -_DraggableScrollableSheetScrollController? _attachedController
+  -Set<dynamic> _animationControllers
+  +double size
+  +double pixels
+  +bool isAttached
+  +double sizeToPixels()
+  +double pixelsToSize()
+  +Future<void> animateTo()
+  +void jumpTo()
+  +void reset()
+  -void _assertAttached()
+  -void _attach()
+  -void _onExtentReplaced()
+  -void _detach()
+  -void _disposeAnimationControllers()
+}
+
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableController" o-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollController"
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableSheet" {
+  +double initialChildSize
+  +double minChildSize
+  +double maxChildSize
+  +bool expand
+  +bool snap
+  +List<double>? snapSizes
+  +DraggableScrollableController? controller
+  +Widget Function(BuildContext, ScrollController) builder
+  +State<DraggableScrollableSheet> createState()
+}
+
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableSheet" o-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableController"
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableSheet" o-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::Widget Function(BuildContext, ScrollController)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableSheet"
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableNotification" {
+  +double extent
+  +double minExtent
+  +double maxExtent
+  +double initialExtent
+  +BuildContext context
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableNotification" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::notification_listener.dart::Notification" <|-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableNotification"
+"flutter::lib::src::widgets::scroll_notification.dart::ViewportNotificationMixin" <|-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableNotification"
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableSheetExtent" {
+  -dynamic _cancelActivity
+  +double minSize
+  +double maxSize
+  +bool snap
+  +List<double> snapSizes
+  +double initialSize
+  -dynamic _currentSize
+  +dynamic onSizeChanged
+  +double availablePixels
+  +bool hasDragged
+  +bool isAtMin
+  +bool isAtMax
+  +double currentSize
+  +double currentPixels
+  +double additionalMinSize
+  +double additionalMaxSize
+  +List<double> pixelSnapSizes
+  +void startActivity()
+  +void addPixelDelta()
+  +void updateSize()
+  +double pixelsToSize()
+  +double sizeToPixels()
+  +void dispose()
+  +_DraggableSheetExtent copyWith()
+}
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetState" {
+  -_DraggableScrollableSheetScrollController _scrollController
+  -_DraggableSheetExtent _extent
+  +void initState()
+  -List<double> _impliedSnapSizes()
+  +void didUpdateWidget()
+  +void didChangeDependencies()
+  -void _setExtent()
+  +Widget build()
+  +void dispose()
+  -void _replaceExtent()
+  -String _snapSizeErrorMessage()
+}
+
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetState" o-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollController"
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetState" o-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableSheetExtent"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetState"
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollController" {
+  +_DraggableSheetExtent extent
+  +dynamic onPositionDetached
+  +_DraggableScrollableSheetScrollPosition position
+  +_DraggableScrollableSheetScrollPosition createScrollPosition()
+  +void debugFillDescription()
+  +void reset()
+  +void detach()
+}
+
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollController" o-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableSheetExtent"
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollController" o-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollPosition"
+"flutter::lib::src::widgets::scroll_controller.dart::ScrollController" <|-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollController"
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollPosition" {
+  -dynamic _dragCancelCallback
+  +_DraggableSheetExtent Function() getExtent
+  -Set<dynamic> _ballisticControllers
+  +bool listShouldScroll
+  +_DraggableSheetExtent extent
+  -bool _isAtSnapSize
+  -bool _shouldSnap
+  +void absorb()
+  +void beginActivity()
+  +bool applyContentDimensions()
+  +void applyUserOffset()
+  +void dispose()
+  +void goBallistic()
+  +dynamic drag()
+}
+
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollPosition" o-- "null::_DraggableSheetExtent Function()"
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollPosition" o-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableSheetExtent"
+"flutter::lib::src::widgets::scroll_position_with_single_context.dart::ScrollPositionWithSingleContext" <|-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_DraggableScrollableSheetScrollPosition"
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableActuator" {
+  +Widget child
+  -_ResetNotifier _notifier
+  {static} +bool reset()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableActuator" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableActuator" o-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_ResetNotifier"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::DraggableScrollableActuator"
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_ResetNotifier" {
+  -bool _wasCalled
+  +bool sendReset()
+}
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_InheritedResetNotifier" {
+  -bool _sendReset()
+  {static} +bool shouldReset()
+}
+
+"flutter::lib::src::widgets::inherited_notifier.dart::InheritedNotifier" <|-- "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_InheritedResetNotifier"
+
+class "flutter::lib::src::widgets::draggable_scrollable_sheet.dart::_SnappingSimulation" {
+  +double position
+  +double velocity
+  {static} +double minimumSpeed
+  -double _pixelSnapSize
+  +double dx()
+  +bool isDone()
+  +double x()
+  -double _getSnapSize()
+}
+
+
+@enduml

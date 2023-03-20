@@ -1,0 +1,17 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::tooltip_visibility.dart::_TooltipVisibilityScope" {
+  +bool visible
+  +bool updateShouldNotify()
+}
+
+class "flutter::lib::src::material::tooltip_visibility.dart::TooltipVisibility" {
+  +dynamic child
+  +bool visible
+  {static} +bool of()
+  +dynamic build()
+}
+
+
+@enduml

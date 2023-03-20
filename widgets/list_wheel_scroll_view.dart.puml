@@ -1,0 +1,170 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildDelegate" {
+  +int? estimatedChildCount
+  +Widget? build()
+  +int trueIndexOf()
+  +bool shouldRebuild()
+}
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildListDelegate" {
+  +List<Widget> children
+  +int estimatedChildCount
+  +Widget? build()
+  +bool shouldRebuild()
+}
+
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildDelegate" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildListDelegate"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildLoopingListDelegate" {
+  +List<Widget> children
+  +int? estimatedChildCount
+  +int trueIndexOf()
+  +Widget? build()
+  +bool shouldRebuild()
+}
+
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildDelegate" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildLoopingListDelegate"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildBuilderDelegate" {
+  +Widget? Function(BuildContext, int) builder
+  +int? childCount
+  +int? estimatedChildCount
+  +Widget? build()
+  +bool shouldRebuild()
+}
+
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildBuilderDelegate" o-- "flutter::lib::src::widgets::framework.dart::Widget Function(BuildContext, int)"
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildDelegate" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildBuilderDelegate"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::FixedExtentScrollController" {
+  +int initialItem
+  +int selectedItem
+  +Future<void> animateToItem()
+  +void jumpToItem()
+  +ScrollPosition createScrollPosition()
+}
+
+"flutter::lib::src::widgets::scroll_controller.dart::ScrollController" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::FixedExtentScrollController"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::FixedExtentMetrics" {
+  +int itemIndex
+  +FixedExtentMetrics copyWith()
+}
+
+"flutter::lib::src::widgets::scroll_metrics.dart::FixedScrollMetrics" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::FixedExtentMetrics"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::_FixedExtentScrollPosition" {
+  +double itemExtent
+  +int itemIndex
+  {static} -double _getItemExtentFromScrollContext()
+  +FixedExtentMetrics copyWith()
+}
+
+"flutter::lib::src::widgets::scroll_position_with_single_context.dart::ScrollPositionWithSingleContext" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::_FixedExtentScrollPosition"
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::FixedExtentMetrics" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::_FixedExtentScrollPosition"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::_FixedExtentScrollable" {
+  +double itemExtent
+  +_FixedExtentScrollableState createState()
+}
+
+"flutter::lib::src::widgets::scrollable.dart::Scrollable" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::_FixedExtentScrollable"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::_FixedExtentScrollableState" {
+  +double itemExtent
+}
+
+"flutter::lib::src::widgets::scrollable.dart::ScrollableState" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::_FixedExtentScrollableState"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::FixedExtentScrollPhysics" {
+  +FixedExtentScrollPhysics applyTo()
+  +dynamic createBallisticSimulation()
+}
+
+"flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::FixedExtentScrollPhysics"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelScrollView" {
+  +ScrollController? controller
+  +ScrollPhysics? physics
+  +double diameterRatio
+  +double perspective
+  +double offAxisFraction
+  +bool useMagnifier
+  +double magnification
+  +double overAndUnderCenterOpacity
+  +double itemExtent
+  +double squeeze
+  +dynamic onSelectedItemChanged
+  +bool renderChildrenOutsideViewport
+  +ListWheelChildDelegate childDelegate
+  +dynamic clipBehavior
+  +String? restorationId
+  +ScrollBehavior? scrollBehavior
+  +State<ListWheelScrollView> createState()
+}
+
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelScrollView" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelScrollView" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelScrollView" o-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildDelegate"
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelScrollView" o-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelScrollView"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::_ListWheelScrollViewState" {
+  -int _lastReportedItemIndex
+  +ScrollController? scrollController
+  +void initState()
+  +void didUpdateWidget()
+  -bool _handleScrollNotification()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::_ListWheelScrollViewState" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::_ListWheelScrollViewState"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelElement" {
+  -Map<int, Widget?> _childWidgets
+  -SplayTreeMap<int, Element> _childElements
+  +dynamic renderObject
+  +int? childCount
+  +void update()
+  +void performRebuild()
+  +Widget? retrieveWidget()
+  +bool childExistsAt()
+  +void createChild()
+  +void removeChild()
+  +Element? updateChild()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+  +void visitChildren()
+  +void forgetChild()
+}
+
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelElement" o-- "dart::collection::SplayTreeMap<int, Element>"
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelElement"
+
+class "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelViewport" {
+  +double diameterRatio
+  +double perspective
+  +double offAxisFraction
+  +bool useMagnifier
+  +double magnification
+  +double overAndUnderCenterOpacity
+  +double itemExtent
+  +double squeeze
+  +bool renderChildrenOutsideViewport
+  +dynamic offset
+  +ListWheelChildDelegate childDelegate
+  +dynamic clipBehavior
+  +ListWheelElement createElement()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelViewport" o-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelChildDelegate"
+"flutter::lib::src::widgets::framework.dart::RenderObjectWidget" <|-- "flutter::lib::src::widgets::list_wheel_scroll_view.dart::ListWheelViewport"
+
+
+@enduml

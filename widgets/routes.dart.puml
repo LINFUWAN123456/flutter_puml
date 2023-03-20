@@ -1,0 +1,264 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::routes.dart::OverlayRoute" {
+  -List<OverlayEntry> _overlayEntries
+  +List<OverlayEntry> overlayEntries
+  +bool finishedWhenPopped
+  +Iterable<OverlayEntry> createOverlayEntries()
+  +void install()
+  +bool didPop()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::navigator.dart::Route" <|-- "flutter::lib::src::widgets::routes.dart::OverlayRoute"
+
+abstract class "flutter::lib::src::widgets::routes.dart::TransitionRoute" {
+  -Completer<T?> _transitionCompleter
+  -bool _popFinalized
+  -dynamic _animation
+  -dynamic _controller
+  -dynamic _secondaryAnimation
+  +bool willDisposeAnimationController
+  -T? _result
+  -dynamic _trainHoppingListenerRemover
+  +Future<T?> completed
+  +Duration transitionDuration
+  +Duration reverseTransitionDuration
+  +bool opaque
+  +bool finishedWhenPopped
+  +dynamic animation
+  +dynamic controller
+  +dynamic secondaryAnimation
+  +String debugLabel
+  +dynamic createAnimationController()
+  +dynamic createAnimation()
+  -void _handleStatusChanged()
+  +void install()
+  +dynamic didPush()
+  +void didAdd()
+  +void didReplace()
+  +bool didPop()
+  +void didPopNext()
+  +void didChangeNext()
+  -void _updateSecondaryAnimation()
+  -void _setSecondaryAnimation()
+  +bool canTransitionTo()
+  +bool canTransitionFrom()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::routes.dart::TransitionRoute" o-- "dart::async::Completer<T>"
+"flutter::lib::src::widgets::routes.dart::OverlayRoute" <|-- "flutter::lib::src::widgets::routes.dart::TransitionRoute"
+
+class "flutter::lib::src::widgets::routes.dart::LocalHistoryEntry" {
+  +dynamic onRemove
+  -LocalHistoryRoute<dynamic>? _owner
+  +bool impliesAppBarDismissal
+  +void remove()
+  -void _notifyRemoved()
+}
+
+"flutter::lib::src::widgets::routes.dart::LocalHistoryEntry" o-- "flutter::lib::src::widgets::routes.dart::LocalHistoryRoute<dynamic>"
+
+class "flutter::lib::src::widgets::routes.dart::_DismissModalAction" {
+  +BuildContext context
+  +bool isEnabled()
+  +Object invoke()
+}
+
+"flutter::lib::src::widgets::routes.dart::_DismissModalAction" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::actions.dart::DismissAction" <|-- "flutter::lib::src::widgets::routes.dart::_DismissModalAction"
+
+class "flutter::lib::src::widgets::routes.dart::_ModalScopeStatus" {
+  +bool isCurrent
+  +bool canPop
+  +bool impliesAppBarDismissal
+  +Route<dynamic> route
+  +bool updateShouldNotify()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::routes.dart::_ModalScopeStatus" o-- "flutter::lib::src::widgets::navigator.dart::Route<dynamic>"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::routes.dart::_ModalScopeStatus"
+
+class "flutter::lib::src::widgets::routes.dart::_ModalScope" {
+  +ModalRoute<T> route
+  +_ModalScopeState<T> createState()
+}
+
+"flutter::lib::src::widgets::routes.dart::_ModalScope" o-- "flutter::lib::src::widgets::routes.dart::ModalRoute<T>"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::routes.dart::_ModalScope"
+
+class "flutter::lib::src::widgets::routes.dart::_ModalScopeState" {
+  -Widget? _page
+  -dynamic _listenable
+  +FocusScopeNode focusScopeNode
+  +ScrollController primaryScrollController
+  -bool _shouldIgnoreFocusRequest
+  -bool _shouldRequestFocus
+  +void initState()
+  +void didUpdateWidget()
+  +void didChangeDependencies()
+  -void _forceRebuildPage()
+  +void dispose()
+  -void _routeSetState()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::routes.dart::_ModalScopeState" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::routes.dart::_ModalScopeState" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode"
+"flutter::lib::src::widgets::routes.dart::_ModalScopeState" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::routes.dart::_ModalScopeState"
+
+abstract class "flutter::lib::src::widgets::routes.dart::ModalRoute" {
+  +dynamic filter
+  -bool _offstage
+  -dynamic _animationProxy
+  -dynamic _secondaryAnimationProxy
+  -List<Future<bool> Function()> _willPopCallbacks
+  -GlobalKey<_ModalScopeState<T>> _scopeKey
+  -GlobalKey<State<StatefulWidget>> _subtreeKey
+  -PageStorageBucket _storageBucket
+  -OverlayEntry _modalBarrier
+  -Widget? _modalScopeCache
+  -OverlayEntry _modalScope
+  +bool barrierDismissible
+  +bool semanticsDismissible
+  +dynamic barrierColor
+  +String? barrierLabel
+  +dynamic barrierCurve
+  +bool maintainState
+  +bool offstage
+  +BuildContext? subtreeContext
+  +dynamic animation
+  +dynamic secondaryAnimation
+  +bool hasScopedWillPopCallback
+  +bool canPop
+  +bool impliesAppBarDismissal
+  {static} +ModalRoute<T>? of()
+  +void setState()
+  {static} +bool Function(Route<dynamic>) withName()
+  +Widget buildPage()
+  +Widget buildTransitions()
+  +void install()
+  +dynamic didPush()
+  +void didAdd()
+  +Future<RoutePopDisposition> willPop()
+  +void addScopedWillPopCallback()
+  +void removeScopedWillPopCallback()
+  +void didChangePrevious()
+  +void changedInternalState()
+  +void changedExternalState()
+  -Widget _buildModalBarrier()
+  -Widget _buildModalScope()
+  +Iterable<OverlayEntry> createOverlayEntries()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::routes.dart::ModalRoute" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<_ModalScopeState<T>>"
+"flutter::lib::src::widgets::routes.dart::ModalRoute" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::routes.dart::ModalRoute" o-- "flutter::lib::src::widgets::page_storage.dart::PageStorageBucket"
+"flutter::lib::src::widgets::routes.dart::ModalRoute" o-- "flutter::lib::src::widgets::overlay.dart::OverlayEntry"
+"flutter::lib::src::widgets::routes.dart::ModalRoute" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::routes.dart::ModalRoute" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::routes.dart::TransitionRoute" <|-- "flutter::lib::src::widgets::routes.dart::ModalRoute"
+"flutter::lib::src::widgets::routes.dart::LocalHistoryRoute" <|-- "flutter::lib::src::widgets::routes.dart::ModalRoute"
+
+abstract class "flutter::lib::src::widgets::routes.dart::PopupRoute" {
+  +bool opaque
+  +bool maintainState
+}
+
+"flutter::lib::src::widgets::routes.dart::ModalRoute" <|-- "flutter::lib::src::widgets::routes.dart::PopupRoute"
+
+class "flutter::lib::src::widgets::routes.dart::RouteObserver" {
+  -Map<R, Set<RouteAware>> _listeners
+  +bool debugObservingRoute()
+  +void subscribe()
+  +void unsubscribe()
+  +void didPop()
+  +void didPush()
+}
+
+"flutter::lib::src::widgets::navigator.dart::NavigatorObserver" <|-- "flutter::lib::src::widgets::routes.dart::RouteObserver"
+
+abstract class "flutter::lib::src::widgets::routes.dart::RouteAware" {
+  +void didPopNext()
+  +void didPush()
+  +void didPop()
+  +void didPushNext()
+}
+
+class "flutter::lib::src::widgets::routes.dart::RawDialogRoute" {
+  -Widget Function(BuildContext, dynamic, dynamic) _pageBuilder
+  -bool _barrierDismissible
+  -String? _barrierLabel
+  -dynamic _barrierColor
+  -Duration _transitionDuration
+  -Widget Function(BuildContext, dynamic, dynamic, Widget)? _transitionBuilder
+  +dynamic anchorPoint
+  +bool barrierDismissible
+  +String? barrierLabel
+  +dynamic barrierColor
+  +Duration transitionDuration
+  +Widget buildPage()
+  +Widget buildTransitions()
+}
+
+"flutter::lib::src::widgets::routes.dart::RawDialogRoute" o-- "flutter::lib::src::widgets::routes.dart::Widget Function(BuildContext, dynamic, dynamic)"
+"flutter::lib::src::widgets::routes.dart::RawDialogRoute" o-- "flutter::lib::src::widgets::routes.dart::Widget Function(BuildContext, dynamic, dynamic, Widget)"
+"flutter::lib::src::widgets::routes.dart::PopupRoute" <|-- "flutter::lib::src::widgets::routes.dart::RawDialogRoute"
+
+class "flutter::lib::src::widgets::routes.dart::FocusTrap" {
+  +FocusScopeNode focusScopeNode
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::routes.dart::FocusTrap" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode"
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::routes.dart::FocusTrap"
+
+class "flutter::lib::src::widgets::routes.dart::FocusTrapArea" {
+  +FocusNode focusNode
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::routes.dart::FocusTrapArea" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::routes.dart::FocusTrapArea"
+
+class "flutter::lib::src::widgets::routes.dart::_RenderFocusTrapArea" {
+  +FocusNode focusNode
+}
+
+"flutter::lib::src::widgets::routes.dart::_RenderFocusTrapArea" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+
+class "flutter::lib::src::widgets::routes.dart::_RenderFocusTrap" {
+  +dynamic currentFocusRect
+  +Expando<dynamic> cachedResults
+  -FocusScopeNode _focusScopeNode
+  -FocusNode? _previousFocus
+  +FocusScopeNode focusScopeNode
+  -bool _shouldIgnoreEvents
+  +bool hitTest()
+  -void _checkForUnfocus()
+  +void handleEvent()
+}
+
+"flutter::lib::src::widgets::routes.dart::_RenderFocusTrap" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode"
+"flutter::lib::src::widgets::routes.dart::_RenderFocusTrap" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+
+abstract class "flutter::lib::src::widgets::routes.dart::LocalHistoryRoute" {
+  -List<LocalHistoryEntry>? _localHistory
+  -int _entriesImpliesAppBarDismissal
+  +bool willHandlePopInternally
+  +void addLocalHistoryEntry()
+  +void removeLocalHistoryEntry()
+  +Future<RoutePopDisposition> willPop()
+  +bool didPop()
+}
+
+
+@enduml

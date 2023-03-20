@@ -1,0 +1,74 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" {
+  +ScrollPhysics? parent
+  {static} -dynamic _kDefaultSpring
+  {static} -dynamic _kDefaultTolerance
+  +dynamic spring
+  +dynamic tolerance
+  +double minFlingDistance
+  +double minFlingVelocity
+  +double maxFlingVelocity
+  +double? dragStartDistanceMotionThreshold
+  +bool allowImplicitScrolling
+  +ScrollPhysics? buildParent()
+  +ScrollPhysics applyTo()
+  +double applyPhysicsToUserOffset()
+  +bool shouldAcceptUserOffset()
+  +bool recommendDeferredLoading()
+  +double applyBoundaryConditions()
+  +double adjustPositionForNewDimensions()
+  +dynamic createBallisticSimulation()
+  +double carriedMomentum()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+
+class "flutter::lib::src::widgets::scroll_physics.dart::RangeMaintainingScrollPhysics" {
+  +RangeMaintainingScrollPhysics applyTo()
+  +double adjustPositionForNewDimensions()
+}
+
+"flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" <|-- "flutter::lib::src::widgets::scroll_physics.dart::RangeMaintainingScrollPhysics"
+
+class "flutter::lib::src::widgets::scroll_physics.dart::BouncingScrollPhysics" {
+  +double minFlingVelocity
+  +double dragStartDistanceMotionThreshold
+  +BouncingScrollPhysics applyTo()
+  +double frictionFactor()
+  +double applyPhysicsToUserOffset()
+  {static} -double _applyFriction()
+  +double applyBoundaryConditions()
+  +dynamic createBallisticSimulation()
+  +double carriedMomentum()
+}
+
+"flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" <|-- "flutter::lib::src::widgets::scroll_physics.dart::BouncingScrollPhysics"
+
+class "flutter::lib::src::widgets::scroll_physics.dart::ClampingScrollPhysics" {
+  +ClampingScrollPhysics applyTo()
+  +double applyBoundaryConditions()
+  +dynamic createBallisticSimulation()
+}
+
+"flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" <|-- "flutter::lib::src::widgets::scroll_physics.dart::ClampingScrollPhysics"
+
+class "flutter::lib::src::widgets::scroll_physics.dart::AlwaysScrollableScrollPhysics" {
+  +AlwaysScrollableScrollPhysics applyTo()
+  +bool shouldAcceptUserOffset()
+}
+
+"flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" <|-- "flutter::lib::src::widgets::scroll_physics.dart::AlwaysScrollableScrollPhysics"
+
+class "flutter::lib::src::widgets::scroll_physics.dart::NeverScrollableScrollPhysics" {
+  +bool allowImplicitScrolling
+  +NeverScrollableScrollPhysics applyTo()
+  +bool shouldAcceptUserOffset()
+}
+
+"flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" <|-- "flutter::lib::src::widgets::scroll_physics.dart::NeverScrollableScrollPhysics"
+
+
+@enduml

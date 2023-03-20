@@ -1,0 +1,14 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::disposable_build_context.dart::DisposableBuildContext" {
+  -T? _state
+  +BuildContext? context
+  -bool _debugValidate()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::disposable_build_context.dart::DisposableBuildContext" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+
+
+@enduml

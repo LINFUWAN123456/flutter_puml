@@ -1,0 +1,100 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::animation::animation_controller.dart::AnimationController" {
+  +double lowerBound
+  +double upperBound
+  +String? debugLabel
+  +AnimationBehavior animationBehavior
+  +Duration? duration
+  +Duration? reverseDuration
+  -dynamic _ticker
+  -dynamic _simulation
+  -double _value
+  -Duration? _lastElapsedDuration
+  -_AnimationDirection _direction
+  -AnimationStatus _status
+  -AnimationStatus _lastReportedStatus
+  +Animation<double> view
+  +double value
+  +double velocity
+  +Duration? lastElapsedDuration
+  +bool isAnimating
+  +AnimationStatus status
+  +void resync()
+  +void reset()
+  -void _internalSetValue()
+  +dynamic forward()
+  +dynamic reverse()
+  +dynamic animateTo()
+  +dynamic animateBack()
+  -dynamic _animateToInternal()
+  +dynamic repeat()
+  -void _directionSetter()
+  +dynamic fling()
+  +dynamic animateWith()
+  -dynamic _startSimulation()
+  +void stop()
+  +void dispose()
+  -void _checkStatusChanged()
+  -void _tick()
+  +String toStringDetails()
+}
+
+"flutter::lib::src::animation::animation_controller.dart::AnimationController" o-- "flutter::lib::src::animation::animation_controller.dart::AnimationBehavior"
+"flutter::lib::src::animation::animation_controller.dart::AnimationController" o-- "flutter::lib::src::animation::animation_controller.dart::_AnimationDirection"
+"flutter::lib::src::animation::animation_controller.dart::AnimationController" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"flutter::lib::src::animation::animation_controller.dart::AnimationController" o-- "flutter::lib::src::animation::animation.dart::Animation<double>"
+"flutter::lib::src::animation::animation.dart::Animation" <|-- "flutter::lib::src::animation::animation_controller.dart::AnimationController"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationEagerListenerMixin" <|-- "flutter::lib::src::animation::animation_controller.dart::AnimationController"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLocalListenersMixin" <|-- "flutter::lib::src::animation::animation_controller.dart::AnimationController"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLocalStatusListenersMixin" <|-- "flutter::lib::src::animation::animation_controller.dart::AnimationController"
+
+class "flutter::lib::src::animation::animation_controller.dart::_InterpolationSimulation" {
+  -double _durationInSeconds
+  -double _begin
+  -double _end
+  -Curve _curve
+  +double x()
+  +double dx()
+  +bool isDone()
+}
+
+"flutter::lib::src::animation::animation_controller.dart::_InterpolationSimulation" o-- "flutter::lib::src::animation::curves.dart::Curve"
+
+class "flutter::lib::src::animation::animation_controller.dart::_RepeatingSimulation" {
+  +double min
+  +double max
+  +bool reverse
+  +void Function(_AnimationDirection) directionSetter
+  -double _periodInSeconds
+  -double _initialT
+  +double x()
+  +double dx()
+  +bool isDone()
+}
+
+"flutter::lib::src::animation::animation_controller.dart::_RepeatingSimulation" o-- "flutter::lib::src::animation::animation_controller.dart::void Function(_AnimationDirection)"
+
+class "flutter::lib::src::animation::animation_controller.dart::_AnimationDirection" {
+  +int index
+  {static} +List<_AnimationDirection> values
+  {static} +_AnimationDirection forward
+  {static} +_AnimationDirection reverse
+}
+
+"flutter::lib::src::animation::animation_controller.dart::_AnimationDirection" o-- "flutter::lib::src::animation::animation_controller.dart::_AnimationDirection"
+"dart::core::Enum" <|-- "flutter::lib::src::animation::animation_controller.dart::_AnimationDirection"
+
+class "flutter::lib::src::animation::animation_controller.dart::AnimationBehavior" {
+  +int index
+  {static} +List<AnimationBehavior> values
+  {static} +AnimationBehavior normal
+  {static} +AnimationBehavior preserve
+}
+
+"flutter::lib::src::animation::animation_controller.dart::AnimationBehavior" o-- "flutter::lib::src::animation::animation_controller.dart::AnimationBehavior"
+"dart::core::Enum" <|-- "flutter::lib::src::animation::animation_controller.dart::AnimationBehavior"
+
+
+@enduml

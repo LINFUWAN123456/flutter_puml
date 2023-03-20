@@ -1,0 +1,85 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::button_theme.dart::ButtonTheme" {
+  +ButtonThemeData data
+  {static} +ButtonThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::button_theme.dart::ButtonTheme" o-- "flutter::lib::src::material::button_theme.dart::ButtonThemeData"
+
+class "flutter::lib::src::material::button_theme.dart::ButtonThemeData" {
+  +double minWidth
+  +double height
+  +ButtonTextTheme textTheme
+  +ButtonBarLayoutBehavior layoutBehavior
+  -dynamic _padding
+  -dynamic _shape
+  +bool alignedDropdown
+  -dynamic _buttonColor
+  -dynamic _disabledColor
+  -dynamic _focusColor
+  -dynamic _hoverColor
+  -dynamic _highlightColor
+  -dynamic _splashColor
+  +ColorScheme? colorScheme
+  -MaterialTapTargetSize? _materialTapTargetSize
+  +dynamic constraints
+  +dynamic padding
+  +dynamic shape
+  +int hashCode
+  +dynamic getBrightness()
+  +ButtonTextTheme getTextTheme()
+  +dynamic getDisabledTextColor()
+  +dynamic getDisabledFillColor()
+  +dynamic getFillColor()
+  +dynamic getTextColor()
+  +dynamic getSplashColor()
+  +dynamic getFocusColor()
+  +dynamic getHoverColor()
+  +dynamic getHighlightColor()
+  +double getElevation()
+  +double getFocusElevation()
+  +double getHoverElevation()
+  +double getHighlightElevation()
+  +double getDisabledElevation()
+  +dynamic getPadding()
+  +dynamic getShape()
+  +Duration getAnimationDuration()
+  +dynamic getConstraints()
+  +MaterialTapTargetSize getMaterialTapTargetSize()
+  +ButtonThemeData copyWith()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::button_theme.dart::ButtonThemeData" o-- "flutter::lib::src::material::button_theme.dart::ButtonTextTheme"
+"flutter::lib::src::material::button_theme.dart::ButtonThemeData" o-- "flutter::lib::src::material::button_theme.dart::ButtonBarLayoutBehavior"
+"flutter::lib::src::material::button_theme.dart::ButtonThemeData" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::button_theme.dart::ButtonThemeData" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+
+class "flutter::lib::src::material::button_theme.dart::ButtonTextTheme" {
+  +int index
+  {static} +List<ButtonTextTheme> values
+  {static} +ButtonTextTheme normal
+  {static} +ButtonTextTheme accent
+  {static} +ButtonTextTheme primary
+}
+
+"flutter::lib::src::material::button_theme.dart::ButtonTextTheme" o-- "flutter::lib::src::material::button_theme.dart::ButtonTextTheme"
+"dart::core::Enum" <|-- "flutter::lib::src::material::button_theme.dart::ButtonTextTheme"
+
+class "flutter::lib::src::material::button_theme.dart::ButtonBarLayoutBehavior" {
+  +int index
+  {static} +List<ButtonBarLayoutBehavior> values
+  {static} +ButtonBarLayoutBehavior constrained
+  {static} +ButtonBarLayoutBehavior padded
+}
+
+"flutter::lib::src::material::button_theme.dart::ButtonBarLayoutBehavior" o-- "flutter::lib::src::material::button_theme.dart::ButtonBarLayoutBehavior"
+"dart::core::Enum" <|-- "flutter::lib::src::material::button_theme.dart::ButtonBarLayoutBehavior"
+
+
+@enduml

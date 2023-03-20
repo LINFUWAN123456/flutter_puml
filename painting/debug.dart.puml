@@ -1,0 +1,18 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::debug.dart::ImageSizeInfo" {
+  +String? source
+  +dynamic displaySize
+  +dynamic imageSize
+  +int displaySizeInBytes
+  +int decodedSizeInBytes
+  +int hashCode
+  -int _sizeToBytes()
+  +Map<String, Object?> toJson()
+  +bool ==()
+  +String toString()
+}
+
+
+@enduml

@@ -1,0 +1,160 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::multitap.dart::_CountdownZoned" {
+  -bool _timeout
+  +bool timeout
+  -void _onTimeout()
+}
+
+class "flutter::lib::src::gestures::multitap.dart::_TapTracker" {
+  +DeviceGestureSettings? gestureSettings
+  +int pointer
+  +GestureArenaEntry entry
+  -dynamic _initialGlobalPosition
+  +int initialButtons
+  -_CountdownZoned _doubleTapMinTimeCountdown
+  -bool _isTrackingPointer
+  +void startTrackingPointer()
+  +void stopTrackingPointer()
+  +bool isWithinGlobalTolerance()
+  +bool hasElapsedMinTime()
+  +bool hasSameButton()
+}
+
+"flutter::lib::src::gestures::multitap.dart::_TapTracker" o-- "flutter::lib::src::gestures::gesture_settings.dart::DeviceGestureSettings"
+"flutter::lib::src::gestures::multitap.dart::_TapTracker" o-- "flutter::lib::src::gestures::arena.dart::GestureArenaEntry"
+"flutter::lib::src::gestures::multitap.dart::_TapTracker" o-- "flutter::lib::src::gestures::multitap.dart::_CountdownZoned"
+
+class "flutter::lib::src::gestures::multitap.dart::DoubleTapGestureRecognizer" {
+  +void Function(TapDownDetails)? onDoubleTapDown
+  +void Function()? onDoubleTap
+  +void Function()? onDoubleTapCancel
+  -Timer? _doubleTapTimer
+  -_TapTracker? _firstTap
+  -Map<int, _TapTracker> _trackers
+  +String debugDescription
+  +bool isPointerAllowed()
+  +void addAllowedPointer()
+  -void _trackTap()
+  -void _handleEvent()
+  +void acceptGesture()
+  +void rejectGesture()
+  -void _reject()
+  +void dispose()
+  -void _reset()
+  -void _registerFirstTap()
+  -void _registerSecondTap()
+  -void _clearTrackers()
+  -void _freezeTracker()
+  -void _startDoubleTapTimer()
+  -void _stopDoubleTapTimer()
+  -void _checkUp()
+  -void _checkCancel()
+}
+
+"flutter::lib::src::gestures::multitap.dart::DoubleTapGestureRecognizer" o-- "flutter::lib::src::gestures::tap.dart::void Function(TapDownDetails)"
+"flutter::lib::src::gestures::multitap.dart::DoubleTapGestureRecognizer" o-- "flutter::lib::src::gestures::multitap.dart::void Function()"
+"flutter::lib::src::gestures::multitap.dart::DoubleTapGestureRecognizer" o-- "flutter::lib::src::gestures::tap.dart::void Function()"
+"flutter::lib::src::gestures::multitap.dart::DoubleTapGestureRecognizer" o-- "dart::async::Timer"
+"flutter::lib::src::gestures::multitap.dart::DoubleTapGestureRecognizer" o-- "flutter::lib::src::gestures::multitap.dart::_TapTracker"
+"flutter::lib::src::gestures::recognizer.dart::GestureRecognizer" <|-- "flutter::lib::src::gestures::multitap.dart::DoubleTapGestureRecognizer"
+
+class "flutter::lib::src::gestures::multitap.dart::_TapGesture" {
+  +MultiTapGestureRecognizer gestureRecognizer
+  -bool _wonArena
+  -Timer? _timer
+  -OffsetPair _lastPosition
+  -OffsetPair? _finalPosition
+  +void handleEvent()
+  +void stopTrackingPointer()
+  +void accept()
+  +void reject()
+  +void cancel()
+  -void _check()
+}
+
+"flutter::lib::src::gestures::multitap.dart::_TapGesture" o-- "flutter::lib::src::gestures::multitap.dart::MultiTapGestureRecognizer"
+"flutter::lib::src::gestures::multitap.dart::_TapGesture" o-- "dart::async::Timer"
+"flutter::lib::src::gestures::multitap.dart::_TapGesture" o-- "flutter::lib::src::gestures::recognizer.dart::OffsetPair"
+"flutter::lib::src::gestures::multitap.dart::_TapTracker" <|-- "flutter::lib::src::gestures::multitap.dart::_TapGesture"
+
+class "flutter::lib::src::gestures::multitap.dart::MultiTapGestureRecognizer" {
+  +void Function(int, TapDownDetails)? onTapDown
+  +void Function(int, TapUpDetails)? onTapUp
+  +void Function(int)? onTap
+  +void Function(int)? onTapCancel
+  +Duration longTapDelay
+  +void Function(int, TapDownDetails)? onLongTapDown
+  -Map<int, _TapGesture> _gestureMap
+  +String debugDescription
+  +void addAllowedPointer()
+  +void acceptGesture()
+  +void rejectGesture()
+  -void _dispatchCancel()
+  -void _dispatchTap()
+  -void _dispatchLongTap()
+  +void dispose()
+}
+
+"flutter::lib::src::gestures::multitap.dart::MultiTapGestureRecognizer" o-- "flutter::lib::src::gestures::multitap.dart::void Function(int, TapDownDetails)"
+"flutter::lib::src::gestures::multitap.dart::MultiTapGestureRecognizer" o-- "flutter::lib::src::gestures::multitap.dart::void Function(int, TapUpDetails)"
+"flutter::lib::src::gestures::multitap.dart::MultiTapGestureRecognizer" o-- "flutter::lib::src::gestures::multitap.dart::void Function(int)"
+"flutter::lib::src::gestures::recognizer.dart::GestureRecognizer" <|-- "flutter::lib::src::gestures::multitap.dart::MultiTapGestureRecognizer"
+
+class "flutter::lib::src::gestures::multitap.dart::SerialTapDownDetails" {
+  +dynamic globalPosition
+  +dynamic localPosition
+  +dynamic kind
+  +int buttons
+  +int count
+}
+
+class "flutter::lib::src::gestures::multitap.dart::SerialTapCancelDetails" {
+  +int count
+}
+
+class "flutter::lib::src::gestures::multitap.dart::SerialTapUpDetails" {
+  +dynamic globalPosition
+  +dynamic localPosition
+  +dynamic kind
+  +int count
+}
+
+class "flutter::lib::src::gestures::multitap.dart::SerialTapGestureRecognizer" {
+  +void Function(SerialTapDownDetails)? onSerialTapDown
+  +void Function(SerialTapCancelDetails)? onSerialTapCancel
+  +void Function(SerialTapUpDetails)? onSerialTapUp
+  -Timer? _serialTapTimer
+  -List<_TapTracker> _completedTaps
+  -Map<int, GestureDisposition> _gestureResolutions
+  -_TapTracker? _pendingTap
+  +bool isTrackingPointer
+  +String debugDescription
+  +bool isPointerAllowed()
+  +void addAllowedPointer()
+  -bool _representsSameSeries()
+  -void _trackTap()
+  -void _handleEvent()
+  +void acceptGesture()
+  +void rejectGesture()
+  -void _rejectPendingTap()
+  +void dispose()
+  -void _reset()
+  -void _registerTap()
+  -void _stopTrackingPointer()
+  -void _startSerialTapTimer()
+  -void _stopSerialTapTimer()
+  -void _checkUp()
+  -void _checkCancel()
+}
+
+"flutter::lib::src::gestures::multitap.dart::SerialTapGestureRecognizer" o-- "flutter::lib::src::gestures::multitap.dart::void Function(SerialTapDownDetails)"
+"flutter::lib::src::gestures::multitap.dart::SerialTapGestureRecognizer" o-- "flutter::lib::src::gestures::multitap.dart::void Function(SerialTapCancelDetails)"
+"flutter::lib::src::gestures::multitap.dart::SerialTapGestureRecognizer" o-- "flutter::lib::src::gestures::multitap.dart::void Function(SerialTapUpDetails)"
+"flutter::lib::src::gestures::multitap.dart::SerialTapGestureRecognizer" o-- "dart::async::Timer"
+"flutter::lib::src::gestures::multitap.dart::SerialTapGestureRecognizer" o-- "flutter::lib::src::gestures::multitap.dart::_TapTracker"
+"flutter::lib::src::gestures::recognizer.dart::GestureRecognizer" <|-- "flutter::lib::src::gestures::multitap.dart::SerialTapGestureRecognizer"
+
+
+@enduml

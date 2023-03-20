@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::size_changed_layout_notifier.dart::SizeChangedLayoutNotification" {
+}
+
+"flutter::lib::src::widgets::notification_listener.dart::LayoutChangedNotification" <|-- "flutter::lib::src::widgets::size_changed_layout_notifier.dart::SizeChangedLayoutNotification"
+
+class "flutter::lib::src::widgets::size_changed_layout_notifier.dart::SizeChangedLayoutNotifier" {
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::size_changed_layout_notifier.dart::SizeChangedLayoutNotifier"
+
+class "flutter::lib::src::widgets::size_changed_layout_notifier.dart::_RenderSizeChangedWithCallback" {
+  +dynamic onLayoutChangedCallback
+  -dynamic _oldSize
+  +void performLayout()
+}
+
+
+@enduml

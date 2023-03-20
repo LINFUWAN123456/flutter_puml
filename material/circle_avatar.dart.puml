@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::circle_avatar.dart::CircleAvatar" {
+  +dynamic child
+  +dynamic backgroundColor
+  +dynamic foregroundColor
+  +dynamic backgroundImage
+  +dynamic foregroundImage
+  +dynamic onBackgroundImageError
+  +dynamic onForegroundImageError
+  +double? radius
+  +double? minRadius
+  +double? maxRadius
+  {static} -double _defaultRadius
+  {static} -double _defaultMinRadius
+  {static} -double _defaultMaxRadius
+  -double _minDiameter
+  -double _maxDiameter
+  +dynamic build()
+}
+
+
+@enduml

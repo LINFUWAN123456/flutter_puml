@@ -1,0 +1,15 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::physics::simulation.dart::Simulation" {
+  +Tolerance tolerance
+  +double x()
+  +double dx()
+  +bool isDone()
+  +String toString()
+}
+
+"flutter::lib::src::physics::simulation.dart::Simulation" o-- "flutter::lib::src::physics::tolerance.dart::Tolerance"
+
+
+@enduml

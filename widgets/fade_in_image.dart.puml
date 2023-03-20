@@ -1,0 +1,70 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::fade_in_image.dart::FadeInImage" {
+  +dynamic placeholder
+  +Widget Function(BuildContext, Object, StackTrace?)? placeholderErrorBuilder
+  +dynamic image
+  +Widget Function(BuildContext, Object, StackTrace?)? imageErrorBuilder
+  +Duration fadeOutDuration
+  +dynamic fadeOutCurve
+  +Duration fadeInDuration
+  +dynamic fadeInCurve
+  +double? width
+  +double? height
+  +dynamic fit
+  +dynamic placeholderFit
+  +dynamic alignment
+  +dynamic repeat
+  +bool matchTextDirection
+  +bool excludeFromSemantics
+  +String? imageSemanticLabel
+  +State<FadeInImage> createState()
+}
+
+"flutter::lib::src::widgets::fade_in_image.dart::FadeInImage" o-- "flutter::lib::src::widgets::image.dart::Widget Function(BuildContext, Object, StackTrace)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::fade_in_image.dart::FadeInImage"
+
+class "flutter::lib::src::widgets::fade_in_image.dart::_FadeInImageState" {
+  {static} -dynamic _kOpaqueAnimation
+  +bool targetLoaded
+  -dynamic _imageAnimation
+  -dynamic _placeholderAnimation
+  -Image _image()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::fade_in_image.dart::_FadeInImageState"
+
+class "flutter::lib::src::widgets::fade_in_image.dart::_AnimatedFadeOutFadeIn" {
+  +Widget target
+  +dynamic targetProxyAnimation
+  +Widget placeholder
+  +dynamic placeholderProxyAnimation
+  +bool isTargetLoaded
+  +Duration fadeInDuration
+  +Duration fadeOutDuration
+  +dynamic fadeInCurve
+  +dynamic fadeOutCurve
+  +bool wasSynchronouslyLoaded
+  +_AnimatedFadeOutFadeInState createState()
+}
+
+"flutter::lib::src::widgets::fade_in_image.dart::_AnimatedFadeOutFadeIn" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::fade_in_image.dart::_AnimatedFadeOutFadeIn"
+
+class "flutter::lib::src::widgets::fade_in_image.dart::_AnimatedFadeOutFadeInState" {
+  -dynamic _targetOpacity
+  -dynamic _placeholderOpacity
+  -dynamic _targetOpacityAnimation
+  -dynamic _placeholderOpacityAnimation
+  +void forEachTween()
+  +void didUpdateTweens()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState" <|-- "flutter::lib::src::widgets::fade_in_image.dart::_AnimatedFadeOutFadeInState"
+
+
+@enduml

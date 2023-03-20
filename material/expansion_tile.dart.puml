@@ -1,0 +1,58 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::expansion_tile.dart::ExpansionTile" {
+  +dynamic leading
+  +dynamic title
+  +dynamic subtitle
+  +dynamic onExpansionChanged
+  +List<dynamic> children
+  +dynamic backgroundColor
+  +dynamic collapsedBackgroundColor
+  +dynamic trailing
+  +bool initiallyExpanded
+  +bool maintainState
+  +dynamic tilePadding
+  +dynamic expandedAlignment
+  +dynamic expandedCrossAxisAlignment
+  +dynamic childrenPadding
+  +dynamic iconColor
+  +dynamic collapsedIconColor
+  +dynamic textColor
+  +dynamic collapsedTextColor
+  +ListTileControlAffinity? controlAffinity
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::expansion_tile.dart::ExpansionTile" o-- "flutter::lib::src::material::list_tile.dart::ListTileControlAffinity"
+
+class "flutter::lib::src::material::expansion_tile.dart::_ExpansionTileState" {
+  {static} -dynamic _easeOutTween
+  {static} -dynamic _easeInTween
+  {static} -dynamic _halfTween
+  -dynamic _borderColorTween
+  -dynamic _headerColorTween
+  -dynamic _iconColorTween
+  -dynamic _backgroundColorTween
+  -dynamic _controller
+  -dynamic _iconTurns
+  -dynamic _heightFactor
+  -dynamic _borderColor
+  -dynamic _headerColor
+  -dynamic _iconColor
+  -dynamic _backgroundColor
+  -bool _isExpanded
+  +void initState()
+  +void dispose()
+  -void _handleTap()
+  -ListTileControlAffinity _effectiveAffinity()
+  -dynamic _buildIcon()
+  -dynamic _buildLeadingIcon()
+  -dynamic _buildTrailingIcon()
+  -dynamic _buildChildren()
+  +void didChangeDependencies()
+  +dynamic build()
+}
+
+
+@enduml

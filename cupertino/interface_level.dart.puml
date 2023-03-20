@@ -1,0 +1,26 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::interface_level.dart::CupertinoUserInterfaceLevel" {
+  -CupertinoUserInterfaceLevelData _data
+  +bool updateShouldNotify()
+  {static} +CupertinoUserInterfaceLevelData of()
+  {static} +CupertinoUserInterfaceLevelData? maybeOf()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::cupertino::interface_level.dart::CupertinoUserInterfaceLevel" o-- "flutter::lib::src::cupertino::interface_level.dart::CupertinoUserInterfaceLevelData"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::cupertino::interface_level.dart::CupertinoUserInterfaceLevel"
+
+class "flutter::lib::src::cupertino::interface_level.dart::CupertinoUserInterfaceLevelData" {
+  +int index
+  {static} +List<CupertinoUserInterfaceLevelData> values
+  {static} +CupertinoUserInterfaceLevelData base
+  {static} +CupertinoUserInterfaceLevelData elevated
+}
+
+"flutter::lib::src::cupertino::interface_level.dart::CupertinoUserInterfaceLevelData" o-- "flutter::lib::src::cupertino::interface_level.dart::CupertinoUserInterfaceLevelData"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::interface_level.dart::CupertinoUserInterfaceLevelData"
+
+
+@enduml

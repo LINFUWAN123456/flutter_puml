@@ -1,0 +1,376 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::time_picker.dart::_TimePickerFragmentContext" {
+  +TimeOfDay selectedTime
+  +_TimePickerMode mode
+  +dynamic onTimeChange
+  +dynamic onModeChange
+  +dynamic onHourDoubleTapped
+  +dynamic onMinuteDoubleTapped
+  +bool use24HourDials
+}
+
+"flutter::lib::src::material::time_picker.dart::_TimePickerFragmentContext" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+"flutter::lib::src::material::time_picker.dart::_TimePickerFragmentContext" o-- "flutter::lib::src::material::time_picker.dart::_TimePickerMode"
+
+class "flutter::lib::src::material::time_picker.dart::_TimePickerHeader" {
+  +TimeOfDay selectedTime
+  +_TimePickerMode mode
+  +dynamic orientation
+  +dynamic onModeChanged
+  +dynamic onChanged
+  +dynamic onHourDoubleTapped
+  +dynamic onMinuteDoubleTapped
+  +bool use24HourDials
+  +String? helpText
+  -void _handleChangeMode()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::time_picker.dart::_TimePickerHeader" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+"flutter::lib::src::material::time_picker.dart::_TimePickerHeader" o-- "flutter::lib::src::material::time_picker.dart::_TimePickerMode"
+
+class "flutter::lib::src::material::time_picker.dart::_HourMinuteControl" {
+  +String text
+  +dynamic onTap
+  +dynamic onDoubleTap
+  +bool isSelected
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::time_picker.dart::_HourControl" {
+  +_TimePickerFragmentContext fragmentContext
+  +dynamic build()
+}
+
+"flutter::lib::src::material::time_picker.dart::_HourControl" o-- "flutter::lib::src::material::time_picker.dart::_TimePickerFragmentContext"
+
+class "flutter::lib::src::material::time_picker.dart::_StringFragment" {
+  +TimeOfDayFormat timeOfDayFormat
+  -String _stringFragmentValue()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::time_picker.dart::_StringFragment" o-- "flutter::lib::src::material::time.dart::TimeOfDayFormat"
+
+class "flutter::lib::src::material::time_picker.dart::_MinuteControl" {
+  +_TimePickerFragmentContext fragmentContext
+  +dynamic build()
+}
+
+"flutter::lib::src::material::time_picker.dart::_MinuteControl" o-- "flutter::lib::src::material::time_picker.dart::_TimePickerFragmentContext"
+
+class "flutter::lib::src::material::time_picker.dart::_DayPeriodControl" {
+  +TimeOfDay selectedTime
+  +dynamic orientation
+  +dynamic onChanged
+  -void _togglePeriod()
+  -void _setAm()
+  -void _setPm()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::time_picker.dart::_DayPeriodControl" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+
+class "flutter::lib::src::material::time_picker.dart::_DayPeriodInputPadding" {
+  +dynamic minSize
+  +dynamic orientation
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::time_picker.dart::_RenderInputPadding" {
+  +dynamic orientation
+  -dynamic _minSize
+  +dynamic minSize
+  +double computeMinIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicWidth()
+  +double computeMaxIntrinsicHeight()
+  -dynamic _computeSize()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +bool hitTest()
+}
+
+class "flutter::lib::src::material::time_picker.dart::_TappableLabel" {
+  +int value
+  +dynamic painter
+  +dynamic onTap
+}
+
+class "flutter::lib::src::material::time_picker.dart::_DialPainter" {
+  +List<_TappableLabel> primaryLabels
+  +List<_TappableLabel> secondaryLabels
+  +dynamic backgroundColor
+  +dynamic accentColor
+  +dynamic dotColor
+  +double theta
+  +dynamic textDirection
+  +int selectedValue
+  {static} -double _labelPadding
+  +void paint()
+  +bool shouldRepaint()
+}
+
+class "flutter::lib::src::material::time_picker.dart::_Dial" {
+  +TimeOfDay selectedTime
+  +_TimePickerMode mode
+  +bool use24HourDials
+  +dynamic onChanged
+  +dynamic onHourSelected
+  +_DialState createState()
+}
+
+"flutter::lib::src::material::time_picker.dart::_Dial" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+"flutter::lib::src::material::time_picker.dart::_Dial" o-- "flutter::lib::src::material::time_picker.dart::_TimePickerMode"
+
+class "flutter::lib::src::material::time_picker.dart::_DialState" {
+  +ThemeData themeData
+  +MaterialLocalizations localizations
+  +dynamic media
+  -dynamic _thetaTween
+  -dynamic _theta
+  -dynamic _thetaController
+  -bool _dragging
+  -dynamic _position
+  -dynamic _center
+  {static} -List<TimeOfDay> _amHours
+  {static} -List<TimeOfDay> _twentyFourHours
+  +void initState()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  {static} -double _nearest()
+  -void _animateTo()
+  -double _getThetaForTime()
+  -TimeOfDay _getTimeForTheta()
+  -TimeOfDay _notifyOnChangedIfNeeded()
+  -void _updateThetaForPan()
+  -void _handlePanStart()
+  -void _handlePanUpdate()
+  -void _handlePanEnd()
+  -void _handleTapUp()
+  -void _selectHour()
+  -void _selectMinute()
+  -_TappableLabel _buildTappableLabel()
+  -List<_TappableLabel> _build24HourRing()
+  -List<_TappableLabel> _build12HourRing()
+  -List<_TappableLabel> _buildMinutes()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::time_picker.dart::_DialState" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+"flutter::lib::src::material::time_picker.dart::_DialState" o-- "flutter::lib::src::material::material_localizations.dart::MaterialLocalizations"
+
+class "flutter::lib::src::material::time_picker.dart::_TimePickerInput" {
+  +TimeOfDay initialSelectedTime
+  +String? helpText
+  +String? errorInvalidText
+  +String? hourLabelText
+  +String? minuteLabelText
+  +bool? autofocusHour
+  +bool? autofocusMinute
+  +dynamic onChanged
+  +String? restorationId
+  +_TimePickerInputState createState()
+}
+
+"flutter::lib::src::material::time_picker.dart::_TimePickerInput" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+
+class "flutter::lib::src::material::time_picker.dart::_TimePickerInputState" {
+  -RestorableTimeOfDay _selectedTime
+  +dynamic hourHasError
+  +dynamic minuteHasError
+  +String? restorationId
+  +void restoreState()
+  -int? _parseHour()
+  -int? _parseMinute()
+  -void _handleHourSavedSubmitted()
+  -void _handleHourChanged()
+  -void _handleMinuteSavedSubmitted()
+  -void _handleDayPeriodChanged()
+  -String? _validateHour()
+  -String? _validateMinute()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::time_picker.dart::_TimePickerInputState" o-- "flutter::lib::src::material::time.dart::RestorableTimeOfDay"
+
+class "flutter::lib::src::material::time_picker.dart::_HourTextField" {
+  +TimeOfDay selectedTime
+  +dynamic style
+  +bool? autofocus
+  +dynamic validator
+  +dynamic onSavedSubmitted
+  +dynamic onChanged
+  +String? hourLabelText
+  +String? restorationId
+  +dynamic build()
+}
+
+"flutter::lib::src::material::time_picker.dart::_HourTextField" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+
+class "flutter::lib::src::material::time_picker.dart::_MinuteTextField" {
+  +TimeOfDay selectedTime
+  +dynamic style
+  +bool? autofocus
+  +dynamic validator
+  +dynamic onSavedSubmitted
+  +String? minuteLabelText
+  +String? restorationId
+  +dynamic build()
+}
+
+"flutter::lib::src::material::time_picker.dart::_MinuteTextField" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+
+class "flutter::lib::src::material::time_picker.dart::_HourMinuteTextField" {
+  +TimeOfDay selectedTime
+  +bool isHour
+  +bool? autofocus
+  +dynamic style
+  +String semanticHintText
+  +dynamic validator
+  +dynamic onSavedSubmitted
+  +dynamic onChanged
+  +String? restorationId
+  +_HourMinuteTextFieldState createState()
+}
+
+"flutter::lib::src::material::time_picker.dart::_HourMinuteTextField" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+
+class "flutter::lib::src::material::time_picker.dart::_HourMinuteTextFieldState" {
+  +dynamic controller
+  +dynamic controllerHasBeenSet
+  +dynamic focusNode
+  +String? restorationId
+  -String _formattedValue
+  +void initState()
+  +void didChangeDependencies()
+  +void restoreState()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::time_picker.dart::TimePickerDialog" {
+  +TimeOfDay initialTime
+  +TimePickerEntryMode initialEntryMode
+  +String? cancelText
+  +String? confirmText
+  +String? helpText
+  +String? errorInvalidText
+  +String? hourLabelText
+  +String? minuteLabelText
+  +String? restorationId
+  +void Function(TimePickerEntryMode)? onEntryModeChanged
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::time_picker.dart::TimePickerDialog" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+"flutter::lib::src::material::time_picker.dart::TimePickerDialog" o-- "flutter::lib::src::material::time_picker.dart::TimePickerEntryMode"
+"flutter::lib::src::material::time_picker.dart::TimePickerDialog" o-- "flutter::lib::src::material::time_picker.dart::void Function(TimePickerEntryMode)"
+
+class "flutter::lib::src::material::time_picker.dart::_RestorableTimePickerEntryMode" {
+  -TimePickerEntryMode _defaultValue
+  +TimePickerEntryMode createDefaultValue()
+  +void didUpdateValue()
+  +TimePickerEntryMode fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::material::time_picker.dart::_RestorableTimePickerEntryMode" o-- "flutter::lib::src::material::time_picker.dart::TimePickerEntryMode"
+
+class "flutter::lib::src::material::time_picker.dart::_RestorableTimePickerMode" {
+  -_TimePickerMode _defaultValue
+  +_TimePickerMode createDefaultValue()
+  +void didUpdateValue()
+  +_TimePickerMode fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::material::time_picker.dart::_RestorableTimePickerMode" o-- "flutter::lib::src::material::time_picker.dart::_TimePickerMode"
+
+class "flutter::lib::src::material::time_picker.dart::_RestorableAutovalidateMode" {
+  -dynamic _defaultValue
+  +dynamic createDefaultValue()
+  +void didUpdateValue()
+  +dynamic fromPrimitives()
+  +Object? toPrimitives()
+}
+
+class "flutter::lib::src::material::time_picker.dart::_RestorableTimePickerModeN" {
+  -_TimePickerMode? _defaultValue
+  +_TimePickerMode? createDefaultValue()
+  +void didUpdateValue()
+  +_TimePickerMode fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::material::time_picker.dart::_RestorableTimePickerModeN" o-- "flutter::lib::src::material::time_picker.dart::_TimePickerMode"
+
+class "flutter::lib::src::material::time_picker.dart::_TimePickerDialogState" {
+  -dynamic _formKey
+  -_RestorableTimePickerEntryMode _entryMode
+  -_RestorableTimePickerMode _mode
+  -_RestorableTimePickerModeN _lastModeAnnounced
+  -_RestorableAutovalidateMode _autovalidateMode
+  -dynamic _autofocusHour
+  -dynamic _autofocusMinute
+  -dynamic _announcedInitialTime
+  -dynamic _entryModeListener
+  -RestorableTimeOfDay _selectedTime
+  -Timer? _vibrateTimer
+  +MaterialLocalizations localizations
+  +String? restorationId
+  +RestorableTimeOfDay selectedTime
+  +void didChangeDependencies()
+  +void initState()
+  +void restoreState()
+  -void _vibrate()
+  -void _handleModeChanged()
+  -void _handleEntryModeToggle()
+  -void _announceModeOnce()
+  -void _announceInitialTimeOnce()
+  -void _handleTimeChanged()
+  -void _handleHourDoubleTapped()
+  -void _handleMinuteDoubleTapped()
+  -void _handleHourSelected()
+  -void _handleCancel()
+  -void _handleOk()
+  -dynamic _dialogSize()
+  +dynamic build()
+  +void dispose()
+}
+
+"flutter::lib::src::material::time_picker.dart::_TimePickerDialogState" o-- "flutter::lib::src::material::time_picker.dart::_RestorableTimePickerEntryMode"
+"flutter::lib::src::material::time_picker.dart::_TimePickerDialogState" o-- "flutter::lib::src::material::time_picker.dart::_RestorableTimePickerMode"
+"flutter::lib::src::material::time_picker.dart::_TimePickerDialogState" o-- "flutter::lib::src::material::time_picker.dart::_RestorableTimePickerModeN"
+"flutter::lib::src::material::time_picker.dart::_TimePickerDialogState" o-- "flutter::lib::src::material::time_picker.dart::_RestorableAutovalidateMode"
+"flutter::lib::src::material::time_picker.dart::_TimePickerDialogState" o-- "flutter::lib::src::material::time.dart::RestorableTimeOfDay"
+"flutter::lib::src::material::time_picker.dart::_TimePickerDialogState" o-- "dart::async::Timer"
+"flutter::lib::src::material::time_picker.dart::_TimePickerDialogState" o-- "flutter::lib::src::material::material_localizations.dart::MaterialLocalizations"
+
+class "flutter::lib::src::material::time_picker.dart::_TimePickerMode" {
+  +int index
+  {static} +List<_TimePickerMode> values
+  {static} +_TimePickerMode hour
+  {static} +_TimePickerMode minute
+}
+
+"flutter::lib::src::material::time_picker.dart::_TimePickerMode" o-- "flutter::lib::src::material::time_picker.dart::_TimePickerMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::time_picker.dart::_TimePickerMode"
+
+class "flutter::lib::src::material::time_picker.dart::TimePickerEntryMode" {
+  +int index
+  {static} +List<TimePickerEntryMode> values
+  {static} +TimePickerEntryMode dial
+  {static} +TimePickerEntryMode input
+  {static} +TimePickerEntryMode dialOnly
+  {static} +TimePickerEntryMode inputOnly
+}
+
+"flutter::lib::src::material::time_picker.dart::TimePickerEntryMode" o-- "flutter::lib::src::material::time_picker.dart::TimePickerEntryMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::time_picker.dart::TimePickerEntryMode"
+
+
+@enduml

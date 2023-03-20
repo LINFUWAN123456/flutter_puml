@@ -1,0 +1,67 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::table.dart::TableRow" {
+  +dynamic key
+  +dynamic decoration
+  +List<Widget>? children
+  +String toString()
+}
+
+class "flutter::lib::src::widgets::table.dart::_TableElementRow" {
+  +dynamic key
+  +List<Element> children
+}
+
+class "flutter::lib::src::widgets::table.dart::Table" {
+  +List<TableRow> children
+  +Map<int, dynamic>? columnWidths
+  +dynamic defaultColumnWidth
+  +dynamic textDirection
+  +dynamic border
+  +dynamic defaultVerticalAlignment
+  +dynamic textBaseline
+  -List<dynamic>? _rowDecorations
+  +RenderObjectElement createElement()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::RenderObjectWidget" <|-- "flutter::lib::src::widgets::table.dart::Table"
+
+class "flutter::lib::src::widgets::table.dart::_TableElement" {
+  -List<_TableElementRow> _children
+  -bool _doingMountOrUpdate
+  -Set<Element> _forgottenChildren
+  +dynamic renderObject
+  +void mount()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+  +void update()
+  -void _updateRenderObjectChildren()
+  +void visitChildren()
+  +bool forgetChild()
+}
+
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::table.dart::_TableElement"
+
+class "flutter::lib::src::widgets::table.dart::TableCell" {
+  +dynamic verticalAlignment
+  +Type debugTypicalAncestorWidgetClass
+  +void applyParentData()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::ParentDataWidget" <|-- "flutter::lib::src::widgets::table.dart::TableCell"
+
+class "flutter::lib::src::widgets::table.dart::_TableSlot" {
+  +int column
+  +int row
+  +int hashCode
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

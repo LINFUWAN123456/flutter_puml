@@ -1,0 +1,32 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::resampler.dart::PointerEventResampler" {
+  -Queue<PointerEvent> _queuedEvents
+  -PointerEvent? _last
+  -PointerEvent? _next
+  -dynamic _position
+  -bool _isTracked
+  -bool _isDown
+  -int _pointerIdentifier
+  -int _hasButtons
+  +bool hasPendingEvents
+  +bool isTracked
+  +bool isDown
+  -PointerEvent _toHoverEvent()
+  -PointerEvent _toMoveEvent()
+  -PointerEvent _toMoveOrHoverEvent()
+  -dynamic _positionAt()
+  -void _processPointerEvents()
+  -void _dequeueAndSampleNonHoverOrMovePointerEventsUntil()
+  -void _samplePointerPosition()
+  +void addEvent()
+  +void sample()
+  +void stop()
+}
+
+"flutter::lib::src::gestures::resampler.dart::PointerEventResampler" o-- "dart::collection::Queue<PointerEvent>"
+"flutter::lib::src::gestures::resampler.dart::PointerEventResampler" o-- "flutter::lib::src::gestures::events.dart::PointerEvent"
+
+
+@enduml

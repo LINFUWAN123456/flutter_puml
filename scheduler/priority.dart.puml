@@ -1,0 +1,18 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::scheduler::priority.dart::Priority" {
+  -int _value
+  {static} +Priority idle
+  {static} +Priority animation
+  {static} +Priority touch
+  {static} +int kMaxOffset
+  +int value
+  +Priority +()
+  +Priority -()
+}
+
+"flutter::lib::src::scheduler::priority.dart::Priority" o-- "flutter::lib::src::scheduler::priority.dart::Priority"
+
+
+@enduml

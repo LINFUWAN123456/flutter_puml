@@ -1,0 +1,84 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::mergeable_material.dart::MergeableMaterialItem" {
+  +dynamic key
+}
+
+class "flutter::lib::src::material::mergeable_material.dart::MaterialSlice" {
+  +dynamic child
+  +dynamic color
+  +String toString()
+}
+
+"flutter::lib::src::material::mergeable_material.dart::MergeableMaterialItem" <|-- "flutter::lib::src::material::mergeable_material.dart::MaterialSlice"
+
+class "flutter::lib::src::material::mergeable_material.dart::MaterialGap" {
+  +double size
+  +String toString()
+}
+
+"flutter::lib::src::material::mergeable_material.dart::MergeableMaterialItem" <|-- "flutter::lib::src::material::mergeable_material.dart::MaterialGap"
+
+class "flutter::lib::src::material::mergeable_material.dart::MergeableMaterial" {
+  +List<MergeableMaterialItem> children
+  +dynamic mainAxis
+  +double elevation
+  +bool hasDividers
+  +dynamic dividerColor
+  +void debugFillProperties()
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::mergeable_material.dart::_AnimationTuple" {
+  +dynamic controller
+  +dynamic startAnimation
+  +dynamic endAnimation
+  +dynamic gapAnimation
+  +double gapStart
+}
+
+class "flutter::lib::src::material::mergeable_material.dart::_MergeableMaterialState" {
+  -List<MergeableMaterialItem> _children
+  -Map<dynamic, _AnimationTuple?> _animationTuples
+  +void initState()
+  -void _initGap()
+  +void dispose()
+  -void _handleTick()
+  -bool _debugHasConsecutiveGaps()
+  -bool _debugGapsAreValid()
+  -void _insertChild()
+  -void _removeChild()
+  -bool _isClosingGap()
+  -void _removeEmptyGaps()
+  +void didUpdateWidget()
+  -dynamic _borderRadius()
+  -double _getGapSize()
+  -bool _willNeedDivider()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::mergeable_material.dart::_MergeableMaterialSliceKey" {
+  +dynamic value
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::material::mergeable_material.dart::_MergeableMaterialListBody" {
+  +List<MergeableMaterialItem> items
+  +double elevation
+  -dynamic _getDirection()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::mergeable_material.dart::_RenderMergeableMaterialListBody" {
+  -double _elevation
+  +double elevation
+  -void _paintShadows()
+  +void paint()
+}
+
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::services::message_codec.dart::MessageCodec" {
+  +dynamic encodeMessage()
+  +T? decodeMessage()
+}
+
+class "flutter::lib::src::services::message_codec.dart::MethodCall" {
+  +String method
+  +dynamic arguments
+  +String toString()
+}
+
+abstract class "flutter::lib::src::services::message_codec.dart::MethodCodec" {
+  +dynamic encodeMethodCall()
+  +MethodCall decodeMethodCall()
+  +dynamic decodeEnvelope()
+  +dynamic encodeSuccessEnvelope()
+  +dynamic encodeErrorEnvelope()
+}
+
+class "flutter::lib::src::services::message_codec.dart::PlatformException" {
+  +String code
+  +String? message
+  +dynamic details
+  +String? stacktrace
+  +String toString()
+}
+
+"dart::core::Exception" <|-- "flutter::lib::src::services::message_codec.dart::PlatformException"
+
+class "flutter::lib::src::services::message_codec.dart::MissingPluginException" {
+  +String? message
+  +String toString()
+}
+
+"dart::core::Exception" <|-- "flutter::lib::src::services::message_codec.dart::MissingPluginException"
+
+
+@enduml

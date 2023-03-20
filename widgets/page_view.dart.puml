@@ -1,0 +1,103 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::page_view.dart::PageController" {
+  +int initialPage
+  +bool keepPage
+  +double viewportFraction
+  +double? page
+  +Future<void> animateToPage()
+  +void jumpToPage()
+  +Future<void> nextPage()
+  +Future<void> previousPage()
+  +ScrollPosition createScrollPosition()
+  +void attach()
+}
+
+"flutter::lib::src::widgets::scroll_controller.dart::ScrollController" <|-- "flutter::lib::src::widgets::page_view.dart::PageController"
+
+class "flutter::lib::src::widgets::page_view.dart::PageMetrics" {
+  +double viewportFraction
+  +double? page
+  +PageMetrics copyWith()
+}
+
+"flutter::lib::src::widgets::scroll_metrics.dart::FixedScrollMetrics" <|-- "flutter::lib::src::widgets::page_view.dart::PageMetrics"
+
+class "flutter::lib::src::widgets::page_view.dart::_PagePosition" {
+  +int initialPage
+  -double _pageToUseOnStartup
+  -double? _cachedPage
+  -double _viewportFraction
+  +double viewportFraction
+  -double _initialPageOffset
+  +double? page
+  +Future<void> ensureVisible()
+  +double getPageFromPixels()
+  +double getPixelsFromPage()
+  +void saveScrollOffset()
+  +void restoreScrollOffset()
+  +void saveOffset()
+  +void restoreOffset()
+  +bool applyViewportDimension()
+  +void absorb()
+  +bool applyContentDimensions()
+  +PageMetrics copyWith()
+}
+
+"flutter::lib::src::widgets::scroll_position_with_single_context.dart::ScrollPositionWithSingleContext" <|-- "flutter::lib::src::widgets::page_view.dart::_PagePosition"
+"flutter::lib::src::widgets::page_view.dart::PageMetrics" <|-- "flutter::lib::src::widgets::page_view.dart::_PagePosition"
+
+class "flutter::lib::src::widgets::page_view.dart::_ForceImplicitScrollPhysics" {
+  +bool allowImplicitScrolling
+  +_ForceImplicitScrollPhysics applyTo()
+}
+
+"flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" <|-- "flutter::lib::src::widgets::page_view.dart::_ForceImplicitScrollPhysics"
+
+class "flutter::lib::src::widgets::page_view.dart::PageScrollPhysics" {
+  +bool allowImplicitScrolling
+  +PageScrollPhysics applyTo()
+  -double _getPage()
+  -double _getPixels()
+  -double _getTargetPixels()
+  +dynamic createBallisticSimulation()
+}
+
+"flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics" <|-- "flutter::lib::src::widgets::page_view.dart::PageScrollPhysics"
+
+class "flutter::lib::src::widgets::page_view.dart::PageView" {
+  +bool allowImplicitScrolling
+  +String? restorationId
+  +dynamic scrollDirection
+  +bool reverse
+  +PageController controller
+  +ScrollPhysics? physics
+  +bool pageSnapping
+  +dynamic onPageChanged
+  +SliverChildDelegate childrenDelegate
+  +dynamic dragStartBehavior
+  +dynamic clipBehavior
+  +ScrollBehavior? scrollBehavior
+  +bool padEnds
+  +State<PageView> createState()
+}
+
+"flutter::lib::src::widgets::page_view.dart::PageView" o-- "flutter::lib::src::widgets::page_view.dart::PageController"
+"flutter::lib::src::widgets::page_view.dart::PageView" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::page_view.dart::PageView" o-- "flutter::lib::src::widgets::sliver.dart::SliverChildDelegate"
+"flutter::lib::src::widgets::page_view.dart::PageView" o-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::page_view.dart::PageView"
+
+class "flutter::lib::src::widgets::page_view.dart::_PageViewState" {
+  -int _lastReportedPage
+  +void initState()
+  -dynamic _getDirection()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::page_view.dart::_PageViewState"
+
+
+@enduml

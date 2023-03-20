@@ -1,0 +1,16 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::synchronous_future.dart::SynchronousFuture" {
+  -T _value
+  +Stream<T> asStream()
+  +Future<T> catchError()
+  +Future<R> then()
+  +Future<T> timeout()
+  +Future<T> whenComplete()
+}
+
+"dart::async::Future" <|-- "flutter::lib::src::foundation::synchronous_future.dart::SynchronousFuture"
+
+
+@enduml

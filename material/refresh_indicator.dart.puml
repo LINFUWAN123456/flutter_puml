@@ -1,0 +1,78 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::refresh_indicator.dart::RefreshIndicator" {
+  +dynamic child
+  +double displacement
+  +double edgeOffset
+  +Future<void> Function() onRefresh
+  +dynamic color
+  +dynamic backgroundColor
+  +dynamic notificationPredicate
+  +String? semanticsLabel
+  +String? semanticsValue
+  +double strokeWidth
+  +RefreshIndicatorTriggerMode triggerMode
+  +RefreshIndicatorState createState()
+}
+
+"flutter::lib::src::material::refresh_indicator.dart::RefreshIndicator" o-- "flutter::lib::src::material::refresh_indicator.dart::Future<void> Function()"
+"flutter::lib::src::material::refresh_indicator.dart::RefreshIndicator" o-- "flutter::lib::src::material::refresh_indicator.dart::RefreshIndicatorTriggerMode"
+
+class "flutter::lib::src::material::refresh_indicator.dart::RefreshIndicatorState" {
+  -dynamic _positionController
+  -dynamic _scaleController
+  -dynamic _positionFactor
+  -dynamic _scaleFactor
+  -dynamic _value
+  -dynamic _valueColor
+  -_RefreshIndicatorMode? _mode
+  -Future<void> _pendingRefreshFuture
+  -bool? _isIndicatorAtTop
+  -double? _dragOffset
+  {static} -dynamic _threeQuarterTween
+  {static} -dynamic _kDragSizeFactorLimitTween
+  {static} -dynamic _oneToZeroTween
+  +void initState()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  -bool _shouldStart()
+  -bool _handleScrollNotification()
+  -bool _handleIndicatorNotification()
+  -bool _start()
+  -void _checkDragOffset()
+  -Future<void> _dismiss()
+  -void _show()
+  +Future<void> show()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::refresh_indicator.dart::RefreshIndicatorState" o-- "flutter::lib::src::material::refresh_indicator.dart::_RefreshIndicatorMode"
+
+class "flutter::lib::src::material::refresh_indicator.dart::_RefreshIndicatorMode" {
+  +int index
+  {static} +List<_RefreshIndicatorMode> values
+  {static} +_RefreshIndicatorMode drag
+  {static} +_RefreshIndicatorMode armed
+  {static} +_RefreshIndicatorMode snap
+  {static} +_RefreshIndicatorMode refresh
+  {static} +_RefreshIndicatorMode done
+  {static} +_RefreshIndicatorMode canceled
+}
+
+"flutter::lib::src::material::refresh_indicator.dart::_RefreshIndicatorMode" o-- "flutter::lib::src::material::refresh_indicator.dart::_RefreshIndicatorMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::refresh_indicator.dart::_RefreshIndicatorMode"
+
+class "flutter::lib::src::material::refresh_indicator.dart::RefreshIndicatorTriggerMode" {
+  +int index
+  {static} +List<RefreshIndicatorTriggerMode> values
+  {static} +RefreshIndicatorTriggerMode anywhere
+  {static} +RefreshIndicatorTriggerMode onEdge
+}
+
+"flutter::lib::src::material::refresh_indicator.dart::RefreshIndicatorTriggerMode" o-- "flutter::lib::src::material::refresh_indicator.dart::RefreshIndicatorTriggerMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::refresh_indicator.dart::RefreshIndicatorTriggerMode"
+
+
+@enduml

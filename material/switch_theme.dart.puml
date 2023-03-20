@@ -1,0 +1,30 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::switch_theme.dart::SwitchThemeData" {
+  +MaterialStateProperty<dynamic>? thumbColor
+  +MaterialStateProperty<dynamic>? trackColor
+  +MaterialTapTargetSize? materialTapTargetSize
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +double? splashRadius
+  +int hashCode
+  +SwitchThemeData copyWith()
+  {static} +SwitchThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::switch_theme.dart::SwitchThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::switch_theme.dart::SwitchThemeData" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+
+class "flutter::lib::src::material::switch_theme.dart::SwitchTheme" {
+  +SwitchThemeData data
+  {static} +SwitchThemeData of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::switch_theme.dart::SwitchTheme" o-- "flutter::lib::src::material::switch_theme.dart::SwitchThemeData"
+
+
+@enduml

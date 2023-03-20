@@ -1,0 +1,11 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::sliver_list.dart::RenderSliverList" {
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverMultiBoxAdaptor" <|-- "flutter::lib::src::rendering::sliver_list.dart::RenderSliverList"
+
+
+@enduml

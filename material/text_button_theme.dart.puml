@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::text_button_theme.dart::TextButtonThemeData" {
+  +ButtonStyle? style
+  +int hashCode
+  {static} +TextButtonThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::text_button_theme.dart::TextButtonThemeData" o-- "flutter::lib::src::material::button_style.dart::ButtonStyle"
+
+class "flutter::lib::src::material::text_button_theme.dart::TextButtonTheme" {
+  +TextButtonThemeData data
+  {static} +TextButtonThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::text_button_theme.dart::TextButtonTheme" o-- "flutter::lib::src::material::text_button_theme.dart::TextButtonThemeData"
+
+
+@enduml

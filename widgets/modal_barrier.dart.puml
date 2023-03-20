@@ -1,0 +1,60 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::modal_barrier.dart::ModalBarrier" {
+  +dynamic color
+  +bool dismissible
+  +dynamic onDismiss
+  +bool? barrierSemanticsDismissible
+  +String? semanticsLabel
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::modal_barrier.dart::ModalBarrier"
+
+class "flutter::lib::src::widgets::modal_barrier.dart::AnimatedModalBarrier" {
+  +bool dismissible
+  +String? semanticsLabel
+  +bool? barrierSemanticsDismissible
+  +dynamic onDismiss
+  +dynamic color
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::modal_barrier.dart::AnimatedModalBarrier"
+
+class "flutter::lib::src::widgets::modal_barrier.dart::_AnyTapGestureRecognizer" {
+  +dynamic onAnyTapUp
+  +String debugDescription
+  +bool isPointerAllowed()
+  +void handleTapDown()
+  +void handleTapUp()
+  +void handleTapCancel()
+}
+
+class "flutter::lib::src::widgets::modal_barrier.dart::_ModalBarrierSemanticsDelegate" {
+  +dynamic onDismiss
+  +void assignSemantics()
+}
+
+"flutter::lib::src::widgets::gesture_detector.dart::SemanticsGestureDelegate" <|-- "flutter::lib::src::widgets::modal_barrier.dart::_ModalBarrierSemanticsDelegate"
+
+class "flutter::lib::src::widgets::modal_barrier.dart::_AnyTapGestureRecognizerFactory" {
+  +dynamic onAnyTapUp
+  +_AnyTapGestureRecognizer constructor()
+  +void initializer()
+}
+
+"flutter::lib::src::widgets::gesture_detector.dart::GestureRecognizerFactory" <|-- "flutter::lib::src::widgets::modal_barrier.dart::_AnyTapGestureRecognizerFactory"
+
+class "flutter::lib::src::widgets::modal_barrier.dart::_ModalBarrierGestureDetector" {
+  +Widget child
+  +dynamic onDismiss
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::modal_barrier.dart::_ModalBarrierGestureDetector" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::modal_barrier.dart::_ModalBarrierGestureDetector"
+
+
+@enduml

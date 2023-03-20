@@ -1,0 +1,43 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::view.dart::ViewConfiguration" {
+  +dynamic size
+  +double devicePixelRatio
+  +int hashCode
+  +dynamic toMatrix()
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::view.dart::RenderView" {
+  -dynamic _size
+  -ViewConfiguration _configuration
+  -dynamic _window
+  +bool automaticSystemUiAdjustment
+  -dynamic _rootTransform
+  +dynamic size
+  +ViewConfiguration configuration
+  +bool isRepaintBoundary
+  +dynamic paintBounds
+  +dynamic semanticBounds
+  +void prepareInitialFrame()
+  -TransformLayer _updateMatricesAndCreateNewRootLayer()
+  +void debugAssertDoesMeetConstraints()
+  +void performResize()
+  +void performLayout()
+  +bool hitTest()
+  +dynamic hitTestMouseTrackers()
+  +void paint()
+  +void applyPaintTransform()
+  +void compositeFrame()
+  -void _updateSystemChrome()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::view.dart::RenderView" o-- "flutter::lib::src::rendering::view.dart::ViewConfiguration"
+"flutter::lib::src::rendering::object.dart::RenderObject" <|-- "flutter::lib::src::rendering::view.dart::RenderView"
+"flutter::lib::src::rendering::object.dart::RenderObjectWithChildMixin" <|-- "flutter::lib::src::rendering::view.dart::RenderView"
+
+
+@enduml

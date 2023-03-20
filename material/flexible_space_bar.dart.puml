@@ -1,0 +1,57 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::flexible_space_bar.dart::FlexibleSpaceBar" {
+  +dynamic title
+  +dynamic background
+  +bool? centerTitle
+  +CollapseMode collapseMode
+  +List<StretchMode> stretchModes
+  +dynamic titlePadding
+  +double expandedTitleScale
+  {static} +dynamic createSettings()
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::flexible_space_bar.dart::FlexibleSpaceBar" o-- "flutter::lib::src::material::flexible_space_bar.dart::CollapseMode"
+
+class "flutter::lib::src::material::flexible_space_bar.dart::_FlexibleSpaceBarState" {
+  -bool _getEffectiveCenterTitle()
+  -dynamic _getTitleAlignment()
+  -double _getCollapsePadding()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::flexible_space_bar.dart::FlexibleSpaceBarSettings" {
+  +double toolbarOpacity
+  +double minExtent
+  +double maxExtent
+  +double currentExtent
+  +bool? isScrolledUnder
+  +bool updateShouldNotify()
+}
+
+class "flutter::lib::src::material::flexible_space_bar.dart::CollapseMode" {
+  +int index
+  {static} +List<CollapseMode> values
+  {static} +CollapseMode parallax
+  {static} +CollapseMode pin
+  {static} +CollapseMode none
+}
+
+"flutter::lib::src::material::flexible_space_bar.dart::CollapseMode" o-- "flutter::lib::src::material::flexible_space_bar.dart::CollapseMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::flexible_space_bar.dart::CollapseMode"
+
+class "flutter::lib::src::material::flexible_space_bar.dart::StretchMode" {
+  +int index
+  {static} +List<StretchMode> values
+  {static} +StretchMode zoomBackground
+  {static} +StretchMode blurBackground
+  {static} +StretchMode fadeTitle
+}
+
+"flutter::lib::src::material::flexible_space_bar.dart::StretchMode" o-- "flutter::lib::src::material::flexible_space_bar.dart::StretchMode"
+"dart::core::Enum" <|-- "flutter::lib::src::material::flexible_space_bar.dart::StretchMode"
+
+
+@enduml

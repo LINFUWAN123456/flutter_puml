@@ -1,0 +1,67 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::button.dart::RawMaterialButton" {
+  +dynamic onPressed
+  +dynamic onLongPress
+  +dynamic onHighlightChanged
+  +dynamic mouseCursor
+  +dynamic textStyle
+  +dynamic fillColor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic highlightColor
+  +dynamic splashColor
+  +double elevation
+  +double hoverElevation
+  +double focusElevation
+  +double highlightElevation
+  +double disabledElevation
+  +dynamic padding
+  +VisualDensity visualDensity
+  +dynamic constraints
+  +dynamic shape
+  +Duration animationDuration
+  +dynamic child
+  +MaterialTapTargetSize materialTapTargetSize
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic clipBehavior
+  +bool enableFeedback
+  +bool enabled
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::button.dart::RawMaterialButton" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::button.dart::RawMaterialButton" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+
+class "flutter::lib::src::material::button.dart::_RawMaterialButtonState" {
+  -double _effectiveElevation
+  +void initState()
+  +void didUpdateWidget()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::material_state_mixin.dart::MaterialStateMixin" <|-- "flutter::lib::src::material::button.dart::_RawMaterialButtonState"
+
+class "flutter::lib::src::material::button.dart::_InputPadding" {
+  +dynamic minSize
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::button.dart::_RenderInputPadding" {
+  -dynamic _minSize
+  +dynamic minSize
+  +double computeMinIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicWidth()
+  +double computeMaxIntrinsicHeight()
+  -dynamic _computeSize()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +bool hitTest()
+}
+
+
+@enduml

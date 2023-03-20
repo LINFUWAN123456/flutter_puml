@@ -1,0 +1,253 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupInfo" {
+  +FocusNode? groupNode
+  +FocusTraversalPolicy policy
+  +List<FocusNode> members
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupInfo" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupInfo" o-- "flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalPolicy"
+
+abstract class "flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalPolicy" {
+  +FocusNode? findFirstFocus()
+  +FocusNode findLastFocus()
+  -FocusNode _findInitialFocus()
+  +FocusNode? findFirstFocusInDirection()
+  +void invalidateScopeData()
+  +void changedScope()
+  +bool next()
+  +bool previous()
+  +bool inDirection()
+  +Iterable<FocusNode> sortDescendants()
+  -_FocusTraversalGroupMarker? _getMarker()
+  -List<FocusNode> _sortAllDescendants()
+  -bool _moveFocus()
+}
+
+class "flutter::lib::src::widgets::focus_traversal.dart::_DirectionalPolicyDataEntry" {
+  +TraversalDirection direction
+  +FocusNode node
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::_DirectionalPolicyDataEntry" o-- "flutter::lib::src::widgets::focus_traversal.dart::TraversalDirection"
+"flutter::lib::src::widgets::focus_traversal.dart::_DirectionalPolicyDataEntry" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::_DirectionalPolicyData" {
+  +List<_DirectionalPolicyDataEntry> history
+}
+
+class "flutter::lib::src::widgets::focus_traversal.dart::WidgetOrderTraversalPolicy" {
+  +Iterable<FocusNode> sortDescendants()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalPolicy" <|-- "flutter::lib::src::widgets::focus_traversal.dart::WidgetOrderTraversalPolicy"
+"flutter::lib::src::widgets::focus_traversal.dart::DirectionalFocusTraversalPolicyMixin" <|-- "flutter::lib::src::widgets::focus_traversal.dart::WidgetOrderTraversalPolicy"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::_ReadingOrderSortData" {
+  +dynamic directionality
+  +dynamic rect
+  +FocusNode node
+  -List<Directionality>? _directionalAncestors
+  +Iterable<Directionality> directionalAncestors
+  {static} -dynamic _findDirectionality()
+  {static} +dynamic commonDirectionalityOf()
+  {static} +void sortWithDirectionality()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::_ReadingOrderSortData" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::_ReadingOrderDirectionalGroupData" {
+  +List<_ReadingOrderSortData> members
+  -dynamic _rect
+  -List<Directionality>? _memberAncestors
+  +dynamic directionality
+  +dynamic rect
+  +List<Directionality> memberAncestors
+  {static} +void sortWithDirectionality()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::widgets::focus_traversal.dart::ReadingOrderTraversalPolicy" {
+  -List<_ReadingOrderDirectionalGroupData> _collectDirectionalityGroups()
+  -_ReadingOrderSortData _pickNext()
+  +Iterable<FocusNode> sortDescendants()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalPolicy" <|-- "flutter::lib::src::widgets::focus_traversal.dart::ReadingOrderTraversalPolicy"
+"flutter::lib::src::widgets::focus_traversal.dart::DirectionalFocusTraversalPolicyMixin" <|-- "flutter::lib::src::widgets::focus_traversal.dart::ReadingOrderTraversalPolicy"
+
+abstract class "flutter::lib::src::widgets::focus_traversal.dart::FocusOrder" {
+  +int compareTo()
+  +int doCompare()
+}
+
+"dart::core::Comparable" <|-- "flutter::lib::src::widgets::focus_traversal.dart::FocusOrder"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::NumericFocusOrder" {
+  +double order
+  +int doCompare()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::FocusOrder" <|-- "flutter::lib::src::widgets::focus_traversal.dart::NumericFocusOrder"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::LexicalFocusOrder" {
+  +String order
+  +int doCompare()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::FocusOrder" <|-- "flutter::lib::src::widgets::focus_traversal.dart::LexicalFocusOrder"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::_OrderedFocusInfo" {
+  +FocusNode node
+  +FocusOrder order
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::_OrderedFocusInfo" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::focus_traversal.dart::_OrderedFocusInfo" o-- "flutter::lib::src::widgets::focus_traversal.dart::FocusOrder"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::OrderedTraversalPolicy" {
+  +FocusTraversalPolicy? secondary
+  +Iterable<FocusNode> sortDescendants()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::OrderedTraversalPolicy" o-- "flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalPolicy"
+"flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalPolicy" <|-- "flutter::lib::src::widgets::focus_traversal.dart::OrderedTraversalPolicy"
+"flutter::lib::src::widgets::focus_traversal.dart::DirectionalFocusTraversalPolicyMixin" <|-- "flutter::lib::src::widgets::focus_traversal.dart::OrderedTraversalPolicy"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalOrder" {
+  +FocusOrder order
+  {static} +FocusOrder of()
+  {static} +FocusOrder? maybeOf()
+  +bool updateShouldNotify()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalOrder" o-- "flutter::lib::src::widgets::focus_traversal.dart::FocusOrder"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalOrder"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalGroup" {
+  +FocusTraversalPolicy policy
+  +bool descendantsAreFocusable
+  +bool descendantsAreTraversable
+  +Widget child
+  {static} +FocusTraversalPolicy of()
+  {static} +FocusTraversalPolicy? maybeOf()
+  +State<FocusTraversalGroup> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalGroup" o-- "flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalPolicy"
+"flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalGroup" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalGroup"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupState" {
+  +FocusNode? focusNode
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupState" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupState"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupMarker" {
+  +FocusTraversalPolicy policy
+  +FocusNode focusNode
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupMarker" o-- "flutter::lib::src::widgets::focus_traversal.dart::FocusTraversalPolicy"
+"flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupMarker" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::focus_traversal.dart::_FocusTraversalGroupMarker"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::RequestFocusIntent" {
+  +FocusNode focusNode
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::RequestFocusIntent" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::focus_traversal.dart::RequestFocusIntent"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::RequestFocusAction" {
+  +void invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::focus_traversal.dart::RequestFocusAction"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::NextFocusIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::focus_traversal.dart::NextFocusIntent"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::NextFocusAction" {
+  +void invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::focus_traversal.dart::NextFocusAction"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::PreviousFocusIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::focus_traversal.dart::PreviousFocusIntent"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::PreviousFocusAction" {
+  +void invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::focus_traversal.dart::PreviousFocusAction"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::DirectionalFocusIntent" {
+  +TraversalDirection direction
+  +bool ignoreTextFields
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::DirectionalFocusIntent" o-- "flutter::lib::src::widgets::focus_traversal.dart::TraversalDirection"
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::focus_traversal.dart::DirectionalFocusIntent"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::DirectionalFocusAction" {
+  -bool _isForTextField
+  +void invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::focus_traversal.dart::DirectionalFocusAction"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::ExcludeFocusTraversal" {
+  +bool excluding
+  +Widget child
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::ExcludeFocusTraversal" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::focus_traversal.dart::ExcludeFocusTraversal"
+
+class "flutter::lib::src::widgets::focus_traversal.dart::TraversalDirection" {
+  +int index
+  {static} +List<TraversalDirection> values
+  {static} +TraversalDirection up
+  {static} +TraversalDirection right
+  {static} +TraversalDirection down
+  {static} +TraversalDirection left
+}
+
+"flutter::lib::src::widgets::focus_traversal.dart::TraversalDirection" o-- "flutter::lib::src::widgets::focus_traversal.dart::TraversalDirection"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::focus_traversal.dart::TraversalDirection"
+
+abstract class "flutter::lib::src::widgets::focus_traversal.dart::DirectionalFocusTraversalPolicyMixin" {
+  -Map<FocusScopeNode, _DirectionalPolicyData> _policyData
+  +void invalidateScopeData()
+  +void changedScope()
+  +FocusNode? findFirstFocusInDirection()
+  -FocusNode? _sortAndFindInitial()
+  -Iterable<FocusNode>? _sortAndFilterHorizontally()
+  -Iterable<FocusNode>? _sortAndFilterVertically()
+  -bool _popPolicyDataIfNeeded()
+  -void _pushPolicyData()
+  +bool inDirection()
+}
+
+
+@enduml

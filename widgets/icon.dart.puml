@@ -1,0 +1,19 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::icon.dart::Icon" {
+  +IconData? icon
+  +double? size
+  +dynamic color
+  +String? semanticLabel
+  +dynamic textDirection
+  +List<dynamic>? shadows
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::icon.dart::Icon" o-- "flutter::lib::src::widgets::icon_data.dart::IconData"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::icon.dart::Icon"
+
+
+@enduml

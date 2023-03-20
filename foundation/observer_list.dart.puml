@@ -1,0 +1,35 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::observer_list.dart::ObserverList" {
+  -List<T> _list
+  -bool _isDirty
+  -HashSet<T> _set
+  +Iterator<T> iterator
+  +bool isEmpty
+  +bool isNotEmpty
+  +void add()
+  +bool remove()
+  +void clear()
+  +bool contains()
+  +List<T> toList()
+}
+
+"flutter::lib::src::foundation::observer_list.dart::ObserverList" o-- "dart::collection::HashSet<T>"
+"dart::core::Iterable" <|-- "flutter::lib::src::foundation::observer_list.dart::ObserverList"
+
+class "flutter::lib::src::foundation::observer_list.dart::HashedObserverList" {
+  -LinkedHashMap<T, int> _map
+  +Iterator<T> iterator
+  +bool isEmpty
+  +bool isNotEmpty
+  +void add()
+  +bool remove()
+  +bool contains()
+}
+
+"flutter::lib::src::foundation::observer_list.dart::HashedObserverList" o-- "dart::collection::LinkedHashMap<T, int>"
+"dart::core::Iterable" <|-- "flutter::lib::src::foundation::observer_list.dart::HashedObserverList"
+
+
+@enduml

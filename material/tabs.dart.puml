@@ -1,0 +1,236 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::tabs.dart::Tab" {
+  +String? text
+  +dynamic child
+  +dynamic icon
+  +dynamic iconMargin
+  +double? height
+  +dynamic preferredSize
+  -dynamic _buildLabelText()
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::tabs.dart::_TabStyle" {
+  +dynamic labelStyle
+  +dynamic unselectedLabelStyle
+  +bool selected
+  +dynamic labelColor
+  +dynamic unselectedLabelColor
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::tabs.dart::_TabLabelBarRenderer" {
+  +void Function(List<double>, dynamic, double) onPerformLayout
+  +void performLayout()
+}
+
+"flutter::lib::src::material::tabs.dart::_TabLabelBarRenderer" o-- "flutter::lib::src::material::tabs.dart::void Function(List<double>, dynamic, double)"
+
+class "flutter::lib::src::material::tabs.dart::_TabLabelBar" {
+  +void Function(List<double>, dynamic, double) onPerformLayout
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::material::tabs.dart::_TabLabelBar" o-- "flutter::lib::src::material::tabs.dart::void Function(List<double>, dynamic, double)"
+
+class "flutter::lib::src::material::tabs.dart::_IndicatorPainter" {
+  +TabController controller
+  +dynamic indicator
+  +TabBarIndicatorSize? indicatorSize
+  +dynamic indicatorPadding
+  +List<dynamic> tabKeys
+  -List<double>? _currentTabOffsets
+  -dynamic _currentTextDirection
+  -dynamic _currentRect
+  -dynamic _painter
+  -bool _needsPaint
+  +int maxTabIndex
+  +void markNeedsPaint()
+  +void dispose()
+  +void saveTabOffsets()
+  +double centerOf()
+  +dynamic indicatorRect()
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"flutter::lib::src::material::tabs.dart::_IndicatorPainter" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+"flutter::lib::src::material::tabs.dart::_IndicatorPainter" o-- "flutter::lib::src::material::tabs.dart::TabBarIndicatorSize"
+
+class "flutter::lib::src::material::tabs.dart::_ChangeAnimation" {
+  +TabController controller
+  +dynamic parent
+  +double value
+  +void removeStatusListener()
+  +void removeListener()
+}
+
+"flutter::lib::src::material::tabs.dart::_ChangeAnimation" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+
+class "flutter::lib::src::material::tabs.dart::_DragAnimation" {
+  +TabController controller
+  +int index
+  +dynamic parent
+  +double value
+  +void removeStatusListener()
+  +void removeListener()
+}
+
+"flutter::lib::src::material::tabs.dart::_DragAnimation" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+
+class "flutter::lib::src::material::tabs.dart::_TabBarScrollPosition" {
+  +_TabBarState tabBar
+  -bool? _initialViewportDimensionWasZero
+  +bool applyContentDimensions()
+}
+
+"flutter::lib::src::material::tabs.dart::_TabBarScrollPosition" o-- "flutter::lib::src::material::tabs.dart::_TabBarState"
+
+class "flutter::lib::src::material::tabs.dart::_TabBarScrollController" {
+  +_TabBarState tabBar
+  +dynamic createScrollPosition()
+}
+
+"flutter::lib::src::material::tabs.dart::_TabBarScrollController" o-- "flutter::lib::src::material::tabs.dart::_TabBarState"
+
+class "flutter::lib::src::material::tabs.dart::TabBar" {
+  +List<dynamic> tabs
+  +TabController? controller
+  +bool isScrollable
+  +dynamic padding
+  +dynamic indicatorColor
+  +double indicatorWeight
+  +dynamic indicatorPadding
+  +dynamic indicator
+  +bool automaticIndicatorColorAdjustment
+  +TabBarIndicatorSize? indicatorSize
+  +dynamic labelColor
+  +dynamic unselectedLabelColor
+  +dynamic labelStyle
+  +dynamic labelPadding
+  +dynamic unselectedLabelStyle
+  +MaterialStateProperty<dynamic>? overlayColor
+  +dynamic dragStartBehavior
+  +dynamic mouseCursor
+  +bool? enableFeedback
+  +dynamic onTap
+  +dynamic physics
+  +InteractiveInkFeatureFactory? splashFactory
+  +dynamic splashBorderRadius
+  +dynamic preferredSize
+  +bool tabHasTextAndIcon
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::tabs.dart::TabBar" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+"flutter::lib::src::material::tabs.dart::TabBar" o-- "flutter::lib::src::material::tabs.dart::TabBarIndicatorSize"
+"flutter::lib::src::material::tabs.dart::TabBar" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::tabs.dart::TabBar" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+
+class "flutter::lib::src::material::tabs.dart::_TabBarState" {
+  -dynamic _scrollController
+  -TabController? _controller
+  -_IndicatorPainter? _indicatorPainter
+  -int? _currentIndex
+  -double _tabStripWidth
+  -List<dynamic> _tabKeys
+  -bool _debugHasScheduledValidTabsCountCheck
+  -dynamic _indicator
+  -bool _controllerIsValid
+  +int maxTabIndex
+  +void initState()
+  -void _updateTabController()
+  -void _initIndicatorPainter()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  -double _tabScrollOffset()
+  -double _tabCenteredScrollOffset()
+  -double _initialScrollOffset()
+  -void _scrollToCurrentIndex()
+  -void _scrollToControllerValue()
+  -void _handleTabControllerAnimationTick()
+  -void _handleTabControllerTick()
+  -void _saveTabOffsets()
+  -void _handleTap()
+  -dynamic _buildStyledTab()
+  -bool _debugScheduleCheckHasValidTabsCount()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::tabs.dart::_TabBarState" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+"flutter::lib::src::material::tabs.dart::_TabBarState" o-- "flutter::lib::src::material::tabs.dart::_IndicatorPainter"
+
+class "flutter::lib::src::material::tabs.dart::TabBarView" {
+  +TabController? controller
+  +List<dynamic> children
+  +dynamic physics
+  +dynamic dragStartBehavior
+  +double viewportFraction
+  +dynamic clipBehavior
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::tabs.dart::TabBarView" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+
+class "flutter::lib::src::material::tabs.dart::_TabBarViewState" {
+  -TabController? _controller
+  -dynamic _pageController
+  -List<dynamic> _children
+  -List<dynamic> _childrenWithKey
+  -int? _currentIndex
+  -int _warpUnderwayCount
+  -bool _debugHasScheduledValidChildrenCountCheck
+  -bool _controllerIsValid
+  -void _updateTabController()
+  +void initState()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _updateChildren()
+  -void _handleTabControllerAnimationTick()
+  -Future<void> _warpToCurrentIndex()
+  -bool _handleScrollNotification()
+  -bool _debugScheduleCheckHasValidChildrenCount()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::tabs.dart::_TabBarViewState" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+
+class "flutter::lib::src::material::tabs.dart::TabPageSelectorIndicator" {
+  +dynamic backgroundColor
+  +dynamic borderColor
+  +double size
+  +dynamic borderStyle
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::tabs.dart::TabPageSelector" {
+  +TabController? controller
+  +double indicatorSize
+  +dynamic color
+  +dynamic selectedColor
+  +dynamic borderStyle
+  -dynamic _buildTabIndicator()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::tabs.dart::TabPageSelector" o-- "flutter::lib::src::material::tab_controller.dart::TabController"
+
+class "flutter::lib::src::material::tabs.dart::TabBarIndicatorSize" {
+  +int index
+  {static} +List<TabBarIndicatorSize> values
+  {static} +TabBarIndicatorSize tab
+  {static} +TabBarIndicatorSize label
+}
+
+"flutter::lib::src::material::tabs.dart::TabBarIndicatorSize" o-- "flutter::lib::src::material::tabs.dart::TabBarIndicatorSize"
+"dart::core::Enum" <|-- "flutter::lib::src::material::tabs.dart::TabBarIndicatorSize"
+
+
+@enduml

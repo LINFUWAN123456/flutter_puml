@@ -1,0 +1,64 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::proxy_sliver.dart::RenderProxySliver" {
+  +void setupParentData()
+  +void performLayout()
+  +void paint()
+  +bool hitTestChildren()
+  +double childMainAxisPosition()
+  +void applyPaintTransform()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliver" <|-- "flutter::lib::src::rendering::proxy_sliver.dart::RenderProxySliver"
+"flutter::lib::src::rendering::object.dart::RenderObjectWithChildMixin" <|-- "flutter::lib::src::rendering::proxy_sliver.dart::RenderProxySliver"
+
+class "flutter::lib::src::rendering::proxy_sliver.dart::RenderSliverOpacity" {
+  -int _alpha
+  -double _opacity
+  -bool _alwaysIncludeSemantics
+  +bool alwaysNeedsCompositing
+  +double opacity
+  +bool alwaysIncludeSemantics
+  +void paint()
+  +void visitChildrenForSemantics()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_sliver.dart::RenderProxySliver" <|-- "flutter::lib::src::rendering::proxy_sliver.dart::RenderSliverOpacity"
+
+class "flutter::lib::src::rendering::proxy_sliver.dart::RenderSliverIgnorePointer" {
+  -bool _ignoring
+  -bool? _ignoringSemantics
+  +bool ignoring
+  +bool? ignoringSemantics
+  -bool _effectiveIgnoringSemantics
+  +bool hitTest()
+  +void visitChildrenForSemantics()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_sliver.dart::RenderProxySliver" <|-- "flutter::lib::src::rendering::proxy_sliver.dart::RenderSliverIgnorePointer"
+
+class "flutter::lib::src::rendering::proxy_sliver.dart::RenderSliverOffstage" {
+  -bool _offstage
+  +bool offstage
+  +void performLayout()
+  +bool hitTest()
+  +bool hitTestChildren()
+  +void paint()
+  +void visitChildrenForSemantics()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::rendering::proxy_sliver.dart::RenderProxySliver" <|-- "flutter::lib::src::rendering::proxy_sliver.dart::RenderSliverOffstage"
+
+class "flutter::lib::src::rendering::proxy_sliver.dart::RenderSliverAnimatedOpacity" {
+}
+
+"flutter::lib::src::rendering::proxy_sliver.dart::RenderProxySliver" <|-- "flutter::lib::src::rendering::proxy_sliver.dart::RenderSliverAnimatedOpacity"
+"flutter::lib::src::rendering::proxy_box.dart::RenderAnimatedOpacityMixin" <|-- "flutter::lib::src::rendering::proxy_sliver.dart::RenderSliverAnimatedOpacity"
+
+
+@enduml

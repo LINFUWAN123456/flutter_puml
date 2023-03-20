@@ -1,0 +1,20 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::physics::clamped_simulation.dart::ClampedSimulation" {
+  +Simulation simulation
+  +double xMin
+  +double xMax
+  +double dxMin
+  +double dxMax
+  +double x()
+  +double dx()
+  +bool isDone()
+  +String toString()
+}
+
+"flutter::lib::src::physics::clamped_simulation.dart::ClampedSimulation" o-- "flutter::lib::src::physics::simulation.dart::Simulation"
+"flutter::lib::src::physics::simulation.dart::Simulation" <|-- "flutter::lib::src::physics::clamped_simulation.dart::ClampedSimulation"
+
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::stack_frame.dart::StackFrame" {
+  {static} +StackFrame asynchronousSuspension
+  {static} +StackFrame stackOverFlowElision
+  {static} -RegExp _webNonDebugFramePattern
+  +String source
+  +int number
+  +String packageScheme
+  +String package
+  +String packagePath
+  +int line
+  +int column
+  +String className
+  +String method
+  +bool isConstructor
+  +int hashCode
+  {static} +List<StackFrame> fromStackTrace()
+  {static} +List<StackFrame> fromStackString()
+  {static} -StackFrame? _parseWebFrame()
+  {static} -StackFrame _parseWebDebugFrame()
+  {static} -StackFrame? _parseWebNonDebugFrame()
+  {static} +StackFrame? fromStackTraceLine()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::foundation::stack_frame.dart::StackFrame" o-- "flutter::lib::src::foundation::stack_frame.dart::StackFrame"
+
+
+@enduml

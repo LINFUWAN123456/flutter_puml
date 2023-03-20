@@ -1,0 +1,186 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::focus_manager.dart::_Autofocus" {
+  +FocusScopeNode scope
+  +FocusNode autofocusNode
+  +void applyIfValid()
+}
+
+"flutter::lib::src::widgets::focus_manager.dart::_Autofocus" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode"
+"flutter::lib::src::widgets::focus_manager.dart::_Autofocus" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+
+class "flutter::lib::src::widgets::focus_manager.dart::FocusAttachment" {
+  -FocusNode _node
+  +bool isAttached
+  +void detach()
+  +void reparent()
+}
+
+"flutter::lib::src::widgets::focus_manager.dart::FocusAttachment" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+
+class "flutter::lib::src::widgets::focus_manager.dart::FocusNode" {
+  -bool _skipTraversal
+  -bool _canRequestFocus
+  -bool _descendantsAreFocusable
+  -bool _descendantsAreTraversable
+  -BuildContext? _context
+  +KeyEventResult Function(FocusNode, dynamic)? onKey
+  +KeyEventResult Function(FocusNode, dynamic)? onKeyEvent
+  -FocusManager? _manager
+  -List<FocusNode>? _ancestors
+  -List<FocusNode>? _descendants
+  -bool _hasKeyboardToken
+  -FocusNode? _parent
+  -List<FocusNode> _children
+  -String? _debugLabel
+  -FocusAttachment? _attachment
+  -bool _requestFocusWhenReparented
+  +bool skipTraversal
+  +bool canRequestFocus
+  +bool descendantsAreFocusable
+  +bool descendantsAreTraversable
+  +BuildContext? context
+  +FocusNode? parent
+  +Iterable<FocusNode> children
+  +Iterable<FocusNode> traversalChildren
+  +String? debugLabel
+  +Iterable<FocusNode> descendants
+  +Iterable<FocusNode> traversalDescendants
+  +Iterable<FocusNode> ancestors
+  +bool hasFocus
+  +bool hasPrimaryFocus
+  +FocusHighlightMode highlightMode
+  +FocusScopeNode? nearestScope
+  +FocusScopeNode? enclosingScope
+  +dynamic size
+  +dynamic offset
+  +dynamic rect
+  +void unfocus()
+  +bool consumeKeyboardToken()
+  -void _markNextFocus()
+  -void _removeChild()
+  -void _updateManager()
+  -void _reparent()
+  +FocusAttachment attach()
+  +void dispose()
+  -void _notify()
+  +void requestFocus()
+  -void _doRequestFocus()
+  -void _setAsFocusedChildForScope()
+  +bool nextFocus()
+  +bool previousFocus()
+  +bool focusInDirection()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+  +String toStringShort()
+}
+
+"flutter::lib::src::widgets::focus_manager.dart::FocusNode" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::focus_manager.dart::FocusNode" o-- "flutter::lib::src::widgets::focus_manager.dart::KeyEventResult Function(FocusNode, dynamic)"
+"flutter::lib::src::widgets::focus_manager.dart::FocusNode" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusManager"
+"flutter::lib::src::widgets::focus_manager.dart::FocusNode" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::focus_manager.dart::FocusNode" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusAttachment"
+"flutter::lib::src::widgets::focus_manager.dart::FocusNode" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusHighlightMode"
+"flutter::lib::src::widgets::focus_manager.dart::FocusNode" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode"
+
+class "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode" {
+  -List<FocusNode> _focusedChildren
+  +FocusScopeNode nearestScope
+  +bool isFirstFocus
+  +FocusNode? focusedChild
+  +Iterable<FocusNode> traversalChildren
+  +Iterable<FocusNode> traversalDescendants
+  +void setFirstFocus()
+  +void autofocus()
+  -void _doRequestFocus()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode"
+"flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::focus_manager.dart::FocusNode" <|-- "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode"
+
+class "flutter::lib::src::widgets::focus_manager.dart::FocusManager" {
+  -FocusHighlightStrategy _highlightStrategy
+  -FocusHighlightMode? _highlightMode
+  -bool? _lastInteractionWasTouch
+  -dynamic _listeners
+  +FocusScopeNode rootScope
+  -FocusNode? _primaryFocus
+  -Set<FocusNode> _dirtyNodes
+  -FocusNode? _markedForFocus
+  -List<_Autofocus> _pendingAutofocuses
+  -bool _haveScheduledUpdate
+  {static} +FocusManager instance
+  +FocusHighlightStrategy highlightStrategy
+  {static} -FocusHighlightMode _defaultModeForPlatform
+  +FocusHighlightMode highlightMode
+  +FocusNode? primaryFocus
+  +void registerGlobalHandlers()
+  +void dispose()
+  -void _updateHighlightMode()
+  +void addHighlightModeListener()
+  +void removeHighlightModeListener()
+  -void _notifyHighlightModeListeners()
+  -void _handlePointerEvent()
+  -bool _handleKeyMessage()
+  -void _markDetached()
+  -void _markPropertiesChanged()
+  -void _markNextFocus()
+  -void _markNeedsUpdate()
+  -void _applyFocusChange()
+  +List<dynamic> debugDescribeChildren()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::focus_manager.dart::FocusManager" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusHighlightStrategy"
+"flutter::lib::src::widgets::focus_manager.dart::FocusManager" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusHighlightMode"
+"flutter::lib::src::widgets::focus_manager.dart::FocusManager" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode"
+"flutter::lib::src::widgets::focus_manager.dart::FocusManager" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::focus_manager.dart::FocusManager" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusManager"
+
+class "flutter::lib::src::widgets::focus_manager.dart::KeyEventResult" {
+  +int index
+  {static} +List<KeyEventResult> values
+  {static} +KeyEventResult handled
+  {static} +KeyEventResult ignored
+  {static} +KeyEventResult skipRemainingHandlers
+}
+
+"flutter::lib::src::widgets::focus_manager.dart::KeyEventResult" o-- "flutter::lib::src::widgets::focus_manager.dart::KeyEventResult"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::focus_manager.dart::KeyEventResult"
+
+class "flutter::lib::src::widgets::focus_manager.dart::UnfocusDisposition" {
+  +int index
+  {static} +List<UnfocusDisposition> values
+  {static} +UnfocusDisposition scope
+  {static} +UnfocusDisposition previouslyFocusedChild
+}
+
+"flutter::lib::src::widgets::focus_manager.dart::UnfocusDisposition" o-- "flutter::lib::src::widgets::focus_manager.dart::UnfocusDisposition"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::focus_manager.dart::UnfocusDisposition"
+
+class "flutter::lib::src::widgets::focus_manager.dart::FocusHighlightMode" {
+  +int index
+  {static} +List<FocusHighlightMode> values
+  {static} +FocusHighlightMode touch
+  {static} +FocusHighlightMode traditional
+}
+
+"flutter::lib::src::widgets::focus_manager.dart::FocusHighlightMode" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusHighlightMode"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::focus_manager.dart::FocusHighlightMode"
+
+class "flutter::lib::src::widgets::focus_manager.dart::FocusHighlightStrategy" {
+  +int index
+  {static} +List<FocusHighlightStrategy> values
+  {static} +FocusHighlightStrategy automatic
+  {static} +FocusHighlightStrategy alwaysTouch
+  {static} +FocusHighlightStrategy alwaysTraditional
+}
+
+"flutter::lib::src::widgets::focus_manager.dart::FocusHighlightStrategy" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusHighlightStrategy"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::focus_manager.dart::FocusHighlightStrategy"
+
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::tab_indicator.dart::UnderlineTabIndicator" {
+  +dynamic borderSide
+  +dynamic insets
+  +dynamic lerpFrom()
+  +dynamic lerpTo()
+  +dynamic createBoxPainter()
+  -dynamic _indicatorRectFor()
+  +dynamic getClipPath()
+}
+
+class "flutter::lib::src::material::tab_indicator.dart::_UnderlinePainter" {
+  +UnderlineTabIndicator decoration
+  +void paint()
+}
+
+"flutter::lib::src::material::tab_indicator.dart::_UnderlinePainter" o-- "flutter::lib::src::material::tab_indicator.dart::UnderlineTabIndicator"
+
+
+@enduml

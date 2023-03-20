@@ -1,0 +1,507 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::semantics::semantics.dart::SemanticsTag" {
+  +String name
+  +String toString()
+}
+
+class "flutter::lib::src::semantics::semantics.dart::CustomSemanticsAction" {
+  +String? label
+  +String? hint
+  +dynamic action
+  {static} -int _nextId
+  {static} -Map<int, CustomSemanticsAction> _actions
+  {static} -Map<CustomSemanticsAction, int> _ids
+  +int hashCode
+  +bool ==()
+  +String toString()
+  {static} +int getIdentifier()
+  {static} +CustomSemanticsAction? getAction()
+}
+
+class "flutter::lib::src::semantics::semantics.dart::AttributedString" {
+  +String string
+  +List<dynamic> attributes
+  +int hashCode
+  +AttributedString +()
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::semantics::semantics.dart::AttributedStringProperty" {
+  +bool showWhenEmpty
+  +bool isInteresting
+  +String valueToString()
+}
+
+class "flutter::lib::src::semantics::semantics.dart::SemanticsData" {
+  +int flags
+  +int actions
+  +AttributedString attributedLabel
+  +AttributedString attributedValue
+  +AttributedString attributedIncreasedValue
+  +AttributedString attributedDecreasedValue
+  +AttributedString attributedHint
+  +String tooltip
+  +dynamic textDirection
+  +dynamic textSelection
+  +int? scrollChildCount
+  +int? scrollIndex
+  +double? scrollPosition
+  +double? scrollExtentMax
+  +double? scrollExtentMin
+  +int? platformViewId
+  +int? maxValueLength
+  +int? currentValueLength
+  +dynamic rect
+  +Set<SemanticsTag>? tags
+  +dynamic transform
+  +double elevation
+  +double thickness
+  +List<int>? customSemanticsActionIds
+  +String label
+  +String value
+  +String increasedValue
+  +String decreasedValue
+  +String hint
+  +int hashCode
+  +bool hasFlag()
+  +bool hasAction()
+  +String toStringShort()
+  +void debugFillProperties()
+  +bool ==()
+  {static} -bool _sortedListsEqual()
+}
+
+"flutter::lib::src::semantics::semantics.dart::SemanticsData" o-- "flutter::lib::src::semantics::semantics.dart::AttributedString"
+
+class "flutter::lib::src::semantics::semantics.dart::_SemanticsDiagnosticableNode" {
+  +DebugSemanticsDumpOrder childOrder
+  +List<dynamic> getChildren()
+}
+
+"flutter::lib::src::semantics::semantics.dart::_SemanticsDiagnosticableNode" o-- "flutter::lib::src::semantics::semantics.dart::DebugSemanticsDumpOrder"
+
+class "flutter::lib::src::semantics::semantics.dart::SemanticsHintOverrides" {
+  +String? onTapHint
+  +String? onLongPressHint
+  +bool isNotEmpty
+  +int hashCode
+  +bool ==()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::semantics::semantics.dart::SemanticsProperties" {
+  +bool? enabled
+  +bool? checked
+  +bool? toggled
+  +bool? selected
+  +bool? button
+  +bool? link
+  +bool? header
+  +bool? textField
+  +bool? slider
+  +bool? keyboardKey
+  +bool? readOnly
+  +bool? focusable
+  +bool? focused
+  +bool? inMutuallyExclusiveGroup
+  +bool? hidden
+  +bool? obscured
+  +bool? multiline
+  +bool? scopesRoute
+  +bool? namesRoute
+  +bool? image
+  +bool? liveRegion
+  +int? maxValueLength
+  +int? currentValueLength
+  +String? label
+  +AttributedString? attributedLabel
+  +String? value
+  +AttributedString? attributedValue
+  +String? increasedValue
+  +AttributedString? attributedIncreasedValue
+  +String? decreasedValue
+  +AttributedString? attributedDecreasedValue
+  +String? hint
+  +AttributedString? attributedHint
+  +String? tooltip
+  +SemanticsHintOverrides? hintOverrides
+  +dynamic textDirection
+  +SemanticsSortKey? sortKey
+  +SemanticsTag? tagForChildren
+  +dynamic onTap
+  +dynamic onLongPress
+  +dynamic onScrollLeft
+  +dynamic onScrollRight
+  +dynamic onScrollUp
+  +dynamic onScrollDown
+  +dynamic onIncrease
+  +dynamic onDecrease
+  +dynamic onCopy
+  +dynamic onCut
+  +dynamic onPaste
+  +void Function(bool)? onMoveCursorForwardByCharacter
+  +void Function(bool)? onMoveCursorBackwardByCharacter
+  +void Function(bool)? onMoveCursorForwardByWord
+  +void Function(bool)? onMoveCursorBackwardByWord
+  +void Function(dynamic)? onSetSelection
+  +void Function(String)? onSetText
+  +dynamic onDidGainAccessibilityFocus
+  +dynamic onDidLoseAccessibilityFocus
+  +dynamic onDismiss
+  +Map<CustomSemanticsAction, dynamic>? customSemanticsActions
+  +void debugFillProperties()
+  +String toStringShort()
+}
+
+"flutter::lib::src::semantics::semantics.dart::SemanticsProperties" o-- "flutter::lib::src::semantics::semantics.dart::AttributedString"
+"flutter::lib::src::semantics::semantics.dart::SemanticsProperties" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsHintOverrides"
+"flutter::lib::src::semantics::semantics.dart::SemanticsProperties" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsSortKey"
+"flutter::lib::src::semantics::semantics.dart::SemanticsProperties" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsTag"
+"flutter::lib::src::semantics::semantics.dart::SemanticsProperties" o-- "flutter::lib::src::semantics::semantics.dart::void Function(bool)"
+"flutter::lib::src::semantics::semantics.dart::SemanticsProperties" o-- "flutter::lib::src::semantics::semantics.dart::void Function(dynamic)"
+"flutter::lib::src::semantics::semantics.dart::SemanticsProperties" o-- "flutter::lib::src::semantics::semantics.dart::void Function(String)"
+
+class "flutter::lib::src::semantics::semantics.dart::SemanticsNode" {
+  {static} -int _maxFrameworkAccessibilityIdentifier
+  {static} -int _lastIdentifier
+  +dynamic key
+  -int _id
+  -dynamic _showOnScreen
+  -dynamic _transform
+  -dynamic _rect
+  +dynamic parentSemanticsClipRect
+  +dynamic parentPaintClipRect
+  +double? elevationAdjustment
+  +int? indexInParent
+  -bool _isMergedIntoParent
+  -bool _mergeAllDescendantsIntoThisNode
+  -List<SemanticsNode>? _children
+  -List<SemanticsNode> _debugPreviousSnapshot
+  -bool _dead
+  -bool _dirty
+  -Map<dynamic, void Function(Object?)> _actions
+  -Map<CustomSemanticsAction, dynamic> _customSemanticsActions
+  -int _actionsAsBits
+  +Set<SemanticsTag>? tags
+  -int _flags
+  -AttributedString _attributedLabel
+  -AttributedString _attributedValue
+  -AttributedString _attributedIncreasedValue
+  -AttributedString _attributedDecreasedValue
+  -AttributedString _attributedHint
+  -String _tooltip
+  -double _elevation
+  -double _thickness
+  -SemanticsHintOverrides? _hintOverrides
+  -dynamic _textDirection
+  -SemanticsSortKey? _sortKey
+  -dynamic _textSelection
+  -bool? _isMultiline
+  -int? _scrollChildCount
+  -int? _scrollIndex
+  -double? _scrollPosition
+  -double? _scrollExtentMax
+  -double? _scrollExtentMin
+  -int? _platformViewId
+  -int? _maxValueLength
+  -int? _currentValueLength
+  {static} -SemanticsConfiguration _kEmptyConfig
+  {static} -dynamic _kEmptyChildList
+  {static} -dynamic _kEmptyCustomSemanticsActionsList
+  {static} -dynamic _kIdentityTransform
+  +int id
+  +dynamic transform
+  +dynamic rect
+  +bool isInvisible
+  +bool isMergedIntoParent
+  +bool isPartOfNodeMerging
+  +bool mergeAllDescendantsIntoThisNode
+  +bool hasChildren
+  +int childrenCount
+  +SemanticsOwner? owner
+  +SemanticsNode? parent
+  +String label
+  +AttributedString attributedLabel
+  +String value
+  +AttributedString attributedValue
+  +String increasedValue
+  +AttributedString attributedIncreasedValue
+  +String decreasedValue
+  +AttributedString attributedDecreasedValue
+  +String hint
+  +AttributedString attributedHint
+  +String tooltip
+  +double elevation
+  +double thickness
+  +SemanticsHintOverrides? hintOverrides
+  +dynamic textDirection
+  +SemanticsSortKey? sortKey
+  +dynamic textSelection
+  +bool? isMultiline
+  +int? scrollChildCount
+  +int? scrollIndex
+  +double? scrollPosition
+  +double? scrollExtentMax
+  +double? scrollExtentMin
+  +int? platformViewId
+  +int? maxValueLength
+  +int? currentValueLength
+  {static} -int _generateNewId()
+  -void _replaceChildren()
+  +void visitChildren()
+  -bool _visitDescendants()
+  +void redepthChildren()
+  +void attach()
+  +void detach()
+  -void _markDirty()
+  -bool _isDifferentFromCurrentSemanticAnnotation()
+  +bool isTagged()
+  +bool hasFlag()
+  -bool _canPerformAction()
+  +void updateWith()
+  +SemanticsData getSemanticsData()
+  {static} -dynamic _initIdentityTransform()
+  -void _addToUpdate()
+  -List<SemanticsNode> _childrenInTraversalOrder()
+  +void sendEvent()
+  +String toStringShort()
+  +void debugFillProperties()
+  +String toStringDeep()
+  +dynamic toDiagnosticsNode()
+  +List<dynamic> debugDescribeChildren()
+  +List<SemanticsNode> debugListChildrenInOrder()
+}
+
+"flutter::lib::src::semantics::semantics.dart::SemanticsNode" o-- "flutter::lib::src::semantics::semantics.dart::AttributedString"
+"flutter::lib::src::semantics::semantics.dart::SemanticsNode" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsHintOverrides"
+"flutter::lib::src::semantics::semantics.dart::SemanticsNode" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsSortKey"
+"flutter::lib::src::semantics::semantics.dart::SemanticsNode" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsConfiguration"
+"flutter::lib::src::semantics::semantics.dart::SemanticsNode" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsOwner"
+"flutter::lib::src::semantics::semantics.dart::SemanticsNode" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsNode"
+
+class "flutter::lib::src::semantics::semantics.dart::_BoxEdge" {
+  +bool isLeadingEdge
+  +double offset
+  +SemanticsNode node
+  +int compareTo()
+}
+
+"flutter::lib::src::semantics::semantics.dart::_BoxEdge" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsNode"
+"dart::core::Comparable" <|-- "flutter::lib::src::semantics::semantics.dart::_BoxEdge"
+
+class "flutter::lib::src::semantics::semantics.dart::_SemanticsSortGroup" {
+  +double startOffset
+  +dynamic textDirection
+  +List<SemanticsNode> nodes
+  +int compareTo()
+  +List<SemanticsNode> sortedWithinVerticalGroup()
+  +List<SemanticsNode> sortedWithinKnot()
+}
+
+"dart::core::Comparable" <|-- "flutter::lib::src::semantics::semantics.dart::_SemanticsSortGroup"
+
+class "flutter::lib::src::semantics::semantics.dart::_TraversalSortNode" {
+  +SemanticsNode node
+  +SemanticsSortKey? sortKey
+  +int position
+  +int compareTo()
+}
+
+"flutter::lib::src::semantics::semantics.dart::_TraversalSortNode" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsNode"
+"flutter::lib::src::semantics::semantics.dart::_TraversalSortNode" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsSortKey"
+"dart::core::Comparable" <|-- "flutter::lib::src::semantics::semantics.dart::_TraversalSortNode"
+
+class "flutter::lib::src::semantics::semantics.dart::SemanticsOwner" {
+  -Set<SemanticsNode> _dirtyNodes
+  -Map<int, SemanticsNode> _nodes
+  -Set<SemanticsNode> _detachedNodes
+  +SemanticsNode? rootSemanticsNode
+  +void dispose()
+  +void sendSemanticsUpdate()
+  -void Function(Object?)? _getSemanticsActionHandlerForId()
+  +void performAction()
+  -void Function(Object?)? _getSemanticsActionHandlerForPosition()
+  +void performActionAt()
+  +String toString()
+}
+
+"flutter::lib::src::semantics::semantics.dart::SemanticsOwner" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsNode"
+
+class "flutter::lib::src::semantics::semantics.dart::SemanticsConfiguration" {
+  -bool _isSemanticBoundary
+  +bool explicitChildNodes
+  +bool isBlockingSemanticsOfPreviouslyPaintedNodes
+  -bool _hasBeenAnnotated
+  -Map<dynamic, void Function(Object?)> _actions
+  -int _actionsAsBits
+  -dynamic _onTap
+  -dynamic _onLongPress
+  -dynamic _onScrollLeft
+  -dynamic _onDismiss
+  -dynamic _onScrollRight
+  -dynamic _onScrollUp
+  -dynamic _onScrollDown
+  -dynamic _onIncrease
+  -dynamic _onDecrease
+  -dynamic _onCopy
+  -dynamic _onCut
+  -dynamic _onPaste
+  -dynamic _onShowOnScreen
+  -void Function(bool)? _onMoveCursorForwardByCharacter
+  -void Function(bool)? _onMoveCursorBackwardByCharacter
+  -void Function(bool)? _onMoveCursorForwardByWord
+  -void Function(bool)? _onMoveCursorBackwardByWord
+  -void Function(dynamic)? _onSetSelection
+  -void Function(String)? _onSetText
+  -dynamic _onDidGainAccessibilityFocus
+  -dynamic _onDidLoseAccessibilityFocus
+  -SemanticsSortKey? _sortKey
+  -int? _indexInParent
+  -int? _scrollChildCount
+  -int? _scrollIndex
+  -int? _platformViewId
+  -int? _maxValueLength
+  -int? _currentValueLength
+  -bool _isMergingSemanticsOfDescendants
+  -Map<CustomSemanticsAction, dynamic> _customSemanticsActions
+  -AttributedString _attributedLabel
+  -AttributedString _attributedValue
+  -AttributedString _attributedIncreasedValue
+  -AttributedString _attributedDecreasedValue
+  -AttributedString _attributedHint
+  -String _tooltip
+  -SemanticsHintOverrides? _hintOverrides
+  -double _elevation
+  -double _thickness
+  -dynamic _textDirection
+  -dynamic _textSelection
+  -double? _scrollPosition
+  -double? _scrollExtentMax
+  -double? _scrollExtentMin
+  -Set<SemanticsTag>? _tagsForChildren
+  -int _flags
+  +bool isSemanticBoundary
+  +bool hasBeenAnnotated
+  +dynamic onTap
+  +dynamic onLongPress
+  +dynamic onScrollLeft
+  +dynamic onDismiss
+  +dynamic onScrollRight
+  +dynamic onScrollUp
+  +dynamic onScrollDown
+  +dynamic onIncrease
+  +dynamic onDecrease
+  +dynamic onCopy
+  +dynamic onCut
+  +dynamic onPaste
+  +dynamic onShowOnScreen
+  +void Function(bool)? onMoveCursorForwardByCharacter
+  +void Function(bool)? onMoveCursorBackwardByCharacter
+  +void Function(bool)? onMoveCursorForwardByWord
+  +void Function(bool)? onMoveCursorBackwardByWord
+  +void Function(dynamic)? onSetSelection
+  +void Function(String)? onSetText
+  +dynamic onDidGainAccessibilityFocus
+  +dynamic onDidLoseAccessibilityFocus
+  +SemanticsSortKey? sortKey
+  +int? indexInParent
+  +int? scrollChildCount
+  +int? scrollIndex
+  +int? platformViewId
+  +int? maxValueLength
+  +int? currentValueLength
+  +bool isMergingSemanticsOfDescendants
+  +Map<CustomSemanticsAction, dynamic> customSemanticsActions
+  +String label
+  +AttributedString attributedLabel
+  +String value
+  +AttributedString attributedValue
+  +String increasedValue
+  +AttributedString attributedIncreasedValue
+  +String decreasedValue
+  +AttributedString attributedDecreasedValue
+  +String hint
+  +AttributedString attributedHint
+  +String tooltip
+  +SemanticsHintOverrides? hintOverrides
+  +double elevation
+  +double thickness
+  +bool scopesRoute
+  +bool namesRoute
+  +bool isImage
+  +bool liveRegion
+  +dynamic textDirection
+  +bool isSelected
+  +bool? isEnabled
+  +bool? isChecked
+  +bool? isToggled
+  +bool isInMutuallyExclusiveGroup
+  +bool isFocusable
+  +bool isFocused
+  +bool isButton
+  +bool isLink
+  +bool isHeader
+  +bool isSlider
+  +bool isKeyboardKey
+  +bool isHidden
+  +bool isTextField
+  +bool isReadOnly
+  +bool isObscured
+  +bool isMultiline
+  +bool hasImplicitScrolling
+  +dynamic textSelection
+  +double? scrollPosition
+  +double? scrollExtentMax
+  +double? scrollExtentMin
+  +Iterable<SemanticsTag>? tagsForChildren
+  -void _addAction()
+  -void _addArgumentlessAction()
+  +void Function(Object?)? getActionHandler()
+  -void _onCustomSemanticsAction()
+  +void addTagForChildren()
+  -void _setFlag()
+  -bool _hasFlag()
+  +bool isCompatibleWith()
+  +void absorb()
+  +SemanticsConfiguration copy()
+}
+
+"flutter::lib::src::semantics::semantics.dart::SemanticsConfiguration" o-- "flutter::lib::src::semantics::semantics.dart::void Function(bool)"
+"flutter::lib::src::semantics::semantics.dart::SemanticsConfiguration" o-- "flutter::lib::src::semantics::semantics.dart::void Function(dynamic)"
+"flutter::lib::src::semantics::semantics.dart::SemanticsConfiguration" o-- "flutter::lib::src::semantics::semantics.dart::void Function(String)"
+"flutter::lib::src::semantics::semantics.dart::SemanticsConfiguration" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsSortKey"
+"flutter::lib::src::semantics::semantics.dart::SemanticsConfiguration" o-- "flutter::lib::src::semantics::semantics.dart::AttributedString"
+"flutter::lib::src::semantics::semantics.dart::SemanticsConfiguration" o-- "flutter::lib::src::semantics::semantics.dart::SemanticsHintOverrides"
+
+abstract class "flutter::lib::src::semantics::semantics.dart::SemanticsSortKey" {
+  +String? name
+  +int compareTo()
+  +int doCompare()
+  +void debugFillProperties()
+}
+
+"dart::core::Comparable" <|-- "flutter::lib::src::semantics::semantics.dart::SemanticsSortKey"
+
+class "flutter::lib::src::semantics::semantics.dart::OrdinalSortKey" {
+  +double order
+  +int doCompare()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::semantics::semantics.dart::SemanticsSortKey" <|-- "flutter::lib::src::semantics::semantics.dart::OrdinalSortKey"
+
+class "flutter::lib::src::semantics::semantics.dart::DebugSemanticsDumpOrder" {
+  +int index
+  {static} +List<DebugSemanticsDumpOrder> values
+  {static} +DebugSemanticsDumpOrder inverseHitTest
+  {static} +DebugSemanticsDumpOrder traversalOrder
+}
+
+"flutter::lib::src::semantics::semantics.dart::DebugSemanticsDumpOrder" o-- "flutter::lib::src::semantics::semantics.dart::DebugSemanticsDumpOrder"
+"dart::core::Enum" <|-- "flutter::lib::src::semantics::semantics.dart::DebugSemanticsDumpOrder"
+
+
+@enduml

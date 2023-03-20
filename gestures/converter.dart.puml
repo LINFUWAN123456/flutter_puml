@@ -1,0 +1,10 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::converter.dart::PointerEventConverter" {
+  {static} +Iterable<PointerEvent> expand()
+  {static} -double _toLogicalPixels()
+}
+
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::context_menu_action.dart::CupertinoContextMenuAction" {
+  +dynamic child
+  +bool isDefaultAction
+  +bool isDestructiveAction
+  +dynamic onPressed
+  +dynamic trailingIcon
+  +dynamic createState()
+}
+
+class "flutter::lib::src::cupertino::context_menu_action.dart::_CupertinoContextMenuActionState" {
+  {static} -dynamic _kBackgroundColor
+  {static} -dynamic _kBackgroundColorPressed
+  {static} -double _kButtonHeight
+  {static} -dynamic _kActionSheetActionStyle
+  -dynamic _globalKey
+  -bool _isPressed
+  -dynamic _textStyle
+  +void onTapDown()
+  +void onTapUp()
+  +void onTapCancel()
+  +dynamic build()
+}
+
+
+@enduml

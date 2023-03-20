@@ -1,0 +1,68 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::time.dart::TimeOfDay" {
+  {static} +int hoursPerDay
+  {static} +int hoursPerPeriod
+  {static} +int minutesPerHour
+  +int hour
+  +int minute
+  +DayPeriod period
+  +int hourOfPeriod
+  +int periodOffset
+  +int hashCode
+  +TimeOfDay replacing()
+  +String format()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::material::time.dart::TimeOfDay" o-- "flutter::lib::src::material::time.dart::DayPeriod"
+
+class "flutter::lib::src::material::time.dart::RestorableTimeOfDay" {
+  -TimeOfDay _defaultValue
+  +TimeOfDay createDefaultValue()
+  +void didUpdateValue()
+  +TimeOfDay fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::material::time.dart::RestorableTimeOfDay" o-- "flutter::lib::src::material::time.dart::TimeOfDay"
+
+class "flutter::lib::src::material::time.dart::DayPeriod" {
+  +int index
+  {static} +List<DayPeriod> values
+  {static} +DayPeriod am
+  {static} +DayPeriod pm
+}
+
+"flutter::lib::src::material::time.dart::DayPeriod" o-- "flutter::lib::src::material::time.dart::DayPeriod"
+"dart::core::Enum" <|-- "flutter::lib::src::material::time.dart::DayPeriod"
+
+class "flutter::lib::src::material::time.dart::TimeOfDayFormat" {
+  +int index
+  {static} +List<TimeOfDayFormat> values
+  {static} +TimeOfDayFormat HH_colon_mm
+  {static} +TimeOfDayFormat HH_dot_mm
+  {static} +TimeOfDayFormat frenchCanadian
+  {static} +TimeOfDayFormat H_colon_mm
+  {static} +TimeOfDayFormat h_colon_mm_space_a
+  {static} +TimeOfDayFormat a_space_h_colon_mm
+}
+
+"flutter::lib::src::material::time.dart::TimeOfDayFormat" o-- "flutter::lib::src::material::time.dart::TimeOfDayFormat"
+"dart::core::Enum" <|-- "flutter::lib::src::material::time.dart::TimeOfDayFormat"
+
+class "flutter::lib::src::material::time.dart::HourFormat" {
+  +int index
+  {static} +List<HourFormat> values
+  {static} +HourFormat HH
+  {static} +HourFormat H
+  {static} +HourFormat h
+}
+
+"flutter::lib::src::material::time.dart::HourFormat" o-- "flutter::lib::src::material::time.dart::HourFormat"
+"dart::core::Enum" <|-- "flutter::lib::src::material::time.dart::HourFormat"
+
+
+@enduml

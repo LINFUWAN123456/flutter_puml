@@ -1,0 +1,82 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::scroll_view.dart::ScrollView" {
+  +dynamic scrollDirection
+  +bool reverse
+  +ScrollController? controller
+  +bool? primary
+  +ScrollPhysics? physics
+  +ScrollBehavior? scrollBehavior
+  +bool shrinkWrap
+  +dynamic center
+  +double anchor
+  +double? cacheExtent
+  +int? semanticChildCount
+  +dynamic dragStartBehavior
+  +ScrollViewKeyboardDismissBehavior keyboardDismissBehavior
+  +String? restorationId
+  +dynamic clipBehavior
+  +dynamic getDirection()
+  +List<Widget> buildSlivers()
+  +Widget buildViewport()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::scroll_view.dart::ScrollView" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::scroll_view.dart::ScrollView" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::scroll_view.dart::ScrollView" o-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior"
+"flutter::lib::src::widgets::scroll_view.dart::ScrollView" o-- "flutter::lib::src::widgets::scroll_view.dart::ScrollViewKeyboardDismissBehavior"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::scroll_view.dart::ScrollView"
+
+class "flutter::lib::src::widgets::scroll_view.dart::CustomScrollView" {
+  +List<Widget> slivers
+  +List<Widget> buildSlivers()
+}
+
+"flutter::lib::src::widgets::scroll_view.dart::ScrollView" <|-- "flutter::lib::src::widgets::scroll_view.dart::CustomScrollView"
+
+abstract class "flutter::lib::src::widgets::scroll_view.dart::BoxScrollView" {
+  +dynamic padding
+  +List<Widget> buildSlivers()
+  +Widget buildChildLayout()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::scroll_view.dart::ScrollView" <|-- "flutter::lib::src::widgets::scroll_view.dart::BoxScrollView"
+
+class "flutter::lib::src::widgets::scroll_view.dart::ListView" {
+  +double? itemExtent
+  +Widget? prototypeItem
+  +SliverChildDelegate childrenDelegate
+  +Widget buildChildLayout()
+  +void debugFillProperties()
+  {static} -int _computeActualChildCount()
+}
+
+"flutter::lib::src::widgets::scroll_view.dart::ListView" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::scroll_view.dart::ListView" o-- "flutter::lib::src::widgets::sliver.dart::SliverChildDelegate"
+"flutter::lib::src::widgets::scroll_view.dart::BoxScrollView" <|-- "flutter::lib::src::widgets::scroll_view.dart::ListView"
+
+class "flutter::lib::src::widgets::scroll_view.dart::GridView" {
+  +dynamic gridDelegate
+  +SliverChildDelegate childrenDelegate
+  +Widget buildChildLayout()
+}
+
+"flutter::lib::src::widgets::scroll_view.dart::GridView" o-- "flutter::lib::src::widgets::sliver.dart::SliverChildDelegate"
+"flutter::lib::src::widgets::scroll_view.dart::BoxScrollView" <|-- "flutter::lib::src::widgets::scroll_view.dart::GridView"
+
+class "flutter::lib::src::widgets::scroll_view.dart::ScrollViewKeyboardDismissBehavior" {
+  +int index
+  {static} +List<ScrollViewKeyboardDismissBehavior> values
+  {static} +ScrollViewKeyboardDismissBehavior manual
+  {static} +ScrollViewKeyboardDismissBehavior onDrag
+}
+
+"flutter::lib::src::widgets::scroll_view.dart::ScrollViewKeyboardDismissBehavior" o-- "flutter::lib::src::widgets::scroll_view.dart::ScrollViewKeyboardDismissBehavior"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::scroll_view.dart::ScrollViewKeyboardDismissBehavior"
+
+
+@enduml

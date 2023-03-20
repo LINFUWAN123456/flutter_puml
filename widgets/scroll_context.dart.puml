@@ -1,0 +1,18 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::scroll_context.dart::ScrollContext" {
+  +BuildContext? notificationContext
+  +BuildContext storageContext
+  +dynamic vsync
+  +dynamic axisDirection
+  +void setIgnorePointer()
+  +void setCanDrag()
+  +void setSemanticsActions()
+  +void saveOffset()
+}
+
+"flutter::lib::src::widgets::scroll_context.dart::ScrollContext" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+
+
+@enduml

@@ -1,0 +1,122 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::data_table.dart::DataColumn" {
+  +dynamic label
+  +String? tooltip
+  +bool numeric
+  +void Function(int, bool)? onSort
+  -bool _debugInteractive
+}
+
+"flutter::lib::src::material::data_table.dart::DataColumn" o-- "flutter::lib::src::material::data_table.dart::void Function(int, bool)"
+
+class "flutter::lib::src::material::data_table.dart::DataRow" {
+  +dynamic key
+  +dynamic onSelectChanged
+  +dynamic onLongPress
+  +bool selected
+  +List<DataCell> cells
+  +MaterialStateProperty<dynamic>? color
+  -bool _debugInteractive
+}
+
+"flutter::lib::src::material::data_table.dart::DataRow" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+
+class "flutter::lib::src::material::data_table.dart::DataCell" {
+  {static} +DataCell empty
+  +dynamic child
+  +bool placeholder
+  +bool showEditIcon
+  +dynamic onTap
+  +dynamic onDoubleTap
+  +dynamic onLongPress
+  +dynamic onTapDown
+  +dynamic onTapCancel
+  -bool _debugInteractive
+}
+
+"flutter::lib::src::material::data_table.dart::DataCell" o-- "flutter::lib::src::material::data_table.dart::DataCell"
+
+class "flutter::lib::src::material::data_table.dart::DataTable" {
+  +List<DataColumn> columns
+  +int? sortColumnIndex
+  +bool sortAscending
+  +dynamic onSelectAll
+  +dynamic decoration
+  +MaterialStateProperty<dynamic>? dataRowColor
+  +double? dataRowHeight
+  +dynamic dataTextStyle
+  +MaterialStateProperty<dynamic>? headingRowColor
+  +double? headingRowHeight
+  +dynamic headingTextStyle
+  +double? horizontalMargin
+  +double? columnSpacing
+  +bool showCheckboxColumn
+  +List<DataRow> rows
+  +double? dividerThickness
+  +bool showBottomBorder
+  +double? checkboxHorizontalMargin
+  +dynamic border
+  -int? _onlyTextColumn
+  {static} -dynamic _headingRowKey
+  {static} -double _headingRowHeight
+  {static} -double _horizontalMargin
+  {static} -double _columnSpacing
+  {static} -double _sortArrowPadding
+  {static} -double _dividerThickness
+  {static} -Duration _sortArrowAnimationDuration
+  -bool _debugInteractive
+  {static} -int? _initOnlyTextColumn()
+  -void _handleSelectAll()
+  -dynamic _buildCheckbox()
+  -dynamic _buildHeadingCell()
+  -dynamic _buildDataCell()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::data_table.dart::DataTable" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+
+class "flutter::lib::src::material::data_table.dart::TableRowInkWell" {
+  +dynamic Function() getRectCallback()
+  +bool debugCheckContext()
+}
+
+"flutter::lib::src::material::ink_well.dart::InkResponse" <|-- "flutter::lib::src::material::data_table.dart::TableRowInkWell"
+
+class "flutter::lib::src::material::data_table.dart::_SortArrow" {
+  +bool visible
+  +bool? up
+  +Duration duration
+  +_SortArrowState createState()
+}
+
+class "flutter::lib::src::material::data_table.dart::_SortArrowState" {
+  -dynamic _opacityController
+  -dynamic _opacityAnimation
+  -dynamic _orientationController
+  -dynamic _orientationAnimation
+  -double _orientationOffset
+  -bool? _up
+  {static} -dynamic _turnTween
+  {static} -double _arrowIconBaselineOffset
+  {static} -double _arrowIconSize
+  +void initState()
+  -void _rebuild()
+  -void _resetOrientationAnimation()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::data_table.dart::_NullTableColumnWidth" {
+  +double maxIntrinsicWidth()
+  +double minIntrinsicWidth()
+}
+
+class "flutter::lib::src::material::data_table.dart::_NullWidget" {
+  +dynamic createElement()
+}
+
+
+@enduml

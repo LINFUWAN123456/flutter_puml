@@ -1,0 +1,102 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::async.dart::StreamBuilderBase" {
+  +Stream<T>? stream
+  +S initial()
+  +S afterConnected()
+  +S afterData()
+  +S afterError()
+  +S afterDone()
+  +S afterDisconnected()
+  +Widget build()
+  +State<StreamBuilderBase<T, S>> createState()
+}
+
+"flutter::lib::src::widgets::async.dart::StreamBuilderBase" o-- "dart::async::Stream<T>"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::async.dart::StreamBuilderBase"
+
+class "flutter::lib::src::widgets::async.dart::_StreamBuilderBaseState" {
+  -StreamSubscription<T>? _subscription
+  -S _summary
+  +void initState()
+  +void didUpdateWidget()
+  +Widget build()
+  +void dispose()
+  -void _subscribe()
+  -void _unsubscribe()
+}
+
+"flutter::lib::src::widgets::async.dart::_StreamBuilderBaseState" o-- "dart::async::StreamSubscription<T>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::async.dart::_StreamBuilderBaseState"
+
+class "flutter::lib::src::widgets::async.dart::AsyncSnapshot" {
+  +ConnectionState connectionState
+  +T? data
+  +Object? error
+  +StackTrace? stackTrace
+  +T requireData
+  +bool hasData
+  +bool hasError
+  +int hashCode
+  +AsyncSnapshot<T> inState()
+  +String toString()
+  +bool ==()
+}
+
+"flutter::lib::src::widgets::async.dart::AsyncSnapshot" o-- "flutter::lib::src::widgets::async.dart::ConnectionState"
+
+class "flutter::lib::src::widgets::async.dart::StreamBuilder" {
+  +Widget Function(BuildContext, AsyncSnapshot<T>) builder
+  +T? initialData
+  +AsyncSnapshot<T> initial()
+  +AsyncSnapshot<T> afterConnected()
+  +AsyncSnapshot<T> afterData()
+  +AsyncSnapshot<T> afterError()
+  +AsyncSnapshot<T> afterDone()
+  +AsyncSnapshot<T> afterDisconnected()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::async.dart::StreamBuilder" o-- "flutter::lib::src::widgets::async.dart::Widget Function(BuildContext, AsyncSnapshot<T>)"
+"flutter::lib::src::widgets::async.dart::StreamBuilderBase" <|-- "flutter::lib::src::widgets::async.dart::StreamBuilder"
+
+class "flutter::lib::src::widgets::async.dart::FutureBuilder" {
+  +Future<T>? future
+  +Widget Function(BuildContext, AsyncSnapshot<T>) builder
+  +T? initialData
+  {static} +bool debugRethrowError
+  +State<FutureBuilder<T>> createState()
+}
+
+"flutter::lib::src::widgets::async.dart::FutureBuilder" o-- "flutter::lib::src::widgets::async.dart::Widget Function(BuildContext, AsyncSnapshot<T>)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::async.dart::FutureBuilder"
+
+class "flutter::lib::src::widgets::async.dart::_FutureBuilderState" {
+  -Object? _activeCallbackIdentity
+  -AsyncSnapshot<T> _snapshot
+  +void initState()
+  +void didUpdateWidget()
+  +Widget build()
+  +void dispose()
+  -void _subscribe()
+  -void _unsubscribe()
+}
+
+"flutter::lib::src::widgets::async.dart::_FutureBuilderState" o-- "flutter::lib::src::widgets::async.dart::AsyncSnapshot<T>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::async.dart::_FutureBuilderState"
+
+class "flutter::lib::src::widgets::async.dart::ConnectionState" {
+  +int index
+  {static} +List<ConnectionState> values
+  {static} +ConnectionState none
+  {static} +ConnectionState waiting
+  {static} +ConnectionState active
+  {static} +ConnectionState done
+}
+
+"flutter::lib::src::widgets::async.dart::ConnectionState" o-- "flutter::lib::src::widgets::async.dart::ConnectionState"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::async.dart::ConnectionState"
+
+
+@enduml

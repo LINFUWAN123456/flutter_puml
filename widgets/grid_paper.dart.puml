@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::grid_paper.dart::_GridPaperPainter" {
+  +dynamic color
+  +double interval
+  +int divisions
+  +int subdivisions
+  +void paint()
+  +bool shouldRepaint()
+  +bool hitTest()
+}
+
+class "flutter::lib::src::widgets::grid_paper.dart::GridPaper" {
+  +dynamic color
+  +double interval
+  +int divisions
+  +int subdivisions
+  +Widget? child
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::grid_paper.dart::GridPaper" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::grid_paper.dart::GridPaper"
+
+
+@enduml

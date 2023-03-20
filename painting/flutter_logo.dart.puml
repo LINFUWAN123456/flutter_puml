@@ -1,0 +1,53 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::flutter_logo.dart::FlutterLogoDecoration" {
+  +dynamic textColor
+  +FlutterLogoStyle style
+  +EdgeInsets margin
+  -double _position
+  -double _opacity
+  -bool _inTransition
+  +bool isComplex
+  +int hashCode
+  +bool debugAssertIsValid()
+  {static} +FlutterLogoDecoration? lerp()
+  +FlutterLogoDecoration? lerpFrom()
+  +FlutterLogoDecoration? lerpTo()
+  +bool hitTest()
+  +BoxPainter createBoxPainter()
+  +dynamic getClipPath()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::painting::flutter_logo.dart::FlutterLogoDecoration" o-- "flutter::lib::src::painting::flutter_logo.dart::FlutterLogoStyle"
+"flutter::lib::src::painting::flutter_logo.dart::FlutterLogoDecoration" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsets"
+"flutter::lib::src::painting::decoration.dart::Decoration" <|-- "flutter::lib::src::painting::flutter_logo.dart::FlutterLogoDecoration"
+
+class "flutter::lib::src::painting::flutter_logo.dart::_FlutterLogoPainter" {
+  -FlutterLogoDecoration _config
+  -TextPainter _textPainter
+  -dynamic _textBoundingRect
+  -void _prepareText()
+  -void _paintLogo()
+  +void paint()
+}
+
+"flutter::lib::src::painting::flutter_logo.dart::_FlutterLogoPainter" o-- "flutter::lib::src::painting::flutter_logo.dart::FlutterLogoDecoration"
+"flutter::lib::src::painting::flutter_logo.dart::_FlutterLogoPainter" o-- "flutter::lib::src::painting::text_painter.dart::TextPainter"
+"flutter::lib::src::painting::decoration.dart::BoxPainter" <|-- "flutter::lib::src::painting::flutter_logo.dart::_FlutterLogoPainter"
+
+class "flutter::lib::src::painting::flutter_logo.dart::FlutterLogoStyle" {
+  +int index
+  {static} +List<FlutterLogoStyle> values
+  {static} +FlutterLogoStyle markOnly
+  {static} +FlutterLogoStyle horizontal
+  {static} +FlutterLogoStyle stacked
+}
+
+"flutter::lib::src::painting::flutter_logo.dart::FlutterLogoStyle" o-- "flutter::lib::src::painting::flutter_logo.dart::FlutterLogoStyle"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::flutter_logo.dart::FlutterLogoStyle"
+
+
+@enduml

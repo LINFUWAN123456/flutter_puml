@@ -1,0 +1,31 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::expansion_tile_theme.dart::ExpansionTileThemeData" {
+  +dynamic backgroundColor
+  +dynamic collapsedBackgroundColor
+  +dynamic tilePadding
+  +dynamic expandedAlignment
+  +dynamic childrenPadding
+  +dynamic iconColor
+  +dynamic collapsedIconColor
+  +dynamic textColor
+  +dynamic collapsedTextColor
+  +int hashCode
+  +ExpansionTileThemeData copyWith()
+  {static} +ExpansionTileThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::expansion_tile_theme.dart::ExpansionTileTheme" {
+  +ExpansionTileThemeData data
+  {static} +ExpansionTileThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::expansion_tile_theme.dart::ExpansionTileTheme" o-- "flutter::lib::src::material::expansion_tile_theme.dart::ExpansionTileThemeData"
+
+
+@enduml

@@ -1,0 +1,114 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::image_stream.dart::ImageInfo" {
+  +dynamic image
+  +double scale
+  +String? debugLabel
+  +int sizeBytes
+  +int hashCode
+  +ImageInfo clone()
+  +bool isCloneOf()
+  +void dispose()
+  +String toString()
+  +bool ==()
+}
+
+class "flutter::lib::src::painting::image_stream.dart::ImageStreamListener" {
+  +void Function(ImageInfo, bool) onImage
+  +void Function(ImageChunkEvent)? onChunk
+  +void Function(Object, StackTrace?)? onError
+  +int hashCode
+  +bool ==()
+}
+
+"flutter::lib::src::painting::image_stream.dart::ImageStreamListener" o-- "flutter::lib::src::painting::image_stream.dart::void Function(ImageInfo, bool)"
+"flutter::lib::src::painting::image_stream.dart::ImageStreamListener" o-- "flutter::lib::src::painting::image_stream.dart::void Function(ImageChunkEvent)"
+"flutter::lib::src::painting::image_stream.dart::ImageStreamListener" o-- "flutter::lib::src::painting::image_stream.dart::void Function(Object, StackTrace)"
+
+class "flutter::lib::src::painting::image_stream.dart::ImageChunkEvent" {
+  +int cumulativeBytesLoaded
+  +int? expectedTotalBytes
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::painting::image_stream.dart::ImageStream" {
+  -ImageStreamCompleter? _completer
+  -List<ImageStreamListener>? _listeners
+  +ImageStreamCompleter? completer
+  +Object key
+  +void setCompleter()
+  +void addListener()
+  +void removeListener()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::painting::image_stream.dart::ImageStream" o-- "flutter::lib::src::painting::image_stream.dart::ImageStreamCompleter"
+
+class "flutter::lib::src::painting::image_stream.dart::ImageStreamCompleterHandle" {
+  -ImageStreamCompleter? _completer
+  +void dispose()
+}
+
+"flutter::lib::src::painting::image_stream.dart::ImageStreamCompleterHandle" o-- "flutter::lib::src::painting::image_stream.dart::ImageStreamCompleter"
+
+abstract class "flutter::lib::src::painting::image_stream.dart::ImageStreamCompleter" {
+  -List<ImageStreamListener> _listeners
+  -ImageInfo? _currentImage
+  -dynamic _currentError
+  +String? debugLabel
+  -bool _hadAtLeastOneListener
+  -bool _addingInitialListeners
+  -int _keepAliveHandles
+  -bool _disposed
+  -List<dynamic> _onLastListenerRemovedCallbacks
+  +bool hasListeners
+  +void addListener()
+  +ImageStreamCompleterHandle keepAlive()
+  +void removeListener()
+  -void _maybeDispose()
+  -void _checkDisposed()
+  +void addOnLastListenerRemovedCallback()
+  +void removeOnLastListenerRemovedCallback()
+  +void setImage()
+  +void reportError()
+  +void reportImageChunkEvent()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::painting::image_stream.dart::ImageStreamCompleter" o-- "flutter::lib::src::painting::image_stream.dart::ImageInfo"
+
+class "flutter::lib::src::painting::image_stream.dart::OneFrameImageStreamCompleter" {
+}
+
+"flutter::lib::src::painting::image_stream.dart::ImageStreamCompleter" <|-- "flutter::lib::src::painting::image_stream.dart::OneFrameImageStreamCompleter"
+
+class "flutter::lib::src::painting::image_stream.dart::MultiFrameImageStreamCompleter" {
+  -StreamSubscription<ImageChunkEvent>? _chunkSubscription
+  -dynamic _codec
+  -double _scale
+  -dynamic _informationCollector
+  -dynamic _nextFrame
+  -Duration _shownTimestamp
+  -Duration? _frameDuration
+  -int _framesEmitted
+  -Timer? _timer
+  -bool _frameCallbackScheduled
+  -void _handleCodecReady()
+  -void _handleAppFrame()
+  -bool _isFirstFrame()
+  -bool _hasFrameDurationPassed()
+  -Future<void> _decodeNextFrameAndSchedule()
+  -void _scheduleAppFrame()
+  -void _emitFrame()
+  +void addListener()
+  +void removeListener()
+  -void _maybeDispose()
+}
+
+"flutter::lib::src::painting::image_stream.dart::MultiFrameImageStreamCompleter" o-- "dart::async::StreamSubscription<ImageChunkEvent>"
+"flutter::lib::src::painting::image_stream.dart::MultiFrameImageStreamCompleter" o-- "dart::async::Timer"
+"flutter::lib::src::painting::image_stream.dart::ImageStreamCompleter" <|-- "flutter::lib::src::painting::image_stream.dart::MultiFrameImageStreamCompleter"
+
+
+@enduml

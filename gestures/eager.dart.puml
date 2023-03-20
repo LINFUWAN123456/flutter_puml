@@ -1,0 +1,14 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::eager.dart::EagerGestureRecognizer" {
+  +String debugDescription
+  +void addAllowedPointer()
+  +void didStopTrackingLastPointer()
+  +void handleEvent()
+}
+
+"flutter::lib::src::gestures::recognizer.dart::OneSequenceGestureRecognizer" <|-- "flutter::lib::src::gestures::eager.dart::EagerGestureRecognizer"
+
+
+@enduml

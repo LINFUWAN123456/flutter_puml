@@ -1,0 +1,68 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::tab_scaffold.dart::CupertinoTabController" {
+  -bool _isDisposed
+  -int _index
+  +int index
+  +void dispose()
+}
+
+class "flutter::lib::src::cupertino::tab_scaffold.dart::CupertinoTabScaffold" {
+  +CupertinoTabBar tabBar
+  +CupertinoTabController? controller
+  +dynamic tabBuilder
+  +dynamic backgroundColor
+  +bool resizeToAvoidBottomInset
+  +String? restorationId
+  +dynamic createState()
+}
+
+"flutter::lib::src::cupertino::tab_scaffold.dart::CupertinoTabScaffold" o-- "flutter::lib::src::cupertino::bottom_tab_bar.dart::CupertinoTabBar"
+"flutter::lib::src::cupertino::tab_scaffold.dart::CupertinoTabScaffold" o-- "flutter::lib::src::cupertino::tab_scaffold.dart::CupertinoTabController"
+
+class "flutter::lib::src::cupertino::tab_scaffold.dart::_CupertinoTabScaffoldState" {
+  -RestorableCupertinoTabController? _internalController
+  -CupertinoTabController _controller
+  +String? restorationId
+  +void restoreState()
+  -void _restoreInternalController()
+  +void initState()
+  -void _updateTabController()
+  -void _onCurrentIndexChange()
+  +void didUpdateWidget()
+  +dynamic build()
+  +void dispose()
+}
+
+"flutter::lib::src::cupertino::tab_scaffold.dart::_CupertinoTabScaffoldState" o-- "flutter::lib::src::cupertino::tab_scaffold.dart::RestorableCupertinoTabController"
+"flutter::lib::src::cupertino::tab_scaffold.dart::_CupertinoTabScaffoldState" o-- "flutter::lib::src::cupertino::tab_scaffold.dart::CupertinoTabController"
+
+class "flutter::lib::src::cupertino::tab_scaffold.dart::_TabSwitchingView" {
+  +int currentTabIndex
+  +int tabCount
+  +dynamic tabBuilder
+  +_TabSwitchingViewState createState()
+}
+
+class "flutter::lib::src::cupertino::tab_scaffold.dart::_TabSwitchingViewState" {
+  +List<bool> shouldBuildTab
+  +List<dynamic> tabFocusNodes
+  +List<dynamic> discardedNodes
+  +void initState()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  -void _focusActiveTab()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::tab_scaffold.dart::RestorableCupertinoTabController" {
+  -int _initialIndex
+  +CupertinoTabController createDefaultValue()
+  +CupertinoTabController fromPrimitives()
+  +Object? toPrimitives()
+}
+
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::sliver_prototype_extent_list.dart::SliverPrototypeExtentList" {
+  +Widget prototypeItem
+  +dynamic createRenderObject()
+  +SliverMultiBoxAdaptorElement createElement()
+}
+
+"flutter::lib::src::widgets::sliver_prototype_extent_list.dart::SliverPrototypeExtentList" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorWidget" <|-- "flutter::lib::src::widgets::sliver_prototype_extent_list.dart::SliverPrototypeExtentList"
+
+class "flutter::lib::src::widgets::sliver_prototype_extent_list.dart::_SliverPrototypeExtentListElement" {
+  -Element? _prototype
+  {static} -Object _prototypeSlot
+  +_RenderSliverPrototypeExtentList renderObject
+  +void insertRenderObjectChild()
+  +void didAdoptChild()
+  +void moveRenderObjectChild()
+  +void removeRenderObjectChild()
+  +void visitChildren()
+  +void mount()
+  +void update()
+}
+
+"flutter::lib::src::widgets::sliver_prototype_extent_list.dart::_SliverPrototypeExtentListElement" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::widgets::sliver_prototype_extent_list.dart::_SliverPrototypeExtentListElement" o-- "flutter::lib::src::widgets::sliver_prototype_extent_list.dart::_RenderSliverPrototypeExtentList"
+"flutter::lib::src::widgets::sliver.dart::SliverMultiBoxAdaptorElement" <|-- "flutter::lib::src::widgets::sliver_prototype_extent_list.dart::_SliverPrototypeExtentListElement"
+
+class "flutter::lib::src::widgets::sliver_prototype_extent_list.dart::_RenderSliverPrototypeExtentList" {
+  -dynamic _child
+  +dynamic child
+  +double itemExtent
+  +void performLayout()
+  +void attach()
+  +void detach()
+  +void redepthChildren()
+  +void visitChildren()
+}
+
+
+@enduml

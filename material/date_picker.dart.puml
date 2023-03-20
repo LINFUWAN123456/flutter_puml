@@ -1,0 +1,329 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::date_picker.dart::DatePickerDialog" {
+  +DateTime initialDate
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime currentDate
+  +DatePickerEntryMode initialEntryMode
+  +bool Function(DateTime)? selectableDayPredicate
+  +String? cancelText
+  +String? confirmText
+  +String? helpText
+  +DatePickerMode initialCalendarMode
+  +String? errorFormatText
+  +String? errorInvalidText
+  +String? fieldHintText
+  +String? fieldLabelText
+  +dynamic keyboardType
+  +String? restorationId
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::date_picker.dart::DatePickerDialog" o-- "flutter::lib::src::material::date.dart::DatePickerEntryMode"
+"flutter::lib::src::material::date_picker.dart::DatePickerDialog" o-- "flutter::lib::src::material::date.dart::bool Function(DateTime)"
+"flutter::lib::src::material::date_picker.dart::DatePickerDialog" o-- "flutter::lib::src::material::date.dart::DatePickerMode"
+
+class "flutter::lib::src::material::date_picker.dart::_DatePickerDialogState" {
+  -dynamic _selectedDate
+  -_RestorableDatePickerEntryMode _entryMode
+  -_RestorableAutovalidateMode _autovalidateMode
+  -dynamic _calendarPickerKey
+  -dynamic _formKey
+  {static} -Map<dynamic, dynamic> _formShortcutMap
+  +String? restorationId
+  +void restoreState()
+  -void _handleOk()
+  -void _handleCancel()
+  -void _handleEntryModeToggle()
+  -void _handleDateChanged()
+  -dynamic _dialogSize()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::date_picker.dart::_DatePickerDialogState" o-- "flutter::lib::src::material::date_picker.dart::_RestorableDatePickerEntryMode"
+"flutter::lib::src::material::date_picker.dart::_DatePickerDialogState" o-- "flutter::lib::src::material::date_picker.dart::_RestorableAutovalidateMode"
+
+class "flutter::lib::src::material::date_picker.dart::_RestorableDatePickerEntryMode" {
+  -DatePickerEntryMode _defaultValue
+  +DatePickerEntryMode createDefaultValue()
+  +void didUpdateValue()
+  +DatePickerEntryMode fromPrimitives()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::material::date_picker.dart::_RestorableDatePickerEntryMode" o-- "flutter::lib::src::material::date.dart::DatePickerEntryMode"
+
+class "flutter::lib::src::material::date_picker.dart::_RestorableAutovalidateMode" {
+  -dynamic _defaultValue
+  +dynamic createDefaultValue()
+  +void didUpdateValue()
+  +dynamic fromPrimitives()
+  +Object? toPrimitives()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_DatePickerHeader" {
+  {static} -double _datePickerHeaderLandscapeWidth
+  {static} -double _datePickerHeaderPortraitHeight
+  {static} -double _headerPaddingLandscape
+  +String helpText
+  +String titleText
+  +String? titleSemanticsLabel
+  +dynamic titleStyle
+  +dynamic orientation
+  +bool isShort
+  +dynamic entryModeButton
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::date_picker.dart::DateRangePickerDialog" {
+  +DateTimeRange? initialDateRange
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime? currentDate
+  +DatePickerEntryMode initialEntryMode
+  +String? cancelText
+  +String? confirmText
+  +String? saveText
+  +String? helpText
+  +String? errorInvalidRangeText
+  +String? errorFormatText
+  +String? errorInvalidText
+  +String? fieldStartHintText
+  +String? fieldEndHintText
+  +String? fieldStartLabelText
+  +String? fieldEndLabelText
+  +String? restorationId
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::date_picker.dart::DateRangePickerDialog" o-- "flutter::lib::src::material::date.dart::DateTimeRange"
+"flutter::lib::src::material::date_picker.dart::DateRangePickerDialog" o-- "flutter::lib::src::material::date.dart::DatePickerEntryMode"
+
+class "flutter::lib::src::material::date_picker.dart::_DateRangePickerDialogState" {
+  -_RestorableDatePickerEntryMode _entryMode
+  -dynamic _selectedStart
+  -dynamic _selectedEnd
+  -dynamic _autoValidate
+  -dynamic _calendarPickerKey
+  -dynamic _inputPickerKey
+  +String? restorationId
+  -bool _hasSelectedDateRange
+  +void restoreState()
+  -void _handleOk()
+  -void _handleCancel()
+  -void _handleEntryModeToggle()
+  -void _handleStartDateChanged()
+  -void _handleEndDateChanged()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::date_picker.dart::_DateRangePickerDialogState" o-- "flutter::lib::src::material::date_picker.dart::_RestorableDatePickerEntryMode"
+
+class "flutter::lib::src::material::date_picker.dart::_CalendarRangePickerDialog" {
+  +DateTime? selectedStartDate
+  +DateTime? selectedEndDate
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime? currentDate
+  +dynamic onStartDateChanged
+  +dynamic onEndDateChanged
+  +dynamic onConfirm
+  +dynamic onCancel
+  +String confirmText
+  +String helpText
+  +dynamic entryModeButton
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_CalendarDateRangePicker" {
+  +DateTime? initialStartDate
+  +DateTime? initialEndDate
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime currentDate
+  +dynamic onStartDateChanged
+  +dynamic onEndDateChanged
+  +_CalendarDateRangePickerState createState()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_CalendarDateRangePickerState" {
+  -dynamic _scrollViewKey
+  -DateTime? _startDate
+  -DateTime? _endDate
+  -int _initialMonthIndex
+  -dynamic _controller
+  -bool _showWeekBottomDivider
+  -int _numberOfMonths
+  +void initState()
+  +void dispose()
+  -void _scrollListener()
+  -void _vibrate()
+  -void _updateSelection()
+  -dynamic _buildMonthItem()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_CalendarKeyboardNavigator" {
+  +dynamic child
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime initialFocusedDay
+  +_CalendarKeyboardNavigatorState createState()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_CalendarKeyboardNavigatorState" {
+  -Map<dynamic, dynamic> _shortcutMap
+  -Map<Type, dynamic> _actionMap
+  -dynamic _dayGridFocus
+  -dynamic _dayTraversalDirection
+  -DateTime? _focusedDay
+  {static} -Map<dynamic, int> _directionOffset
+  +void initState()
+  +void dispose()
+  -void _handleGridFocusChange()
+  -void _handleGridNextFocus()
+  -void _handleGridPreviousFocus()
+  -void _handleDirectionFocus()
+  -int _dayDirectionOffset()
+  -DateTime? _nextDateInDirection()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_FocusedDate" {
+  +DateTime? date
+  +dynamic scrollDirection
+  +bool updateShouldNotify()
+  {static} +_FocusedDate? of()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_DayHeaders" {
+  -List<dynamic> _getDayHeaders()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_MonthItemGridDelegate" {
+  +dynamic getLayout()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_MonthSliverGridLayout" {
+  +int crossAxisCount
+  +double dayChildWidth
+  +double edgeChildWidth
+  +bool reverseCrossAxis
+  -double _rowHeight
+  -double _childHeight
+  +int getMinChildIndexForScrollOffset()
+  +int getMaxChildIndexForScrollOffset()
+  -double _getCrossAxisOffset()
+  +dynamic getGeometryForChildIndex()
+  +double computeMaxScrollOffset()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_MonthItem" {
+  +DateTime? selectedDateStart
+  +DateTime? selectedDateEnd
+  +DateTime currentDate
+  +dynamic onChanged
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime displayedMonth
+  +dynamic dragStartBehavior
+  +_MonthItemState createState()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_MonthItemState" {
+  -List<dynamic> _dayFocusNodes
+  +void initState()
+  +void didChangeDependencies()
+  +void dispose()
+  -dynamic _highlightColor()
+  -void _dayFocusChanged()
+  -dynamic _buildDayItem()
+  -dynamic _buildEdgeContainer()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_HighlightPainter" {
+  +dynamic color
+  +_HighlightPainterStyle style
+  +dynamic textDirection
+  +void paint()
+  +bool shouldRepaint()
+}
+
+"flutter::lib::src::material::date_picker.dart::_HighlightPainter" o-- "flutter::lib::src::material::date_picker.dart::_HighlightPainterStyle"
+
+class "flutter::lib::src::material::date_picker.dart::_InputDateRangePickerDialog" {
+  +DateTime? selectedStartDate
+  +DateTime? selectedEndDate
+  +DateTime? currentDate
+  +dynamic picker
+  +dynamic onConfirm
+  +dynamic onCancel
+  +String? confirmText
+  +String? cancelText
+  +String? helpText
+  +dynamic entryModeButton
+  -String _formatDateRange()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_InputDateRangePicker" {
+  +DateTime? initialStartDate
+  +DateTime? initialEndDate
+  +DateTime firstDate
+  +DateTime lastDate
+  +dynamic onStartDateChanged
+  +dynamic onEndDateChanged
+  +String? helpText
+  +String? errorFormatText
+  +String? errorInvalidText
+  +String? errorInvalidRangeText
+  +String? fieldStartHintText
+  +String? fieldEndHintText
+  +String? fieldStartLabelText
+  +String? fieldEndLabelText
+  +bool autofocus
+  +bool autovalidate
+  +_InputDateRangePickerState createState()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_InputDateRangePickerState" {
+  -String _startInputText
+  -String _endInputText
+  -DateTime? _startDate
+  -DateTime? _endDate
+  -dynamic _startController
+  -dynamic _endController
+  -String? _startErrorText
+  -String? _endErrorText
+  -bool _autoSelected
+  +void initState()
+  +void dispose()
+  +void didChangeDependencies()
+  +bool validate()
+  -DateTime? _parseDate()
+  -String? _validateDate()
+  -void _updateController()
+  -void _handleStartChanged()
+  -void _handleEndChanged()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::date_picker.dart::_HighlightPainterStyle" {
+  +int index
+  {static} +List<_HighlightPainterStyle> values
+  {static} +_HighlightPainterStyle none
+  {static} +_HighlightPainterStyle highlightLeading
+  {static} +_HighlightPainterStyle highlightTrailing
+  {static} +_HighlightPainterStyle highlightAll
+}
+
+"flutter::lib::src::material::date_picker.dart::_HighlightPainterStyle" o-- "flutter::lib::src::material::date_picker.dart::_HighlightPainterStyle"
+"dart::core::Enum" <|-- "flutter::lib::src::material::date_picker.dart::_HighlightPainterStyle"
+
+
+@enduml

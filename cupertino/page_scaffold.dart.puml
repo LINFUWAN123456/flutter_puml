@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::page_scaffold.dart::CupertinoPageScaffold" {
+  +ObstructingPreferredSizeWidget? navigationBar
+  +dynamic child
+  +dynamic backgroundColor
+  +bool resizeToAvoidBottomInset
+  +dynamic createState()
+}
+
+"flutter::lib::src::cupertino::page_scaffold.dart::CupertinoPageScaffold" o-- "flutter::lib::src::cupertino::page_scaffold.dart::ObstructingPreferredSizeWidget"
+
+class "flutter::lib::src::cupertino::page_scaffold.dart::_CupertinoPageScaffoldState" {
+  -void _handleStatusBarTap()
+  +dynamic build()
+}
+
+abstract class "flutter::lib::src::cupertino::page_scaffold.dart::ObstructingPreferredSizeWidget" {
+  +bool shouldFullyObstruct()
+}
+
+
+@enduml

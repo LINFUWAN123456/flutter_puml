@@ -1,0 +1,31 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::fractional_offset.dart::FractionalOffset" {
+  {static} +FractionalOffset topLeft
+  {static} +FractionalOffset topCenter
+  {static} +FractionalOffset topRight
+  {static} +FractionalOffset centerLeft
+  {static} +FractionalOffset center
+  {static} +FractionalOffset centerRight
+  {static} +FractionalOffset bottomLeft
+  {static} +FractionalOffset bottomCenter
+  {static} +FractionalOffset bottomRight
+  +double dx
+  +double dy
+  +Alignment -()
+  +Alignment +()
+  +FractionalOffset unary-()
+  +FractionalOffset *()
+  +FractionalOffset /()
+  +FractionalOffset ~/()
+  +FractionalOffset %()
+  {static} +FractionalOffset? lerp()
+  +String toString()
+}
+
+"flutter::lib::src::painting::fractional_offset.dart::FractionalOffset" o-- "flutter::lib::src::painting::fractional_offset.dart::FractionalOffset"
+"flutter::lib::src::painting::alignment.dart::Alignment" <|-- "flutter::lib::src::painting::fractional_offset.dart::FractionalOffset"
+
+
+@enduml

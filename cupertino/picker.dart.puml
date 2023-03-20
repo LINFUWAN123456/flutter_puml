@@ -1,0 +1,60 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::picker.dart::CupertinoPicker" {
+  +double diameterRatio
+  +dynamic backgroundColor
+  +double offAxisFraction
+  +bool useMagnifier
+  +double magnification
+  +dynamic scrollController
+  +double itemExtent
+  +double squeeze
+  +dynamic onSelectedItemChanged
+  +dynamic childDelegate
+  +dynamic selectionOverlay
+  +dynamic createState()
+}
+
+class "flutter::lib::src::cupertino::picker.dart::_CupertinoPickerState" {
+  -int? _lastHapticIndex
+  -dynamic _controller
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _handleSelectedItemChanged()
+  -dynamic _buildSelectionOverlay()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::picker.dart::CupertinoPickerDefaultSelectionOverlay" {
+  +bool capStartEdge
+  +bool capEndEdge
+  +dynamic background
+  {static} -double _defaultSelectionOverlayHorizontalMargin
+  {static} -double _defaultSelectionOverlayRadius
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::picker.dart::_CupertinoPickerSemantics" {
+  +dynamic scrollController
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::cupertino::picker.dart::_RenderCupertinoPickerSemantics" {
+  -dynamic _controller
+  -dynamic _textDirection
+  -int _currentIndex
+  +dynamic controller
+  +dynamic textDirection
+  -void _updateController()
+  -void _handleIncrease()
+  -void _handleDecrease()
+  -void _handleScrollUpdate()
+  +void describeSemanticsConfiguration()
+  +void assembleSemanticsNode()
+}
+
+
+@enduml

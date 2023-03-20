@@ -1,0 +1,155 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::table.dart::TableCellParentData" {
+  +TableCellVerticalAlignment? verticalAlignment
+  +int? x
+  +int? y
+  +String toString()
+}
+
+"flutter::lib::src::rendering::table.dart::TableCellParentData" o-- "flutter::lib::src::rendering::table.dart::TableCellVerticalAlignment"
+"flutter::lib::src::rendering::box.dart::BoxParentData" <|-- "flutter::lib::src::rendering::table.dart::TableCellParentData"
+
+abstract class "flutter::lib::src::rendering::table.dart::TableColumnWidth" {
+  +double minIntrinsicWidth()
+  +double maxIntrinsicWidth()
+  +double? flex()
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::table.dart::IntrinsicColumnWidth" {
+  -double? _flex
+  +double minIntrinsicWidth()
+  +double maxIntrinsicWidth()
+  +double? flex()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::table.dart::TableColumnWidth" <|-- "flutter::lib::src::rendering::table.dart::IntrinsicColumnWidth"
+
+class "flutter::lib::src::rendering::table.dart::FixedColumnWidth" {
+  +double value
+  +double minIntrinsicWidth()
+  +double maxIntrinsicWidth()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::table.dart::TableColumnWidth" <|-- "flutter::lib::src::rendering::table.dart::FixedColumnWidth"
+
+class "flutter::lib::src::rendering::table.dart::FractionColumnWidth" {
+  +double value
+  +double minIntrinsicWidth()
+  +double maxIntrinsicWidth()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::table.dart::TableColumnWidth" <|-- "flutter::lib::src::rendering::table.dart::FractionColumnWidth"
+
+class "flutter::lib::src::rendering::table.dart::FlexColumnWidth" {
+  +double value
+  +double minIntrinsicWidth()
+  +double maxIntrinsicWidth()
+  +double flex()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::table.dart::TableColumnWidth" <|-- "flutter::lib::src::rendering::table.dart::FlexColumnWidth"
+
+class "flutter::lib::src::rendering::table.dart::MaxColumnWidth" {
+  +TableColumnWidth a
+  +TableColumnWidth b
+  +double minIntrinsicWidth()
+  +double maxIntrinsicWidth()
+  +double? flex()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::table.dart::MaxColumnWidth" o-- "flutter::lib::src::rendering::table.dart::TableColumnWidth"
+"flutter::lib::src::rendering::table.dart::TableColumnWidth" <|-- "flutter::lib::src::rendering::table.dart::MaxColumnWidth"
+
+class "flutter::lib::src::rendering::table.dart::MinColumnWidth" {
+  +TableColumnWidth a
+  +TableColumnWidth b
+  +double minIntrinsicWidth()
+  +double maxIntrinsicWidth()
+  +double? flex()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::table.dart::MinColumnWidth" o-- "flutter::lib::src::rendering::table.dart::TableColumnWidth"
+"flutter::lib::src::rendering::table.dart::TableColumnWidth" <|-- "flutter::lib::src::rendering::table.dart::MinColumnWidth"
+
+class "flutter::lib::src::rendering::table.dart::RenderTable" {
+  -List<RenderBox?> _children
+  -int _columns
+  -int _rows
+  -Map<int, TableColumnWidth> _columnWidths
+  -TableColumnWidth _defaultColumnWidth
+  -dynamic _textDirection
+  -TableBorder? _border
+  -List<dynamic>? _rowDecorations
+  -List<dynamic>? _rowDecorationPainters
+  -dynamic _configuration
+  -TableCellVerticalAlignment _defaultVerticalAlignment
+  -dynamic _textBaseline
+  -double? _baselineDistance
+  -List<double> _rowTops
+  -Iterable<double>? _columnLefts
+  -double _tableWidth
+  +int columns
+  +int rows
+  +Map<int, TableColumnWidth>? columnWidths
+  +TableColumnWidth defaultColumnWidth
+  +dynamic textDirection
+  +TableBorder? border
+  +List<dynamic> rowDecorations
+  +dynamic configuration
+  +TableCellVerticalAlignment defaultVerticalAlignment
+  +dynamic textBaseline
+  +void setColumnWidth()
+  +void setupParentData()
+  +void setFlatChildren()
+  +void setChildren()
+  +void addRow()
+  +void setChild()
+  +void attach()
+  +void detach()
+  +void visitChildren()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  +Iterable<RenderBox> column()
+  +Iterable<RenderBox> row()
+  -List<double> _computeColumnWidths()
+  +dynamic getRowBox()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +bool hitTestChildren()
+  +void paint()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::rendering::table.dart::RenderTable" o-- "flutter::lib::src::rendering::table.dart::TableColumnWidth"
+"flutter::lib::src::rendering::table.dart::RenderTable" o-- "flutter::lib::src::rendering::table_border.dart::TableBorder"
+"flutter::lib::src::rendering::table.dart::RenderTable" o-- "flutter::lib::src::rendering::table.dart::TableCellVerticalAlignment"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::table.dart::RenderTable"
+
+class "flutter::lib::src::rendering::table.dart::TableCellVerticalAlignment" {
+  +int index
+  {static} +List<TableCellVerticalAlignment> values
+  {static} +TableCellVerticalAlignment top
+  {static} +TableCellVerticalAlignment middle
+  {static} +TableCellVerticalAlignment bottom
+  {static} +TableCellVerticalAlignment baseline
+  {static} +TableCellVerticalAlignment fill
+}
+
+"flutter::lib::src::rendering::table.dart::TableCellVerticalAlignment" o-- "flutter::lib::src::rendering::table.dart::TableCellVerticalAlignment"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::table.dart::TableCellVerticalAlignment"
+
+
+@enduml

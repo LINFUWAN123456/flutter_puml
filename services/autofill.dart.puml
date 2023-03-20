@@ -1,0 +1,114 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::autofill.dart::AutofillHints" {
+  {static} +String addressCity
+  {static} +String addressCityAndState
+  {static} +String addressState
+  {static} +String birthday
+  {static} +String birthdayDay
+  {static} +String birthdayMonth
+  {static} +String birthdayYear
+  {static} +String countryCode
+  {static} +String countryName
+  {static} +String creditCardExpirationDate
+  {static} +String creditCardExpirationDay
+  {static} +String creditCardExpirationMonth
+  {static} +String creditCardExpirationYear
+  {static} +String creditCardFamilyName
+  {static} +String creditCardGivenName
+  {static} +String creditCardMiddleName
+  {static} +String creditCardName
+  {static} +String creditCardNumber
+  {static} +String creditCardSecurityCode
+  {static} +String creditCardType
+  {static} +String email
+  {static} +String familyName
+  {static} +String fullStreetAddress
+  {static} +String gender
+  {static} +String givenName
+  {static} +String impp
+  {static} +String jobTitle
+  {static} +String language
+  {static} +String location
+  {static} +String middleInitial
+  {static} +String middleName
+  {static} +String name
+  {static} +String namePrefix
+  {static} +String nameSuffix
+  {static} +String newPassword
+  {static} +String newUsername
+  {static} +String nickname
+  {static} +String oneTimeCode
+  {static} +String organizationName
+  {static} +String password
+  {static} +String photo
+  {static} +String postalAddress
+  {static} +String postalAddressExtended
+  {static} +String postalAddressExtendedPostalCode
+  {static} +String postalCode
+  {static} +String streetAddressLevel1
+  {static} +String streetAddressLevel2
+  {static} +String streetAddressLevel3
+  {static} +String streetAddressLevel4
+  {static} +String streetAddressLine1
+  {static} +String streetAddressLine2
+  {static} +String streetAddressLine3
+  {static} +String sublocality
+  {static} +String telephoneNumber
+  {static} +String telephoneNumberAreaCode
+  {static} +String telephoneNumberCountryCode
+  {static} +String telephoneNumberDevice
+  {static} +String telephoneNumberExtension
+  {static} +String telephoneNumberLocal
+  {static} +String telephoneNumberLocalPrefix
+  {static} +String telephoneNumberLocalSuffix
+  {static} +String telephoneNumberNational
+  {static} +String transactionAmount
+  {static} +String transactionCurrency
+  {static} +String url
+  {static} +String username
+}
+
+class "flutter::lib::src::services::autofill.dart::AutofillConfiguration" {
+  {static} +AutofillConfiguration disabled
+  +bool enabled
+  +String uniqueIdentifier
+  +List<String> autofillHints
+  +TextEditingValue currentEditingValue
+  +String? hintText
+  +Map<String, dynamic>? toJson()
+}
+
+"flutter::lib::src::services::autofill.dart::AutofillConfiguration" o-- "flutter::lib::src::services::autofill.dart::AutofillConfiguration"
+"flutter::lib::src::services::autofill.dart::AutofillConfiguration" o-- "flutter::lib::src::services::text_input.dart::TextEditingValue"
+
+abstract class "flutter::lib::src::services::autofill.dart::AutofillClient" {
+  +String autofillId
+  +TextInputConfiguration textInputConfiguration
+  +void autofill()
+}
+
+"flutter::lib::src::services::autofill.dart::AutofillClient" o-- "flutter::lib::src::services::text_input.dart::TextInputConfiguration"
+
+abstract class "flutter::lib::src::services::autofill.dart::AutofillScope" {
+  +Iterable<AutofillClient> autofillClients
+  +AutofillClient? getAutofillClient()
+  +TextInputConnection attach()
+}
+
+class "flutter::lib::src::services::autofill.dart::_AutofillScopeTextInputConfiguration" {
+  +Iterable<TextInputConfiguration> allConfigurations
+  +Map<String, dynamic> toJson()
+}
+
+"flutter::lib::src::services::text_input.dart::TextInputConfiguration" <|-- "flutter::lib::src::services::autofill.dart::_AutofillScopeTextInputConfiguration"
+
+abstract class "flutter::lib::src::services::autofill.dart::AutofillScopeMixin" {
+  +TextInputConnection attach()
+}
+
+"flutter::lib::src::services::autofill.dart::AutofillScope" <|-- "flutter::lib::src::services::autofill.dart::AutofillScopeMixin"
+
+
+@enduml

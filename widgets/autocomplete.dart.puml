@@ -1,0 +1,98 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::autocomplete.dart::RawAutocomplete" {
+  +Widget Function(BuildContext, TextEditingController, FocusNode, dynamic)? fieldViewBuilder
+  +FocusNode? focusNode
+  +Widget Function(BuildContext, void Function(T), Iterable<T>) optionsViewBuilder
+  +String Function(T) displayStringForOption
+  +void Function(T)? onSelected
+  +FutureOr<Iterable<T>> Function(dynamic) optionsBuilder
+  +TextEditingController? textEditingController
+  +dynamic initialValue
+  {static} +void onFieldSubmitted()
+  {static} +String defaultStringForOption()
+  +State<RawAutocomplete<T>> createState()
+}
+
+"flutter::lib::src::widgets::autocomplete.dart::RawAutocomplete" o-- "flutter::lib::src::widgets::autocomplete.dart::Widget Function(BuildContext, TextEditingController, FocusNode, dynamic)"
+"flutter::lib::src::widgets::autocomplete.dart::RawAutocomplete" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::autocomplete.dart::RawAutocomplete" o-- "flutter::lib::src::widgets::autocomplete.dart::Widget Function(BuildContext, void Function(T), Iterable<T>)"
+"flutter::lib::src::widgets::autocomplete.dart::RawAutocomplete" o-- "flutter::lib::src::widgets::autocomplete.dart::String Function(T)"
+"flutter::lib::src::widgets::autocomplete.dart::RawAutocomplete" o-- "flutter::lib::src::widgets::autocomplete.dart::void Function(T)"
+"flutter::lib::src::widgets::autocomplete.dart::RawAutocomplete" o-- "flutter::lib::src::widgets::autocomplete.dart::FutureOr<Iterable<T>> Function(dynamic)"
+"flutter::lib::src::widgets::autocomplete.dart::RawAutocomplete" o-- "flutter::lib::src::widgets::editable_text.dart::TextEditingController"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::autocomplete.dart::RawAutocomplete"
+
+class "flutter::lib::src::widgets::autocomplete.dart::_RawAutocompleteState" {
+  -GlobalKey<State<StatefulWidget>> _fieldKey
+  -dynamic _optionsLayerLink
+  -TextEditingController _textEditingController
+  -FocusNode _focusNode
+  -Map<Type, Action<Intent>> _actionMap
+  -_AutocompleteCallbackAction<AutocompletePreviousOptionIntent> _previousOptionAction
+  -_AutocompleteCallbackAction<AutocompleteNextOptionIntent> _nextOptionAction
+  -_AutocompleteCallbackAction<DismissIntent> _hideOptionsAction
+  -Iterable<T> _options
+  -T? _selection
+  -bool _userHidOptions
+  -String _lastFieldText
+  -dynamic _highlightedOptionIndex
+  {static} -Map<ShortcutActivator, Intent> _shortcuts
+  -OverlayEntry? _floatingOptions
+  -bool _floatingOptionsUpdateScheduled
+  -bool _shouldShowOptions
+  -Future<void> _onChangedField()
+  -void _onChangedFocus()
+  -void _onFieldSubmitted()
+  -void _select()
+  -void _updateHighlight()
+  -void _highlightPreviousOption()
+  -void _highlightNextOption()
+  -Object? _hideOptions()
+  -void _setActionsEnabled()
+  -void _updateActions()
+  -void _updateOverlay()
+  -void _updateTextEditingController()
+  -void _updateFocusNode()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::autocomplete.dart::_RawAutocompleteState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::autocomplete.dart::_RawAutocompleteState" o-- "flutter::lib::src::widgets::editable_text.dart::TextEditingController"
+"flutter::lib::src::widgets::autocomplete.dart::_RawAutocompleteState" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::autocomplete.dart::_RawAutocompleteState" o-- "flutter::lib::src::widgets::autocomplete.dart::_AutocompleteCallbackAction<AutocompletePreviousOptionIntent>"
+"flutter::lib::src::widgets::autocomplete.dart::_RawAutocompleteState" o-- "flutter::lib::src::widgets::autocomplete.dart::_AutocompleteCallbackAction<AutocompleteNextOptionIntent>"
+"flutter::lib::src::widgets::autocomplete.dart::_RawAutocompleteState" o-- "flutter::lib::src::widgets::autocomplete.dart::_AutocompleteCallbackAction<DismissIntent>"
+"flutter::lib::src::widgets::autocomplete.dart::_RawAutocompleteState" o-- "flutter::lib::src::widgets::overlay.dart::OverlayEntry"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::autocomplete.dart::_RawAutocompleteState"
+
+class "flutter::lib::src::widgets::autocomplete.dart::_AutocompleteCallbackAction" {
+  +bool enabled
+  +bool isEnabled()
+  +bool consumesKey()
+}
+
+"flutter::lib::src::widgets::actions.dart::CallbackAction" <|-- "flutter::lib::src::widgets::autocomplete.dart::_AutocompleteCallbackAction"
+
+class "flutter::lib::src::widgets::autocomplete.dart::AutocompletePreviousOptionIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::autocomplete.dart::AutocompletePreviousOptionIntent"
+
+class "flutter::lib::src::widgets::autocomplete.dart::AutocompleteNextOptionIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::autocomplete.dart::AutocompleteNextOptionIntent"
+
+class "flutter::lib::src::widgets::autocomplete.dart::AutocompleteHighlightedOption" {
+  {static} +int of()
+}
+
+"flutter::lib::src::widgets::inherited_notifier.dart::InheritedNotifier" <|-- "flutter::lib::src::widgets::autocomplete.dart::AutocompleteHighlightedOption"
+
+
+@enduml

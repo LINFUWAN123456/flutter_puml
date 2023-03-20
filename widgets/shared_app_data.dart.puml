@@ -1,0 +1,35 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::shared_app_data.dart::SharedAppData" {
+  +Widget child
+  +State<StatefulWidget> createState()
+  {static} +V getValue()
+  {static} +void setValue()
+  {static} -bool _debugHasSharedAppData()
+}
+
+"flutter::lib::src::widgets::shared_app_data.dart::SharedAppData" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::shared_app_data.dart::SharedAppData"
+
+class "flutter::lib::src::widgets::shared_app_data.dart::_SharedAppDataState" {
+  +Map<Object, Object?> data
+  +Widget build()
+  +V getValue()
+  +void setValue()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::shared_app_data.dart::_SharedAppDataState"
+
+class "flutter::lib::src::widgets::shared_app_data.dart::_SharedAppModel" {
+  +_SharedAppDataState sharedAppDataState
+  +Map<Object, Object?> data
+  +bool updateShouldNotify()
+  +bool updateShouldNotifyDependent()
+}
+
+"flutter::lib::src::widgets::shared_app_data.dart::_SharedAppModel" o-- "flutter::lib::src::widgets::shared_app_data.dart::_SharedAppDataState"
+"flutter::lib::src::widgets::inherited_model.dart::InheritedModel" <|-- "flutter::lib::src::widgets::shared_app_data.dart::_SharedAppModel"
+
+
+@enduml

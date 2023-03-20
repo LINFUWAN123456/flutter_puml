@@ -1,0 +1,50 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::force_press.dart::ForcePressDetails" {
+  +dynamic globalPosition
+  +dynamic localPosition
+  +double pressure
+}
+
+class "flutter::lib::src::gestures::force_press.dart::ForcePressGestureRecognizer" {
+  +void Function(ForcePressDetails)? onStart
+  +void Function(ForcePressDetails)? onUpdate
+  +void Function(ForcePressDetails)? onPeak
+  +void Function(ForcePressDetails)? onEnd
+  +double startPressure
+  +double peakPressure
+  +double Function(double, double, double) interpolation
+  -OffsetPair _lastPosition
+  -double _lastPressure
+  -_ForceState _state
+  +String debugDescription
+  +void addAllowedPointer()
+  +void handleEvent()
+  +void acceptGesture()
+  +void didStopTrackingLastPointer()
+  +void rejectGesture()
+  {static} -double _inverseLerp()
+}
+
+"flutter::lib::src::gestures::force_press.dart::ForcePressGestureRecognizer" o-- "flutter::lib::src::gestures::force_press.dart::void Function(ForcePressDetails)"
+"flutter::lib::src::gestures::force_press.dart::ForcePressGestureRecognizer" o-- "flutter::lib::src::gestures::force_press.dart::double Function(double, double, double)"
+"flutter::lib::src::gestures::force_press.dart::ForcePressGestureRecognizer" o-- "flutter::lib::src::gestures::recognizer.dart::OffsetPair"
+"flutter::lib::src::gestures::force_press.dart::ForcePressGestureRecognizer" o-- "flutter::lib::src::gestures::force_press.dart::_ForceState"
+"flutter::lib::src::gestures::recognizer.dart::OneSequenceGestureRecognizer" <|-- "flutter::lib::src::gestures::force_press.dart::ForcePressGestureRecognizer"
+
+class "flutter::lib::src::gestures::force_press.dart::_ForceState" {
+  +int index
+  {static} +List<_ForceState> values
+  {static} +_ForceState ready
+  {static} +_ForceState possible
+  {static} +_ForceState accepted
+  {static} +_ForceState started
+  {static} +_ForceState peaked
+}
+
+"flutter::lib::src::gestures::force_press.dart::_ForceState" o-- "flutter::lib::src::gestures::force_press.dart::_ForceState"
+"dart::core::Enum" <|-- "flutter::lib::src::gestures::force_press.dart::_ForceState"
+
+
+@enduml

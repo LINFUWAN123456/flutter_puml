@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::elevated_button_theme.dart::ElevatedButtonThemeData" {
+  +ButtonStyle? style
+  +int hashCode
+  {static} +ElevatedButtonThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::elevated_button_theme.dart::ElevatedButtonThemeData" o-- "flutter::lib::src::material::button_style.dart::ButtonStyle"
+
+class "flutter::lib::src::material::elevated_button_theme.dart::ElevatedButtonTheme" {
+  +ElevatedButtonThemeData data
+  {static} +ElevatedButtonThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::elevated_button_theme.dart::ElevatedButtonTheme" o-- "flutter::lib::src::material::elevated_button_theme.dart::ElevatedButtonThemeData"
+
+
+@enduml

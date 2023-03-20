@@ -1,0 +1,385 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_ProxyLayer" {
+  -dynamic _layer
+  +void addToScene()
+  +bool findAnnotations()
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_MulticastCanvas" {
+  -dynamic _main
+  -dynamic _screenshot
+  +void clipPath()
+  +void clipRRect()
+  +void clipRect()
+  +void drawArc()
+  +void drawAtlas()
+  +void drawCircle()
+  +void drawColor()
+  +void drawDRRect()
+  +void drawImage()
+  +void drawImageNine()
+  +void drawImageRect()
+  +void drawLine()
+  +void drawOval()
+  +void drawPaint()
+  +void drawParagraph()
+  +void drawPath()
+  +void drawPicture()
+  +void drawPoints()
+  +void drawRRect()
+  +void drawRawAtlas()
+  +void drawRawPoints()
+  +void drawRect()
+  +void drawShadow()
+  +void drawVertices()
+  +int getSaveCount()
+  +void restore()
+  +void rotate()
+  +void save()
+  +void saveLayer()
+  +void scale()
+  +void skew()
+  +void transform()
+  +void translate()
+  +dynamic noSuchMethod()
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_ScreenshotContainerLayer" {
+  +void addToScene()
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_ScreenshotData" {
+  +dynamic target
+  +dynamic containerLayer
+  +bool foundTarget
+  +bool includeInScreenshot
+  +bool includeInRegularContext
+  +dynamic screenshotOffset
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_ScreenshotPaintingContext" {
+  -_ScreenshotData _data
+  -dynamic _screenshotCurrentLayer
+  -dynamic _screenshotRecorder
+  -dynamic _screenshotCanvas
+  -_MulticastCanvas? _multicastCanvas
+  +dynamic canvas
+  -bool _isScreenshotRecording
+  -void _startRecordingScreenshot()
+  +void stopRecordingIfNeeded()
+  -void _stopRecordingScreenshotIfNeeded()
+  +void appendLayer()
+  +dynamic createChildContext()
+  +void paintChild()
+  {static} +Future<dynamic> toImage()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::_ScreenshotPaintingContext" o-- "flutter::lib::src::widgets::widget_inspector.dart::_ScreenshotData"
+"flutter::lib::src::widgets::widget_inspector.dart::_ScreenshotPaintingContext" o-- "flutter::lib::src::widgets::widget_inspector.dart::_MulticastCanvas"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_DiagnosticsPathNode" {
+  +dynamic node
+  +List<dynamic> children
+  +int? childIndex
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_InspectorReferenceData" {
+  +Object object
+  +int count
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_WidgetInspectorService" {
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService" <|-- "flutter::lib::src::widgets::widget_inspector.dart::_WidgetInspectorService"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_LocationCount" {
+  +int id
+  +bool local
+  +_Location location
+  -int _count
+  +int count
+  +void reset()
+  +void increment()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::_LocationCount" o-- "flutter::lib::src::widgets::widget_inspector.dart::_Location"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_ElementLocationStatsTracker" {
+  -List<_LocationCount?> _stats
+  +List<_LocationCount> active
+  +List<_LocationCount> newLocations
+  +void add()
+  +void resetCounts()
+  +Map<String, dynamic> exportToJson()
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_WidgetForTypeTests" {
+  +Element createElement()
+}
+
+"flutter::lib::src::widgets::framework.dart::Widget" <|-- "flutter::lib::src::widgets::widget_inspector.dart::_WidgetForTypeTests"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::WidgetInspector" {
+  +Widget child
+  +Widget Function(BuildContext, dynamic)? selectButtonBuilder
+  +State<WidgetInspector> createState()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::WidgetInspector" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::widget_inspector.dart::WidgetInspector" o-- "flutter::lib::src::widgets::widget_inspector.dart::Widget Function(BuildContext, dynamic)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::widget_inspector.dart::WidgetInspector"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_WidgetInspectorState" {
+  -dynamic _lastPointerLocation
+  +InspectorSelection selection
+  +bool isSelectMode
+  -GlobalKey<State<StatefulWidget>> _ignorePointerKey
+  {static} -double _edgeHitMargin
+  -void Function()? _selectionChangedCallback
+  +void initState()
+  +void dispose()
+  -bool _hitTestHelper()
+  +List<dynamic> hitTest()
+  -void _inspectAt()
+  -void _handlePanDown()
+  -void _handlePanUpdate()
+  -void _handlePanEnd()
+  -void _handleTap()
+  -void _handleEnableSelect()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::_WidgetInspectorState" o-- "flutter::lib::src::widgets::widget_inspector.dart::InspectorSelection"
+"flutter::lib::src::widgets::widget_inspector.dart::_WidgetInspectorState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::widget_inspector.dart::_WidgetInspectorState" o-- "flutter::lib::src::widgets::widget_inspector.dart::void Function()"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::widget_inspector.dart::_WidgetInspectorState"
+"flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "flutter::lib::src::widgets::widget_inspector.dart::_WidgetInspectorState"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::InspectorSelection" {
+  -List<dynamic> _candidates
+  -int _index
+  -dynamic _current
+  -Element? _currentElement
+  +List<dynamic> candidates
+  +int index
+  +dynamic current
+  +Element? currentElement
+  +bool active
+  +void clear()
+  -void _computeCurrent()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::InspectorSelection" o-- "flutter::lib::src::widgets::framework.dart::Element"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_InspectorOverlay" {
+  +InspectorSelection selection
+  +_RenderInspectorOverlay createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::_InspectorOverlay" o-- "flutter::lib::src::widgets::widget_inspector.dart::InspectorSelection"
+"flutter::lib::src::widgets::framework.dart::LeafRenderObjectWidget" <|-- "flutter::lib::src::widgets::widget_inspector.dart::_InspectorOverlay"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_RenderInspectorOverlay" {
+  -InspectorSelection _selection
+  +InspectorSelection selection
+  +bool sizedByParent
+  +bool alwaysNeedsCompositing
+  +dynamic computeDryLayout()
+  +void paint()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::_RenderInspectorOverlay" o-- "flutter::lib::src::widgets::widget_inspector.dart::InspectorSelection"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_TransformedRect" {
+  +dynamic rect
+  +dynamic transform
+  +int hashCode
+  +bool ==()
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_InspectorOverlayRenderState" {
+  +dynamic overlayRect
+  +_TransformedRect selected
+  +List<_TransformedRect> candidates
+  +String tooltip
+  +dynamic textDirection
+  +int hashCode
+  +bool ==()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::_InspectorOverlayRenderState" o-- "flutter::lib::src::widgets::widget_inspector.dart::_TransformedRect"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_InspectorOverlayLayer" {
+  +InspectorSelection selection
+  +dynamic overlayRect
+  +dynamic rootRenderObject
+  -_InspectorOverlayRenderState? _lastState
+  -dynamic _picture
+  -dynamic _textPainter
+  -double? _textPainterMaxWidth
+  +void addToScene()
+  -dynamic _buildPicture()
+  -void _paintDescription()
+  +bool findAnnotations()
+  -bool _isInInspectorRenderObjectTree()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::_InspectorOverlayLayer" o-- "flutter::lib::src::widgets::widget_inspector.dart::InspectorSelection"
+"flutter::lib::src::widgets::widget_inspector.dart::_InspectorOverlayLayer" o-- "flutter::lib::src::widgets::widget_inspector.dart::_InspectorOverlayRenderState"
+
+abstract class "flutter::lib::src::widgets::widget_inspector.dart::_HasCreationLocation" {
+  -_Location _location
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::_HasCreationLocation" o-- "flutter::lib::src::widgets::widget_inspector.dart::_Location"
+
+class "flutter::lib::src::widgets::widget_inspector.dart::_Location" {
+  +String file
+  +int line
+  +int column
+  +String? name
+  +Map<String, Object?> toJsonMap()
+  +String toString()
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::DevToolsDeepLinkProperty" {
+}
+
+class "flutter::lib::src::widgets::widget_inspector.dart::InspectorSerializationDelegate" {
+  +WidgetInspectorService service
+  +String? groupName
+  +bool summaryTree
+  +int maxDescendentsTruncatableNode
+  +bool includeProperties
+  +int subtreeDepth
+  +bool expandPropertyValues
+  +Map<String, Object>? Function(dynamic, InspectorSerializationDelegate)? addAdditionalPropertiesCallback
+  -List<dynamic> _nodesCreatedByLocalProject
+  -bool _interactive
+  +Map<String, Object?> additionalNodeProperties()
+  +dynamic delegateForNode()
+  +List<dynamic> filterChildren()
+  +List<dynamic> filterProperties()
+  +List<dynamic> truncateNodesList()
+  +dynamic copyWith()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::InspectorSerializationDelegate" o-- "flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService"
+"flutter::lib::src::widgets::widget_inspector.dart::InspectorSerializationDelegate" o-- "null::Map<String, Object> Function(dynamic, InspectorSerializationDelegate)"
+
+abstract class "flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService" {
+  -List<String?> _serializeRing
+  -int _serializeRingIndex
+  {static} -WidgetInspectorService _instance
+  {static} -bool _debugServiceExtensionsRegistered
+  +InspectorSelection selection
+  +void Function()? selectionChangedCallback
+  -Map<String, Set<_InspectorReferenceData>> _groups
+  -Map<String, _InspectorReferenceData> _idToReferenceData
+  -Map<Object, String> _objectToId
+  -int _nextId
+  -List<String>? _pubRootDirectories
+  -HashMap<String, bool> _isLocalCreationCache
+  -bool _trackRebuildDirtyWidgets
+  -bool _trackRepaintWidgets
+  -void Function({required dynamic callback, required String name}) _registerServiceExtensionCallback
+  {static} -String _consoleObjectGroup
+  -int _errorsSinceReload
+  -bool? _widgetCreationTracked
+  -Duration _frameStart
+  -_ElementLocationStatsTracker _rebuildStats
+  -_ElementLocationStatsTracker _repaintStats
+  {static} +WidgetInspectorService instance
+  +List<String>? pubRootDirectories
+  +void registerServiceExtension()
+  -void _registerSignalServiceExtension()
+  -void _registerObjectGroupServiceExtension()
+  -void _registerBoolServiceExtension()
+  -void _postExtensionStateChangedEvent()
+  -void _registerServiceExtensionWithArg()
+  -void _registerServiceExtensionVarArgs()
+  +Future<void> forceRebuild()
+  -void _reportStructuredError()
+  -void _resetErrorCount()
+  +bool isStructuredErrorsEnabled()
+  +void initServiceExtensions()
+  -void _clearStats()
+  +void disposeAllGroups()
+  +void resetAllState()
+  +void disposeGroup()
+  -void _decrementReferenceCount()
+  +String? toId()
+  +bool isWidgetTreeReady()
+  +Object? toObject()
+  +Object? toObjectForSourceLocation()
+  +void disposeId()
+  +void setPubRootDirectories()
+  +void resetPubRootDirectories()
+  +void addPubRootDirectories()
+  +void removePubRootDirectories()
+  +bool setSelectionById()
+  +bool setSelection()
+  -String? _devToolsInspectorUriForElement()
+  +String devToolsInspectorUri()
+  +String getParentChain()
+  -List<Object?> _getParentChain()
+  -Map<String, Object?>? _pathNodeToJson()
+  -List<Element> _getRawElementParentChain()
+  -List<_DiagnosticsPathNode> _getElementParentChain()
+  -List<_DiagnosticsPathNode>? _getRenderObjectParentChain()
+  -Map<String, Object?>? _nodeToJson()
+  -bool _isValueCreatedByLocalProject()
+  -bool _isLocalCreationLocationImpl()
+  -bool _isLocalCreationLocation()
+  -String _safeJsonEncode()
+  -List<dynamic> _truncateNodes()
+  -List<Map<String, Object?>> _nodesToJson()
+  +String getProperties()
+  -List<Object> _getProperties()
+  +String getChildren()
+  -List<Object> _getChildren()
+  +String getChildrenSummaryTree()
+  -List<Object> _getChildrenSummaryTree()
+  +String getChildrenDetailsSubtree()
+  -List<Object> _getChildrenDetailsSubtree()
+  -bool _shouldShowInSummaryTree()
+  -List<dynamic> _getChildrenFiltered()
+  -List<dynamic> _filterChildren()
+  +String getRootWidget()
+  -Map<String, Object?>? _getRootWidget()
+  +String getRootWidgetSummaryTree()
+  -Map<String, Object?>? _getRootWidgetSummaryTree()
+  +String getRootRenderObject()
+  -Map<String, Object?>? _getRootRenderObject()
+  +String getDetailsSubtree()
+  -Map<String, Object?>? _getDetailsSubtree()
+  +String getSelectedRenderObject()
+  -Map<String, Object?>? _getSelectedRenderObject()
+  +String getSelectedWidget()
+  +Future<dynamic> screenshot()
+  -Map<String, Object?>? _getSelectedWidget()
+  +String getSelectedSummaryWidget()
+  -Map<String, Object?>? _getSelectedSummaryWidget()
+  +bool isWidgetCreationTracked()
+  -void _onFrameStart()
+  -void _onFrameEnd()
+  -void _postStatsEvent()
+  +void postEvent()
+  -void _onRebuildWidget()
+  -void _onPaint()
+  +void performReassemble()
+}
+
+"flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService" o-- "flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService"
+"flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService" o-- "flutter::lib::src::widgets::widget_inspector.dart::InspectorSelection"
+"flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService" o-- "flutter::lib::src::widgets::widget_inspector.dart::void Function()"
+"flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService" o-- "dart::collection::HashMap<String, bool>"
+"flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService" o-- "flutter::lib::src::widgets::widget_inspector.dart::void Function({required dynamic callback, required String name})"
+"flutter::lib::src::widgets::widget_inspector.dart::WidgetInspectorService" o-- "flutter::lib::src::widgets::widget_inspector.dart::_ElementLocationStatsTracker"
+
+
+@enduml

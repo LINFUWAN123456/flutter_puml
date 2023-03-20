@@ -1,0 +1,54 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::serialization.dart::WriteBuffer" {
+  -Uint8List _buffer
+  -int _currentSize
+  -bool _isDone
+  -ByteData _eightBytes
+  -Uint8List _eightBytesAsList
+  {static} -Uint8List _zeroBuffer
+  -void _add()
+  -void _append()
+  -void _addAll()
+  -void _resize()
+  +void putUint8()
+  +void putUint16()
+  +void putUint32()
+  +void putInt32()
+  +void putInt64()
+  +void putFloat64()
+  +void putUint8List()
+  +void putInt32List()
+  +void putInt64List()
+  +void putFloat32List()
+  +void putFloat64List()
+  -void _alignTo()
+  +ByteData done()
+}
+
+"flutter::lib::src::foundation::serialization.dart::WriteBuffer" o-- "dart::typed_data::Uint8List"
+"flutter::lib::src::foundation::serialization.dart::WriteBuffer" o-- "dart::typed_data::ByteData"
+
+class "flutter::lib::src::foundation::serialization.dart::ReadBuffer" {
+  +ByteData data
+  -int _position
+  +bool hasRemaining
+  +int getUint8()
+  +int getUint16()
+  +int getUint32()
+  +int getInt32()
+  +int getInt64()
+  +double getFloat64()
+  +Uint8List getUint8List()
+  +Int32List getInt32List()
+  +Int64List getInt64List()
+  +Float32List getFloat32List()
+  +Float64List getFloat64List()
+  -void _alignTo()
+}
+
+"flutter::lib::src::foundation::serialization.dart::ReadBuffer" o-- "dart::typed_data::ByteData"
+
+
+@enduml

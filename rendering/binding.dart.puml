@@ -1,0 +1,57 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::binding.dart::RenderingFlutterBinding" {
+  {static} +RendererBinding ensureInitialized()
+}
+
+"flutter::lib::src::rendering::binding.dart::RendererBinding" <|-- "flutter::lib::src::rendering::binding.dart::RenderingFlutterBinding"
+
+abstract class "flutter::lib::src::rendering::binding.dart::RendererBinding" {
+  {static} -RendererBinding? _instance
+  -bool _debugIsRenderViewInitialized
+  -MouseTracker? _mouseTracker
+  -PipelineOwner _pipelineOwner
+  -SemanticsHandle? _semanticsHandle
+  -bool _debugMouseTrackerUpdateScheduled
+  -int _firstFrameDeferredCount
+  -bool _firstFrameSent
+  {static} +RendererBinding instance
+  +MouseTracker mouseTracker
+  +PipelineOwner pipelineOwner
+  +RenderView renderView
+  +bool sendFramesToEngine
+  +void initInstances()
+  +void initServiceExtensions()
+  +void initRenderView()
+  +void handleMetricsChanged()
+  +void handleTextScaleFactorChanged()
+  +void handlePlatformBrightnessChanged()
+  +ViewConfiguration createViewConfiguration()
+  +void initMouseTracker()
+  +void dispatchEvent()
+  -void _handleSemanticsEnabledChanged()
+  +void setSemanticsEnabled()
+  -void _handleWebFirstFrame()
+  -void _handleSemanticsAction()
+  -void _handleSemanticsOwnerCreated()
+  -void _handleSemanticsOwnerDisposed()
+  -void _handlePersistentFrameCallback()
+  -void _scheduleMouseTrackerUpdate()
+  +void deferFirstFrame()
+  +void allowFirstFrame()
+  +void resetFirstFrameSent()
+  +void drawFrame()
+  +Future<void> performReassemble()
+  +void hitTest()
+  -Future<void> _forceRepaint()
+}
+
+"flutter::lib::src::rendering::binding.dart::RendererBinding" o-- "flutter::lib::src::rendering::binding.dart::RendererBinding"
+"flutter::lib::src::rendering::binding.dart::RendererBinding" o-- "flutter::lib::src::rendering::mouse_tracker.dart::MouseTracker"
+"flutter::lib::src::rendering::binding.dart::RendererBinding" o-- "flutter::lib::src::rendering::object.dart::PipelineOwner"
+"flutter::lib::src::rendering::binding.dart::RendererBinding" o-- "flutter::lib::src::rendering::object.dart::SemanticsHandle"
+"flutter::lib::src::rendering::binding.dart::RendererBinding" o-- "flutter::lib::src::rendering::view.dart::RenderView"
+
+
+@enduml

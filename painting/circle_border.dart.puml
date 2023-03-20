@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::circle_border.dart::CircleBorder" {
+  +EdgeInsetsGeometry dimensions
+  +int hashCode
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +CircleBorder copyWith()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::circle_border.dart::CircleBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::borders.dart::OutlinedBorder" <|-- "flutter::lib::src::painting::circle_border.dart::CircleBorder"
+
+
+@enduml

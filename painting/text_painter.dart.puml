@@ -1,0 +1,119 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::text_painter.dart::PlaceholderDimensions" {
+  {static} +PlaceholderDimensions empty
+  +dynamic size
+  +dynamic alignment
+  +double? baselineOffset
+  +dynamic baseline
+  +String toString()
+}
+
+"flutter::lib::src::painting::text_painter.dart::PlaceholderDimensions" o-- "flutter::lib::src::painting::text_painter.dart::PlaceholderDimensions"
+
+class "flutter::lib::src::painting::text_painter.dart::_CaretMetrics" {
+  +dynamic offset
+  +double? fullHeight
+}
+
+class "flutter::lib::src::painting::text_painter.dart::TextPainter" {
+  -dynamic _paragraph
+  -bool _rebuildParagraphForPaint
+  -InlineSpan? _text
+  -dynamic _textAlign
+  -dynamic _textDirection
+  -double _textScaleFactor
+  -String? _ellipsis
+  -dynamic _locale
+  -int? _maxLines
+  -StrutStyle? _strutStyle
+  -TextWidthBasis _textWidthBasis
+  -dynamic _textHeightBehavior
+  -List<dynamic>? _inlinePlaceholderBoxes
+  -List<double>? _inlinePlaceholderScales
+  -List<PlaceholderDimensions>? _placeholderDimensions
+  -dynamic _layoutTemplate
+  -double? _lastMinWidth
+  -double? _lastMaxWidth
+  {static} -int _zwjUtf16
+  -_CaretMetrics _caretMetrics
+  -dynamic _previousCaretPosition
+  -dynamic _previousCaretPrototype
+  -List<dynamic>? _lineMetricsCache
+  -bool _debugNeedsLayout
+  +InlineSpan? text
+  +dynamic textAlign
+  +dynamic textDirection
+  +double textScaleFactor
+  +String? ellipsis
+  +dynamic locale
+  +int? maxLines
+  +StrutStyle? strutStyle
+  +TextWidthBasis textWidthBasis
+  +dynamic textHeightBehavior
+  +List<dynamic>? inlinePlaceholderBoxes
+  +List<double>? inlinePlaceholderScales
+  +double preferredLineHeight
+  +double minIntrinsicWidth
+  +double maxIntrinsicWidth
+  +double width
+  +double height
+  +dynamic size
+  +bool didExceedMaxLines
+  -dynamic _emptyOffset
+  +void markNeedsLayout()
+  +void setPlaceholderDimensions()
+  -dynamic _createParagraphStyle()
+  -dynamic _createLayoutTemplate()
+  -double _applyFloatingPointHack()
+  +double computeDistanceToActualBaseline()
+  -void _createParagraph()
+  -void _layoutParagraph()
+  +void layout()
+  +void paint()
+  {static} -bool _isUtf16Surrogate()
+  {static} -bool _isUnicodeDirectionality()
+  +int? getOffsetAfter()
+  +int? getOffsetBefore()
+  -dynamic _getRectFromUpstream()
+  -dynamic _getRectFromDownstream()
+  +dynamic getOffsetForCaret()
+  +double? getFullHeightForCaret()
+  -void _computeCaretMetrics()
+  +List<dynamic> getBoxesForSelection()
+  +dynamic getPositionForOffset()
+  +dynamic getWordBoundary()
+  +dynamic getLineBoundary()
+  +List<dynamic> computeLineMetrics()
+}
+
+"flutter::lib::src::painting::text_painter.dart::TextPainter" o-- "flutter::lib::src::painting::inline_span.dart::InlineSpan"
+"flutter::lib::src::painting::text_painter.dart::TextPainter" o-- "flutter::lib::src::painting::strut_style.dart::StrutStyle"
+"flutter::lib::src::painting::text_painter.dart::TextPainter" o-- "flutter::lib::src::painting::text_painter.dart::TextWidthBasis"
+"flutter::lib::src::painting::text_painter.dart::TextPainter" o-- "flutter::lib::src::painting::text_painter.dart::_CaretMetrics"
+
+class "flutter::lib::src::painting::text_painter.dart::TextOverflow" {
+  +int index
+  {static} +List<TextOverflow> values
+  {static} +TextOverflow clip
+  {static} +TextOverflow fade
+  {static} +TextOverflow ellipsis
+  {static} +TextOverflow visible
+}
+
+"flutter::lib::src::painting::text_painter.dart::TextOverflow" o-- "flutter::lib::src::painting::text_painter.dart::TextOverflow"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::text_painter.dart::TextOverflow"
+
+class "flutter::lib::src::painting::text_painter.dart::TextWidthBasis" {
+  +int index
+  {static} +List<TextWidthBasis> values
+  {static} +TextWidthBasis parent
+  {static} +TextWidthBasis longestLine
+}
+
+"flutter::lib::src::painting::text_painter.dart::TextWidthBasis" o-- "flutter::lib::src::painting::text_painter.dart::TextWidthBasis"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::text_painter.dart::TextWidthBasis"
+
+
+@enduml

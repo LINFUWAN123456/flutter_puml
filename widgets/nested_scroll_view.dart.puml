@@ -1,0 +1,283 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollView" {
+  +ScrollController? controller
+  +dynamic scrollDirection
+  +bool reverse
+  +ScrollPhysics? physics
+  +List<Widget> Function(BuildContext, bool) headerSliverBuilder
+  +Widget body
+  +dynamic dragStartBehavior
+  +bool floatHeaderSlivers
+  +dynamic clipBehavior
+  +String? restorationId
+  +ScrollBehavior? scrollBehavior
+  {static} +SliverOverlapAbsorberHandle sliverOverlapAbsorberHandleFor()
+  -List<Widget> _buildSlivers()
+  +NestedScrollViewState createState()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollView" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollView" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollView" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::List<Widget> Function(BuildContext, bool)"
+"flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollView" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollView" o-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollView"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewState" {
+  -SliverOverlapAbsorberHandle _absorberHandle
+  -_NestedScrollCoordinator? _coordinator
+  -bool? _lastHasScrolledBody
+  +ScrollController innerController
+  +ScrollController outerController
+  +void initState()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _handleHasScrolledBodyChanged()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewState" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorberHandle"
+"flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewState" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator"
+"flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewState" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewState"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollViewCustomScrollView" {
+  +SliverOverlapAbsorberHandle handle
+  +Widget buildViewport()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollViewCustomScrollView" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorberHandle"
+"flutter::lib::src::widgets::scroll_view.dart::CustomScrollView" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollViewCustomScrollView"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::_InheritedNestedScrollView" {
+  +NestedScrollViewState state
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::_InheritedNestedScrollView" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewState"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_InheritedNestedScrollView"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollMetrics" {
+  +double minRange
+  +double maxRange
+  +double correctionOffset
+  +_NestedScrollMetrics copyWith()
+}
+
+"flutter::lib::src::widgets::scroll_metrics.dart::FixedScrollMetrics" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollMetrics"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator" {
+  -NestedScrollViewState _state
+  -ScrollController? _parent
+  -dynamic _onHasScrolledBodyChanged
+  -bool _floatHeaderSlivers
+  -_NestedScrollController _outerController
+  -_NestedScrollController _innerController
+  -dynamic _userScrollDirection
+  -ScrollDragController? _currentDrag
+  -_NestedScrollPosition? _outerPosition
+  -Iterable<_NestedScrollPosition> _innerPositions
+  +bool canScrollBody
+  +bool hasScrolledBody
+  +dynamic userScrollDirection
+  +dynamic axisDirection
+  +void updateShadow()
+  +void updateUserScrollDirection()
+  +void beginActivity()
+  {static} -IdleScrollActivity _createIdleScrollActivity()
+  +void goIdle()
+  +void goBallistic()
+  +ScrollActivity createOuterBallisticScrollActivity()
+  +ScrollActivity createInnerBallisticScrollActivity()
+  -_NestedScrollMetrics _getMetrics()
+  +double unnestOffset()
+  +double nestOffset()
+  +void updateCanDrag()
+  +Future<void> animateTo()
+  +void jumpTo()
+  +void pointerScroll()
+  +double setPixels()
+  +ScrollHoldController hold()
+  +void cancel()
+  +dynamic drag()
+  +void applyUserOffset()
+  +void setParent()
+  +void updateParent()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewState"
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollController"
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator" o-- "flutter::lib::src::widgets::scroll_activity.dart::ScrollDragController"
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollPosition"
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollActivityDelegate" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator"
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollHoldController" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollController" {
+  +_NestedScrollCoordinator coordinator
+  +Iterable<_NestedScrollPosition> nestedPositions
+  +ScrollPosition createScrollPosition()
+  +void attach()
+  +void detach()
+  -void _scheduleUpdateShadow()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollController" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator"
+"flutter::lib::src::widgets::scroll_controller.dart::ScrollController" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollController"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollPosition" {
+  +_NestedScrollCoordinator coordinator
+  -ScrollController? _parent
+  +dynamic vsync
+  +dynamic axisDirection
+  +dynamic userScrollDirection
+  +void setParent()
+  +void absorb()
+  +void restoreScrollOffset()
+  +double applyClampedDragUpdate()
+  +double applyFullDragUpdate()
+  +double applyClampedPointerSignalUpdate()
+  +DrivenScrollActivity createDrivenScrollActivity()
+  +double applyUserOffset()
+  +void goIdle()
+  +void goBallistic()
+  +ScrollActivity createBallisticScrollActivity()
+  +Future<void> animateTo()
+  +void jumpTo()
+  +void pointerScroll()
+  +void jumpToWithoutSettling()
+  +void localJumpTo()
+  +void applyNewDimensions()
+  +void updateCanDrag()
+  +ScrollHoldController hold()
+  +dynamic drag()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollPosition" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator"
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollPosition" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::scroll_position.dart::ScrollPosition" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollPosition"
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollActivityDelegate" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollPosition"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedInnerBallisticScrollActivity" {
+  +_NestedScrollCoordinator coordinator
+  +_NestedScrollPosition delegate
+  +void resetActivity()
+  +void applyNewDimensions()
+  +bool applyMoveTo()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedInnerBallisticScrollActivity" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator"
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedInnerBallisticScrollActivity" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollPosition"
+"flutter::lib::src::widgets::scroll_activity.dart::BallisticScrollActivity" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedInnerBallisticScrollActivity"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedOuterBallisticScrollActivity" {
+  +_NestedScrollCoordinator coordinator
+  +_NestedScrollMetrics metrics
+  +_NestedScrollPosition delegate
+  +void resetActivity()
+  +void applyNewDimensions()
+  +bool applyMoveTo()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedOuterBallisticScrollActivity" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollCoordinator"
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedOuterBallisticScrollActivity" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollMetrics"
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedOuterBallisticScrollActivity" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedScrollPosition"
+"flutter::lib::src::widgets::scroll_activity.dart::BallisticScrollActivity" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedOuterBallisticScrollActivity"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorberHandle" {
+  -int _writers
+  -double? _layoutExtent
+  -double? _scrollExtent
+  +double? layoutExtent
+  +double? scrollExtent
+  -void _setExtents()
+  -void _markNeedsLayout()
+  +String toString()
+}
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorber" {
+  +SliverOverlapAbsorberHandle handle
+  +RenderSliverOverlapAbsorber createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorber" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorberHandle"
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorber"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::RenderSliverOverlapAbsorber" {
+  -SliverOverlapAbsorberHandle _handle
+  +SliverOverlapAbsorberHandle handle
+  +void attach()
+  +void detach()
+  +void performLayout()
+  +void applyPaintTransform()
+  +bool hitTestChildren()
+  +void paint()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::RenderSliverOverlapAbsorber" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorberHandle"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapInjector" {
+  +SliverOverlapAbsorberHandle handle
+  +RenderSliverOverlapInjector createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapInjector" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorberHandle"
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapInjector"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::RenderSliverOverlapInjector" {
+  -double? _currentLayoutExtent
+  -double? _currentMaxExtent
+  -SliverOverlapAbsorberHandle _handle
+  +SliverOverlapAbsorberHandle handle
+  +void attach()
+  +void detach()
+  +void performLayout()
+  +void debugPaint()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::RenderSliverOverlapInjector" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorberHandle"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewViewport" {
+  +SliverOverlapAbsorberHandle handle
+  +RenderNestedScrollViewViewport createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewViewport" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorberHandle"
+"flutter::lib::src::widgets::viewport.dart::Viewport" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::NestedScrollViewViewport"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::RenderNestedScrollViewViewport" {
+  -SliverOverlapAbsorberHandle _handle
+  +SliverOverlapAbsorberHandle handle
+  +void markNeedsLayout()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::RenderNestedScrollViewViewport" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::SliverOverlapAbsorberHandle"
+
+class "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedBallisticScrollActivityMode" {
+  +int index
+  {static} +List<_NestedBallisticScrollActivityMode> values
+  {static} +_NestedBallisticScrollActivityMode outer
+  {static} +_NestedBallisticScrollActivityMode inner
+  {static} +_NestedBallisticScrollActivityMode independent
+}
+
+"flutter::lib::src::widgets::nested_scroll_view.dart::_NestedBallisticScrollActivityMode" o-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedBallisticScrollActivityMode"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::nested_scroll_view.dart::_NestedBallisticScrollActivityMode"
+
+
+@enduml

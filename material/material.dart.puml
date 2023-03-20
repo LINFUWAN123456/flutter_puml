@@ -1,0 +1,134 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::material.dart::MaterialInkController" {
+  +dynamic color
+  +dynamic vsync
+  +void addInkFeature()
+  +void markNeedsPaint()
+}
+
+class "flutter::lib::src::material::material.dart::Material" {
+  +dynamic child
+  +MaterialType type
+  +double elevation
+  +dynamic color
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic textStyle
+  +dynamic shape
+  +bool borderOnForeground
+  +dynamic clipBehavior
+  +Duration animationDuration
+  +dynamic borderRadius
+  {static} +double defaultSplashRadius
+  {static} +MaterialInkController? of()
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::material.dart::Material" o-- "flutter::lib::src::material::material.dart::MaterialType"
+
+class "flutter::lib::src::material::material.dart::_MaterialState" {
+  -dynamic _inkFeatureRenderer
+  -dynamic _getBackgroundColor()
+  +dynamic build()
+  {static} -dynamic _transparentInterior()
+  -dynamic _getShape()
+}
+
+class "flutter::lib::src::material::material.dart::_RenderInkFeatures" {
+  +dynamic vsync
+  +dynamic color
+  +bool absorbHitTest
+  -List<InkFeature>? _inkFeatures
+  +List<InkFeature>? debugInkFeatures
+  +void addInkFeature()
+  -void _removeFeature()
+  -void _didChangeLayout()
+  +bool hitTestSelf()
+  +void paint()
+}
+
+"flutter::lib::src::material::material.dart::MaterialInkController" <|-- "flutter::lib::src::material::material.dart::_RenderInkFeatures"
+
+class "flutter::lib::src::material::material.dart::_InkFeatures" {
+  +dynamic color
+  +dynamic vsync
+  +bool absorbHitTest
+  +_RenderInkFeatures createRenderObject()
+  +void updateRenderObject()
+}
+
+abstract class "flutter::lib::src::material::material.dart::InkFeature" {
+  -_RenderInkFeatures _controller
+  +dynamic referenceBox
+  +dynamic onRemoved
+  -bool _debugDisposed
+  +MaterialInkController controller
+  +void dispose()
+  -void _paint()
+  +void paintFeature()
+  +String toString()
+}
+
+"flutter::lib::src::material::material.dart::InkFeature" o-- "flutter::lib::src::material::material.dart::_RenderInkFeatures"
+"flutter::lib::src::material::material.dart::InkFeature" o-- "flutter::lib::src::material::material.dart::MaterialInkController"
+
+class "flutter::lib::src::material::material.dart::ShapeBorderTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::material::material.dart::_MaterialInterior" {
+  +dynamic child
+  +dynamic shape
+  +bool borderOnForeground
+  +dynamic clipBehavior
+  +double elevation
+  +dynamic color
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +_MaterialInteriorState createState()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::material.dart::_MaterialInteriorState" {
+  -dynamic _elevation
+  -dynamic _surfaceTintColor
+  -dynamic _shadowColor
+  -ShapeBorderTween? _border
+  +void forEachTween()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::material.dart::_MaterialInteriorState" o-- "flutter::lib::src::material::material.dart::ShapeBorderTween"
+
+class "flutter::lib::src::material::material.dart::_ShapeBorderPaint" {
+  +dynamic child
+  +dynamic shape
+  +bool borderOnForeground
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::material.dart::_ShapeBorderPainter" {
+  +dynamic border
+  +dynamic textDirection
+  +void paint()
+  +bool shouldRepaint()
+}
+
+class "flutter::lib::src::material::material.dart::MaterialType" {
+  +int index
+  {static} +List<MaterialType> values
+  {static} +MaterialType canvas
+  {static} +MaterialType card
+  {static} +MaterialType circle
+  {static} +MaterialType button
+  {static} +MaterialType transparency
+}
+
+"flutter::lib::src::material::material.dart::MaterialType" o-- "flutter::lib::src::material::material.dart::MaterialType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::material.dart::MaterialType"
+
+
+@enduml

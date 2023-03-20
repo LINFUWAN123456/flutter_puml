@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::progress_indicator_theme.dart::ProgressIndicatorThemeData" {
+  +dynamic color
+  +dynamic linearTrackColor
+  +double? linearMinHeight
+  +dynamic circularTrackColor
+  +dynamic refreshBackgroundColor
+  +int hashCode
+  +ProgressIndicatorThemeData copyWith()
+  {static} +ProgressIndicatorThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::progress_indicator_theme.dart::ProgressIndicatorTheme" {
+  +ProgressIndicatorThemeData data
+  {static} +ProgressIndicatorThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::progress_indicator_theme.dart::ProgressIndicatorTheme" o-- "flutter::lib::src::material::progress_indicator_theme.dart::ProgressIndicatorThemeData"
+
+
+@enduml

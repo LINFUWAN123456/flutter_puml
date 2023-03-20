@@ -1,0 +1,30 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::popup_menu_theme.dart::PopupMenuThemeData" {
+  +dynamic color
+  +dynamic shape
+  +double? elevation
+  +dynamic textStyle
+  +bool? enableFeedback
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +int hashCode
+  +PopupMenuThemeData copyWith()
+  {static} +PopupMenuThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::popup_menu_theme.dart::PopupMenuThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+
+class "flutter::lib::src::material::popup_menu_theme.dart::PopupMenuTheme" {
+  +PopupMenuThemeData data
+  {static} +PopupMenuThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::popup_menu_theme.dart::PopupMenuTheme" o-- "flutter::lib::src::material::popup_menu_theme.dart::PopupMenuThemeData"
+
+
+@enduml

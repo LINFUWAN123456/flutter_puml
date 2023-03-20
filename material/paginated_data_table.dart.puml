@@ -1,0 +1,58 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::paginated_data_table.dart::PaginatedDataTable" {
+  +dynamic header
+  +List<dynamic>? actions
+  +List<DataColumn> columns
+  +int? sortColumnIndex
+  +bool sortAscending
+  +dynamic onSelectAll
+  +double dataRowHeight
+  +double headingRowHeight
+  +double horizontalMargin
+  +double columnSpacing
+  +bool showCheckboxColumn
+  +bool showFirstLastButtons
+  +int? initialFirstRowIndex
+  +dynamic onPageChanged
+  +int rowsPerPage
+  {static} +int defaultRowsPerPage
+  +List<int> availableRowsPerPage
+  +dynamic onRowsPerPageChanged
+  +DataTableSource source
+  +dynamic dragStartBehavior
+  +double? checkboxHorizontalMargin
+  +dynamic arrowHeadColor
+  +dynamic controller
+  +bool? primary
+  +PaginatedDataTableState createState()
+}
+
+"flutter::lib::src::material::paginated_data_table.dart::PaginatedDataTable" o-- "flutter::lib::src::material::data_table_source.dart::DataTableSource"
+
+class "flutter::lib::src::material::paginated_data_table.dart::PaginatedDataTableState" {
+  -int _firstRowIndex
+  -int _rowCount
+  -bool _rowCountApproximate
+  -int _selectedRowCount
+  -Map<int, DataRow?> _rows
+  -dynamic _tableKey
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _handleDataSourceChanged()
+  +void pageTo()
+  -DataRow _getBlankRowFor()
+  -DataRow _getProgressIndicatorRowFor()
+  -List<DataRow> _getRows()
+  -void _handleFirst()
+  -void _handlePrevious()
+  -void _handleNext()
+  -void _handleLast()
+  -bool _isNextPageUnavailable()
+  +dynamic build()
+}
+
+
+@enduml

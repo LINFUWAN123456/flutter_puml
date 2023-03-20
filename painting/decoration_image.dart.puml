@@ -1,0 +1,58 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::decoration_image.dart::DecorationImage" {
+  +ImageProvider<Object> image
+  +void Function(Object, StackTrace?)? onError
+  +dynamic colorFilter
+  +BoxFit? fit
+  +AlignmentGeometry alignment
+  +dynamic centerSlice
+  +ImageRepeat repeat
+  +bool matchTextDirection
+  +double scale
+  +double opacity
+  +dynamic filterQuality
+  +bool invertColors
+  +bool isAntiAlias
+  +int hashCode
+  +DecorationImagePainter createPainter()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::decoration_image.dart::DecorationImage" o-- "flutter::lib::src::painting::image_provider.dart::ImageProvider<Object>"
+"flutter::lib::src::painting::decoration_image.dart::DecorationImage" o-- "flutter::lib::src::painting::image_stream.dart::void Function(Object, StackTrace)"
+"flutter::lib::src::painting::decoration_image.dart::DecorationImage" o-- "flutter::lib::src::painting::box_fit.dart::BoxFit"
+"flutter::lib::src::painting::decoration_image.dart::DecorationImage" o-- "flutter::lib::src::painting::alignment.dart::AlignmentGeometry"
+"flutter::lib::src::painting::decoration_image.dart::DecorationImage" o-- "flutter::lib::src::painting::decoration_image.dart::ImageRepeat"
+
+class "flutter::lib::src::painting::decoration_image.dart::DecorationImagePainter" {
+  -DecorationImage _details
+  -dynamic _onChanged
+  -ImageStream? _imageStream
+  -ImageInfo? _image
+  +void paint()
+  -void _handleImage()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::painting::decoration_image.dart::DecorationImagePainter" o-- "flutter::lib::src::painting::decoration_image.dart::DecorationImage"
+"flutter::lib::src::painting::decoration_image.dart::DecorationImagePainter" o-- "flutter::lib::src::painting::image_stream.dart::ImageStream"
+"flutter::lib::src::painting::decoration_image.dart::DecorationImagePainter" o-- "flutter::lib::src::painting::image_stream.dart::ImageInfo"
+
+class "flutter::lib::src::painting::decoration_image.dart::ImageRepeat" {
+  +int index
+  {static} +List<ImageRepeat> values
+  {static} +ImageRepeat repeat
+  {static} +ImageRepeat repeatX
+  {static} +ImageRepeat repeatY
+  {static} +ImageRepeat noRepeat
+}
+
+"flutter::lib::src::painting::decoration_image.dart::ImageRepeat" o-- "flutter::lib::src::painting::decoration_image.dart::ImageRepeat"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::decoration_image.dart::ImageRepeat"
+
+
+@enduml

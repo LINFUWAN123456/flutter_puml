@@ -1,0 +1,104 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::animated_icons.dart::AnimatedIcon" {
+  +dynamic progress
+  +dynamic color
+  +double? size
+  +AnimatedIconData icon
+  +String? semanticLabel
+  +dynamic textDirection
+  {static} -dynamic _pathFactory()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::animated_icons.dart::AnimatedIcon" o-- "flutter::lib::src::material::animated_icons.dart::AnimatedIconData"
+
+class "flutter::lib::src::material::animated_icons.dart::_AnimatedIconPainter" {
+  +List<_PathFrames> paths
+  +dynamic progress
+  +dynamic color
+  +double scale
+  +bool shouldMirror
+  +dynamic Function() uiPathFactory
+  +dynamic semanticsBuilder
+  +void paint()
+  +bool shouldRepaint()
+  +bool? hitTest()
+  +bool shouldRebuildSemantics()
+}
+
+"flutter::lib::src::material::animated_icons.dart::_AnimatedIconPainter" o-- "flutter::lib::src::material::animated_icons.dart::dynamic Function()"
+
+class "flutter::lib::src::material::animated_icons.dart::_PathFrames" {
+  +List<_PathCommand> commands
+  +List<double> opacities
+  +void paint()
+}
+
+abstract class "flutter::lib::src::material::animated_icons.dart::_PathCommand" {
+  +void apply()
+}
+
+class "flutter::lib::src::material::animated_icons.dart::_PathMoveTo" {
+  +List<dynamic> points
+  +void apply()
+}
+
+"flutter::lib::src::material::animated_icons.dart::_PathCommand" <|-- "flutter::lib::src::material::animated_icons.dart::_PathMoveTo"
+
+class "flutter::lib::src::material::animated_icons.dart::_PathCubicTo" {
+  +List<dynamic> controlPoints2
+  +List<dynamic> controlPoints1
+  +List<dynamic> targetPoints
+  +void apply()
+}
+
+"flutter::lib::src::material::animated_icons.dart::_PathCommand" <|-- "flutter::lib::src::material::animated_icons.dart::_PathCubicTo"
+
+class "flutter::lib::src::material::animated_icons.dart::_PathLineTo" {
+  +List<dynamic> points
+  +void apply()
+}
+
+"flutter::lib::src::material::animated_icons.dart::_PathCommand" <|-- "flutter::lib::src::material::animated_icons.dart::_PathLineTo"
+
+class "flutter::lib::src::material::animated_icons.dart::_PathClose" {
+  +void apply()
+}
+
+"flutter::lib::src::material::animated_icons.dart::_PathCommand" <|-- "flutter::lib::src::material::animated_icons.dart::_PathClose"
+
+abstract class "flutter::lib::src::material::animated_icons.dart::AnimatedIcons" {
+  {static} +AnimatedIconData add_event
+  {static} +AnimatedIconData arrow_menu
+  {static} +AnimatedIconData close_menu
+  {static} +AnimatedIconData ellipsis_search
+  {static} +AnimatedIconData event_add
+  {static} +AnimatedIconData home_menu
+  {static} +AnimatedIconData list_view
+  {static} +AnimatedIconData menu_arrow
+  {static} +AnimatedIconData menu_close
+  {static} +AnimatedIconData menu_home
+  {static} +AnimatedIconData pause_play
+  {static} +AnimatedIconData play_pause
+  {static} +AnimatedIconData search_ellipsis
+  {static} +AnimatedIconData view_list
+}
+
+"flutter::lib::src::material::animated_icons.dart::AnimatedIcons" o-- "flutter::lib::src::material::animated_icons.dart::AnimatedIconData"
+
+abstract class "flutter::lib::src::material::animated_icons.dart::AnimatedIconData" {
+  +bool matchTextDirection
+}
+
+class "flutter::lib::src::material::animated_icons.dart::_AnimatedIconData" {
+  +dynamic size
+  +List<_PathFrames> paths
+  +bool matchTextDirection
+}
+
+"flutter::lib::src::material::animated_icons.dart::AnimatedIconData" <|-- "flutter::lib::src::material::animated_icons.dart::_AnimatedIconData"
+
+
+@enduml

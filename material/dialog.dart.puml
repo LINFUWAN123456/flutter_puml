@@ -1,0 +1,101 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::dialog.dart::Dialog" {
+  +dynamic backgroundColor
+  +double? elevation
+  +Duration insetAnimationDuration
+  +dynamic insetAnimationCurve
+  +dynamic insetPadding
+  +dynamic clipBehavior
+  +dynamic shape
+  +dynamic alignment
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::dialog.dart::AlertDialog" {
+  +dynamic icon
+  +dynamic iconColor
+  +dynamic iconPadding
+  +dynamic title
+  +dynamic titlePadding
+  +dynamic titleTextStyle
+  +dynamic content
+  +dynamic contentPadding
+  +dynamic contentTextStyle
+  +List<dynamic>? actions
+  +dynamic actionsPadding
+  +dynamic actionsAlignment
+  +dynamic actionsOverflowAlignment
+  +dynamic actionsOverflowDirection
+  +double? actionsOverflowButtonSpacing
+  +dynamic buttonPadding
+  +dynamic backgroundColor
+  +double? elevation
+  +String? semanticLabel
+  +dynamic insetPadding
+  +dynamic clipBehavior
+  +dynamic shape
+  +dynamic alignment
+  +bool scrollable
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::dialog.dart::SimpleDialogOption" {
+  +dynamic onPressed
+  +dynamic child
+  +dynamic padding
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::dialog.dart::SimpleDialog" {
+  +dynamic title
+  +dynamic titlePadding
+  +dynamic titleTextStyle
+  +List<dynamic>? children
+  +dynamic contentPadding
+  +dynamic backgroundColor
+  +double? elevation
+  +String? semanticLabel
+  +dynamic insetPadding
+  +dynamic clipBehavior
+  +dynamic shape
+  +dynamic alignment
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::dialog.dart::DialogRoute" {
+}
+
+class "flutter::lib::src::material::dialog.dart::_DialogDefaultsM2" {
+  +dynamic context
+  -TextTheme _textTheme
+  -dynamic _iconTheme
+  +dynamic iconColor
+  +dynamic backgroundColor
+  +dynamic titleTextStyle
+  +dynamic contentTextStyle
+  +dynamic actionsPadding
+}
+
+"flutter::lib::src::material::dialog.dart::_DialogDefaultsM2" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+"flutter::lib::src::material::dialog_theme.dart::DialogTheme" <|-- "flutter::lib::src::material::dialog.dart::_DialogDefaultsM2"
+
+class "flutter::lib::src::material::dialog.dart::_DialogDefaultsM3" {
+  +dynamic context
+  -ColorScheme _colors
+  -TextTheme _textTheme
+  +dynamic iconColor
+  +dynamic backgroundColor
+  +dynamic titleTextStyle
+  +dynamic contentTextStyle
+  +dynamic actionsPadding
+}
+
+"flutter::lib::src::material::dialog.dart::_DialogDefaultsM3" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::dialog.dart::_DialogDefaultsM3" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+"flutter::lib::src::material::dialog_theme.dart::DialogTheme" <|-- "flutter::lib::src::material::dialog.dart::_DialogDefaultsM3"
+
+
+@enduml

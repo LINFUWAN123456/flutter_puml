@@ -1,0 +1,115 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::floating_action_button.dart::_DefaultHeroTag" {
+  +String toString()
+}
+
+class "flutter::lib::src::material::floating_action_button.dart::FloatingActionButton" {
+  +dynamic child
+  +String? tooltip
+  +dynamic foregroundColor
+  +dynamic backgroundColor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic splashColor
+  +Object? heroTag
+  +dynamic onPressed
+  +dynamic mouseCursor
+  +double? elevation
+  +double? focusElevation
+  +double? hoverElevation
+  +double? highlightElevation
+  +double? disabledElevation
+  +bool mini
+  +dynamic shape
+  +dynamic clipBehavior
+  +bool isExtended
+  +dynamic focusNode
+  +bool autofocus
+  +MaterialTapTargetSize? materialTapTargetSize
+  +bool? enableFeedback
+  +double? extendedIconLabelSpacing
+  +dynamic extendedPadding
+  +dynamic extendedTextStyle
+  -_FloatingActionButtonType _floatingActionButtonType
+  -dynamic _extendedLabel
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::floating_action_button.dart::FloatingActionButton" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::floating_action_button.dart::FloatingActionButton" o-- "flutter::lib::src::material::floating_action_button.dart::_FloatingActionButtonType"
+
+class "flutter::lib::src::material::floating_action_button.dart::_ChildOverflowBox" {
+  +_RenderChildOverflowBox createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::floating_action_button.dart::_RenderChildOverflowBox" {
+  +double computeMinIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+}
+
+class "flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM2" {
+  +_FloatingActionButtonType type
+  +bool hasChild
+  -ThemeData _theme
+  -ColorScheme _colors
+  -bool _isExtended
+  -bool _isLarge
+  +dynamic foregroundColor
+  +dynamic backgroundColor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic splashColor
+  +dynamic shape
+  +double? iconSize
+  +dynamic extendedPadding
+  +dynamic extendedTextStyle
+}
+
+"flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM2" o-- "flutter::lib::src::material::floating_action_button.dart::_FloatingActionButtonType"
+"flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM2" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+"flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM2" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::floating_action_button_theme.dart::FloatingActionButtonThemeData" <|-- "flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM2"
+
+class "flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM3" {
+  +dynamic context
+  +_FloatingActionButtonType type
+  +bool hasChild
+  -ColorScheme _colors
+  -TextTheme _textTheme
+  -bool _isExtended
+  +dynamic foregroundColor
+  +dynamic backgroundColor
+  +dynamic splashColor
+  +dynamic focusColor
+  +dynamic hoverColor
+  +dynamic shape
+  +double? iconSize
+  +dynamic extendedPadding
+  +dynamic extendedTextStyle
+}
+
+"flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM3" o-- "flutter::lib::src::material::floating_action_button.dart::_FloatingActionButtonType"
+"flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM3" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM3" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+"flutter::lib::src::material::floating_action_button_theme.dart::FloatingActionButtonThemeData" <|-- "flutter::lib::src::material::floating_action_button.dart::_FABDefaultsM3"
+
+class "flutter::lib::src::material::floating_action_button.dart::_FloatingActionButtonType" {
+  +int index
+  {static} +List<_FloatingActionButtonType> values
+  {static} +_FloatingActionButtonType regular
+  {static} +_FloatingActionButtonType small
+  {static} +_FloatingActionButtonType large
+  {static} +_FloatingActionButtonType extended
+}
+
+"flutter::lib::src::material::floating_action_button.dart::_FloatingActionButtonType" o-- "flutter::lib::src::material::floating_action_button.dart::_FloatingActionButtonType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::floating_action_button.dart::_FloatingActionButtonType"
+
+
+@enduml

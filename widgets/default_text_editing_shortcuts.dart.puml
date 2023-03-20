@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::default_text_editing_shortcuts.dart::DefaultTextEditingShortcuts" {
+  +Widget child
+  {static} -Map<ShortcutActivator, Intent> _commonShortcuts
+  {static} -Map<ShortcutActivator, Intent> _androidShortcuts
+  {static} -Map<ShortcutActivator, Intent> _fuchsiaShortcuts
+  {static} -Map<ShortcutActivator, Intent> _linuxShortcuts
+  {static} -Map<ShortcutActivator, Intent> _macShortcuts
+  {static} -Map<ShortcutActivator, Intent> _iOSShortcuts
+  {static} -Map<ShortcutActivator, Intent> _windowsShortcuts
+  {static} -Map<ShortcutActivator, Intent> _webDisablingTextShortcuts
+  {static} -Map<ShortcutActivator, Intent> _shortcuts
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::default_text_editing_shortcuts.dart::DefaultTextEditingShortcuts" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::default_text_editing_shortcuts.dart::DefaultTextEditingShortcuts"
+
+
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::shape_decoration.dart::ShapeDecoration" {
+  +dynamic color
+  +Gradient? gradient
+  +DecorationImage? image
+  +List<BoxShadow>? shadows
+  +ShapeBorder shape
+  +EdgeInsetsGeometry padding
+  +bool isComplex
+  +int hashCode
+  +dynamic getClipPath()
+  +ShapeDecoration? lerpFrom()
+  +ShapeDecoration? lerpTo()
+  {static} +ShapeDecoration? lerp()
+  +bool ==()
+  +void debugFillProperties()
+  +bool hitTest()
+  +BoxPainter createBoxPainter()
+}
+
+"flutter::lib::src::painting::shape_decoration.dart::ShapeDecoration" o-- "flutter::lib::src::painting::gradient.dart::Gradient"
+"flutter::lib::src::painting::shape_decoration.dart::ShapeDecoration" o-- "flutter::lib::src::painting::decoration_image.dart::DecorationImage"
+"flutter::lib::src::painting::shape_decoration.dart::ShapeDecoration" o-- "flutter::lib::src::painting::borders.dart::ShapeBorder"
+"flutter::lib::src::painting::shape_decoration.dart::ShapeDecoration" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::decoration.dart::Decoration" <|-- "flutter::lib::src::painting::shape_decoration.dart::ShapeDecoration"
+
+class "flutter::lib::src::painting::shape_decoration.dart::_ShapeDecorationPainter" {
+  -ShapeDecoration _decoration
+  -dynamic _lastRect
+  -dynamic _lastTextDirection
+  -dynamic _outerPath
+  -dynamic _innerPath
+  -dynamic _interiorPaint
+  -int? _shadowCount
+  -List<dynamic> _shadowPaths
+  -List<dynamic> _shadowPaints
+  -DecorationImagePainter? _imagePainter
+  +dynamic onChanged
+  -void _precache()
+  -void _paintShadows()
+  -void _paintInterior()
+  -void _paintImage()
+  +void dispose()
+  +void paint()
+}
+
+"flutter::lib::src::painting::shape_decoration.dart::_ShapeDecorationPainter" o-- "flutter::lib::src::painting::shape_decoration.dart::ShapeDecoration"
+"flutter::lib::src::painting::shape_decoration.dart::_ShapeDecorationPainter" o-- "flutter::lib::src::painting::decoration_image.dart::DecorationImagePainter"
+"flutter::lib::src::painting::decoration.dart::BoxPainter" <|-- "flutter::lib::src::painting::shape_decoration.dart::_ShapeDecorationPainter"
+
+
+@enduml

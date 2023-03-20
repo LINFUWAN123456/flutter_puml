@@ -1,0 +1,80 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::system_chrome.dart::ApplicationSwitcherDescription" {
+  +String? label
+  +int? primaryColor
+}
+
+class "flutter::lib::src::services::system_chrome.dart::SystemUiOverlayStyle" {
+  +dynamic systemNavigationBarColor
+  +dynamic systemNavigationBarDividerColor
+  +dynamic systemNavigationBarIconBrightness
+  +bool? systemNavigationBarContrastEnforced
+  +dynamic statusBarColor
+  +dynamic statusBarBrightness
+  +dynamic statusBarIconBrightness
+  +bool? systemStatusBarContrastEnforced
+  {static} +SystemUiOverlayStyle light
+  {static} +SystemUiOverlayStyle dark
+  +int hashCode
+  -Map<String, dynamic> _toMap()
+  +String toString()
+  +SystemUiOverlayStyle copyWith()
+  +bool ==()
+}
+
+"flutter::lib::src::services::system_chrome.dart::SystemUiOverlayStyle" o-- "flutter::lib::src::services::system_chrome.dart::SystemUiOverlayStyle"
+
+class "flutter::lib::src::services::system_chrome.dart::SystemChrome" {
+  {static} -SystemUiOverlayStyle? _pendingStyle
+  {static} -SystemUiOverlayStyle? _latestStyle
+  {static} +SystemUiOverlayStyle? latestStyle
+  {static} +Future<void> setPreferredOrientations()
+  {static} +Future<void> setApplicationSwitcherDescription()
+  {static} +Future<void> setEnabledSystemUIOverlays()
+  {static} +Future<void> setEnabledSystemUIMode()
+  {static} +Future<void> setSystemUIChangeCallback()
+  {static} +Future<void> restoreSystemUIOverlays()
+  {static} +void setSystemUIOverlayStyle()
+}
+
+"flutter::lib::src::services::system_chrome.dart::SystemChrome" o-- "flutter::lib::src::services::system_chrome.dart::SystemUiOverlayStyle"
+
+class "flutter::lib::src::services::system_chrome.dart::DeviceOrientation" {
+  +int index
+  {static} +List<DeviceOrientation> values
+  {static} +DeviceOrientation portraitUp
+  {static} +DeviceOrientation landscapeLeft
+  {static} +DeviceOrientation portraitDown
+  {static} +DeviceOrientation landscapeRight
+}
+
+"flutter::lib::src::services::system_chrome.dart::DeviceOrientation" o-- "flutter::lib::src::services::system_chrome.dart::DeviceOrientation"
+"dart::core::Enum" <|-- "flutter::lib::src::services::system_chrome.dart::DeviceOrientation"
+
+class "flutter::lib::src::services::system_chrome.dart::SystemUiOverlay" {
+  +int index
+  {static} +List<SystemUiOverlay> values
+  {static} +SystemUiOverlay top
+  {static} +SystemUiOverlay bottom
+}
+
+"flutter::lib::src::services::system_chrome.dart::SystemUiOverlay" o-- "flutter::lib::src::services::system_chrome.dart::SystemUiOverlay"
+"dart::core::Enum" <|-- "flutter::lib::src::services::system_chrome.dart::SystemUiOverlay"
+
+class "flutter::lib::src::services::system_chrome.dart::SystemUiMode" {
+  +int index
+  {static} +List<SystemUiMode> values
+  {static} +SystemUiMode leanBack
+  {static} +SystemUiMode immersive
+  {static} +SystemUiMode immersiveSticky
+  {static} +SystemUiMode edgeToEdge
+  {static} +SystemUiMode manual
+}
+
+"flutter::lib::src::services::system_chrome.dart::SystemUiMode" o-- "flutter::lib::src::services::system_chrome.dart::SystemUiMode"
+"dart::core::Enum" <|-- "flutter::lib::src::services::system_chrome.dart::SystemUiMode"
+
+
+@enduml

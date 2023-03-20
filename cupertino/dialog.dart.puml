@@ -1,0 +1,240 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::dialog.dart::CupertinoAlertDialog" {
+  +dynamic title
+  +dynamic content
+  +List<dynamic> actions
+  +dynamic scrollController
+  +dynamic actionScrollController
+  +Duration insetAnimationDuration
+  +dynamic insetAnimationCurve
+  -dynamic _effectiveScrollController
+  -dynamic _effectiveActionScrollController
+  -dynamic _buildContent()
+  -dynamic _buildActions()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::CupertinoPopupSurface" {
+  +bool isSurfacePainted
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::CupertinoActionSheet" {
+  +dynamic title
+  +dynamic message
+  +List<dynamic>? actions
+  +dynamic messageScrollController
+  +dynamic actionScrollController
+  +dynamic cancelButton
+  -dynamic _effectiveMessageScrollController
+  -dynamic _effectiveActionScrollController
+  -dynamic _buildContent()
+  -dynamic _buildActions()
+  -dynamic _buildCancelButton()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::CupertinoActionSheetAction" {
+  +dynamic onPressed
+  +bool isDefaultAction
+  +bool isDestructiveAction
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_CupertinoActionSheetCancelButton" {
+  +dynamic child
+  +_CupertinoActionSheetCancelButtonState createState()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_CupertinoActionSheetCancelButtonState" {
+  +bool isBeingPressed
+  -void _onTapDown()
+  -void _onTapUp()
+  -void _onTapCancel()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_CupertinoDialogRenderWidget" {
+  +dynamic contentSection
+  +dynamic actionsSection
+  +dynamic dividerColor
+  +bool isActionSheet
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +dynamic createElement()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_CupertinoDialogRenderElement" {
+  +bool allowMoveRenderObjectChild
+  -dynamic _contentElement
+  -dynamic _actionsElement
+  +_RenderCupertinoDialog renderObject
+  +void visitChildren()
+  +void mount()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  +void update()
+  +void forgetChild()
+  +void removeRenderObjectChild()
+  -void _placeChildInSlot()
+}
+
+"flutter::lib::src::cupertino::dialog.dart::_CupertinoDialogRenderElement" o-- "flutter::lib::src::cupertino::dialog.dart::_RenderCupertinoDialog"
+
+class "flutter::lib::src::cupertino::dialog.dart::_RenderCupertinoDialog" {
+  -dynamic _contentSection
+  -dynamic _actionsSection
+  -bool _isInAccessibilityMode
+  -bool _isActionSheet
+  -double _dividerThickness
+  -dynamic _dividerPaint
+  +dynamic contentSection
+  +dynamic actionsSection
+  +bool isInAccessibilityMode
+  +bool isActionSheet
+  -double _dialogWidth
+  +dynamic dividerColor
+  +void attach()
+  +void detach()
+  +void redepthChildren()
+  +void setupParentData()
+  +void visitChildren()
+  +List<dynamic> debugDescribeChildren()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  -_AlertDialogSizes _performLayout()
+  +_AlertDialogSizes performRegularLayout()
+  +_AlertDialogSizes performAccessibilityLayout()
+  +void paint()
+  -void _paintDividerBetweenContentAndActions()
+  +bool hitTestChildren()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_AlertDialogSizes" {
+  +dynamic size
+  +double contentHeight
+  +double dividerThickness
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_CupertinoAlertContentSection" {
+  +dynamic title
+  +dynamic message
+  +dynamic scrollController
+  +dynamic titlePadding
+  +dynamic messagePadding
+  +dynamic additionalPaddingBetweenTitleAndMessage
+  +dynamic titleTextStyle
+  +dynamic messageTextStyle
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_CupertinoAlertActionSection" {
+  +List<dynamic> children
+  +dynamic scrollController
+  +bool hasCancelButton
+  +bool isActionSheet
+  +_CupertinoAlertActionSectionState createState()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_CupertinoAlertActionSectionState" {
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_PressableActionButton" {
+  +dynamic child
+  +_PressableActionButtonState createState()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_PressableActionButtonState" {
+  -bool _isPressed
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_ActionButtonParentDataWidget" {
+  +bool isPressed
+  +Type debugTypicalAncestorWidgetClass
+  +void applyParentData()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_ActionButtonParentData" {
+  +bool isPressed
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::CupertinoDialogAction" {
+  +dynamic onPressed
+  +bool isDefaultAction
+  +bool isDestructiveAction
+  +dynamic textStyle
+  +dynamic child
+  +bool enabled
+  -double _calculatePadding()
+  -dynamic _buildContentWithRegularSizingPolicy()
+  -dynamic _buildContentWithAccessibilitySizingPolicy()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_CupertinoDialogActionsRenderWidget" {
+  -double _dividerThickness
+  -bool _hasCancelButton
+  -bool _isActionSheet
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_RenderCupertinoDialogActions" {
+  -double? _dialogWidth
+  -double _dividerThickness
+  -bool _hasCancelButton
+  -dynamic _buttonBackgroundPaint
+  -dynamic _pressedButtonBackgroundPaint
+  -dynamic _dividerPaint
+  -bool _isActionSheet
+  +double? dialogWidth
+  +double dividerThickness
+  +bool hasCancelButton
+  +dynamic dialogColor
+  +dynamic dialogPressedColor
+  +dynamic dividerColor
+  +bool isActionSheet
+  -Iterable<dynamic> _pressedButtons
+  -bool _isButtonPressed
+  +void setupParentData()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  -double _computeMinIntrinsicHeightWithCancel()
+  -double _computeMinIntrinsicHeightSideBySide()
+  -double _computeMinIntrinsicHeightStacked()
+  +double computeMaxIntrinsicHeight()
+  -double _computeMaxIntrinsicHeightStacked()
+  -bool _isSingleButtonRow()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  -dynamic _performLayout()
+  +void paint()
+  -void _drawButtonBackgroundsAndDividersSingleRow()
+  -void _drawButtonBackgroundsAndDividersStacked()
+  -void _drawButtons()
+  +bool hitTestChildren()
+}
+
+class "flutter::lib::src::cupertino::dialog.dart::_AlertDialogSections" {
+  +int index
+  {static} +List<_AlertDialogSections> values
+  {static} +_AlertDialogSections contentSection
+  {static} +_AlertDialogSections actionsSection
+}
+
+"flutter::lib::src::cupertino::dialog.dart::_AlertDialogSections" o-- "flutter::lib::src::cupertino::dialog.dart::_AlertDialogSections"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::dialog.dart::_AlertDialogSections"
+
+
+@enduml

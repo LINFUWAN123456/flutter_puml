@@ -1,0 +1,12 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::spacer.dart::Spacer" {
+  +int flex
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::spacer.dart::Spacer"
+
+
+@enduml

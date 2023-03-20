@@ -1,0 +1,26 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::text_form_field_row.dart::CupertinoTextFormFieldRow" {
+  +dynamic prefix
+  +dynamic padding
+  +dynamic controller
+  +dynamic createState()
+}
+
+class "flutter::lib::src::cupertino::text_form_field_row.dart::_CupertinoTextFormFieldRowState" {
+  -dynamic _controller
+  -dynamic _effectiveController
+  -CupertinoTextFormFieldRow _cupertinoTextFormFieldRow
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +void didChange()
+  +void reset()
+  -void _handleControllerChanged()
+}
+
+"flutter::lib::src::cupertino::text_form_field_row.dart::_CupertinoTextFormFieldRowState" o-- "flutter::lib::src::cupertino::text_form_field_row.dart::CupertinoTextFormFieldRow"
+
+
+@enduml

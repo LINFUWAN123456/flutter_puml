@@ -1,0 +1,61 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::app.dart::CupertinoApp" {
+  +dynamic navigatorKey
+  +dynamic home
+  +CupertinoThemeData? theme
+  +Map<String, dynamic>? routes
+  +String? initialRoute
+  +dynamic onGenerateRoute
+  +dynamic onGenerateInitialRoutes
+  +dynamic onUnknownRoute
+  +List<dynamic>? navigatorObservers
+  +dynamic routeInformationProvider
+  +dynamic routeInformationParser
+  +dynamic routerDelegate
+  +dynamic backButtonDispatcher
+  +dynamic routerConfig
+  +dynamic builder
+  +String title
+  +dynamic onGenerateTitle
+  +dynamic color
+  +dynamic locale
+  +Iterable<dynamic>? localizationsDelegates
+  +dynamic localeListResolutionCallback
+  +dynamic localeResolutionCallback
+  +Iterable<dynamic> supportedLocales
+  +bool showPerformanceOverlay
+  +bool checkerboardRasterCacheImages
+  +bool checkerboardOffscreenLayers
+  +bool showSemanticsDebugger
+  +bool debugShowCheckedModeBanner
+  +Map<dynamic, dynamic>? shortcuts
+  +Map<Type, dynamic>? actions
+  +String? restorationScopeId
+  +dynamic scrollBehavior
+  +bool useInheritedMediaQuery
+  +dynamic createState()
+  {static} +dynamic createCupertinoHeroController()
+}
+
+"flutter::lib::src::cupertino::app.dart::CupertinoApp" o-- "flutter::lib::src::cupertino::theme.dart::CupertinoThemeData"
+
+class "flutter::lib::src::cupertino::app.dart::CupertinoScrollBehavior" {
+  +dynamic buildScrollbar()
+  +dynamic buildOverscrollIndicator()
+  +dynamic getScrollPhysics()
+}
+
+class "flutter::lib::src::cupertino::app.dart::_CupertinoAppState" {
+  -dynamic _heroController
+  -bool _usesRouter
+  -Iterable<dynamic> _localizationsDelegates
+  +void initState()
+  -dynamic _inspectorSelectButtonBuilder()
+  -dynamic _buildWidgetApp()
+  +dynamic build()
+}
+
+
+@enduml

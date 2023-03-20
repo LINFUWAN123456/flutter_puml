@@ -1,0 +1,18 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::physics::gravity_simulation.dart::GravitySimulation" {
+  -double _x
+  -double _v
+  -double _a
+  -double _end
+  +double x()
+  +double dx()
+  +bool isDone()
+  +String toString()
+}
+
+"flutter::lib::src::physics::simulation.dart::Simulation" <|-- "flutter::lib::src::physics::gravity_simulation.dart::GravitySimulation"
+
+
+@enduml

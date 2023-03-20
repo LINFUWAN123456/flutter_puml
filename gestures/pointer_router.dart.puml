@@ -1,0 +1,18 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::pointer_router.dart::PointerRouter" {
+  -Map<int, Map<void Function(PointerEvent), dynamic>> _routeMap
+  -Map<void Function(PointerEvent), dynamic> _globalRoutes
+  +int debugGlobalRouteCount
+  +void addRoute()
+  +void removeRoute()
+  +void addGlobalRoute()
+  +void removeGlobalRoute()
+  -void _dispatch()
+  +void route()
+  -void _dispatchEventToRoutes()
+}
+
+
+@enduml

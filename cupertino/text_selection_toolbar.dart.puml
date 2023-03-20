@@ -1,0 +1,145 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::CupertinoTextSelectionToolbar" {
+  +dynamic anchorAbove
+  +dynamic anchorBelow
+  +List<dynamic> children
+  +dynamic Function(dynamic, dynamic, bool, dynamic) toolbarBuilder
+  {static} -dynamic _defaultToolbarBuilder()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::text_selection_toolbar.dart::CupertinoTextSelectionToolbar" o-- "flutter::lib::src::cupertino::text_selection_toolbar.dart::dynamic Function(dynamic, dynamic, bool, dynamic)"
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarShape" {
+  -dynamic _anchor
+  -bool _isAbove
+  +_RenderCupertinoTextSelectionToolbarShape createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_RenderCupertinoTextSelectionToolbarShape" {
+  -dynamic _anchor
+  -bool _isAbove
+  -dynamic _heightConstraint
+  -dynamic _clipPathLayer
+  -dynamic _debugPaint
+  +bool isRepaintBoundary
+  +dynamic anchor
+  +bool isAbove
+  +void performLayout()
+  -dynamic _clipPath()
+  +void paint()
+  +void dispose()
+  +void debugPaintSize()
+  +bool hitTestChildren()
+}
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarContent" {
+  +dynamic anchor
+  +List<dynamic> children
+  +bool isAbove
+  +dynamic Function(dynamic, dynamic, bool, dynamic) toolbarBuilder
+  +_CupertinoTextSelectionToolbarContentState createState()
+}
+
+"flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarContent" o-- "flutter::lib::src::cupertino::text_selection_toolbar.dart::dynamic Function(dynamic, dynamic, bool, dynamic)"
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarContentState" {
+  -dynamic _controller
+  -int _page
+  -int? _nextPage
+  -void _handleNextPage()
+  -void _handlePreviousPage()
+  -void _statusListener()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarItems" {
+  +dynamic backButton
+  +List<dynamic> children
+  +double dividerWidth
+  +dynamic nextButton
+  +dynamic nextButtonDisabled
+  +int page
+  +_RenderCupertinoTextSelectionToolbarItems createRenderObject()
+  +void updateRenderObject()
+  +_CupertinoTextSelectionToolbarItemsElement createElement()
+}
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarItemsElement" {
+  -List<dynamic> _children
+  +Map<_CupertinoTextSelectionToolbarItemsSlot, dynamic> slotToChild
+  -Set<dynamic> _forgottenChildren
+  +_RenderCupertinoTextSelectionToolbarItems renderObject
+  -void _updateRenderObject()
+  +void insertRenderObjectChild()
+  +void moveRenderObjectChild()
+  {static} -bool _shouldPaint()
+  +void removeRenderObjectChild()
+  +void visitChildren()
+  +void forgetChild()
+  -void _mountChild()
+  +void mount()
+  +void debugVisitOnstageChildren()
+  +void update()
+}
+
+"flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarItemsElement" o-- "flutter::lib::src::cupertino::text_selection_toolbar.dart::_RenderCupertinoTextSelectionToolbarItems"
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_RenderCupertinoTextSelectionToolbarItems" {
+  +Map<_CupertinoTextSelectionToolbarItemsSlot, dynamic> slottedChildren
+  -int _page
+  -double _dividerWidth
+  -dynamic _backButton
+  -dynamic _nextButton
+  -dynamic _nextButtonDisabled
+  +int page
+  +double dividerWidth
+  +dynamic backButton
+  +dynamic nextButton
+  +dynamic nextButtonDisabled
+  -dynamic _updateChild()
+  -bool _isSlottedChild()
+  +void performLayout()
+  +void paint()
+  +void setupParentData()
+  {static} +bool hitTestChild()
+  +bool hitTestChildren()
+  +void attach()
+  +void detach()
+  +void redepthChildren()
+  +void visitChildren()
+  +void visitChildrenForSemantics()
+  +List<dynamic> debugDescribeChildren()
+}
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_NullElement" {
+  {static} +_NullElement instance
+  +bool debugDoingBuild
+  +void performRebuild()
+}
+
+"flutter::lib::src::cupertino::text_selection_toolbar.dart::_NullElement" o-- "flutter::lib::src::cupertino::text_selection_toolbar.dart::_NullElement"
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_NullWidget" {
+  +dynamic createElement()
+}
+
+class "flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarItemsSlot" {
+  +int index
+  {static} +List<_CupertinoTextSelectionToolbarItemsSlot> values
+  {static} +_CupertinoTextSelectionToolbarItemsSlot backButton
+  {static} +_CupertinoTextSelectionToolbarItemsSlot nextButton
+  {static} +_CupertinoTextSelectionToolbarItemsSlot nextButtonDisabled
+}
+
+"flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarItemsSlot" o-- "flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarItemsSlot"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::text_selection_toolbar.dart::_CupertinoTextSelectionToolbarItemsSlot"
+
+
+@enduml

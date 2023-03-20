@@ -1,0 +1,33 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::raw_keyboard_listener.dart::RawKeyboardListener" {
+  +FocusNode focusNode
+  +bool autofocus
+  +bool includeSemantics
+  +dynamic onKey
+  +Widget child
+  +State<RawKeyboardListener> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::raw_keyboard_listener.dart::RawKeyboardListener" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::raw_keyboard_listener.dart::RawKeyboardListener" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::raw_keyboard_listener.dart::RawKeyboardListener"
+
+class "flutter::lib::src::widgets::raw_keyboard_listener.dart::_RawKeyboardListenerState" {
+  -bool _listening
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _handleFocusChanged()
+  -void _attachKeyboardIfDetached()
+  -void _detachKeyboardIfAttached()
+  -void _handleRawKeyEvent()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::raw_keyboard_listener.dart::_RawKeyboardListenerState"
+
+
+@enduml

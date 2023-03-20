@@ -1,0 +1,61 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::automatic_keep_alive.dart::AutomaticKeepAlive" {
+  +Widget child
+  +State<AutomaticKeepAlive> createState()
+}
+
+"flutter::lib::src::widgets::automatic_keep_alive.dart::AutomaticKeepAlive" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::automatic_keep_alive.dart::AutomaticKeepAlive"
+
+class "flutter::lib::src::widgets::automatic_keep_alive.dart::_AutomaticKeepAliveState" {
+  -Map<dynamic, dynamic>? _handles
+  -Widget _child
+  -bool _keepingAlive
+  +void initState()
+  +void didUpdateWidget()
+  -void _updateChild()
+  +void dispose()
+  -bool _addClient()
+  -ParentDataElement<dynamic>? _getChildElement()
+  -void _updateParentDataOfChild()
+  -dynamic _createCallback()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::automatic_keep_alive.dart::_AutomaticKeepAliveState" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::automatic_keep_alive.dart::_AutomaticKeepAliveState"
+
+class "flutter::lib::src::widgets::automatic_keep_alive.dart::KeepAliveNotification" {
+  +dynamic handle
+}
+
+"flutter::lib::src::widgets::notification_listener.dart::Notification" <|-- "flutter::lib::src::widgets::automatic_keep_alive.dart::KeepAliveNotification"
+
+class "flutter::lib::src::widgets::automatic_keep_alive.dart::KeepAliveHandle" {
+  +void release()
+}
+
+class "flutter::lib::src::widgets::automatic_keep_alive.dart::_NullWidget" {
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::automatic_keep_alive.dart::_NullWidget"
+
+abstract class "flutter::lib::src::widgets::automatic_keep_alive.dart::AutomaticKeepAliveClientMixin" {
+  -KeepAliveHandle? _keepAliveHandle
+  +bool wantKeepAlive
+  -void _ensureKeepAlive()
+  -void _releaseKeepAlive()
+  +void updateKeepAlive()
+  +void initState()
+  +void deactivate()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::automatic_keep_alive.dart::AutomaticKeepAliveClientMixin" o-- "flutter::lib::src::widgets::automatic_keep_alive.dart::KeepAliveHandle"
+
+
+@enduml

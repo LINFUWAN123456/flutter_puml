@@ -1,0 +1,52 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::animated_size.dart::RenderAnimatedSize" {
+  -dynamic _controller
+  -dynamic _animation
+  -dynamic _sizeTween
+  -bool _hasVisualOverflow
+  -double? _lastValue
+  -RenderAnimatedSizeState _state
+  -dynamic _clipBehavior
+  -dynamic _vsync
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +RenderAnimatedSizeState state
+  +Duration duration
+  +Duration? reverseDuration
+  +dynamic curve
+  +dynamic clipBehavior
+  +bool isAnimating
+  +dynamic vsync
+  -dynamic _animatedSize
+  +void attach()
+  +void detach()
+  +void performLayout()
+  +dynamic computeDryLayout()
+  -void _restartAnimation()
+  -void _layoutStart()
+  -void _layoutStable()
+  -void _layoutChanged()
+  -void _layoutUnstable()
+  +void paint()
+  +void dispose()
+}
+
+"flutter::lib::src::rendering::animated_size.dart::RenderAnimatedSize" o-- "flutter::lib::src::rendering::animated_size.dart::RenderAnimatedSizeState"
+"flutter::lib::src::rendering::animated_size.dart::RenderAnimatedSize" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::shifted_box.dart::RenderAligningShiftedBox" <|-- "flutter::lib::src::rendering::animated_size.dart::RenderAnimatedSize"
+
+class "flutter::lib::src::rendering::animated_size.dart::RenderAnimatedSizeState" {
+  +int index
+  {static} +List<RenderAnimatedSizeState> values
+  {static} +RenderAnimatedSizeState start
+  {static} +RenderAnimatedSizeState stable
+  {static} +RenderAnimatedSizeState changed
+  {static} +RenderAnimatedSizeState unstable
+}
+
+"flutter::lib::src::rendering::animated_size.dart::RenderAnimatedSizeState" o-- "flutter::lib::src::rendering::animated_size.dart::RenderAnimatedSizeState"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::animated_size.dart::RenderAnimatedSizeState"
+
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::image_icon.dart::ImageIcon" {
+  +dynamic image
+  +double? size
+  +dynamic color
+  +String? semanticLabel
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::image_icon.dart::ImageIcon"
+
+
+@enduml

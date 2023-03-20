@@ -1,0 +1,129 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::navigation_rail.dart::NavigationRail" {
+  +dynamic backgroundColor
+  +bool extended
+  +dynamic leading
+  +dynamic trailing
+  +List<NavigationRailDestination> destinations
+  +int? selectedIndex
+  +dynamic onDestinationSelected
+  +double? elevation
+  +double? groupAlignment
+  +NavigationRailLabelType? labelType
+  +dynamic unselectedLabelTextStyle
+  +dynamic selectedLabelTextStyle
+  +dynamic unselectedIconTheme
+  +dynamic selectedIconTheme
+  +double? minWidth
+  +double? minExtendedWidth
+  +bool? useIndicator
+  +dynamic indicatorColor
+  {static} +dynamic extendedAnimation()
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::navigation_rail.dart::NavigationRail" o-- "flutter::lib::src::material::navigation_rail.dart::NavigationRailLabelType"
+
+class "flutter::lib::src::material::navigation_rail.dart::_NavigationRailState" {
+  -List<dynamic> _destinationControllers
+  -List<dynamic> _destinationAnimations
+  -dynamic _extendedController
+  -dynamic _extendedAnimation
+  +void initState()
+  +void dispose()
+  +void didUpdateWidget()
+  +dynamic build()
+  -void _disposeControllers()
+  -void _initControllers()
+  -void _resetState()
+  -void _rebuild()
+}
+
+class "flutter::lib::src::material::navigation_rail.dart::_RailDestination" {
+  +double minWidth
+  +double minExtendedWidth
+  +dynamic icon
+  +dynamic label
+  +dynamic destinationAnimation
+  +NavigationRailLabelType labelType
+  +bool selected
+  +dynamic extendedTransitionAnimation
+  +dynamic iconTheme
+  +dynamic labelTextStyle
+  +dynamic onTap
+  +String indexLabel
+  +dynamic padding
+  +bool useIndicator
+  +dynamic indicatorColor
+  -dynamic _positionAnimation
+  +dynamic build()
+}
+
+"flutter::lib::src::material::navigation_rail.dart::_RailDestination" o-- "flutter::lib::src::material::navigation_rail.dart::NavigationRailLabelType"
+
+class "flutter::lib::src::material::navigation_rail.dart::_AddIndicator" {
+  +bool addIndicator
+  +bool isCircular
+  +dynamic indicatorColor
+  +dynamic indicatorAnimation
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_rail.dart::NavigationRailDestination" {
+  +dynamic icon
+  +dynamic selectedIcon
+  +dynamic label
+  +dynamic padding
+}
+
+class "flutter::lib::src::material::navigation_rail.dart::_ExtendedNavigationRailAnimation" {
+  +dynamic animation
+  +bool updateShouldNotify()
+}
+
+class "flutter::lib::src::material::navigation_rail.dart::_NavigationRailDefaultsM2" {
+  -ThemeData _theme
+  -ColorScheme _colors
+  +dynamic backgroundColor
+  +dynamic unselectedLabelTextStyle
+  +dynamic selectedLabelTextStyle
+  +dynamic unselectedIconTheme
+  +dynamic selectedIconTheme
+}
+
+"flutter::lib::src::material::navigation_rail.dart::_NavigationRailDefaultsM2" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+"flutter::lib::src::material::navigation_rail.dart::_NavigationRailDefaultsM2" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::navigation_rail_theme.dart::NavigationRailThemeData" <|-- "flutter::lib::src::material::navigation_rail.dart::_NavigationRailDefaultsM2"
+
+class "flutter::lib::src::material::navigation_rail.dart::_NavigationRailDefaultsM3" {
+  +dynamic context
+  -ColorScheme _colors
+  -TextTheme _textTheme
+  +dynamic backgroundColor
+  +dynamic unselectedLabelTextStyle
+  +dynamic selectedLabelTextStyle
+  +dynamic unselectedIconTheme
+  +dynamic selectedIconTheme
+  +dynamic indicatorColor
+}
+
+"flutter::lib::src::material::navigation_rail.dart::_NavigationRailDefaultsM3" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::navigation_rail.dart::_NavigationRailDefaultsM3" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+"flutter::lib::src::material::navigation_rail_theme.dart::NavigationRailThemeData" <|-- "flutter::lib::src::material::navigation_rail.dart::_NavigationRailDefaultsM3"
+
+class "flutter::lib::src::material::navigation_rail.dart::NavigationRailLabelType" {
+  +int index
+  {static} +List<NavigationRailLabelType> values
+  {static} +NavigationRailLabelType none
+  {static} +NavigationRailLabelType selected
+  {static} +NavigationRailLabelType all
+}
+
+"flutter::lib::src::material::navigation_rail.dart::NavigationRailLabelType" o-- "flutter::lib::src::material::navigation_rail.dart::NavigationRailLabelType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::navigation_rail.dart::NavigationRailLabelType"
+
+
+@enduml

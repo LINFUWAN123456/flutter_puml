@@ -1,0 +1,86 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverBoxChildManager" {
+  +int childCount
+  +void createChild()
+  +void removeChild()
+  +double estimateMaxScrollOffset()
+  +void didAdoptChild()
+  +void setDidUnderflow()
+  +void didStartLayout()
+  +void didFinishLayout()
+  +bool debugAssertChildListLocked()
+}
+
+class "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::SliverMultiBoxAdaptorParentData" {
+  +int? index
+  -bool _keptAlive
+  +bool keptAlive
+  +String toString()
+}
+
+"flutter::lib::src::rendering::sliver.dart::SliverLogicalParentData" <|-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::SliverMultiBoxAdaptorParentData"
+"flutter::lib::src::rendering::object.dart::ContainerParentDataMixin" <|-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::SliverMultiBoxAdaptorParentData"
+"flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::KeepAliveParentDataMixin" <|-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::SliverMultiBoxAdaptorParentData"
+
+abstract class "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverMultiBoxAdaptor" {
+  -RenderSliverBoxChildManager _childManager
+  -Map<int, RenderBox> _keepAliveBucket
+  -List<RenderBox> _debugDanglingKeepAlives
+  -bool _debugChildIntegrityEnabled
+  +RenderSliverBoxChildManager childManager
+  +bool debugChildIntegrityEnabled
+  +void setupParentData()
+  +void adoptChild()
+  -bool _debugAssertChildListLocked()
+  -bool _debugVerifyChildOrder()
+  +void insert()
+  +void move()
+  +void remove()
+  +void removeAll()
+  -void _createOrObtainChild()
+  -void _destroyOrCacheChild()
+  +void attach()
+  +void detach()
+  +void redepthChildren()
+  +void visitChildren()
+  +void visitChildrenForSemantics()
+  +bool addInitialChild()
+  +RenderBox? insertAndLayoutLeadingChild()
+  +RenderBox? insertAndLayoutChild()
+  +void collectGarbage()
+  +int indexOf()
+  +double paintExtentOf()
+  +bool hitTestChildren()
+  +double childMainAxisPosition()
+  +double? childScrollOffset()
+  +bool paintsChild()
+  +void applyPaintTransform()
+  +void paint()
+  +void debugFillProperties()
+  +bool debugAssertChildListIsNonEmptyAndContiguous()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverMultiBoxAdaptor" o-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverBoxChildManager"
+"flutter::lib::src::rendering::sliver.dart::RenderSliver" <|-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverMultiBoxAdaptor"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverMultiBoxAdaptor"
+"flutter::lib::src::rendering::sliver.dart::RenderSliverHelpers" <|-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverMultiBoxAdaptor"
+"flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverWithKeepAliveMixin" <|-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverMultiBoxAdaptor"
+
+abstract class "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::KeepAliveParentDataMixin" {
+  +bool keepAlive
+  +bool keptAlive
+}
+
+"flutter::lib::src::rendering::object.dart::ParentData" <|-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::KeepAliveParentDataMixin"
+
+abstract class "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverWithKeepAliveMixin" {
+  +void setupParentData()
+}
+
+"flutter::lib::src::rendering::sliver.dart::RenderSliver" <|-- "flutter::lib::src::rendering::sliver_multi_box_adaptor.dart::RenderSliverWithKeepAliveMixin"
+
+
+@enduml

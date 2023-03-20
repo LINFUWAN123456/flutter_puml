@@ -1,0 +1,83 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::painting::box_border.dart::BoxBorder" {
+  +BorderSide top
+  +BorderSide bottom
+  +bool isUniform
+  +BoxBorder? add()
+  {static} +BoxBorder? lerp()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +void paint()
+  {static} -void _paintUniformBorderWithRadius()
+  {static} -void _paintUniformBorderWithCircle()
+  {static} -void _paintUniformBorderWithRectangle()
+}
+
+"flutter::lib::src::painting::box_border.dart::BoxBorder" o-- "flutter::lib::src::painting::borders.dart::BorderSide"
+"flutter::lib::src::painting::borders.dart::ShapeBorder" <|-- "flutter::lib::src::painting::box_border.dart::BoxBorder"
+
+class "flutter::lib::src::painting::box_border.dart::Border" {
+  +BorderSide top
+  +BorderSide right
+  +BorderSide bottom
+  +BorderSide left
+  +EdgeInsetsGeometry dimensions
+  +bool isUniform
+  -bool _colorIsUniform
+  -bool _widthIsUniform
+  -bool _styleIsUniform
+  -bool _strokeAlignIsUniform
+  +int hashCode
+  {static} +Border merge()
+  +Border? add()
+  +Border scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  {static} +Border? lerp()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::box_border.dart::Border" o-- "flutter::lib::src::painting::borders.dart::BorderSide"
+"flutter::lib::src::painting::box_border.dart::Border" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::box_border.dart::BoxBorder" <|-- "flutter::lib::src::painting::box_border.dart::Border"
+
+class "flutter::lib::src::painting::box_border.dart::BorderDirectional" {
+  +BorderSide top
+  +BorderSide start
+  +BorderSide end
+  +BorderSide bottom
+  +EdgeInsetsGeometry dimensions
+  +bool isUniform
+  -bool _strokeAlignIsUniform
+  +int hashCode
+  {static} +BorderDirectional merge()
+  +BoxBorder? add()
+  +BorderDirectional scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  {static} +BorderDirectional? lerp()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::box_border.dart::BorderDirectional" o-- "flutter::lib::src::painting::borders.dart::BorderSide"
+"flutter::lib::src::painting::box_border.dart::BorderDirectional" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::box_border.dart::BoxBorder" <|-- "flutter::lib::src::painting::box_border.dart::BorderDirectional"
+
+class "flutter::lib::src::painting::box_border.dart::BoxShape" {
+  +int index
+  {static} +List<BoxShape> values
+  {static} +BoxShape rectangle
+  {static} +BoxShape circle
+}
+
+"flutter::lib::src::painting::box_border.dart::BoxShape" o-- "flutter::lib::src::painting::box_border.dart::BoxShape"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::box_border.dart::BoxShape"
+
+
+@enduml

@@ -1,0 +1,165 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::material_state.dart::MaterialStateColor" {
+  {static} +MaterialStateColor resolveWith()
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::MaterialStateColor"
+
+class "flutter::lib::src::material::material_state.dart::_MaterialStateColor" {
+  -dynamic Function(Set<MaterialState>) _resolve
+  {static} -Set<MaterialState> _defaultStates
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::_MaterialStateColor" o-- "flutter::lib::src::material::material_state.dart::dynamic Function(Set<MaterialState>)"
+"flutter::lib::src::material::material_state.dart::MaterialStateColor" <|-- "flutter::lib::src::material::material_state.dart::_MaterialStateColor"
+
+abstract class "flutter::lib::src::material::material_state.dart::MaterialStateMouseCursor" {
+  {static} +MaterialStateMouseCursor clickable
+  {static} +MaterialStateMouseCursor textable
+  +dynamic createSession()
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateMouseCursor" o-- "flutter::lib::src::material::material_state.dart::MaterialStateMouseCursor"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::MaterialStateMouseCursor"
+
+class "flutter::lib::src::material::material_state.dart::_EnabledAndDisabledMouseCursor" {
+  +dynamic enabledCursor
+  +dynamic disabledCursor
+  +String name
+  +String debugDescription
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateMouseCursor" <|-- "flutter::lib::src::material::material_state.dart::_EnabledAndDisabledMouseCursor"
+
+abstract class "flutter::lib::src::material::material_state.dart::MaterialStateBorderSide" {
+  +dynamic resolve()
+  {static} +MaterialStateBorderSide resolveWith()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::MaterialStateBorderSide"
+
+class "flutter::lib::src::material::material_state.dart::_MaterialStateBorderSide" {
+  -dynamic Function(Set<MaterialState>) _resolve
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::_MaterialStateBorderSide" o-- "flutter::lib::src::material::material_state.dart::dynamic Function(Set<MaterialState>)"
+"flutter::lib::src::material::material_state.dart::MaterialStateBorderSide" <|-- "flutter::lib::src::material::material_state.dart::_MaterialStateBorderSide"
+
+abstract class "flutter::lib::src::material::material_state.dart::MaterialStateOutlinedBorder" {
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::MaterialStateOutlinedBorder"
+
+abstract class "flutter::lib::src::material::material_state.dart::MaterialStateTextStyle" {
+  {static} +MaterialStateTextStyle resolveWith()
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::MaterialStateTextStyle"
+
+class "flutter::lib::src::material::material_state.dart::_MaterialStateTextStyle" {
+  -dynamic Function(Set<MaterialState>) _resolve
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::_MaterialStateTextStyle" o-- "flutter::lib::src::material::material_state.dart::dynamic Function(Set<MaterialState>)"
+"flutter::lib::src::material::material_state.dart::MaterialStateTextStyle" <|-- "flutter::lib::src::material::material_state.dart::_MaterialStateTextStyle"
+
+abstract class "flutter::lib::src::material::material_state.dart::MaterialStateOutlineInputBorder" {
+  {static} +MaterialStateOutlineInputBorder resolveWith()
+  +InputBorder resolve()
+}
+
+"flutter::lib::src::material::input_border.dart::OutlineInputBorder" <|-- "flutter::lib::src::material::material_state.dart::MaterialStateOutlineInputBorder"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::MaterialStateOutlineInputBorder"
+
+class "flutter::lib::src::material::material_state.dart::_MaterialStateOutlineInputBorder" {
+  -InputBorder Function(Set<MaterialState>) _resolve
+  +InputBorder resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::_MaterialStateOutlineInputBorder" o-- "flutter::lib::src::material::material_state.dart::InputBorder Function(Set<MaterialState>)"
+"flutter::lib::src::material::material_state.dart::MaterialStateOutlineInputBorder" <|-- "flutter::lib::src::material::material_state.dart::_MaterialStateOutlineInputBorder"
+
+abstract class "flutter::lib::src::material::material_state.dart::MaterialStateUnderlineInputBorder" {
+  {static} +MaterialStateUnderlineInputBorder resolveWith()
+  +InputBorder resolve()
+}
+
+"flutter::lib::src::material::input_border.dart::UnderlineInputBorder" <|-- "flutter::lib::src::material::material_state.dart::MaterialStateUnderlineInputBorder"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::MaterialStateUnderlineInputBorder"
+
+class "flutter::lib::src::material::material_state.dart::_MaterialStateUnderlineInputBorder" {
+  -InputBorder Function(Set<MaterialState>) _resolve
+  +InputBorder resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::_MaterialStateUnderlineInputBorder" o-- "flutter::lib::src::material::material_state.dart::InputBorder Function(Set<MaterialState>)"
+"flutter::lib::src::material::material_state.dart::MaterialStateUnderlineInputBorder" <|-- "flutter::lib::src::material::material_state.dart::_MaterialStateUnderlineInputBorder"
+
+abstract class "flutter::lib::src::material::material_state.dart::MaterialStateProperty" {
+  +T resolve()
+  {static} +T resolveAs()
+  {static} +MaterialStateProperty<T> resolveWith()
+  {static} +MaterialStateProperty<T> all()
+  {static} +MaterialStateProperty<T?>? lerp()
+}
+
+class "flutter::lib::src::material::material_state.dart::_LerpProperties" {
+  +MaterialStateProperty<T>? a
+  +MaterialStateProperty<T>? b
+  +double t
+  +T? Function(T?, T?, double) lerpFunction
+  +T? resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::_LerpProperties" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<T>"
+"flutter::lib::src::material::material_state.dart::_LerpProperties" o-- "null::T Function(T, T, double)"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::_LerpProperties"
+
+class "flutter::lib::src::material::material_state.dart::_MaterialStatePropertyWith" {
+  -T Function(Set<MaterialState>) _resolve
+  +T resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::_MaterialStatePropertyWith" o-- "flutter::lib::src::material::material_state.dart::T Function(Set<MaterialState>)"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::_MaterialStatePropertyWith"
+
+class "flutter::lib::src::material::material_state.dart::MaterialStatePropertyAll" {
+  +T value
+  +T resolve()
+  +String toString()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::material_state.dart::MaterialStatePropertyAll"
+
+class "flutter::lib::src::material::material_state.dart::MaterialStatesController" {
+  +void update()
+}
+
+class "flutter::lib::src::material::material_state.dart::MaterialState" {
+  +int index
+  {static} +List<MaterialState> values
+  {static} +MaterialState hovered
+  {static} +MaterialState focused
+  {static} +MaterialState pressed
+  {static} +MaterialState dragged
+  {static} +MaterialState selected
+  {static} +MaterialState scrolledUnder
+  {static} +MaterialState disabled
+  {static} +MaterialState error
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialState" o-- "flutter::lib::src::material::material_state.dart::MaterialState"
+"dart::core::Enum" <|-- "flutter::lib::src::material::material_state.dart::MaterialState"
+
+
+@enduml

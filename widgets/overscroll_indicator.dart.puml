@@ -1,0 +1,186 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::GlowingOverscrollIndicator" {
+  +bool showLeading
+  +bool showTrailing
+  +dynamic axisDirection
+  +dynamic color
+  +bool Function(ScrollNotification) notificationPredicate
+  +Widget? child
+  +dynamic axis
+  +State<GlowingOverscrollIndicator> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::overscroll_indicator.dart::GlowingOverscrollIndicator" o-- "flutter::lib::src::widgets::scroll_notification.dart::bool Function(ScrollNotification)"
+"flutter::lib::src::widgets::overscroll_indicator.dart::GlowingOverscrollIndicator" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::GlowingOverscrollIndicator"
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowingOverscrollIndicatorState" {
+  -_GlowController? _leadingController
+  -_GlowController? _trailingController
+  -dynamic _leadingAndTrailingListener
+  -Type? _lastNotificationType
+  -Map<bool, bool> _accepted
+  +void initState()
+  +void didUpdateWidget()
+  -bool _handleScrollNotification()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::overscroll_indicator.dart::_GlowingOverscrollIndicatorState" o-- "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowController"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowingOverscrollIndicatorState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowingOverscrollIndicatorState"
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowController" {
+  -_GlowState _state
+  -dynamic _glowController
+  -Timer? _pullRecedeTimer
+  -double _paintOffset
+  -double _paintOffsetScrollPixels
+  -dynamic _glowOpacityTween
+  -dynamic _glowOpacity
+  -dynamic _glowSizeTween
+  -dynamic _glowSize
+  -dynamic _displacementTicker
+  -Duration? _displacementTickerLastElapsed
+  -double _displacementTarget
+  -double _displacement
+  -double _pullDistance
+  -dynamic _color
+  -dynamic _axis
+  {static} -Duration _recedeTime
+  {static} -Duration _pullTime
+  {static} -Duration _pullHoldTime
+  {static} -Duration _pullDecayTime
+  {static} -Duration _crossAxisHalfTime
+  {static} -double _maxOpacity
+  {static} -double _pullOpacityGlowFactor
+  {static} -double _velocityGlowFactor
+  {static} -double _sqrt3
+  {static} -double _widthToHeightFactor
+  {static} -double _minVelocity
+  {static} -double _maxVelocity
+  +dynamic color
+  +dynamic axis
+  +void dispose()
+  +void absorbImpact()
+  +void pull()
+  +void scrollEnd()
+  -void _changePhase()
+  -void _recede()
+  -void _tickDisplacement()
+  +void paint()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::overscroll_indicator.dart::_GlowController" o-- "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowState"
+"flutter::lib::src::widgets::overscroll_indicator.dart::_GlowController" o-- "dart::async::Timer"
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowingOverscrollIndicatorPainter" {
+  +_GlowController? leadingController
+  +_GlowController? trailingController
+  +dynamic axisDirection
+  {static} +double piOver2
+  -void _paintSide()
+  +void paint()
+  +bool shouldRepaint()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::overscroll_indicator.dart::_GlowingOverscrollIndicatorPainter" o-- "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowController"
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::StretchingOverscrollIndicator" {
+  +dynamic axisDirection
+  +bool Function(ScrollNotification) notificationPredicate
+  +dynamic clipBehavior
+  +Widget? child
+  +dynamic axis
+  +State<StretchingOverscrollIndicator> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::overscroll_indicator.dart::StretchingOverscrollIndicator" o-- "flutter::lib::src::widgets::scroll_notification.dart::bool Function(ScrollNotification)"
+"flutter::lib::src::widgets::overscroll_indicator.dart::StretchingOverscrollIndicator" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::StretchingOverscrollIndicator"
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::_StretchingOverscrollIndicatorState" {
+  -_StretchController _stretchController
+  -ScrollNotification? _lastNotification
+  -OverscrollNotification? _lastOverscrollNotification
+  -bool _accepted
+  -bool _handleScrollNotification()
+  -dynamic _getAlignmentForAxisDirection()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::overscroll_indicator.dart::_StretchingOverscrollIndicatorState" o-- "flutter::lib::src::widgets::overscroll_indicator.dart::_StretchController"
+"flutter::lib::src::widgets::overscroll_indicator.dart::_StretchingOverscrollIndicatorState" o-- "flutter::lib::src::widgets::scroll_notification.dart::ScrollNotification"
+"flutter::lib::src::widgets::overscroll_indicator.dart::_StretchingOverscrollIndicatorState" o-- "flutter::lib::src::widgets::scroll_notification.dart::OverscrollNotification"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::_StretchingOverscrollIndicatorState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::_StretchingOverscrollIndicatorState"
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::_StretchController" {
+  -dynamic _stretchController
+  -dynamic _stretchSize
+  -dynamic _stretchSizeTween
+  -_StretchState _state
+  -double _pullDistance
+  {static} -double _exponentialScalar
+  {static} -double _stretchIntensity
+  {static} -double _flingFriction
+  {static} -Duration _stretchDuration
+  +double pullDistance
+  +double value
+  +void absorbImpact()
+  +void pull()
+  +void scrollEnd()
+  -void _changePhase()
+  -void _recede()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::overscroll_indicator.dart::_StretchController" o-- "flutter::lib::src::widgets::overscroll_indicator.dart::_StretchState"
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::OverscrollIndicatorNotification" {
+  +bool leading
+  +double paintOffset
+  +bool accepted
+  +void disallowGlow()
+  +void disallowIndicator()
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::notification_listener.dart::Notification" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::OverscrollIndicatorNotification"
+"flutter::lib::src::widgets::scroll_notification.dart::ViewportNotificationMixin" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::OverscrollIndicatorNotification"
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowState" {
+  +int index
+  {static} +List<_GlowState> values
+  {static} +_GlowState idle
+  {static} +_GlowState absorb
+  {static} +_GlowState pull
+  {static} +_GlowState recede
+}
+
+"flutter::lib::src::widgets::overscroll_indicator.dart::_GlowState" o-- "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowState"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::_GlowState"
+
+class "flutter::lib::src::widgets::overscroll_indicator.dart::_StretchState" {
+  +int index
+  {static} +List<_StretchState> values
+  {static} +_StretchState idle
+  {static} +_StretchState absorb
+  {static} +_StretchState pull
+  {static} +_StretchState recede
+}
+
+"flutter::lib::src::widgets::overscroll_indicator.dart::_StretchState" o-- "flutter::lib::src::widgets::overscroll_indicator.dart::_StretchState"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::overscroll_indicator.dart::_StretchState"
+
+
+@enduml

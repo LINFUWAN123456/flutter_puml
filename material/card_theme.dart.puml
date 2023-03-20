@@ -1,0 +1,21 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::card_theme.dart::CardTheme" {
+  +dynamic clipBehavior
+  +dynamic color
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +double? elevation
+  +dynamic margin
+  +dynamic shape
+  +int hashCode
+  +CardTheme copyWith()
+  {static} +CardTheme of()
+  {static} +CardTheme lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

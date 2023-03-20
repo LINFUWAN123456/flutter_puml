@@ -1,0 +1,668 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" {
+}
+
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox"
+"flutter::lib::src::rendering::object.dart::RenderObjectWithChildMixin" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxMixin" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox"
+
+abstract class "flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxWithHitTestBehavior" {
+  +HitTestBehavior behavior
+  +bool hitTest()
+  +bool hitTestSelf()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxWithHitTestBehavior" o-- "flutter::lib::src::rendering::proxy_box.dart::HitTestBehavior"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxWithHitTestBehavior"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderConstrainedBox" {
+  -BoxConstraints _additionalConstraints
+  +BoxConstraints additionalConstraints
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +void performLayout()
+  +dynamic computeDryLayout()
+  +void debugPaintSize()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderConstrainedBox" o-- "flutter::lib::src::rendering::box.dart::BoxConstraints"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderConstrainedBox"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderLimitedBox" {
+  -double _maxWidth
+  -double _maxHeight
+  +double maxWidth
+  +double maxHeight
+  -BoxConstraints _limitConstraints()
+  -dynamic _computeSize()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderLimitedBox"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderAspectRatio" {
+  -double _aspectRatio
+  +double aspectRatio
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  -dynamic _applyAspectRatio()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderAspectRatio"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderIntrinsicWidth" {
+  -double? _stepWidth
+  -double? _stepHeight
+  +double? stepWidth
+  +double? stepHeight
+  {static} -double _applyStep()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  -dynamic _computeSize()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderIntrinsicWidth"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderIntrinsicHeight" {
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  -dynamic _computeSize()
+  +dynamic computeDryLayout()
+  +void performLayout()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderIntrinsicHeight"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderOpacity" {
+  -int _alpha
+  -double _opacity
+  -bool _alwaysIncludeSemantics
+  +bool alwaysNeedsCompositing
+  +double opacity
+  +bool alwaysIncludeSemantics
+  +bool paintsChild()
+  +void paint()
+  +void visitChildrenForSemantics()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderOpacity"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderAnimatedOpacity" {
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderAnimatedOpacity"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxMixin" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderAnimatedOpacity"
+"flutter::lib::src::rendering::proxy_box.dart::RenderAnimatedOpacityMixin" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderAnimatedOpacity"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderShaderMask" {
+  -dynamic Function(dynamic) _shaderCallback
+  -dynamic _blendMode
+  +ShaderMaskLayer? layer
+  +dynamic Function(dynamic) shaderCallback
+  +dynamic blendMode
+  +bool alwaysNeedsCompositing
+  +void paint()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderShaderMask" o-- "flutter::lib::src::rendering::proxy_box.dart::dynamic Function(dynamic)"
+"flutter::lib::src::rendering::proxy_box.dart::RenderShaderMask" o-- "flutter::lib::src::rendering::layer.dart::ShaderMaskLayer"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderShaderMask"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderBackdropFilter" {
+  -dynamic _filter
+  -dynamic _blendMode
+  +BackdropFilterLayer? layer
+  +dynamic filter
+  +dynamic blendMode
+  +bool alwaysNeedsCompositing
+  +void paint()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderBackdropFilter" o-- "flutter::lib::src::rendering::layer.dart::BackdropFilterLayer"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderBackdropFilter"
+
+abstract class "flutter::lib::src::rendering::proxy_box.dart::CustomClipper" {
+  -dynamic _reclip
+  +void addListener()
+  +void removeListener()
+  +T getClip()
+  +dynamic getApproximateClipRect()
+  +bool shouldReclip()
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::proxy_box.dart::ShapeBorderClipper" {
+  +dynamic shape
+  +dynamic textDirection
+  +dynamic getClip()
+  +bool shouldReclip()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::CustomClipper" <|-- "flutter::lib::src::rendering::proxy_box.dart::ShapeBorderClipper"
+
+abstract class "flutter::lib::src::rendering::proxy_box.dart::_RenderCustomClip" {
+  -CustomClipper<T>? _clipper
+  -T? _clip
+  -dynamic _clipBehavior
+  -dynamic _debugPaint
+  -dynamic _debugText
+  +CustomClipper<T>? clipper
+  -T _defaultClip
+  +dynamic clipBehavior
+  +void attach()
+  +void detach()
+  -void _markNeedsClip()
+  +void performLayout()
+  -void _updateClip()
+  +dynamic describeApproximatePaintClip()
+  +void debugPaintSize()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::_RenderCustomClip" o-- "flutter::lib::src::rendering::proxy_box.dart::CustomClipper<T>"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::_RenderCustomClip"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderClipRect" {
+  -dynamic _defaultClip
+  +bool hitTest()
+  +void paint()
+  +void debugPaintSize()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::_RenderCustomClip" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderClipRect"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderClipRRect" {
+  -dynamic _borderRadius
+  -dynamic _textDirection
+  +dynamic borderRadius
+  +dynamic textDirection
+  -dynamic _defaultClip
+  +bool hitTest()
+  +void paint()
+  +void debugPaintSize()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::_RenderCustomClip" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderClipRRect"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderClipOval" {
+  -dynamic _cachedRect
+  -dynamic _cachedPath
+  -dynamic _defaultClip
+  -dynamic _getClipPath()
+  +bool hitTest()
+  +void paint()
+  +void debugPaintSize()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::_RenderCustomClip" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderClipOval"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderClipPath" {
+  -dynamic _defaultClip
+  +bool hitTest()
+  +void paint()
+  +void debugPaintSize()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::_RenderCustomClip" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderClipPath"
+
+abstract class "flutter::lib::src::rendering::proxy_box.dart::_RenderPhysicalModelBase" {
+  -double _elevation
+  -dynamic _shadowColor
+  -dynamic _color
+  +double elevation
+  +dynamic shadowColor
+  +dynamic color
+  +void describeSemanticsConfiguration()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::_RenderCustomClip" <|-- "flutter::lib::src::rendering::proxy_box.dart::_RenderPhysicalModelBase"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderPhysicalModel" {
+  -dynamic _shape
+  -dynamic _borderRadius
+  +dynamic shape
+  +dynamic borderRadius
+  -dynamic _defaultClip
+  +bool hitTest()
+  +void paint()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::_RenderPhysicalModelBase" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderPhysicalModel"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderPhysicalShape" {
+  -dynamic _defaultClip
+  +bool hitTest()
+  +void paint()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::_RenderPhysicalModelBase" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderPhysicalShape"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderDecoratedBox" {
+  -dynamic _painter
+  -dynamic _decoration
+  -DecorationPosition _position
+  -dynamic _configuration
+  +dynamic decoration
+  +DecorationPosition position
+  +dynamic configuration
+  +void detach()
+  +bool hitTestSelf()
+  +void paint()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderDecoratedBox" o-- "flutter::lib::src::rendering::proxy_box.dart::DecorationPosition"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderDecoratedBox"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderTransform" {
+  -dynamic _origin
+  -dynamic _alignment
+  -dynamic _textDirection
+  +bool transformHitTests
+  -dynamic _transform
+  -dynamic _filterQuality
+  +dynamic origin
+  +dynamic alignment
+  +dynamic textDirection
+  +bool alwaysNeedsCompositing
+  +dynamic transform
+  +dynamic filterQuality
+  -dynamic _effectiveTransform
+  +void setIdentity()
+  +void rotateX()
+  +void rotateY()
+  +void rotateZ()
+  +void translate()
+  +void scale()
+  +bool hitTest()
+  +bool hitTestChildren()
+  +void paint()
+  +void applyPaintTransform()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderTransform"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderFittedBox" {
+  -dynamic _resolvedAlignment
+  -dynamic _fit
+  -dynamic _alignment
+  -dynamic _textDirection
+  -bool? _hasVisualOverflow
+  -dynamic _transform
+  -dynamic _clipBehavior
+  +dynamic fit
+  +dynamic alignment
+  +dynamic textDirection
+  +dynamic clipBehavior
+  -void _resolve()
+  -void _markNeedResolution()
+  -bool _fitAffectsLayout()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  -void _clearPaintData()
+  -void _updatePaintData()
+  -TransformLayer? _paintChildWithTransform()
+  +void paint()
+  +bool hitTestChildren()
+  +bool paintsChild()
+  +void applyPaintTransform()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderFittedBox"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderFractionalTranslation" {
+  -dynamic _translation
+  +bool transformHitTests
+  +dynamic translation
+  +bool hitTest()
+  +bool hitTestChildren()
+  +void paint()
+  +void applyPaintTransform()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderFractionalTranslation"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderPointerListener" {
+  +void Function(dynamic)? onPointerDown
+  +void Function(dynamic)? onPointerMove
+  +void Function(dynamic)? onPointerUp
+  +dynamic onPointerHover
+  +void Function(dynamic)? onPointerCancel
+  +void Function(dynamic)? onPointerPanZoomStart
+  +void Function(dynamic)? onPointerPanZoomUpdate
+  +void Function(dynamic)? onPointerPanZoomEnd
+  +void Function(dynamic)? onPointerSignal
+  +dynamic computeSizeForNoChild()
+  +void handleEvent()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderPointerListener" o-- "flutter::lib::src::rendering::proxy_box.dart::void Function(dynamic)"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxWithHitTestBehavior" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderPointerListener"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderMouseRegion" {
+  -bool _opaque
+  +dynamic onEnter
+  +dynamic onHover
+  +dynamic onExit
+  -dynamic _cursor
+  -bool _validForMouseTracker
+  +bool opaque
+  +HitTestBehavior? hitTestBehavior
+  +dynamic cursor
+  +bool validForMouseTracker
+  +bool hitTest()
+  +void handleEvent()
+  +void attach()
+  +void detach()
+  +dynamic computeSizeForNoChild()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderMouseRegion" o-- "flutter::lib::src::rendering::proxy_box.dart::HitTestBehavior"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxWithHitTestBehavior" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderMouseRegion"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderRepaintBoundary" {
+  -int _debugSymmetricPaintCount
+  -int _debugAsymmetricPaintCount
+  +bool isRepaintBoundary
+  +int debugSymmetricPaintCount
+  +int debugAsymmetricPaintCount
+  +Future<dynamic> toImage()
+  +void debugResetMetrics()
+  +void debugRegisterRepaintBoundaryPaint()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderRepaintBoundary"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderIgnorePointer" {
+  -bool _ignoring
+  -bool? _ignoringSemantics
+  +bool ignoring
+  +bool? ignoringSemantics
+  -bool _effectiveIgnoringSemantics
+  +bool hitTest()
+  +void visitChildrenForSemantics()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderIgnorePointer"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderOffstage" {
+  -bool _offstage
+  +bool offstage
+  +bool sizedByParent
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  +dynamic computeDryLayout()
+  +void performResize()
+  +void performLayout()
+  +bool hitTest()
+  +bool paintsChild()
+  +void paint()
+  +void visitChildrenForSemantics()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderOffstage"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderAbsorbPointer" {
+  -bool _absorbing
+  -bool? _ignoringSemantics
+  +bool absorbing
+  +bool? ignoringSemantics
+  -bool _effectiveIgnoringSemantics
+  +bool hitTest()
+  +void visitChildrenForSemantics()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderAbsorbPointer"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderMetaData" {
+  +dynamic metaData
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxWithHitTestBehavior" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderMetaData"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderSemanticsGestureHandler" {
+  -Set<dynamic>? _validActions
+  -dynamic _onTap
+  -dynamic _onLongPress
+  -dynamic _onHorizontalDragUpdate
+  -dynamic _onVerticalDragUpdate
+  +double scrollFactor
+  +Set<dynamic>? validActions
+  +dynamic onTap
+  +dynamic onLongPress
+  +dynamic onHorizontalDragUpdate
+  +dynamic onVerticalDragUpdate
+  +void describeSemanticsConfiguration()
+  -bool _isValidAction()
+  -void _performSemanticScrollLeft()
+  -void _performSemanticScrollRight()
+  -void _performSemanticScrollUp()
+  -void _performSemanticScrollDown()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxWithHitTestBehavior" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderSemanticsGestureHandler"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderSemanticsAnnotations" {
+  -dynamic _properties
+  -bool _container
+  -bool _explicitChildNodes
+  -bool _excludeSemantics
+  -dynamic _attributedLabel
+  -dynamic _attributedValue
+  -dynamic _attributedIncreasedValue
+  -dynamic _attributedDecreasedValue
+  -dynamic _attributedHint
+  -dynamic _textDirection
+  +dynamic properties
+  +bool container
+  +bool explicitChildNodes
+  +bool excludeSemantics
+  +dynamic textDirection
+  -void _updateAttributedFields()
+  -dynamic _effectiveAttributedLabel()
+  -dynamic _effectiveAttributedValue()
+  -dynamic _effectiveAttributedIncreasedValue()
+  -dynamic _effectiveAttributedDecreasedValue()
+  -dynamic _effectiveAttributedHint()
+  +void visitChildrenForSemantics()
+  +void describeSemanticsConfiguration()
+  -void _performTap()
+  -void _performLongPress()
+  -void _performDismiss()
+  -void _performScrollLeft()
+  -void _performScrollRight()
+  -void _performScrollUp()
+  -void _performScrollDown()
+  -void _performIncrease()
+  -void _performDecrease()
+  -void _performCopy()
+  -void _performCut()
+  -void _performPaste()
+  -void _performMoveCursorForwardByCharacter()
+  -void _performMoveCursorBackwardByCharacter()
+  -void _performMoveCursorForwardByWord()
+  -void _performMoveCursorBackwardByWord()
+  -void _performSetSelection()
+  -void _performSetText()
+  -void _performDidGainAccessibilityFocus()
+  -void _performDidLoseAccessibilityFocus()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderSemanticsAnnotations"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderBlockSemantics" {
+  -bool _blocking
+  +bool blocking
+  +void describeSemanticsConfiguration()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderBlockSemantics"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderMergeSemantics" {
+  +void describeSemanticsConfiguration()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderMergeSemantics"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderExcludeSemantics" {
+  -bool _excluding
+  +bool excluding
+  +void visitChildrenForSemantics()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderExcludeSemantics"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderIndexedSemantics" {
+  -int _index
+  +int index
+  +void describeSemanticsConfiguration()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderIndexedSemantics"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderLeaderLayer" {
+  -LayerLink _link
+  -dynamic _previousLayoutSize
+  +LayerLink link
+  +bool alwaysNeedsCompositing
+  +void performLayout()
+  +void paint()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderLeaderLayer" o-- "flutter::lib::src::rendering::layer.dart::LayerLink"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderLeaderLayer"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderFollowerLayer" {
+  -LayerLink _link
+  -bool _showWhenUnlinked
+  -dynamic _offset
+  -dynamic _leaderAnchor
+  -dynamic _followerAnchor
+  +LayerLink link
+  +bool showWhenUnlinked
+  +dynamic offset
+  +dynamic leaderAnchor
+  +dynamic followerAnchor
+  +bool alwaysNeedsCompositing
+  +FollowerLayer? layer
+  +void detach()
+  +dynamic getCurrentTransform()
+  +bool hitTest()
+  +bool hitTestChildren()
+  +void paint()
+  +void applyPaintTransform()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderFollowerLayer" o-- "flutter::lib::src::rendering::layer.dart::LayerLink"
+"flutter::lib::src::rendering::proxy_box.dart::RenderFollowerLayer" o-- "flutter::lib::src::rendering::layer.dart::FollowerLayer"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderFollowerLayer"
+
+class "flutter::lib::src::rendering::proxy_box.dart::RenderAnnotatedRegion" {
+  -T _value
+  -bool _sized
+  +bool alwaysNeedsCompositing
+  +T value
+  +bool sized
+  +void paint()
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::proxy_box.dart::RenderAnnotatedRegion"
+
+class "flutter::lib::src::rendering::proxy_box.dart::HitTestBehavior" {
+  +int index
+  {static} +List<HitTestBehavior> values
+  {static} +HitTestBehavior deferToChild
+  {static} +HitTestBehavior opaque
+  {static} +HitTestBehavior translucent
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::HitTestBehavior" o-- "flutter::lib::src::rendering::proxy_box.dart::HitTestBehavior"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::proxy_box.dart::HitTestBehavior"
+
+class "flutter::lib::src::rendering::proxy_box.dart::DecorationPosition" {
+  +int index
+  {static} +List<DecorationPosition> values
+  {static} +DecorationPosition background
+  {static} +DecorationPosition foreground
+}
+
+"flutter::lib::src::rendering::proxy_box.dart::DecorationPosition" o-- "flutter::lib::src::rendering::proxy_box.dart::DecorationPosition"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::proxy_box.dart::DecorationPosition"
+
+abstract class "flutter::lib::src::rendering::proxy_box.dart::RenderProxyBoxMixin" {
+  +void setupParentData()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +dynamic computeSizeForNoChild()
+  +bool hitTestChildren()
+  +void applyPaintTransform()
+  +void paint()
+}
+
+abstract class "flutter::lib::src::rendering::proxy_box.dart::RenderAnimatedOpacityMixin" {
+  -int? _alpha
+  -bool? _currentlyIsRepaintBoundary
+  -dynamic _opacity
+  -bool? _alwaysIncludeSemantics
+  +bool isRepaintBoundary
+  +dynamic opacity
+  +bool alwaysIncludeSemantics
+  +OffsetLayer updateCompositedLayer()
+  +void attach()
+  +void detach()
+  -void _updateOpacity()
+  +bool paintsChild()
+  +void paint()
+  +void visitChildrenForSemantics()
+  +void debugFillProperties()
+}
+
+
+@enduml

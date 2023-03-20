@@ -1,0 +1,221 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_HeroTag" {
+  +dynamic navigator
+  +int hashCode
+  +String toString()
+  +bool ==()
+}
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_FixedSizeSlidingTransition" {
+  +bool isLTR
+  +dynamic size
+  +dynamic offsetAnimation
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::nav_bar.dart::CupertinoNavigationBar" {
+  +dynamic leading
+  +bool automaticallyImplyLeading
+  +bool automaticallyImplyMiddle
+  +String? previousPageTitle
+  +dynamic middle
+  +dynamic trailing
+  +dynamic backgroundColor
+  +dynamic brightness
+  +dynamic padding
+  +dynamic border
+  +bool transitionBetweenRoutes
+  +Object heroTag
+  +dynamic preferredSize
+  +bool shouldFullyObstruct()
+  +dynamic createState()
+}
+
+"flutter::lib::src::cupertino::page_scaffold.dart::ObstructingPreferredSizeWidget" <|-- "flutter::lib::src::cupertino::nav_bar.dart::CupertinoNavigationBar"
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_CupertinoNavigationBarState" {
+  +_NavigationBarStaticComponentsKeys keys
+  +void initState()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::nav_bar.dart::_CupertinoNavigationBarState" o-- "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarStaticComponentsKeys"
+
+class "flutter::lib::src::cupertino::nav_bar.dart::CupertinoSliverNavigationBar" {
+  +dynamic largeTitle
+  +dynamic leading
+  +bool automaticallyImplyLeading
+  +bool automaticallyImplyTitle
+  +String? previousPageTitle
+  +dynamic middle
+  +dynamic trailing
+  +dynamic backgroundColor
+  +dynamic brightness
+  +dynamic padding
+  +dynamic border
+  +bool transitionBetweenRoutes
+  +Object heroTag
+  +bool stretch
+  +bool opaque
+  +dynamic createState()
+}
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_CupertinoSliverNavigationBarState" {
+  +_NavigationBarStaticComponentsKeys keys
+  +void initState()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::nav_bar.dart::_CupertinoSliverNavigationBarState" o-- "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarStaticComponentsKeys"
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_LargeTitleNavigationBarSliverDelegate" {
+  +_NavigationBarStaticComponentsKeys keys
+  +_NavigationBarStaticComponents components
+  +dynamic userMiddle
+  +dynamic backgroundColor
+  +dynamic brightness
+  +dynamic border
+  +dynamic padding
+  +dynamic actionsForegroundColor
+  +bool transitionBetweenRoutes
+  +Object heroTag
+  +double persistentHeight
+  +bool alwaysShowMiddle
+  +dynamic stretchConfiguration
+  +double minExtent
+  +double maxExtent
+  +dynamic build()
+  +bool shouldRebuild()
+}
+
+"flutter::lib::src::cupertino::nav_bar.dart::_LargeTitleNavigationBarSliverDelegate" o-- "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarStaticComponentsKeys"
+"flutter::lib::src::cupertino::nav_bar.dart::_LargeTitleNavigationBarSliverDelegate" o-- "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarStaticComponents"
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_PersistentNavigationBar" {
+  +_NavigationBarStaticComponents components
+  +dynamic padding
+  +bool? middleVisible
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::nav_bar.dart::_PersistentNavigationBar" o-- "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarStaticComponents"
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarStaticComponentsKeys" {
+  +dynamic navBarBoxKey
+  +dynamic leadingKey
+  +dynamic backChevronKey
+  +dynamic backLabelKey
+  +dynamic middleKey
+  +dynamic trailingKey
+  +dynamic largeTitleKey
+}
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarStaticComponents" {
+  +dynamic leading
+  +dynamic backChevron
+  +dynamic backLabel
+  +dynamic middle
+  +dynamic trailing
+  +dynamic largeTitle
+  {static} -dynamic _derivedTitle()
+  {static} +dynamic createLeading()
+  {static} +dynamic createBackChevron()
+  {static} +dynamic createBackLabel()
+  {static} +dynamic createMiddle()
+  {static} +dynamic createTrailing()
+  {static} +dynamic createLargeTitle()
+}
+
+class "flutter::lib::src::cupertino::nav_bar.dart::CupertinoNavigationBarBackButton" {
+  +dynamic color
+  +String? previousPageTitle
+  +dynamic onPressed
+  -dynamic _backChevron
+  -dynamic _backLabel
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_BackChevron" {
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_BackLabel" {
+  +String? specifiedPreviousTitle
+  +dynamic route
+  -dynamic _buildPreviousTitleWidget()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_TransitionableNavigationBar" {
+  +_NavigationBarStaticComponentsKeys componentsKeys
+  +dynamic backgroundColor
+  +dynamic backButtonTextStyle
+  +dynamic titleTextStyle
+  +dynamic largeTitleTextStyle
+  +dynamic border
+  +bool hasUserMiddle
+  +bool largeExpanded
+  +dynamic child
+  +dynamic renderBox
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::nav_bar.dart::_TransitionableNavigationBar" o-- "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarStaticComponentsKeys"
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarTransition" {
+  +dynamic animation
+  +_TransitionableNavigationBar topNavBar
+  +_TransitionableNavigationBar bottomNavBar
+  +dynamic heightTween
+  +dynamic backgroundTween
+  +dynamic borderTween
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarTransition" o-- "flutter::lib::src::cupertino::nav_bar.dart::_TransitionableNavigationBar"
+
+class "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarComponentsTransition" {
+  {static} +dynamic fadeOut
+  {static} +dynamic fadeIn
+  +dynamic animation
+  +_NavigationBarStaticComponentsKeys bottomComponents
+  +_NavigationBarStaticComponentsKeys topComponents
+  +dynamic bottomNavBarBox
+  +dynamic topNavBarBox
+  +dynamic bottomBackButtonTextStyle
+  +dynamic topBackButtonTextStyle
+  +dynamic bottomTitleTextStyle
+  +dynamic topTitleTextStyle
+  +dynamic bottomLargeTitleTextStyle
+  +dynamic topLargeTitleTextStyle
+  +bool bottomHasUserMiddle
+  +bool topHasUserMiddle
+  +bool bottomLargeExpanded
+  +bool topLargeExpanded
+  +dynamic transitionBox
+  +double forwardDirection
+  +dynamic bottomLeading
+  +dynamic bottomBackChevron
+  +dynamic bottomBackLabel
+  +dynamic bottomMiddle
+  +dynamic bottomLargeTitle
+  +dynamic bottomTrailing
+  +dynamic topLeading
+  +dynamic topBackChevron
+  +dynamic topBackLabel
+  +dynamic topMiddle
+  +dynamic topTrailing
+  +dynamic topLargeTitle
+  +dynamic positionInTransitionBox()
+  +_FixedSizeSlidingTransition slideFromLeadingEdge()
+  +dynamic fadeInFrom()
+  +dynamic fadeOutBy()
+}
+
+"flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarComponentsTransition" o-- "flutter::lib::src::cupertino::nav_bar.dart::_NavigationBarStaticComponentsKeys"
+
+
+@enduml

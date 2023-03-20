@@ -1,0 +1,57 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::gestures::hit_test.dart::HitTestable" {
+  +void hitTest()
+}
+
+abstract class "flutter::lib::src::gestures::hit_test.dart::HitTestDispatcher" {
+  +void dispatchEvent()
+}
+
+abstract class "flutter::lib::src::gestures::hit_test.dart::HitTestTarget" {
+  +void handleEvent()
+}
+
+class "flutter::lib::src::gestures::hit_test.dart::HitTestEntry" {
+  +T target
+  -dynamic _transform
+  +dynamic transform
+  +String toString()
+}
+
+abstract class "flutter::lib::src::gestures::hit_test.dart::_TransformPart" {
+  +dynamic multiply()
+}
+
+class "flutter::lib::src::gestures::hit_test.dart::_MatrixTransformPart" {
+  +dynamic matrix
+  +dynamic multiply()
+}
+
+"flutter::lib::src::gestures::hit_test.dart::_TransformPart" <|-- "flutter::lib::src::gestures::hit_test.dart::_MatrixTransformPart"
+
+class "flutter::lib::src::gestures::hit_test.dart::_OffsetTransformPart" {
+  +dynamic offset
+  +dynamic multiply()
+}
+
+"flutter::lib::src::gestures::hit_test.dart::_TransformPart" <|-- "flutter::lib::src::gestures::hit_test.dart::_OffsetTransformPart"
+
+class "flutter::lib::src::gestures::hit_test.dart::HitTestResult" {
+  -List<HitTestEntry<HitTestTarget>> _path
+  -List<dynamic> _transforms
+  -List<_TransformPart> _localTransforms
+  +Iterable<HitTestEntry<HitTestTarget>> path
+  -dynamic _lastTransform
+  -void _globalizeTransforms()
+  +void add()
+  +void pushTransform()
+  +void pushOffset()
+  +void popTransform()
+  -bool _debugVectorMoreOrLessEquals()
+  +String toString()
+}
+
+
+@enduml

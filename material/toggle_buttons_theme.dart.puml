@@ -1,0 +1,37 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::toggle_buttons_theme.dart::ToggleButtonsThemeData" {
+  +dynamic textStyle
+  +dynamic constraints
+  +dynamic color
+  +dynamic selectedColor
+  +dynamic disabledColor
+  +dynamic fillColor
+  +dynamic focusColor
+  +dynamic highlightColor
+  +dynamic splashColor
+  +dynamic hoverColor
+  +dynamic borderColor
+  +dynamic selectedBorderColor
+  +dynamic disabledBorderColor
+  +double? borderWidth
+  +dynamic borderRadius
+  +int hashCode
+  +ToggleButtonsThemeData copyWith()
+  {static} +ToggleButtonsThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::toggle_buttons_theme.dart::ToggleButtonsTheme" {
+  +ToggleButtonsThemeData data
+  {static} +ToggleButtonsThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::toggle_buttons_theme.dart::ToggleButtonsTheme" o-- "flutter::lib::src::material::toggle_buttons_theme.dart::ToggleButtonsThemeData"
+
+
+@enduml

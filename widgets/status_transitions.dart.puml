@@ -1,0 +1,23 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::status_transitions.dart::StatusTransitionWidget" {
+  +dynamic animation
+  +Widget build()
+  +State<StatusTransitionWidget> createState()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::status_transitions.dart::StatusTransitionWidget"
+
+class "flutter::lib::src::widgets::status_transitions.dart::_StatusTransitionState" {
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _animationStatusChanged()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::status_transitions.dart::_StatusTransitionState"
+
+
+@enduml

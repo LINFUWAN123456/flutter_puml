@@ -1,0 +1,31 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::physics::friction_simulation.dart::FrictionSimulation" {
+  -double _drag
+  -double _dragLog
+  -double _x
+  -double _v
+  +double finalX
+  {static} -double _dragFor()
+  +double x()
+  +double dx()
+  +double timeAtX()
+  +bool isDone()
+  +String toString()
+}
+
+"flutter::lib::src::physics::simulation.dart::Simulation" <|-- "flutter::lib::src::physics::friction_simulation.dart::FrictionSimulation"
+
+class "flutter::lib::src::physics::friction_simulation.dart::BoundedFrictionSimulation" {
+  -double _minX
+  -double _maxX
+  +double x()
+  +bool isDone()
+  +String toString()
+}
+
+"flutter::lib::src::physics::friction_simulation.dart::FrictionSimulation" <|-- "flutter::lib::src::physics::friction_simulation.dart::BoundedFrictionSimulation"
+
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::button.dart::CupertinoButton" {
+  +dynamic child
+  +dynamic padding
+  +dynamic color
+  +dynamic disabledColor
+  +dynamic onPressed
+  +double? minSize
+  +double? pressedOpacity
+  +dynamic borderRadius
+  +dynamic alignment
+  -bool _filled
+  +bool enabled
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::cupertino::button.dart::_CupertinoButtonState" {
+  {static} +Duration kFadeOutDuration
+  {static} +Duration kFadeInDuration
+  -dynamic _opacityTween
+  -dynamic _animationController
+  -dynamic _opacityAnimation
+  -bool _buttonHeldDown
+  +void initState()
+  +void didUpdateWidget()
+  -void _setTween()
+  +void dispose()
+  -void _handleTapDown()
+  -void _handleTapUp()
+  -void _handleTapCancel()
+  -void _animate()
+  +dynamic build()
+}
+
+
+@enduml

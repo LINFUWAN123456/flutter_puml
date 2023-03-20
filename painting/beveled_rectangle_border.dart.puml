@@ -1,0 +1,25 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::beveled_rectangle_border.dart::BeveledRectangleBorder" {
+  +BorderRadiusGeometry borderRadius
+  +EdgeInsetsGeometry dimensions
+  +int hashCode
+  +ShapeBorder scale()
+  +ShapeBorder? lerpFrom()
+  +ShapeBorder? lerpTo()
+  +BeveledRectangleBorder copyWith()
+  -dynamic _getPath()
+  +dynamic getInnerPath()
+  +dynamic getOuterPath()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::beveled_rectangle_border.dart::BeveledRectangleBorder" o-- "flutter::lib::src::painting::border_radius.dart::BorderRadiusGeometry"
+"flutter::lib::src::painting::beveled_rectangle_border.dart::BeveledRectangleBorder" o-- "flutter::lib::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::lib::src::painting::borders.dart::OutlinedBorder" <|-- "flutter::lib::src::painting::beveled_rectangle_border.dart::BeveledRectangleBorder"
+
+
+@enduml

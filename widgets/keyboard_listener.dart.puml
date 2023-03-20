@@ -1,0 +1,19 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::keyboard_listener.dart::KeyboardListener" {
+  +FocusNode focusNode
+  +bool autofocus
+  +bool includeSemantics
+  +dynamic onKeyEvent
+  +Widget child
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::keyboard_listener.dart::KeyboardListener" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::keyboard_listener.dart::KeyboardListener" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::keyboard_listener.dart::KeyboardListener"
+
+
+@enduml

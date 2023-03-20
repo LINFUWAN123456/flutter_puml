@@ -1,0 +1,47 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::mouse_tracker.dart::_MouseState" {
+  -LinkedHashMap<dynamic, dynamic> _annotations
+  -dynamic _latestEvent
+  +LinkedHashMap<dynamic, dynamic> annotations
+  +dynamic latestEvent
+  +int device
+  +LinkedHashMap<dynamic, dynamic> replaceAnnotations()
+  +dynamic replaceLatestEvent()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::mouse_tracker.dart::_MouseState" o-- "dart::collection::LinkedHashMap<dynamic, dynamic>"
+
+class "flutter::lib::src::rendering::mouse_tracker.dart::_MouseTrackerUpdateDetails" {
+  +LinkedHashMap<dynamic, dynamic> lastAnnotations
+  +LinkedHashMap<dynamic, dynamic> nextAnnotations
+  +dynamic previousEvent
+  +dynamic triggeringEvent
+  +int device
+  +dynamic latestEvent
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::mouse_tracker.dart::_MouseTrackerUpdateDetails" o-- "dart::collection::LinkedHashMap<dynamic, dynamic>"
+
+class "flutter::lib::src::rendering::mouse_tracker.dart::MouseTracker" {
+  -dynamic _mouseCursorMixin
+  -Map<int, _MouseState> _mouseStates
+  -bool _debugDuringDeviceUpdate
+  +bool mouseIsConnected
+  -void _monitorMouseConnection()
+  -void _deviceUpdatePhase()
+  {static} -bool _shouldMarkStateDirty()
+  -LinkedHashMap<dynamic, dynamic> _hitTestResultToAnnotations()
+  -LinkedHashMap<dynamic, dynamic> _findAnnotations()
+  -void _handleDeviceUpdate()
+  +void updateWithEvent()
+  +void updateAllDevices()
+  +dynamic debugDeviceActiveCursor()
+  {static} -void _handleDeviceUpdateMouseEvents()
+}
+
+
+@enduml

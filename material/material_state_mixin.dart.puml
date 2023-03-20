@@ -1,0 +1,22 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::material_state_mixin.dart::MaterialStateMixin" {
+  +Set<MaterialState> materialStates
+  +bool isDisabled
+  +bool isDragged
+  +bool isErrored
+  +bool isFocused
+  +bool isHovered
+  +bool isPressed
+  +bool isScrolledUnder
+  +bool isSelected
+  +dynamic updateMaterialState()
+  +void setMaterialState()
+  +void addMaterialState()
+  +void removeMaterialState()
+  +void debugFillProperties()
+}
+
+
+@enduml

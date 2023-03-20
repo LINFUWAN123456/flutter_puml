@@ -1,0 +1,171 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::calendar_date_picker.dart::CalendarDatePicker" {
+  +DateTime initialDate
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime currentDate
+  +dynamic onDateChanged
+  +dynamic onDisplayedMonthChanged
+  +DatePickerMode initialCalendarMode
+  +bool Function(DateTime)? selectableDayPredicate
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::calendar_date_picker.dart::CalendarDatePicker" o-- "flutter::lib::src::material::date.dart::DatePickerMode"
+"flutter::lib::src::material::calendar_date_picker.dart::CalendarDatePicker" o-- "flutter::lib::src::material::date.dart::bool Function(DateTime)"
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_CalendarDatePickerState" {
+  -bool _announcedInitialDate
+  -DatePickerMode _mode
+  -DateTime _currentDisplayedMonthDate
+  -DateTime _selectedDate
+  -dynamic _monthPickerKey
+  -dynamic _yearPickerKey
+  -MaterialLocalizations _localizations
+  -dynamic _textDirection
+  +void initState()
+  +void didUpdateWidget()
+  +void didChangeDependencies()
+  -void _vibrate()
+  -void _handleModeChanged()
+  -void _handleMonthChanged()
+  -void _handleYearChanged()
+  -void _handleDayChanged()
+  -dynamic _buildPicker()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::calendar_date_picker.dart::_CalendarDatePickerState" o-- "flutter::lib::src::material::date.dart::DatePickerMode"
+"flutter::lib::src::material::calendar_date_picker.dart::_CalendarDatePickerState" o-- "flutter::lib::src::material::material_localizations.dart::MaterialLocalizations"
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_DatePickerModeToggleButton" {
+  +DatePickerMode mode
+  +String title
+  +dynamic onTitlePressed
+  +_DatePickerModeToggleButtonState createState()
+}
+
+"flutter::lib::src::material::calendar_date_picker.dart::_DatePickerModeToggleButton" o-- "flutter::lib::src::material::date.dart::DatePickerMode"
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_DatePickerModeToggleButtonState" {
+  -dynamic _controller
+  +void initState()
+  +void didUpdateWidget()
+  +dynamic build()
+  +void dispose()
+}
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_MonthPicker" {
+  +DateTime initialMonth
+  +DateTime currentDate
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime selectedDate
+  +dynamic onChanged
+  +dynamic onDisplayedMonthChanged
+  +bool Function(DateTime)? selectableDayPredicate
+  +_MonthPickerState createState()
+}
+
+"flutter::lib::src::material::calendar_date_picker.dart::_MonthPicker" o-- "flutter::lib::src::material::date.dart::bool Function(DateTime)"
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_MonthPickerState" {
+  -dynamic _pageViewKey
+  -DateTime _currentMonth
+  -dynamic _pageController
+  -MaterialLocalizations _localizations
+  -dynamic _textDirection
+  -Map<dynamic, dynamic>? _shortcutMap
+  -Map<Type, dynamic>? _actionMap
+  -dynamic _dayGridFocus
+  -DateTime? _focusedDay
+  {static} -Map<dynamic, int> _directionOffset
+  -bool _isDisplayingFirstMonth
+  -bool _isDisplayingLastMonth
+  +void initState()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _handleDateSelected()
+  -void _handleMonthPageChanged()
+  -DateTime? _focusableDayForMonth()
+  -void _handleNextMonth()
+  -void _handlePreviousMonth()
+  -void _showMonth()
+  -void _handleGridFocusChange()
+  -void _handleGridNextFocus()
+  -void _handleGridPreviousFocus()
+  -void _handleDirectionFocus()
+  -int _dayDirectionOffset()
+  -DateTime? _nextDateInDirection()
+  -bool _isSelectable()
+  -dynamic _buildItems()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::calendar_date_picker.dart::_MonthPickerState" o-- "flutter::lib::src::material::material_localizations.dart::MaterialLocalizations"
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_FocusedDate" {
+  +DateTime? date
+  +bool updateShouldNotify()
+  {static} +DateTime? of()
+}
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_DayPicker" {
+  +DateTime selectedDate
+  +DateTime currentDate
+  +dynamic onChanged
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime displayedMonth
+  +bool Function(DateTime)? selectableDayPredicate
+  +_DayPickerState createState()
+}
+
+"flutter::lib::src::material::calendar_date_picker.dart::_DayPicker" o-- "flutter::lib::src::material::date.dart::bool Function(DateTime)"
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_DayPickerState" {
+  -List<dynamic> _dayFocusNodes
+  +void initState()
+  +void didChangeDependencies()
+  +void dispose()
+  -List<dynamic> _dayHeaders()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_DayPickerGridDelegate" {
+  +dynamic getLayout()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::material::calendar_date_picker.dart::YearPicker" {
+  +DateTime currentDate
+  +DateTime firstDate
+  +DateTime lastDate
+  +DateTime initialDate
+  +DateTime selectedDate
+  +dynamic onChanged
+  +dynamic dragStartBehavior
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_YearPickerState" {
+  -dynamic _scrollController
+  {static} +int minYears
+  -int _itemCount
+  +void initState()
+  +void didUpdateWidget()
+  -double _scrollOffsetForYear()
+  -dynamic _buildYearItem()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::calendar_date_picker.dart::_YearPickerGridDelegate" {
+  +dynamic getLayout()
+  +bool shouldRelayout()
+}
+
+
+@enduml

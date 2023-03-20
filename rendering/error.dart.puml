@@ -1,0 +1,25 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::error.dart::RenderErrorBox" {
+  +String message
+  -dynamic _paragraph
+  {static} +dynamic padding
+  {static} +double minimumWidth
+  {static} +dynamic backgroundColor
+  {static} +dynamic textStyle
+  {static} +dynamic paragraphStyle
+  +bool sizedByParent
+  +double computeMaxIntrinsicWidth()
+  +double computeMaxIntrinsicHeight()
+  +bool hitTestSelf()
+  +dynamic computeDryLayout()
+  {static} -dynamic _initBackgroundColor()
+  {static} -dynamic _initTextStyle()
+  +void paint()
+}
+
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::error.dart::RenderErrorBox"
+
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::dual_transition_builder.dart::DualTransitionBuilder" {
+  +dynamic animation
+  +Widget Function(BuildContext, dynamic, Widget?) forwardBuilder
+  +Widget Function(BuildContext, dynamic, Widget?) reverseBuilder
+  +Widget? child
+  +State<DualTransitionBuilder> createState()
+}
+
+"flutter::lib::src::widgets::dual_transition_builder.dart::DualTransitionBuilder" o-- "flutter::lib::src::widgets::dual_transition_builder.dart::Widget Function(BuildContext, dynamic, Widget)"
+"flutter::lib::src::widgets::dual_transition_builder.dart::DualTransitionBuilder" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::dual_transition_builder.dart::DualTransitionBuilder"
+
+class "flutter::lib::src::widgets::dual_transition_builder.dart::_DualTransitionBuilderState" {
+  -dynamic _effectiveAnimationStatus
+  -dynamic _forwardAnimation
+  -dynamic _reverseAnimation
+  +void initState()
+  -void _animationListener()
+  +void didUpdateWidget()
+  -dynamic _calculateEffectiveAnimationStatus()
+  -void _updateAnimations()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::dual_transition_builder.dart::_DualTransitionBuilderState"
+
+
+@enduml

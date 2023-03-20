@@ -1,0 +1,63 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::user_accounts_drawer_header.dart::_AccountPictures" {
+  +dynamic currentAccountPicture
+  +List<dynamic>? otherAccountsPictures
+  +dynamic currentAccountPictureSize
+  +dynamic otherAccountsPicturesSize
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::user_accounts_drawer_header.dart::_AccountDetails" {
+  +dynamic accountName
+  +dynamic accountEmail
+  +dynamic onTap
+  +bool isOpen
+  +dynamic arrowColor
+  +_AccountDetailsState createState()
+}
+
+class "flutter::lib::src::material::user_accounts_drawer_header.dart::_AccountDetailsState" {
+  -dynamic _animation
+  -dynamic _controller
+  +void initState()
+  +void dispose()
+  +void didUpdateWidget()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::user_accounts_drawer_header.dart::_AccountDetailsLayout" {
+  {static} +String accountName
+  {static} +String accountEmail
+  {static} +String dropdownIcon
+  +dynamic textDirection
+  +void performLayout()
+  +bool shouldRelayout()
+  -dynamic _offsetForIcon()
+  -dynamic _offsetForBottomLine()
+  -dynamic _offsetForName()
+}
+
+class "flutter::lib::src::material::user_accounts_drawer_header.dart::UserAccountsDrawerHeader" {
+  +dynamic decoration
+  +dynamic margin
+  +dynamic currentAccountPicture
+  +List<dynamic>? otherAccountsPictures
+  +dynamic currentAccountPictureSize
+  +dynamic otherAccountsPicturesSize
+  +dynamic accountName
+  +dynamic accountEmail
+  +dynamic onDetailsPressed
+  +dynamic arrowColor
+  +dynamic createState()
+}
+
+class "flutter::lib::src::material::user_accounts_drawer_header.dart::_UserAccountsDrawerHeaderState" {
+  -bool _isOpen
+  -void _handleDetailsPressed()
+  +dynamic build()
+}
+
+
+@enduml

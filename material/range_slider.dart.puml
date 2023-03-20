@@ -1,0 +1,202 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::range_slider.dart::RangeSlider" {
+  +RangeValues values
+  +dynamic onChanged
+  +dynamic onChangeStart
+  +dynamic onChangeEnd
+  +double min
+  +double max
+  +int? divisions
+  +RangeLabels? labels
+  +dynamic activeColor
+  +dynamic inactiveColor
+  +String Function(double)? semanticFormatterCallback
+  {static} -double _minTouchTargetWidth
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::range_slider.dart::RangeSlider" o-- "flutter::lib::src::material::slider_theme.dart::RangeValues"
+"flutter::lib::src::material::range_slider.dart::RangeSlider" o-- "flutter::lib::src::material::slider_theme.dart::RangeLabels"
+"flutter::lib::src::material::range_slider.dart::RangeSlider" o-- "flutter::lib::src::material::slider_theme.dart::String Function(double)"
+
+class "flutter::lib::src::material::range_slider.dart::_RangeSliderState" {
+  {static} +Duration enableAnimationDuration
+  {static} +Duration valueIndicatorAnimationDuration
+  +dynamic overlayController
+  +dynamic valueIndicatorController
+  +dynamic enableController
+  +dynamic startPositionController
+  +dynamic endPositionController
+  +Timer? interactionTimer
+  +void Function(dynamic, dynamic)? paintTopValueIndicator
+  +void Function(dynamic, dynamic)? paintBottomValueIndicator
+  -dynamic _layerLink
+  +dynamic overlayEntry
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _handleChanged()
+  -void _handleDragStart()
+  -void _handleDragEnd()
+  -double _lerp()
+  -RangeValues _lerpRangeValues()
+  -double _unlerp()
+  -RangeValues _unlerpRangeValues()
+  -Thumb? _defaultRangeThumbSelector()
+  +dynamic build()
+  +void showValueIndicator()
+}
+
+"flutter::lib::src::material::range_slider.dart::_RangeSliderState" o-- "dart::async::Timer"
+"flutter::lib::src::material::range_slider.dart::_RangeSliderState" o-- "flutter::lib::src::material::range_slider.dart::void Function(dynamic, dynamic)"
+
+class "flutter::lib::src::material::range_slider.dart::_RangeSliderRenderObjectWidget" {
+  +RangeValues values
+  +int? divisions
+  +RangeLabels? labels
+  +SliderThemeData sliderTheme
+  +double textScaleFactor
+  +dynamic screenSize
+  +dynamic onChanged
+  +dynamic onChangeStart
+  +dynamic onChangeEnd
+  +String Function(double)? semanticFormatterCallback
+  +_RangeSliderState state
+  +_RenderRangeSlider createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::material::range_slider.dart::_RangeSliderRenderObjectWidget" o-- "flutter::lib::src::material::slider_theme.dart::RangeValues"
+"flutter::lib::src::material::range_slider.dart::_RangeSliderRenderObjectWidget" o-- "flutter::lib::src::material::slider_theme.dart::RangeLabels"
+"flutter::lib::src::material::range_slider.dart::_RangeSliderRenderObjectWidget" o-- "flutter::lib::src::material::slider_theme.dart::SliderThemeData"
+"flutter::lib::src::material::range_slider.dart::_RangeSliderRenderObjectWidget" o-- "flutter::lib::src::material::slider_theme.dart::String Function(double)"
+"flutter::lib::src::material::range_slider.dart::_RangeSliderRenderObjectWidget" o-- "flutter::lib::src::material::range_slider.dart::_RangeSliderState"
+
+class "flutter::lib::src::material::range_slider.dart::_RenderRangeSlider" {
+  -Thumb? _lastThumbSelection
+  {static} -Duration _positionAnimationDuration
+  {static} -double _minPreferredTrackWidth
+  {static} -Duration _minimumInteractionTime
+  -_RangeSliderState _state
+  -dynamic _overlayAnimation
+  -dynamic _valueIndicatorAnimation
+  -dynamic _enableAnimation
+  -dynamic _startLabelPainter
+  -dynamic _endLabelPainter
+  -dynamic _drag
+  -dynamic _tap
+  -bool _active
+  -RangeValues _newValues
+  -RangeValues _values
+  -dynamic _platform
+  -String Function(double)? _semanticFormatterCallback
+  -int? _divisions
+  -RangeLabels? _labels
+  -SliderThemeData _sliderTheme
+  -ThemeData? _theme
+  -double _textScaleFactor
+  -dynamic _screenSize
+  -dynamic _onChanged
+  +dynamic onChangeStart
+  +dynamic onChangeEnd
+  -dynamic _textDirection
+  -dynamic _startSemanticsNode
+  -dynamic _endSemanticsNode
+  -double _maxSliderPartWidth
+  -double _maxSliderPartHeight
+  -List<dynamic> _sliderPartSizes
+  -double? _minPreferredTrackHeight
+  -dynamic _trackRect
+  +bool isEnabled
+  +bool isDiscrete
+  -double _minThumbSeparationValue
+  +RangeValues values
+  +dynamic platform
+  +dynamic gestureSettings
+  +String Function(double)? semanticFormatterCallback
+  +int? divisions
+  +RangeLabels? labels
+  +SliderThemeData sliderTheme
+  +ThemeData? theme
+  +double textScaleFactor
+  +dynamic screenSize
+  +dynamic onChanged
+  +dynamic textDirection
+  +bool showValueIndicator
+  -dynamic _thumbSize
+  -double _adjustmentUnit
+  +bool sizedByParent
+  -double _semanticActionUnit
+  -double _increasedStartValue
+  -double _decreasedStartValue
+  -double _increasedEndValue
+  -double _decreasedEndValue
+  -void _updateLabelPainters()
+  -void _updateLabelPainter()
+  +void systemFontsDidChange()
+  +void attach()
+  +void detach()
+  -double _getValueFromVisualPosition()
+  -double _getValueFromGlobalPosition()
+  -double _discretize()
+  -RangeValues _discretizeRangeValues()
+  -void _startInteraction()
+  -void _handleDragUpdate()
+  -void _endInteraction()
+  -void _handleDragStart()
+  -void _handleDragEnd()
+  -void _handleDragCancel()
+  -void _handleTapDown()
+  -void _handleTapUp()
+  -void _handleTapCancel()
+  +bool hitTestSelf()
+  +void handleEvent()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic computeDryLayout()
+  +void paint()
+  -dynamic _createSemanticsConfiguration()
+  +void assembleSemanticsNode()
+  +void clearSemantics()
+  +void describeSemanticsConfiguration()
+  -void _increaseStartAction()
+  -void _decreaseStartAction()
+  -void _increaseEndAction()
+  -void _decreaseEndAction()
+}
+
+"flutter::lib::src::material::range_slider.dart::_RenderRangeSlider" o-- "flutter::lib::src::material::slider_theme.dart::Thumb"
+"flutter::lib::src::material::range_slider.dart::_RenderRangeSlider" o-- "flutter::lib::src::material::range_slider.dart::_RangeSliderState"
+"flutter::lib::src::material::range_slider.dart::_RenderRangeSlider" o-- "flutter::lib::src::material::slider_theme.dart::RangeValues"
+"flutter::lib::src::material::range_slider.dart::_RenderRangeSlider" o-- "flutter::lib::src::material::slider_theme.dart::String Function(double)"
+"flutter::lib::src::material::range_slider.dart::_RenderRangeSlider" o-- "flutter::lib::src::material::slider_theme.dart::RangeLabels"
+"flutter::lib::src::material::range_slider.dart::_RenderRangeSlider" o-- "flutter::lib::src::material::slider_theme.dart::SliderThemeData"
+"flutter::lib::src::material::range_slider.dart::_RenderRangeSlider" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+
+class "flutter::lib::src::material::range_slider.dart::_ValueIndicatorRenderObjectWidget" {
+  +_RangeSliderState state
+  +_RenderValueIndicator createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::material::range_slider.dart::_ValueIndicatorRenderObjectWidget" o-- "flutter::lib::src::material::range_slider.dart::_RangeSliderState"
+
+class "flutter::lib::src::material::range_slider.dart::_RenderValueIndicator" {
+  -dynamic _valueIndicatorAnimation
+  -_RangeSliderState _state
+  +bool sizedByParent
+  +void attach()
+  +void detach()
+  +void paint()
+  +dynamic computeDryLayout()
+}
+
+"flutter::lib::src::material::range_slider.dart::_RenderValueIndicator" o-- "flutter::lib::src::material::range_slider.dart::_RangeSliderState"
+
+
+@enduml

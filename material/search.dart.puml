@@ -1,0 +1,78 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::search.dart::SearchDelegate" {
+  +String? searchFieldLabel
+  +dynamic searchFieldStyle
+  +InputDecorationTheme? searchFieldDecorationTheme
+  +dynamic keyboardType
+  +dynamic textInputAction
+  -dynamic _focusNode
+  -dynamic _queryTextController
+  -dynamic _proxyAnimation
+  -dynamic _currentBodyNotifier
+  -_SearchPageRoute<T>? _route
+  +String query
+  +dynamic transitionAnimation
+  -_SearchBody? _currentBody
+  +dynamic buildSuggestions()
+  +dynamic buildResults()
+  +dynamic buildLeading()
+  +List<dynamic>? buildActions()
+  +dynamic buildBottom()
+  +ThemeData appBarTheme()
+  +void showResults()
+  +void showSuggestions()
+  +void close()
+}
+
+"flutter::lib::src::material::search.dart::SearchDelegate" o-- "flutter::lib::src::material::input_decorator.dart::InputDecorationTheme"
+"flutter::lib::src::material::search.dart::SearchDelegate" o-- "flutter::lib::src::material::search.dart::_SearchPageRoute<T>"
+"flutter::lib::src::material::search.dart::SearchDelegate" o-- "flutter::lib::src::material::search.dart::_SearchBody"
+
+class "flutter::lib::src::material::search.dart::_SearchPageRoute" {
+  +SearchDelegate<T> delegate
+  +dynamic barrierColor
+  +String? barrierLabel
+  +Duration transitionDuration
+  +bool maintainState
+  +dynamic buildTransitions()
+  +dynamic createAnimation()
+  +dynamic buildPage()
+  +void didComplete()
+}
+
+"flutter::lib::src::material::search.dart::_SearchPageRoute" o-- "flutter::lib::src::material::search.dart::SearchDelegate<T>"
+
+class "flutter::lib::src::material::search.dart::_SearchPage" {
+  +SearchDelegate<T> delegate
+  +dynamic animation
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::search.dart::_SearchPage" o-- "flutter::lib::src::material::search.dart::SearchDelegate<T>"
+
+class "flutter::lib::src::material::search.dart::_SearchPageState" {
+  +dynamic focusNode
+  +void initState()
+  +void dispose()
+  -void _onAnimationStatusChanged()
+  +void didUpdateWidget()
+  -void _onFocusChanged()
+  -void _onQueryChanged()
+  -void _onSearchBodyChanged()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::search.dart::_SearchBody" {
+  +int index
+  {static} +List<_SearchBody> values
+  {static} +_SearchBody suggestions
+  {static} +_SearchBody results
+}
+
+"flutter::lib::src::material::search.dart::_SearchBody" o-- "flutter::lib::src::material::search.dart::_SearchBody"
+"dart::core::Enum" <|-- "flutter::lib::src::material::search.dart::_SearchBody"
+
+
+@enduml

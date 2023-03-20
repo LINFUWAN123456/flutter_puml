@@ -1,0 +1,33 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::radio_list_tile.dart::RadioListTile" {
+  +T value
+  +T? groupValue
+  +dynamic onChanged
+  +bool toggleable
+  +dynamic activeColor
+  +dynamic title
+  +dynamic subtitle
+  +dynamic secondary
+  +bool isThreeLine
+  +bool? dense
+  +bool selected
+  +ListTileControlAffinity controlAffinity
+  +bool autofocus
+  +dynamic contentPadding
+  +dynamic shape
+  +dynamic tileColor
+  +dynamic selectedTileColor
+  +VisualDensity? visualDensity
+  +dynamic focusNode
+  +bool? enableFeedback
+  +bool checked
+  +dynamic build()
+}
+
+"flutter::lib::src::material::radio_list_tile.dart::RadioListTile" o-- "flutter::lib::src::material::list_tile.dart::ListTileControlAffinity"
+"flutter::lib::src::material::radio_list_tile.dart::RadioListTile" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+
+@enduml

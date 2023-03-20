@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::image_resolution.dart::AssetImage" {
+  +String assetName
+  +dynamic bundle
+  +String? package
+  {static} -double _naturalResolution
+  {static} -RegExp _extractRatioRegExp
+  +String keyName
+  +int hashCode
+  +Future<AssetBundleImageKey> obtainKey()
+  {static} -Future<Map<String, List<String>>?> _manifestParser()
+  -String? _chooseVariant()
+  -String? _findBestVariant()
+  -double _parseScale()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::image_provider.dart::AssetBundleImageProvider" <|-- "flutter::lib::src::painting::image_resolution.dart::AssetImage"
+
+
+@enduml

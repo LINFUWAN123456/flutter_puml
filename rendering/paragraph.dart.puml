@@ -1,0 +1,137 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::paragraph.dart::TextParentData" {
+  +double? scale
+  +String toString()
+}
+
+"flutter::lib::src::rendering::box.dart::ContainerBoxParentData" <|-- "flutter::lib::src::rendering::paragraph.dart::TextParentData"
+
+class "flutter::lib::src::rendering::paragraph.dart::PlaceholderSpanIndexSemanticsTag" {
+  +int index
+  +int hashCode
+  +bool ==()
+}
+
+class "flutter::lib::src::rendering::paragraph.dart::RenderParagraph" {
+  {static} -String _placeholderCharacter
+  -dynamic _textPainter
+  -dynamic _cachedAttributedLabel
+  -List<dynamic>? _cachedCombinedSemanticsInfos
+  -List<_SelectableFragment>? _lastSelectableFragments
+  -SelectionRegistrar? _registrar
+  -List<dynamic> _placeholderSpans
+  -bool _softWrap
+  -dynamic _overflow
+  -dynamic _selectionColor
+  -bool _needsClipping
+  -dynamic _overflowShader
+  -List<dynamic>? _placeholderDimensions
+  -List<dynamic>? _semanticsInfo
+  -LinkedHashMap<dynamic, dynamic>? _cachedChildNodes
+  +dynamic text
+  +List<dynamic> selections
+  +SelectionRegistrar? registrar
+  +dynamic textAlign
+  +dynamic textDirection
+  +bool softWrap
+  +dynamic overflow
+  +double textScaleFactor
+  +int? maxLines
+  +dynamic locale
+  +dynamic strutStyle
+  +dynamic textWidthBasis
+  +dynamic textHeightBehavior
+  +dynamic selectionColor
+  +bool debugHasOverflowShader
+  +dynamic textSize
+  +void setupParentData()
+  -void _updateSelectionRegistrarSubscription()
+  -void _removeSelectionRegistrarSubscription()
+  -List<_SelectableFragment> _getSelectableFragments()
+  -void _disposeSelectableFragments()
+  +void markNeedsLayout()
+  +void dispose()
+  -void _extractPlaceholderSpans()
+  -dynamic _getOffsetForPosition()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  -double _computeIntrinsicHeight()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double computeDistanceToActualBaseline()
+  -bool _canComputeIntrinsics()
+  -void _computeChildrenWidthWithMaxIntrinsics()
+  -void _computeChildrenWidthWithMinIntrinsics()
+  -void _computeChildrenHeightWithMinIntrinsics()
+  +bool hitTestSelf()
+  +bool hitTestChildren()
+  -void _layoutText()
+  +void systemFontsDidChange()
+  -void _layoutTextWithConstraints()
+  -List<dynamic> _layoutChildren()
+  -void _setParentData()
+  -bool _canComputeDryLayout()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void paint()
+  +dynamic getOffsetForCaret()
+  +double? getFullHeightForCaret()
+  +List<dynamic> getBoxesForSelection()
+  +dynamic getPositionForOffset()
+  +dynamic getWordBoundary()
+  +void describeSemanticsConfiguration()
+  +void assembleSemanticsNode()
+  -dynamic _createShowOnScreenFor()
+  +void clearSemantics()
+  +List<dynamic> debugDescribeChildren()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::paragraph.dart::RenderParagraph" o-- "flutter::lib::src::rendering::selection.dart::SelectionRegistrar"
+"flutter::lib::src::rendering::paragraph.dart::RenderParagraph" o-- "dart::collection::LinkedHashMap<dynamic, dynamic>"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::paragraph.dart::RenderParagraph"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::paragraph.dart::RenderParagraph"
+"flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin" <|-- "flutter::lib::src::rendering::paragraph.dart::RenderParagraph"
+"flutter::lib::src::rendering::object.dart::RelayoutWhenSystemFontsChangeMixin" <|-- "flutter::lib::src::rendering::paragraph.dart::RenderParagraph"
+
+class "flutter::lib::src::rendering::paragraph.dart::_SelectableFragment" {
+  +dynamic range
+  +RenderParagraph paragraph
+  -dynamic _textSelectionStart
+  -dynamic _textSelectionEnd
+  -LayerLink? _startHandleLayerLink
+  -LayerLink? _endHandleLayerLink
+  -SelectionGeometry _selectionGeometry
+  -dynamic _cachedRect
+  +SelectionGeometry value
+  -dynamic _rect
+  +dynamic size
+  -void _updateSelectionGeometry()
+  -SelectionGeometry _getSelectionGeometry()
+  +SelectionResult dispatchSelectionEvent()
+  +SelectedContent? getSelectedContent()
+  -void _didChangeSelection()
+  -SelectionResult _updateSelectionEdge()
+  -dynamic _clampTextPosition()
+  -void _setSelectionPosition()
+  -SelectionResult _handleClearSelection()
+  -SelectionResult _handleSelectAll()
+  -SelectionResult _handleSelectWord()
+  -bool _positionIsWithinCurrentSelection()
+  {static} -int _compareTextPositions()
+  +dynamic getTransformToParagraph()
+  +dynamic getTransformTo()
+  +void pushHandleLayers()
+  +void didChangeParagraphLayout()
+  +void paint()
+}
+
+"flutter::lib::src::rendering::paragraph.dart::_SelectableFragment" o-- "flutter::lib::src::rendering::paragraph.dart::RenderParagraph"
+"flutter::lib::src::rendering::paragraph.dart::_SelectableFragment" o-- "flutter::lib::src::rendering::layer.dart::LayerLink"
+"flutter::lib::src::rendering::paragraph.dart::_SelectableFragment" o-- "flutter::lib::src::rendering::selection.dart::SelectionGeometry"
+"flutter::lib::src::rendering::selection.dart::Selectable" <|-- "flutter::lib::src::rendering::paragraph.dart::_SelectableFragment"
+
+
+@enduml

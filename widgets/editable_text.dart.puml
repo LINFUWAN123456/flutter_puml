@@ -1,0 +1,572 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::editable_text.dart::TextEditingController" {
+  +String text
+  +dynamic value
+  +dynamic selection
+  +dynamic buildTextSpan()
+  +void clear()
+  +void clearComposing()
+  +bool isSelectionWithinTextBounds()
+  -bool _isSelectionWithinComposingRange()
+}
+
+class "flutter::lib::src::widgets::editable_text.dart::ToolbarOptions" {
+  +bool copy
+  +bool cut
+  +bool paste
+  +bool selectAll
+}
+
+class "flutter::lib::src::widgets::editable_text.dart::_KeyFrame" {
+  {static} +List<_KeyFrame> iOSBlinkingCaretKeyFrames
+  +double time
+  +double value
+}
+
+class "flutter::lib::src::widgets::editable_text.dart::_DiscreteKeyFrameSimulation" {
+  +double maxDuration
+  -List<_KeyFrame> _keyFrames
+  -int _lastKeyFrameIndex
+  +double dx()
+  +bool isDone()
+  +double x()
+}
+
+class "flutter::lib::src::widgets::editable_text.dart::EditableText" {
+  +TextEditingController controller
+  +FocusNode focusNode
+  +String obscuringCharacter
+  +bool obscureText
+  +dynamic textHeightBehavior
+  +dynamic textWidthBasis
+  +bool readOnly
+  +bool forceLine
+  +ToolbarOptions toolbarOptions
+  +bool showSelectionHandles
+  +bool showCursor
+  +bool autocorrect
+  +dynamic smartDashesType
+  +dynamic smartQuotesType
+  +bool enableSuggestions
+  +dynamic style
+  -dynamic _strutStyle
+  +dynamic textAlign
+  +dynamic textDirection
+  +dynamic textCapitalization
+  +dynamic locale
+  +double? textScaleFactor
+  +dynamic cursorColor
+  +dynamic autocorrectionTextRectColor
+  +dynamic backgroundCursorColor
+  +int? maxLines
+  +int? minLines
+  +bool expands
+  +bool autofocus
+  +dynamic selectionColor
+  +TextSelectionControls? selectionControls
+  +dynamic keyboardType
+  +dynamic textInputAction
+  +dynamic onChanged
+  +dynamic onEditingComplete
+  +dynamic onSubmitted
+  +void Function(String, Map<String, dynamic>)? onAppPrivateCommand
+  +void Function(dynamic, dynamic)? onSelectionChanged
+  +dynamic onSelectionHandleTapped
+  +List<dynamic>? inputFormatters
+  +dynamic mouseCursor
+  +bool rendererIgnoresPointer
+  +double cursorWidth
+  +double? cursorHeight
+  +dynamic cursorRadius
+  +bool cursorOpacityAnimates
+  +dynamic cursorOffset
+  +bool paintCursorAboveText
+  +dynamic selectionHeightStyle
+  +dynamic selectionWidthStyle
+  +dynamic keyboardAppearance
+  +dynamic scrollPadding
+  +bool enableInteractiveSelection
+  {static} +bool debugDeterministicCursor
+  +dynamic dragStartBehavior
+  +ScrollController? scrollController
+  +ScrollPhysics? scrollPhysics
+  +bool scribbleEnabled
+  +Iterable<String>? autofillHints
+  +dynamic autofillClient
+  +dynamic clipBehavior
+  +String? restorationId
+  +ScrollBehavior? scrollBehavior
+  +bool enableIMEPersonalizedLearning
+  +dynamic strutStyle
+  +bool selectionEnabled
+  -bool _userSelectionEnabled
+  {static} -dynamic _inferKeyboardType()
+  +EditableTextState createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::EditableText" o-- "flutter::lib::src::widgets::editable_text.dart::TextEditingController"
+"flutter::lib::src::widgets::editable_text.dart::EditableText" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::editable_text.dart::EditableText" o-- "flutter::lib::src::widgets::editable_text.dart::ToolbarOptions"
+"flutter::lib::src::widgets::editable_text.dart::EditableText" o-- "flutter::lib::src::widgets::text_selection.dart::TextSelectionControls"
+"flutter::lib::src::widgets::editable_text.dart::EditableText" o-- "flutter::lib::src::widgets::editable_text.dart::void Function(String, Map<String, dynamic>)"
+"flutter::lib::src::widgets::editable_text.dart::EditableText" o-- "flutter::lib::src::widgets::editable_text.dart::void Function(dynamic, dynamic)"
+"flutter::lib::src::widgets::editable_text.dart::EditableText" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::editable_text.dart::EditableText" o-- "flutter::lib::src::widgets::scroll_physics.dart::ScrollPhysics"
+"flutter::lib::src::widgets::editable_text.dart::EditableText" o-- "flutter::lib::src::widgets::scroll_configuration.dart::ScrollBehavior"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::editable_text.dart::EditableText"
+
+class "flutter::lib::src::widgets::editable_text.dart::EditableTextState" {
+  -Timer? _cursorTimer
+  -dynamic _backingCursorBlinkOpacityController
+  -dynamic _iosBlinkCursorSimulation
+  -dynamic _cursorVisibilityNotifier
+  -GlobalKey<State<StatefulWidget>> _editableKey
+  -ClipboardStatusNotifier? _clipboardStatus
+  -dynamic _textInputConnection
+  -TextSelectionOverlay? _selectionOverlay
+  -ScrollController? _internalScrollController
+  -dynamic _toolbarLayerLink
+  -dynamic _startHandleLayerLink
+  -dynamic _endHandleLayerLink
+  -bool _didAutoFocus
+  -AutofillGroupState? _currentAutofillScope
+  {static} -Duration _floatingCursorResetTime
+  -dynamic _floatingCursorResetController
+  -Orientation? _lastOrientation
+  -bool _tickersEnabled
+  -dynamic _lastKnownRemoteTextEditingValue
+  -dynamic _startCaretRect
+  -dynamic _lastTextPosition
+  -dynamic _pointOffsetOrigin
+  -dynamic _lastBoundedOffset
+  -int _batchEditDepth
+  -bool _restartConnectionScheduled
+  -dynamic _currentCaretRect
+  {static} -Duration _caretAnimationDuration
+  {static} -dynamic _caretAnimationCurve
+  -bool _showCaretOnScreenScheduled
+  -double _lastBottomViewInset
+  -int _obscureShowCharTicksPending
+  -int? _obscureLatestCharIndex
+  -bool _cursorActive
+  -String _cachedText
+  -dynamic _cachedFirstRect
+  -dynamic _cachedSize
+  -int _cachedPlaceholder
+  -dynamic _cachedTextStyle
+  -int _placeholderLocation
+  -dynamic _currentPromptRectRange
+  -Action<TransposeCharactersIntent> _transposeCharactersAction
+  -Action<ReplaceTextIntent> _replaceTextAction
+  -Action<UpdateSelectionIntent> _updateSelectionAction
+  -_UpdateTextSelectionToAdjacentLineAction<ExtendSelectionVerticallyToAdjacentLineIntent> _adjacentLineAction
+  -Map<Type, Action<Intent>> _actions
+  -dynamic _cursorBlinkOpacityController
+  -ScrollController _scrollController
+  +dynamic currentAutofillScope
+  -dynamic _effectiveAutofillClient
+  -bool _shouldCreateInputConnection
+  +bool wantKeepAlive
+  -dynamic _cursorColor
+  +bool cutEnabled
+  +bool copyEnabled
+  +bool pasteEnabled
+  +bool selectAllEnabled
+  -dynamic _textEditingValueforTextLayoutMetrics
+  +dynamic currentTextEditingValue
+  -dynamic _floatingCursorOffset
+  -dynamic _value
+  -bool _hasFocus
+  -bool _isMultiline
+  -bool _hasInputConnection
+  -bool _needsAutofill
+  +bool cursorCurrentlyVisible
+  +Duration cursorBlinkInterval
+  +TextSelectionOverlay? selectionOverlay
+  -dynamic _textDirection
+  +dynamic renderEditable
+  +dynamic textEditingValue
+  -double _devicePixelRatio
+  +String autofillId
+  +dynamic textInputConfiguration
+  -void _onChangedClipboardStatus()
+  +void copySelection()
+  +void cutSelection()
+  +Future<void> pasteText()
+  +void selectAll()
+  +void initState()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  +void updateEditingValue()
+  +void performAction()
+  +void performPrivateCommand()
+  +void updateFloatingCursor()
+  -void _onFloatingCursorResetTick()
+  -void _finalizeEditing()
+  +void beginBatchEdit()
+  +void endBatchEdit()
+  -void _updateRemoteEditingValueIfNeeded()
+  -dynamic _getOffsetToRevealCaret()
+  -void _openInputConnection()
+  -void _closeInputConnectionIfNeeded()
+  -void _openOrCloseInputConnectionIfNeeded()
+  -void _scheduleRestartConnection()
+  -void _restartConnectionIfNeeded()
+  +void connectionClosed()
+  +void requestKeyboard()
+  -void _updateOrDisposeSelectionOverlayIfNeeded()
+  -void _updateSelectionOverlayForScroll()
+  -void _createSelectionOverlay()
+  -void _handleSelectionChanged()
+  -void _handleCaretChanged()
+  -void _scheduleShowCaretOnScreen()
+  +void didChangeMetrics()
+  -void _formatAndSetValue()
+  -void _onCursorColorTick()
+  -void _startCursorBlink()
+  -void _onCursorTick()
+  -void _stopCursorBlink()
+  -void _startOrStopCursorTimerIfNeeded()
+  -void _didChangeTextEditingValue()
+  -void _handleFocusChanged()
+  -void _updateSelectionRects()
+  -void _updateSizeAndTransform()
+  -void _updateComposingRectIfNeeded()
+  -void _updateCaretRectIfNeeded()
+  +void userUpdateTextEditingValue()
+  +void bringIntoView()
+  +bool showToolbar()
+  +void hideToolbar()
+  +void toggleToolbar()
+  +void insertTextPlaceholder()
+  +void removeTextPlaceholder()
+  +void autofill()
+  +void showAutocorrectionPromptRect()
+  -dynamic _semanticsOnCopy()
+  -dynamic _semanticsOnCut()
+  -dynamic _semanticsOnPaste()
+  -_TextBoundary _characterBoundary()
+  -_TextBoundary _nextWordBoundary()
+  -_TextBoundary _linebreak()
+  -_TextBoundary _documentBoundary()
+  -Action<T> _makeOverridable()
+  -void _transposeCharacters()
+  -void _replaceText()
+  -void _scrollToDocumentBoundary()
+  -void _updateSelection()
+  -void _expandSelectionToDocumentBoundary()
+  -void _expandSelectionToLinebreak()
+  -void _expandSelection()
+  -Object? _hideToolbarIfVisible()
+  +Widget build()
+  +dynamic buildTextSpan()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "dart::async::Timer"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::text_selection.dart::ClipboardStatusNotifier"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::text_selection.dart::TextSelectionOverlay"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::autofill.dart::AutofillGroupState"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::media_query.dart::Orientation"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::actions.dart::Action<TransposeCharactersIntent>"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::actions.dart::Action<ReplaceTextIntent>"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::actions.dart::Action<UpdateSelectionIntent>"
+"flutter::lib::src::widgets::editable_text.dart::EditableTextState" o-- "flutter::lib::src::widgets::editable_text.dart::_UpdateTextSelectionToAdjacentLineAction<ExtendSelectionVerticallyToAdjacentLineIntent>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+"flutter::lib::src::widgets::automatic_keep_alive.dart::AutomaticKeepAliveClientMixin" <|-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+"flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+
+class "flutter::lib::src::widgets::editable_text.dart::_Editable" {
+  +dynamic inlineSpan
+  +dynamic value
+  +dynamic cursorColor
+  +dynamic startHandleLayerLink
+  +dynamic endHandleLayerLink
+  +dynamic backgroundCursorColor
+  +dynamic showCursor
+  +bool forceLine
+  +bool readOnly
+  +bool hasFocus
+  +int? maxLines
+  +int? minLines
+  +bool expands
+  +dynamic strutStyle
+  +dynamic selectionColor
+  +double textScaleFactor
+  +dynamic textAlign
+  +dynamic textDirection
+  +dynamic locale
+  +String obscuringCharacter
+  +bool obscureText
+  +dynamic textHeightBehavior
+  +dynamic textWidthBasis
+  +dynamic offset
+  +dynamic onCaretChanged
+  +bool rendererIgnoresPointer
+  +double cursorWidth
+  +double? cursorHeight
+  +dynamic cursorRadius
+  +dynamic cursorOffset
+  +bool paintCursorAboveText
+  +dynamic selectionHeightStyle
+  +dynamic selectionWidthStyle
+  +bool enableInteractiveSelection
+  +dynamic textSelectionDelegate
+  +double devicePixelRatio
+  +dynamic promptRectRange
+  +dynamic promptRectColor
+  +dynamic clipBehavior
+  {static} -List<Widget> _extractChildren()
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::editable_text.dart::_Editable"
+
+class "flutter::lib::src::widgets::editable_text.dart::_ScribbleFocusable" {
+  +Widget child
+  +FocusNode focusNode
+  +GlobalKey<State<StatefulWidget>> editableKey
+  +dynamic updateSelectionRects
+  +bool enabled
+  +_ScribbleFocusableState createState()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_ScribbleFocusable" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::editable_text.dart::_ScribbleFocusable" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::editable_text.dart::_ScribbleFocusable" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::editable_text.dart::_ScribbleFocusable"
+
+class "flutter::lib::src::widgets::editable_text.dart::_ScribbleFocusableState" {
+  {static} -int _nextElementIdentifier
+  -String _elementIdentifier
+  +dynamic renderEditable
+  +String elementIdentifier
+  +dynamic bounds
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +void onScribbleFocus()
+  +bool isInScribbleRect()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::editable_text.dart::_ScribbleFocusableState"
+
+class "flutter::lib::src::widgets::editable_text.dart::_ScribblePlaceholder" {
+  +dynamic size
+  +void build()
+}
+
+"flutter::lib::src::widgets::widget_span.dart::WidgetSpan" <|-- "flutter::lib::src::widgets::editable_text.dart::_ScribblePlaceholder"
+
+abstract class "flutter::lib::src::widgets::editable_text.dart::_TextBoundary" {
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+  +dynamic getTextBoundaryAt()
+}
+
+class "flutter::lib::src::widgets::editable_text.dart::_CodeUnitBoundary" {
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_TextBoundary" <|-- "flutter::lib::src::widgets::editable_text.dart::_CodeUnitBoundary"
+
+class "flutter::lib::src::widgets::editable_text.dart::_WhitespaceBoundary" {
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_TextBoundary" <|-- "flutter::lib::src::widgets::editable_text.dart::_WhitespaceBoundary"
+
+class "flutter::lib::src::widgets::editable_text.dart::_CharacterBoundary" {
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+  +dynamic getTextBoundaryAt()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_TextBoundary" <|-- "flutter::lib::src::widgets::editable_text.dart::_CharacterBoundary"
+
+class "flutter::lib::src::widgets::editable_text.dart::_WordBoundary" {
+  +dynamic textLayout
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_TextBoundary" <|-- "flutter::lib::src::widgets::editable_text.dart::_WordBoundary"
+
+class "flutter::lib::src::widgets::editable_text.dart::_LineBreak" {
+  +dynamic textLayout
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_TextBoundary" <|-- "flutter::lib::src::widgets::editable_text.dart::_LineBreak"
+
+class "flutter::lib::src::widgets::editable_text.dart::_DocumentBoundary" {
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_TextBoundary" <|-- "flutter::lib::src::widgets::editable_text.dart::_DocumentBoundary"
+
+class "flutter::lib::src::widgets::editable_text.dart::_ExpandedTextBoundary" {
+  +_TextBoundary innerTextBoundary
+  +_TextBoundary outerTextBoundary
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_ExpandedTextBoundary" o-- "flutter::lib::src::widgets::editable_text.dart::_TextBoundary"
+"flutter::lib::src::widgets::editable_text.dart::_TextBoundary" <|-- "flutter::lib::src::widgets::editable_text.dart::_ExpandedTextBoundary"
+
+class "flutter::lib::src::widgets::editable_text.dart::_CollapsedSelectionBoundary" {
+  +_TextBoundary innerTextBoundary
+  +bool isForward
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_CollapsedSelectionBoundary" o-- "flutter::lib::src::widgets::editable_text.dart::_TextBoundary"
+"flutter::lib::src::widgets::editable_text.dart::_TextBoundary" <|-- "flutter::lib::src::widgets::editable_text.dart::_CollapsedSelectionBoundary"
+
+class "flutter::lib::src::widgets::editable_text.dart::_MixedBoundary" {
+  +_TextBoundary leadingTextBoundary
+  +_TextBoundary trailingTextBoundary
+  +dynamic textEditingValue
+  +dynamic getLeadingTextBoundaryAt()
+  +dynamic getTrailingTextBoundaryAt()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_MixedBoundary" o-- "flutter::lib::src::widgets::editable_text.dart::_TextBoundary"
+"flutter::lib::src::widgets::editable_text.dart::_TextBoundary" <|-- "flutter::lib::src::widgets::editable_text.dart::_MixedBoundary"
+
+class "flutter::lib::src::widgets::editable_text.dart::_DeleteTextAction" {
+  +EditableTextState state
+  +_TextBoundary Function(T) getTextBoundariesForIntent
+  +bool isActionEnabled
+  -dynamic _expandNonCollapsedRange()
+  +Object? invoke()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_DeleteTextAction" o-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+"flutter::lib::src::widgets::editable_text.dart::_DeleteTextAction" o-- "null::_TextBoundary Function(T)"
+"flutter::lib::src::widgets::actions.dart::ContextAction" <|-- "flutter::lib::src::widgets::editable_text.dart::_DeleteTextAction"
+
+class "flutter::lib::src::widgets::editable_text.dart::_UpdateTextSelectionAction" {
+  +EditableTextState state
+  +bool ignoreNonCollapsedSelection
+  +_TextBoundary Function(T) getTextBoundariesForIntent
+  {static} +int NEWLINE_CODE_UNIT
+  +bool isActionEnabled
+  -bool _isAtWordwrapUpstream()
+  -bool _isAtWordwrapDownstream()
+  +Object? invoke()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_UpdateTextSelectionAction" o-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+"flutter::lib::src::widgets::editable_text.dart::_UpdateTextSelectionAction" o-- "null::_TextBoundary Function(T)"
+"flutter::lib::src::widgets::actions.dart::ContextAction" <|-- "flutter::lib::src::widgets::editable_text.dart::_UpdateTextSelectionAction"
+
+class "flutter::lib::src::widgets::editable_text.dart::_ExtendSelectionOrCaretPositionAction" {
+  +EditableTextState state
+  +_TextBoundary Function(ExtendSelectionToNextWordBoundaryOrCaretLocationIntent) getTextBoundariesForIntent
+  +bool isActionEnabled
+  +Object? invoke()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_ExtendSelectionOrCaretPositionAction" o-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+"flutter::lib::src::widgets::editable_text.dart::_ExtendSelectionOrCaretPositionAction" o-- "null::_TextBoundary Function(ExtendSelectionToNextWordBoundaryOrCaretLocationIntent)"
+"flutter::lib::src::widgets::actions.dart::ContextAction" <|-- "flutter::lib::src::widgets::editable_text.dart::_ExtendSelectionOrCaretPositionAction"
+
+class "flutter::lib::src::widgets::editable_text.dart::_UpdateTextSelectionToAdjacentLineAction" {
+  +EditableTextState state
+  -dynamic _verticalMovementRun
+  -dynamic _runSelection
+  +bool isActionEnabled
+  +void stopCurrentVerticalRunIfSelectionChanges()
+  +void invoke()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_UpdateTextSelectionToAdjacentLineAction" o-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+"flutter::lib::src::widgets::actions.dart::ContextAction" <|-- "flutter::lib::src::widgets::editable_text.dart::_UpdateTextSelectionToAdjacentLineAction"
+
+class "flutter::lib::src::widgets::editable_text.dart::_SelectAllAction" {
+  +EditableTextState state
+  +bool isActionEnabled
+  +Object? invoke()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_SelectAllAction" o-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+"flutter::lib::src::widgets::actions.dart::ContextAction" <|-- "flutter::lib::src::widgets::editable_text.dart::_SelectAllAction"
+
+class "flutter::lib::src::widgets::editable_text.dart::_CopySelectionAction" {
+  +EditableTextState state
+  +bool isActionEnabled
+  +void invoke()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_CopySelectionAction" o-- "flutter::lib::src::widgets::editable_text.dart::EditableTextState"
+"flutter::lib::src::widgets::actions.dart::ContextAction" <|-- "flutter::lib::src::widgets::editable_text.dart::_CopySelectionAction"
+
+class "flutter::lib::src::widgets::editable_text.dart::_TextEditingHistory" {
+  +Widget child
+  +TextEditingController controller
+  +void Function(dynamic) onTriggered
+  +State<_TextEditingHistory> createState()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_TextEditingHistory" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::editable_text.dart::_TextEditingHistory" o-- "flutter::lib::src::widgets::editable_text.dart::TextEditingController"
+"flutter::lib::src::widgets::editable_text.dart::_TextEditingHistory" o-- "flutter::lib::src::widgets::editable_text.dart::void Function(dynamic)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::editable_text.dart::_TextEditingHistory"
+
+class "flutter::lib::src::widgets::editable_text.dart::_TextEditingHistoryState" {
+  -_UndoStack<dynamic> _stack
+  -Timer Function(dynamic) _throttledPush
+  -Timer? _throttleTimer
+  {static} -Duration _kThrottleDuration
+  -void _undo()
+  -void _redo()
+  -void _update()
+  -void _push()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::editable_text.dart::_TextEditingHistoryState" o-- "flutter::lib::src::widgets::editable_text.dart::_UndoStack<dynamic>"
+"flutter::lib::src::widgets::editable_text.dart::_TextEditingHistoryState" o-- "flutter::lib::src::widgets::editable_text.dart::Timer Function(dynamic)"
+"flutter::lib::src::widgets::editable_text.dart::_TextEditingHistoryState" o-- "dart::async::Timer"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::editable_text.dart::_TextEditingHistoryState"
+
+class "flutter::lib::src::widgets::editable_text.dart::_UndoStack" {
+  -List<T> _list
+  -int _index
+  +T? currentValue
+  +void push()
+  +T? undo()
+  +T? redo()
+  +void clear()
+  +String toString()
+}
+
+
+@enduml

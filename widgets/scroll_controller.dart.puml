@@ -1,0 +1,41 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scroll_controller.dart::ScrollController" {
+  -double _initialScrollOffset
+  +bool keepScrollOffset
+  +String? debugLabel
+  -List<ScrollPosition> _positions
+  +double initialScrollOffset
+  +Iterable<ScrollPosition> positions
+  +bool hasClients
+  +ScrollPosition position
+  +double offset
+  +Future<void> animateTo()
+  +void jumpTo()
+  +void attach()
+  +void detach()
+  +void dispose()
+  +ScrollPosition createScrollPosition()
+  +String toString()
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::scroll_controller.dart::ScrollController" o-- "flutter::lib::src::widgets::scroll_position.dart::ScrollPosition"
+
+class "flutter::lib::src::widgets::scroll_controller.dart::TrackingScrollController" {
+  -Map<ScrollPosition, dynamic> _positionToListener
+  -ScrollPosition? _lastUpdated
+  -double? _lastUpdatedOffset
+  +ScrollPosition? mostRecentlyUpdatedPosition
+  +double initialScrollOffset
+  +void attach()
+  +void detach()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::scroll_controller.dart::TrackingScrollController" o-- "flutter::lib::src::widgets::scroll_position.dart::ScrollPosition"
+"flutter::lib::src::widgets::scroll_controller.dart::ScrollController" <|-- "flutter::lib::src::widgets::scroll_controller.dart::TrackingScrollController"
+
+
+@enduml

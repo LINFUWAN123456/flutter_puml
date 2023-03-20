@@ -1,0 +1,28 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::scrollbar.dart::CupertinoScrollbar" {
+  {static} +double defaultThickness
+  {static} +double defaultThicknessWhileDragging
+  {static} +dynamic defaultRadius
+  {static} +dynamic defaultRadiusWhileDragging
+  +double thicknessWhileDragging
+  +dynamic radiusWhileDragging
+  +dynamic createState()
+}
+
+class "flutter::lib::src::cupertino::scrollbar.dart::_CupertinoScrollbarState" {
+  -dynamic _thicknessAnimationController
+  -double _pressStartAxisPosition
+  -double _thickness
+  -dynamic _radius
+  +void initState()
+  +void updateScrollbarPainter()
+  +void handleThumbPressStart()
+  +void handleThumbPress()
+  +void handleThumbPressEnd()
+  +void dispose()
+}
+
+
+@enduml

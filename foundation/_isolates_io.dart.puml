@@ -1,0 +1,17 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::_isolates_io.dart::_IsolateConfiguration" {
+  +FutureOr<R> Function(Q) callback
+  +Q message
+  +SendPort resultPort
+  +String debugLabel
+  +int flowId
+  +FutureOr<R> applyAndTime()
+}
+
+"flutter::lib::src::foundation::_isolates_io.dart::_IsolateConfiguration" o-- "flutter::lib::src::foundation::isolates.dart::FutureOr<R> Function(Q)"
+"flutter::lib::src::foundation::_isolates_io.dart::_IsolateConfiguration" o-- "dart::isolate::SendPort"
+
+
+@enduml

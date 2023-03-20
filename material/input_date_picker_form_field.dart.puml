@@ -1,0 +1,42 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::input_date_picker_form_field.dart::InputDatePickerFormField" {
+  +DateTime? initialDate
+  +DateTime firstDate
+  +DateTime lastDate
+  +dynamic onDateSubmitted
+  +dynamic onDateSaved
+  +bool Function(DateTime)? selectableDayPredicate
+  +String? errorFormatText
+  +String? errorInvalidText
+  +String? fieldHintText
+  +String? fieldLabelText
+  +dynamic keyboardType
+  +bool autofocus
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::input_date_picker_form_field.dart::InputDatePickerFormField" o-- "flutter::lib::src::material::date.dart::bool Function(DateTime)"
+
+class "flutter::lib::src::material::input_date_picker_form_field.dart::_InputDatePickerFormFieldState" {
+  -dynamic _controller
+  -DateTime? _selectedDate
+  -String? _inputText
+  -bool _autoSelected
+  +void initState()
+  +void dispose()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  -void _updateValueForSelectedDate()
+  -DateTime? _parseDate()
+  -bool _isValidAcceptableDate()
+  -String? _validateDate()
+  -void _updateDate()
+  -void _handleSaved()
+  -void _handleSubmitted()
+  +dynamic build()
+}
+
+
+@enduml

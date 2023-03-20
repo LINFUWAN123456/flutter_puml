@@ -1,0 +1,39 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::tab_bar_theme.dart::TabBarTheme" {
+  +dynamic indicator
+  +TabBarIndicatorSize? indicatorSize
+  +dynamic labelColor
+  +dynamic labelPadding
+  +dynamic labelStyle
+  +dynamic unselectedLabelColor
+  +dynamic unselectedLabelStyle
+  +MaterialStateProperty<dynamic>? overlayColor
+  +InteractiveInkFeatureFactory? splashFactory
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +int hashCode
+  +TabBarTheme copyWith()
+  {static} +TabBarTheme of()
+  {static} +TabBarTheme lerp()
+  +bool ==()
+}
+
+"flutter::lib::src::material::tab_bar_theme.dart::TabBarTheme" o-- "flutter::lib::src::material::tabs.dart::TabBarIndicatorSize"
+"flutter::lib::src::material::tab_bar_theme.dart::TabBarTheme" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::tab_bar_theme.dart::TabBarTheme" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+
+class "flutter::lib::src::material::tab_bar_theme.dart::_LerpColors" {
+  +MaterialStateProperty<dynamic>? a
+  +MaterialStateProperty<dynamic>? b
+  +double t
+  +int hashCode
+  +dynamic resolve()
+  +bool ==()
+}
+
+"flutter::lib::src::material::tab_bar_theme.dart::_LerpColors" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::tab_bar_theme.dart::_LerpColors"
+
+
+@enduml

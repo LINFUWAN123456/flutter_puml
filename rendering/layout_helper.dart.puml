@@ -1,0 +1,10 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::layout_helper.dart::ChildLayoutHelper" {
+  {static} +dynamic dryLayoutChild()
+  {static} +dynamic layoutChild()
+}
+
+
+@enduml

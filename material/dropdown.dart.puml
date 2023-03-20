@@ -1,0 +1,230 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownMenuPainter" {
+  +dynamic color
+  +int? elevation
+  +int? selectedIndex
+  +dynamic borderRadius
+  +dynamic resize
+  +dynamic getSelectedItemOffset
+  -dynamic _painter
+  +void paint()
+  +bool shouldRepaint()
+}
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownMenuItemButton" {
+  +_DropdownRoute<T> route
+  +dynamic padding
+  +dynamic buttonRect
+  +dynamic constraints
+  +int itemIndex
+  +bool enableFeedback
+  +_DropdownMenuItemButtonState<T> createState()
+}
+
+"flutter::lib::src::material::dropdown.dart::_DropdownMenuItemButton" o-- "flutter::lib::src::material::dropdown.dart::_DropdownRoute<T>"
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownMenuItemButtonState" {
+  {static} -Map<dynamic, dynamic> _webShortcuts
+  -void _handleFocusChange()
+  -void _handleOnTap()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownMenu" {
+  +_DropdownRoute<T> route
+  +dynamic padding
+  +dynamic buttonRect
+  +dynamic constraints
+  +dynamic dropdownColor
+  +bool enableFeedback
+  +dynamic borderRadius
+  +_DropdownMenuState<T> createState()
+}
+
+"flutter::lib::src::material::dropdown.dart::_DropdownMenu" o-- "flutter::lib::src::material::dropdown.dart::_DropdownRoute<T>"
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownMenuState" {
+  -dynamic _fadeOpacity
+  -dynamic _resize
+  +void initState()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownMenuRouteLayout" {
+  +dynamic buttonRect
+  +_DropdownRoute<T> route
+  +dynamic textDirection
+  +dynamic getConstraintsForChild()
+  +dynamic getPositionForChild()
+  +bool shouldRelayout()
+}
+
+"flutter::lib::src::material::dropdown.dart::_DropdownMenuRouteLayout" o-- "flutter::lib::src::material::dropdown.dart::_DropdownRoute<T>"
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownRouteResult" {
+  +T? result
+  +int hashCode
+  +bool ==()
+}
+
+class "flutter::lib::src::material::dropdown.dart::_MenuLimits" {
+  +double top
+  +double bottom
+  +double height
+  +double scrollOffset
+}
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownRoute" {
+  +List<_MenuItem<T>> items
+  +dynamic padding
+  +dynamic buttonRect
+  +int selectedIndex
+  +int elevation
+  +dynamic capturedThemes
+  +dynamic style
+  +double? itemHeight
+  +dynamic dropdownColor
+  +double? menuMaxHeight
+  +bool enableFeedback
+  +dynamic borderRadius
+  +List<double> itemHeights
+  +dynamic scrollController
+  +String? barrierLabel
+  +Duration transitionDuration
+  +bool barrierDismissible
+  +dynamic barrierColor
+  +dynamic buildPage()
+  -void _dismiss()
+  +double getItemOffset()
+  +_MenuLimits getMenuLimits()
+}
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownRoutePage" {
+  +_DropdownRoute<T> route
+  +dynamic constraints
+  +List<_MenuItem<T>>? items
+  +dynamic padding
+  +dynamic buttonRect
+  +int selectedIndex
+  +int elevation
+  +dynamic capturedThemes
+  +dynamic style
+  +dynamic dropdownColor
+  +bool enableFeedback
+  +dynamic borderRadius
+  +dynamic build()
+}
+
+"flutter::lib::src::material::dropdown.dart::_DropdownRoutePage" o-- "flutter::lib::src::material::dropdown.dart::_DropdownRoute<T>"
+
+class "flutter::lib::src::material::dropdown.dart::_MenuItem" {
+  +dynamic onLayout
+  +DropdownMenuItem<T>? item
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::material::dropdown.dart::_MenuItem" o-- "flutter::lib::src::material::dropdown.dart::DropdownMenuItem<T>"
+
+class "flutter::lib::src::material::dropdown.dart::_RenderMenuItem" {
+  +dynamic onLayout
+  +void performLayout()
+}
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownMenuItemContainer" {
+  +dynamic child
+  +dynamic alignment
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::dropdown.dart::DropdownMenuItem" {
+  +dynamic onTap
+  +T? value
+  +bool enabled
+}
+
+"flutter::lib::src::material::dropdown.dart::_DropdownMenuItemContainer" <|-- "flutter::lib::src::material::dropdown.dart::DropdownMenuItem"
+
+class "flutter::lib::src::material::dropdown.dart::DropdownButtonHideUnderline" {
+  {static} +bool at()
+  +bool updateShouldNotify()
+}
+
+class "flutter::lib::src::material::dropdown.dart::DropdownButton" {
+  +List<DropdownMenuItem<T>>? items
+  +T? value
+  +dynamic hint
+  +dynamic disabledHint
+  +dynamic onChanged
+  +dynamic onTap
+  +List<dynamic> Function(dynamic)? selectedItemBuilder
+  +int elevation
+  +dynamic style
+  +dynamic underline
+  +dynamic icon
+  +dynamic iconDisabledColor
+  +dynamic iconEnabledColor
+  +double iconSize
+  +bool isDense
+  +bool isExpanded
+  +double? itemHeight
+  +dynamic focusColor
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic dropdownColor
+  +double? menuMaxHeight
+  +bool? enableFeedback
+  +dynamic alignment
+  +dynamic borderRadius
+  -InputDecoration? _inputDecoration
+  -bool _isEmpty
+  -bool _isFocused
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::dropdown.dart::DropdownButton" o-- "flutter::lib::src::material::dropdown.dart::List<dynamic> Function(dynamic)"
+"flutter::lib::src::material::dropdown.dart::DropdownButton" o-- "flutter::lib::src::material::input_decorator.dart::InputDecoration"
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownButtonState" {
+  -int? _selectedIndex
+  -_DropdownRoute<T>? _dropdownRoute
+  -dynamic _lastOrientation
+  -dynamic _internalNode
+  -bool _hasPrimaryFocus
+  -Map<Type, dynamic> _actionMap
+  +dynamic focusNode
+  -dynamic _textStyle
+  -double _denseButtonHeight
+  -dynamic _iconColor
+  -bool _enabled
+  -dynamic _createFocusNode()
+  +void initState()
+  +void dispose()
+  -void _removeDropdownRoute()
+  -void _handleFocusChanged()
+  +void didUpdateWidget()
+  -void _updateSelectedIndex()
+  -void _handleTap()
+  -dynamic _getOrientation()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::dropdown.dart::_DropdownButtonState" o-- "flutter::lib::src::material::dropdown.dart::_DropdownRoute<T>"
+
+class "flutter::lib::src::material::dropdown.dart::DropdownButtonFormField" {
+  +dynamic onChanged
+  +InputDecoration decoration
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::dropdown.dart::DropdownButtonFormField" o-- "flutter::lib::src::material::input_decorator.dart::InputDecoration"
+
+class "flutter::lib::src::material::dropdown.dart::_DropdownButtonFormFieldState" {
+  +void didChange()
+  +void didUpdateWidget()
+}
+
+
+@enduml

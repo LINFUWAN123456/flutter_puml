@@ -1,0 +1,250 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation" {
+  {static} +FloatingActionButtonLocation startTop
+  {static} +FloatingActionButtonLocation miniStartTop
+  {static} +FloatingActionButtonLocation centerTop
+  {static} +FloatingActionButtonLocation miniCenterTop
+  {static} +FloatingActionButtonLocation endTop
+  {static} +FloatingActionButtonLocation miniEndTop
+  {static} +FloatingActionButtonLocation startFloat
+  {static} +FloatingActionButtonLocation miniStartFloat
+  {static} +FloatingActionButtonLocation centerFloat
+  {static} +FloatingActionButtonLocation miniCenterFloat
+  {static} +FloatingActionButtonLocation endFloat
+  {static} +FloatingActionButtonLocation miniEndFloat
+  {static} +FloatingActionButtonLocation startDocked
+  {static} +FloatingActionButtonLocation miniStartDocked
+  {static} +FloatingActionButtonLocation centerDocked
+  {static} +FloatingActionButtonLocation miniCenterDocked
+  {static} +FloatingActionButtonLocation endDocked
+  {static} +FloatingActionButtonLocation miniEndDocked
+  +dynamic getOffset()
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation"
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" {
+  +double getOffsetX()
+  +double getOffsetY()
+  +bool isMini()
+  +dynamic getOffset()
+  {static} -double _leftOffsetX()
+  {static} -double _rightOffsetX()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_StartTopFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_StartTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabStartOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_StartTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabTopOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_StartTopFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartTopFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabStartOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabTopOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartTopFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_CenterTopFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_CenterTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabCenterOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_CenterTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabTopOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_CenterTopFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterTopFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabCenterOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabTopOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterTopFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_EndTopFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_EndTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabEndOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_EndTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabTopOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_EndTopFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndTopFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabEndOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndTopFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabTopOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndTopFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_StartFloatFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_StartFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabStartOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_StartFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabFloatOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_StartFloatFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartFloatFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabStartOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabFloatOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartFloatFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_CenterFloatFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_CenterFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabCenterOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_CenterFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabFloatOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_CenterFloatFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterFloatFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabCenterOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabFloatOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterFloatFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_EndFloatFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_EndFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabEndOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_EndFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabFloatOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_EndFloatFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndFloatFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabEndOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndFloatFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabFloatOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndFloatFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_StartDockedFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_StartDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabStartOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_StartDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabDockedOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_StartDockedFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartDockedFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabStartOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabDockedOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniStartDockedFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_CenterDockedFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_CenterDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabCenterOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_CenterDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabDockedOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_CenterDockedFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterDockedFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabCenterOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabDockedOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniCenterDockedFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_EndDockedFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_EndDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabEndOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_EndDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabDockedOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_EndDockedFabLocation"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndDockedFabLocation" {
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::StandardFabLocation" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabEndOffsetX" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndDockedFabLocation"
+"flutter::lib::src::material::floating_action_button_location.dart::FabDockedOffsetY" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_MiniEndDockedFabLocation"
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonAnimator" {
+  {static} +FloatingActionButtonAnimator scaling
+  +dynamic getOffset()
+  +dynamic getScaleAnimation()
+  +dynamic getRotationAnimation()
+  +double getAnimationRestart()
+  +String toString()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonAnimator" o-- "flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonAnimator"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_ScalingFabMotionAnimator" {
+  {static} -dynamic _rotationTween
+  {static} -dynamic _thresholdCenterTween
+  +dynamic getOffset()
+  +dynamic getScaleAnimation()
+  +dynamic getRotationAnimation()
+  +double getAnimationRestart()
+}
+
+"flutter::lib::src::material::floating_action_button_location.dart::FloatingActionButtonAnimator" <|-- "flutter::lib::src::material::floating_action_button_location.dart::_ScalingFabMotionAnimator"
+
+class "flutter::lib::src::material::floating_action_button_location.dart::_AnimationSwap" {
+  +dynamic parent
+  +double swapThreshold
+  +T value
+}
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::FabTopOffsetY" {
+  +double getOffsetY()
+}
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::FabFloatOffsetY" {
+  +double getOffsetY()
+}
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::FabDockedOffsetY" {
+  +double getOffsetY()
+}
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::FabStartOffsetX" {
+  +double getOffsetX()
+}
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::FabCenterOffsetX" {
+  +double getOffsetX()
+}
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::FabEndOffsetX" {
+  +double getOffsetX()
+}
+
+abstract class "flutter::lib::src::material::floating_action_button_location.dart::FabMiniOffsetAdjustment" {
+  +bool isMini()
+}
+
+
+@enduml

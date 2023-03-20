@@ -1,0 +1,49 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::text_style.dart::TextStyle" {
+  +bool inherit
+  +dynamic color
+  +dynamic backgroundColor
+  +String? fontFamily
+  -List<String>? _fontFamilyFallback
+  -String? _package
+  +double? fontSize
+  +dynamic fontWeight
+  +dynamic fontStyle
+  +double? letterSpacing
+  +double? wordSpacing
+  +dynamic textBaseline
+  +double? height
+  +dynamic leadingDistribution
+  +dynamic locale
+  +dynamic foreground
+  +dynamic background
+  +dynamic decoration
+  +dynamic decorationColor
+  +dynamic decorationStyle
+  +double? decorationThickness
+  +String? debugLabel
+  +List<dynamic>? shadows
+  +List<dynamic>? fontFeatures
+  +List<dynamic>? fontVariations
+  +TextOverflow? overflow
+  +List<String>? fontFamilyFallback
+  -String? _fontFamily
+  +int hashCode
+  +TextStyle copyWith()
+  +TextStyle apply()
+  +TextStyle merge()
+  {static} +TextStyle? lerp()
+  +dynamic getTextStyle()
+  +dynamic getParagraphStyle()
+  +RenderComparison compareTo()
+  +bool ==()
+  +String toStringShort()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::painting::text_style.dart::TextStyle" o-- "flutter::lib::src::painting::text_painter.dart::TextOverflow"
+
+
+@enduml

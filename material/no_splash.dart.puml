@@ -1,0 +1,19 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::no_splash.dart::_NoSplashFactory" {
+  +InteractiveInkFeature create()
+}
+
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory" <|-- "flutter::lib::src::material::no_splash.dart::_NoSplashFactory"
+
+class "flutter::lib::src::material::no_splash.dart::NoSplash" {
+  {static} +InteractiveInkFeatureFactory splashFactory
+  +void paintFeature()
+}
+
+"flutter::lib::src::material::no_splash.dart::NoSplash" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeature" <|-- "flutter::lib::src::material::no_splash.dart::NoSplash"
+
+
+@enduml

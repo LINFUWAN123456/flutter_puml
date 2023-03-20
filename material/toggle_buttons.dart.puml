@@ -1,0 +1,145 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::toggle_buttons.dart::ToggleButtons" {
+  {static} -double _defaultBorderWidth
+  +List<dynamic> children
+  +List<bool> isSelected
+  +void Function(int)? onPressed
+  +dynamic mouseCursor
+  +MaterialTapTargetSize? tapTargetSize
+  +dynamic textStyle
+  +dynamic constraints
+  +dynamic color
+  +dynamic selectedColor
+  +dynamic disabledColor
+  +dynamic fillColor
+  +dynamic focusColor
+  +dynamic highlightColor
+  +dynamic splashColor
+  +dynamic hoverColor
+  +List<dynamic>? focusNodes
+  +bool renderBorder
+  +dynamic borderColor
+  +dynamic selectedBorderColor
+  +dynamic disabledBorderColor
+  +double? borderWidth
+  +dynamic borderRadius
+  +dynamic direction
+  +dynamic verticalDirection
+  -bool _isFirstButton()
+  -bool _isLastButton()
+  -dynamic _getEdgeBorderRadius()
+  -dynamic _getClipBorderRadius()
+  -dynamic _getLeadingBorderSide()
+  -dynamic _getBorderSide()
+  -dynamic _getTrailingBorderSide()
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::toggle_buttons.dart::ToggleButtons" o-- "null::void Function(int)"
+"flutter::lib::src::material::toggle_buttons.dart::ToggleButtons" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+
+class "flutter::lib::src::material::toggle_buttons.dart::_ResolveFillColor" {
+  +dynamic primary
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::toggle_buttons.dart::_ResolveFillColor"
+
+class "flutter::lib::src::material::toggle_buttons.dart::_DefaultFillColor" {
+  +ColorScheme colorScheme
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::toggle_buttons.dart::_DefaultFillColor" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::toggle_buttons.dart::_DefaultFillColor"
+
+class "flutter::lib::src::material::toggle_buttons.dart::_ToggleButtonDefaultOverlay" {
+  +bool selected
+  +bool unselected
+  +ColorScheme? colorScheme
+  +dynamic focusColor
+  +dynamic highlightColor
+  +dynamic hoverColor
+  +dynamic splashColor
+  +dynamic disabledColor
+  +dynamic resolve()
+  +String toString()
+}
+
+"flutter::lib::src::material::toggle_buttons.dart::_ToggleButtonDefaultOverlay" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::toggle_buttons.dart::_ToggleButtonDefaultOverlay"
+
+class "flutter::lib::src::material::toggle_buttons.dart::_SelectToggleButton" {
+  +dynamic leadingBorderSide
+  +dynamic borderSide
+  +dynamic trailingBorderSide
+  +dynamic borderRadius
+  +bool isFirstButton
+  +bool isLastButton
+  +dynamic direction
+  +dynamic verticalDirection
+  +_SelectToggleButtonRenderObject createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::toggle_buttons.dart::_SelectToggleButtonRenderObject" {
+  -dynamic _direction
+  -dynamic _verticalDirection
+  -dynamic _leadingBorderSide
+  -dynamic _borderSide
+  -dynamic _trailingBorderSide
+  -dynamic _borderRadius
+  -bool _isFirstButton
+  -bool _isLastButton
+  -dynamic _textDirection
+  +dynamic direction
+  +dynamic verticalDirection
+  +dynamic leadingBorderSide
+  +dynamic borderSide
+  +dynamic trailingBorderSide
+  +dynamic borderRadius
+  +bool isFirstButton
+  +bool isLastButton
+  +dynamic textDirection
+  {static} -double _maxHeight()
+  {static} -double _minHeight()
+  {static} -double _minWidth()
+  {static} -double _maxWidth()
+  +double computeDistanceToActualBaseline()
+  +double computeMaxIntrinsicHeight()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicWidth()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  -dynamic _computeSize()
+  +void paint()
+}
+
+class "flutter::lib::src::material::toggle_buttons.dart::_InputPadding" {
+  +dynamic minSize
+  +dynamic direction
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::toggle_buttons.dart::_RenderInputPadding" {
+  -dynamic _minSize
+  -dynamic _direction
+  +dynamic minSize
+  +dynamic direction
+  +double computeMinIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicWidth()
+  +double computeMaxIntrinsicHeight()
+  -dynamic _computeSize()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +bool hitTest()
+}
+
+
+@enduml

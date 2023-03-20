@@ -1,0 +1,45 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::slotted_render_object_widget.dart::SlottedRenderObjectElement" {
+  -Map<S, Element> _slotToChild
+  -List<S>? _debugPreviousSlots
+  +SlottedContainerRenderObjectMixin<S> renderObject
+  +void visitChildren()
+  +void forgetChild()
+  +void mount()
+  +void update()
+  -void _updateChildren()
+  -void _updateChild()
+  +void insertRenderObjectChild()
+  +void removeRenderObjectChild()
+  +void moveRenderObjectChild()
+}
+
+"flutter::lib::src::widgets::slotted_render_object_widget.dart::SlottedRenderObjectElement" o-- "flutter::lib::src::widgets::slotted_render_object_widget.dart::SlottedContainerRenderObjectMixin<S>"
+"flutter::lib::src::widgets::framework.dart::RenderObjectElement" <|-- "flutter::lib::src::widgets::slotted_render_object_widget.dart::SlottedRenderObjectElement"
+
+abstract class "flutter::lib::src::widgets::slotted_render_object_widget.dart::SlottedMultiChildRenderObjectWidgetMixin" {
+  +Iterable<S> slots
+  +Widget? childForSlot()
+  +SlottedContainerRenderObjectMixin<S> createRenderObject()
+  +void updateRenderObject()
+  +SlottedRenderObjectElement<S> createElement()
+}
+
+abstract class "flutter::lib::src::widgets::slotted_render_object_widget.dart::SlottedContainerRenderObjectMixin" {
+  -Map<S, dynamic> _slotToChild
+  +Iterable<dynamic> children
+  +dynamic childForSlot()
+  +String debugNameForSlot()
+  +void attach()
+  +void detach()
+  +void redepthChildren()
+  +void visitChildren()
+  +List<dynamic> debugDescribeChildren()
+  -void _addDiagnostics()
+  -void _setChild()
+}
+
+
+@enduml

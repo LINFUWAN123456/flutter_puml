@@ -1,0 +1,76 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::text_button.dart::TextButton" {
+  {static} +ButtonStyle styleFrom()
+  +ButtonStyle defaultStyleOf()
+  +ButtonStyle? themeStyleOf()
+}
+
+"flutter::lib::src::material::button_style_button.dart::ButtonStyleButton" <|-- "flutter::lib::src::material::text_button.dart::TextButton"
+
+class "flutter::lib::src::material::text_button.dart::_TextButtonDefaultColor" {
+  +dynamic color
+  +dynamic disabled
+  +dynamic resolve()
+  +String toString()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::text_button.dart::_TextButtonDefaultColor"
+
+class "flutter::lib::src::material::text_button.dart::_TextButtonDefaultOverlay" {
+  +dynamic primary
+  +dynamic resolve()
+  +String toString()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::text_button.dart::_TextButtonDefaultOverlay"
+
+class "flutter::lib::src::material::text_button.dart::_TextButtonDefaultMouseCursor" {
+  +dynamic enabledCursor
+  +dynamic disabledCursor
+  +dynamic resolve()
+}
+
+"flutter::lib::src::material::material_state.dart::MaterialStateProperty" <|-- "flutter::lib::src::material::text_button.dart::_TextButtonDefaultMouseCursor"
+
+class "flutter::lib::src::material::text_button.dart::_TextButtonWithIcon" {
+  +ButtonStyle defaultStyleOf()
+}
+
+"flutter::lib::src::material::text_button.dart::TextButton" <|-- "flutter::lib::src::material::text_button.dart::_TextButtonWithIcon"
+
+class "flutter::lib::src::material::text_button.dart::_TextButtonWithIconChild" {
+  +dynamic label
+  +dynamic icon
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::text_button.dart::_TextButtonDefaultsM3" {
+  +dynamic context
+  -ColorScheme _colors
+  +MaterialStateProperty<dynamic> textStyle
+  +MaterialStateProperty<dynamic>? backgroundColor
+  +MaterialStateProperty<dynamic>? foregroundColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +MaterialStateProperty<double>? elevation
+  +MaterialStateProperty<dynamic>? padding
+  +MaterialStateProperty<dynamic>? minimumSize
+  +MaterialStateProperty<dynamic>? maximumSize
+  +MaterialStateProperty<dynamic>? shape
+  +MaterialStateProperty<dynamic>? mouseCursor
+  +VisualDensity? visualDensity
+  +MaterialTapTargetSize? tapTargetSize
+  +InteractiveInkFeatureFactory? splashFactory
+}
+
+"flutter::lib::src::material::text_button.dart::_TextButtonDefaultsM3" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::text_button.dart::_TextButtonDefaultsM3" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::text_button.dart::_TextButtonDefaultsM3" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<double>"
+"flutter::lib::src::material::text_button.dart::_TextButtonDefaultsM3" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+"flutter::lib::src::material::text_button.dart::_TextButtonDefaultsM3" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::text_button.dart::_TextButtonDefaultsM3" o-- "flutter::lib::src::material::ink_well.dart::InteractiveInkFeatureFactory"
+"flutter::lib::src::material::button_style.dart::ButtonStyle" <|-- "flutter::lib::src::material::text_button.dart::_TextButtonDefaultsM3"
+
+
+@enduml

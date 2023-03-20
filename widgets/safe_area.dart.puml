@@ -1,0 +1,34 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::safe_area.dart::SafeArea" {
+  +bool left
+  +bool top
+  +bool right
+  +bool bottom
+  +dynamic minimum
+  +bool maintainBottomViewPadding
+  +Widget child
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::safe_area.dart::SafeArea" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::safe_area.dart::SafeArea"
+
+class "flutter::lib::src::widgets::safe_area.dart::SliverSafeArea" {
+  +bool left
+  +bool top
+  +bool right
+  +bool bottom
+  +dynamic minimum
+  +Widget sliver
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::safe_area.dart::SliverSafeArea" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::safe_area.dart::SliverSafeArea"
+
+
+@enduml

@@ -1,0 +1,95 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::page_transitions_theme.dart::_FadeUpwardsPageTransition" {
+  {static} -dynamic _bottomUpTween
+  {static} -dynamic _fastOutSlowInTween
+  {static} -dynamic _easeInTween
+  -dynamic _positionAnimation
+  -dynamic _opacityAnimation
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::page_transitions_theme.dart::_OpenUpwardsPageTransition" {
+  {static} -dynamic _primaryTranslationTween
+  {static} -dynamic _secondaryTranslationTween
+  {static} -dynamic _scrimOpacityTween
+  {static} -dynamic _transitionCurve
+  +dynamic animation
+  +dynamic secondaryAnimation
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::page_transitions_theme.dart::_ZoomPageTransition" {
+  {static} +List<dynamic> fastOutExtraSlowInTweenSequenceItems
+  {static} -dynamic _scaleCurveSequence
+  +dynamic animation
+  +dynamic secondaryAnimation
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::page_transitions_theme.dart::_ZoomEnterTransition" {
+  +dynamic animation
+  +dynamic child
+  +bool reverse
+  {static} -dynamic _fadeInTransition
+  {static} -dynamic _scaleDownTransition
+  {static} -dynamic _scaleUpTransition
+  {static} -dynamic _scrimOpacityTween
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::page_transitions_theme.dart::_ZoomExitTransition" {
+  +dynamic animation
+  +bool reverse
+  +dynamic child
+  {static} -dynamic _fadeOutTransition
+  {static} -dynamic _scaleUpTransition
+  {static} -dynamic _scaleDownTransition
+  +dynamic build()
+}
+
+abstract class "flutter::lib::src::material::page_transitions_theme.dart::PageTransitionsBuilder" {
+  +dynamic buildTransitions()
+}
+
+class "flutter::lib::src::material::page_transitions_theme.dart::FadeUpwardsPageTransitionsBuilder" {
+  +dynamic buildTransitions()
+}
+
+"flutter::lib::src::material::page_transitions_theme.dart::PageTransitionsBuilder" <|-- "flutter::lib::src::material::page_transitions_theme.dart::FadeUpwardsPageTransitionsBuilder"
+
+class "flutter::lib::src::material::page_transitions_theme.dart::OpenUpwardsPageTransitionsBuilder" {
+  +dynamic buildTransitions()
+}
+
+"flutter::lib::src::material::page_transitions_theme.dart::PageTransitionsBuilder" <|-- "flutter::lib::src::material::page_transitions_theme.dart::OpenUpwardsPageTransitionsBuilder"
+
+class "flutter::lib::src::material::page_transitions_theme.dart::ZoomPageTransitionsBuilder" {
+  +dynamic buildTransitions()
+}
+
+"flutter::lib::src::material::page_transitions_theme.dart::PageTransitionsBuilder" <|-- "flutter::lib::src::material::page_transitions_theme.dart::ZoomPageTransitionsBuilder"
+
+class "flutter::lib::src::material::page_transitions_theme.dart::CupertinoPageTransitionsBuilder" {
+  +dynamic buildTransitions()
+}
+
+"flutter::lib::src::material::page_transitions_theme.dart::PageTransitionsBuilder" <|-- "flutter::lib::src::material::page_transitions_theme.dart::CupertinoPageTransitionsBuilder"
+
+class "flutter::lib::src::material::page_transitions_theme.dart::PageTransitionsTheme" {
+  {static} -Map<dynamic, PageTransitionsBuilder> _defaultBuilders
+  -Map<dynamic, PageTransitionsBuilder> _builders
+  +Map<dynamic, PageTransitionsBuilder> builders
+  +int hashCode
+  +dynamic buildTransitions()
+  -List<PageTransitionsBuilder?> _all()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

@@ -1,0 +1,184 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::navigation_bar.dart::NavigationBar" {
+  +Duration? animationDuration
+  +int selectedIndex
+  +List<dynamic> destinations
+  +dynamic onDestinationSelected
+  +dynamic backgroundColor
+  +dynamic surfaceTintColor
+  +double? elevation
+  +double? height
+  +NavigationDestinationLabelBehavior? labelBehavior
+  -dynamic _handleTap()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::navigation_bar.dart::NavigationBar" o-- "flutter::lib::src::material::navigation_bar.dart::NavigationDestinationLabelBehavior"
+
+class "flutter::lib::src::material::navigation_bar.dart::NavigationDestination" {
+  +dynamic icon
+  +dynamic selectedIcon
+  +String label
+  +String? tooltip
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_NavigationDestinationBuilder" {
+  +dynamic buildIcon
+  +dynamic buildLabel
+  +String label
+  +String? tooltip
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_NavigationDestinationInfo" {
+  +int index
+  +int totalNumberOfDestinations
+  +dynamic selectedAnimation
+  +NavigationDestinationLabelBehavior labelBehavior
+  +dynamic onTap
+  {static} +_NavigationDestinationInfo of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::navigation_bar.dart::_NavigationDestinationInfo" o-- "flutter::lib::src::material::navigation_bar.dart::NavigationDestinationLabelBehavior"
+
+class "flutter::lib::src::material::navigation_bar.dart::NavigationIndicator" {
+  +dynamic animation
+  +dynamic color
+  +double width
+  +double height
+  +dynamic borderRadius
+  +dynamic shape
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_NavigationBarDestinationLayout" {
+  +dynamic icon
+  +dynamic label
+  {static} -dynamic _iconKey
+  {static} -dynamic _labelKey
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_DestinationLayoutAnimationBuilder" {
+  +dynamic Function(dynamic, dynamic) builder
+  +dynamic build()
+}
+
+"flutter::lib::src::material::navigation_bar.dart::_DestinationLayoutAnimationBuilder" o-- "null::dynamic Function(dynamic, dynamic)"
+
+class "flutter::lib::src::material::navigation_bar.dart::_NavigationBarDestinationSemantics" {
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_NavigationBarDestinationTooltip" {
+  +String message
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_NavigationDestinationLayoutDelegate" {
+  +dynamic animation
+  {static} +int iconId
+  {static} +int labelId
+  +void performLayout()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_ClampTextScaleFactor" {
+  +double upperLimit
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_StatusTransitionWidgetBuilder" {
+  +dynamic builder
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_SelectableAnimatedBuilder" {
+  +bool isSelected
+  +Duration duration
+  +bool alwaysDoFullAnimation
+  +dynamic Function(dynamic, dynamic) builder
+  +_SelectableAnimatedBuilderState createState()
+}
+
+"flutter::lib::src::material::navigation_bar.dart::_SelectableAnimatedBuilder" o-- "null::dynamic Function(dynamic, dynamic)"
+
+class "flutter::lib::src::material::navigation_bar.dart::_SelectableAnimatedBuilderState" {
+  -dynamic _controller
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_CurvedAnimationBuilder" {
+  +dynamic animation
+  +dynamic curve
+  +dynamic reverseCurve
+  +dynamic Function(dynamic, dynamic) builder
+  +_CurvedAnimationBuilderState createState()
+}
+
+"flutter::lib::src::material::navigation_bar.dart::_CurvedAnimationBuilder" o-- "null::dynamic Function(dynamic, dynamic)"
+
+class "flutter::lib::src::material::navigation_bar.dart::_CurvedAnimationBuilderState" {
+  -dynamic _animationDirection
+  -dynamic _preservedDirection
+  +void initState()
+  +void dispose()
+  -void _updateStatus()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM2" {
+  -ThemeData _theme
+  -ColorScheme _colors
+  +dynamic backgroundColor
+  +MaterialStateProperty<dynamic>? iconTheme
+  +dynamic indicatorColor
+  +MaterialStateProperty<dynamic>? labelTextStyle
+}
+
+"flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM2" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+"flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM2" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM2" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::navigation_bar_theme.dart::NavigationBarThemeData" <|-- "flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM2"
+
+class "flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM3" {
+  +dynamic context
+  -ColorScheme _colors
+  -TextTheme _textTheme
+  +dynamic backgroundColor
+  +dynamic surfaceTintColor
+  +MaterialStateProperty<dynamic>? iconTheme
+  +dynamic indicatorColor
+  +dynamic indicatorShape
+  +MaterialStateProperty<dynamic>? labelTextStyle
+}
+
+"flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM3" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM3" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+"flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM3" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::navigation_bar_theme.dart::NavigationBarThemeData" <|-- "flutter::lib::src::material::navigation_bar.dart::_NavigationBarDefaultsM3"
+
+class "flutter::lib::src::material::navigation_bar.dart::NavigationDestinationLabelBehavior" {
+  +int index
+  {static} +List<NavigationDestinationLabelBehavior> values
+  {static} +NavigationDestinationLabelBehavior alwaysShow
+  {static} +NavigationDestinationLabelBehavior alwaysHide
+  {static} +NavigationDestinationLabelBehavior onlyShowSelected
+}
+
+"flutter::lib::src::material::navigation_bar.dart::NavigationDestinationLabelBehavior" o-- "flutter::lib::src::material::navigation_bar.dart::NavigationDestinationLabelBehavior"
+"dart::core::Enum" <|-- "flutter::lib::src::material::navigation_bar.dart::NavigationDestinationLabelBehavior"
+
+
+@enduml

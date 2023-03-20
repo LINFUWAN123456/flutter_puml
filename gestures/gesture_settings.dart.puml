@@ -1,0 +1,13 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::gesture_settings.dart::DeviceGestureSettings" {
+  +double? touchSlop
+  +double? panSlop
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+
+@enduml

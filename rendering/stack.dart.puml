@@ -1,0 +1,104 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::stack.dart::RelativeRect" {
+  {static} +RelativeRect fill
+  +double left
+  +double top
+  +double right
+  +double bottom
+  +bool hasInsets
+  +int hashCode
+  +RelativeRect shift()
+  +RelativeRect inflate()
+  +RelativeRect deflate()
+  +RelativeRect intersect()
+  +dynamic toRect()
+  +dynamic toSize()
+  {static} +RelativeRect? lerp()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::stack.dart::RelativeRect" o-- "flutter::lib::src::rendering::stack.dart::RelativeRect"
+
+class "flutter::lib::src::rendering::stack.dart::StackParentData" {
+  +double? top
+  +double? right
+  +double? bottom
+  +double? left
+  +double? width
+  +double? height
+  +RelativeRect rect
+  +bool isPositioned
+  +String toString()
+}
+
+"flutter::lib::src::rendering::stack.dart::StackParentData" o-- "flutter::lib::src::rendering::stack.dart::RelativeRect"
+"flutter::lib::src::rendering::box.dart::ContainerBoxParentData" <|-- "flutter::lib::src::rendering::stack.dart::StackParentData"
+
+class "flutter::lib::src::rendering::stack.dart::RenderStack" {
+  -bool _hasVisualOverflow
+  -dynamic _resolvedAlignment
+  -dynamic _alignment
+  -dynamic _textDirection
+  -StackFit _fit
+  -dynamic _clipBehavior
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +dynamic alignment
+  +dynamic textDirection
+  +StackFit fit
+  +dynamic clipBehavior
+  +void setupParentData()
+  -void _resolve()
+  -void _markNeedResolution()
+  {static} +double getIntrinsicDimension()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  {static} +bool layoutPositionedChild()
+  +dynamic computeDryLayout()
+  -dynamic _computeSize()
+  +void performLayout()
+  +bool hitTestChildren()
+  +void paintStack()
+  +void paint()
+  +void dispose()
+  +dynamic describeApproximatePaintClip()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::stack.dart::RenderStack" o-- "flutter::lib::src::rendering::stack.dart::StackFit"
+"flutter::lib::src::rendering::stack.dart::RenderStack" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::stack.dart::RenderStack"
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::stack.dart::RenderStack"
+"flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin" <|-- "flutter::lib::src::rendering::stack.dart::RenderStack"
+
+class "flutter::lib::src::rendering::stack.dart::RenderIndexedStack" {
+  -int? _index
+  +int? index
+  +void visitChildrenForSemantics()
+  -RenderBox _childAtIndex()
+  +bool hitTestChildren()
+  +void paintStack()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::rendering::stack.dart::RenderStack" <|-- "flutter::lib::src::rendering::stack.dart::RenderIndexedStack"
+
+class "flutter::lib::src::rendering::stack.dart::StackFit" {
+  +int index
+  {static} +List<StackFit> values
+  {static} +StackFit loose
+  {static} +StackFit expand
+  {static} +StackFit passthrough
+}
+
+"flutter::lib::src::rendering::stack.dart::StackFit" o-- "flutter::lib::src::rendering::stack.dart::StackFit"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::stack.dart::StackFit"
+
+
+@enduml

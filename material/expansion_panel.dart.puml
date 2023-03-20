@@ -1,0 +1,56 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::expansion_panel.dart::_SaltedKey" {
+  +S salt
+  +V value
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::material::expansion_panel.dart::ExpansionPanel" {
+  +dynamic Function(dynamic, bool) headerBuilder
+  +dynamic body
+  +bool isExpanded
+  +bool canTapOnHeader
+  +dynamic backgroundColor
+}
+
+"flutter::lib::src::material::expansion_panel.dart::ExpansionPanel" o-- "flutter::lib::src::material::expansion_panel.dart::dynamic Function(dynamic, bool)"
+
+class "flutter::lib::src::material::expansion_panel.dart::ExpansionPanelRadio" {
+  +Object value
+}
+
+"flutter::lib::src::material::expansion_panel.dart::ExpansionPanel" <|-- "flutter::lib::src::material::expansion_panel.dart::ExpansionPanelRadio"
+
+class "flutter::lib::src::material::expansion_panel.dart::ExpansionPanelList" {
+  +List<ExpansionPanel> children
+  +void Function(int, bool)? expansionCallback
+  +Duration animationDuration
+  -bool _allowOnlyOnePanelOpen
+  +Object? initialOpenPanelValue
+  +dynamic expandedHeaderPadding
+  +dynamic dividerColor
+  +double elevation
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::expansion_panel.dart::ExpansionPanelList" o-- "flutter::lib::src::material::expansion_panel.dart::void Function(int, bool)"
+
+class "flutter::lib::src::material::expansion_panel.dart::_ExpansionPanelListState" {
+  -ExpansionPanelRadio? _currentOpenPanel
+  +void initState()
+  +void didUpdateWidget()
+  -bool _allIdentifiersUnique()
+  -bool _isChildExpanded()
+  -void _handlePressed()
+  +ExpansionPanelRadio? searchPanelByValue()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::expansion_panel.dart::_ExpansionPanelListState" o-- "flutter::lib::src::material::expansion_panel.dart::ExpansionPanelRadio"
+
+
+@enduml

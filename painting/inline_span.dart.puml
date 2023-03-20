@@ -1,0 +1,47 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::inline_span.dart::Accumulator" {
+  -int _value
+  +int value
+  +void increment()
+}
+
+class "flutter::lib::src::painting::inline_span.dart::InlineSpanSemanticsInformation" {
+  {static} +InlineSpanSemanticsInformation placeholder
+  +String text
+  +String? semanticsLabel
+  +dynamic recognizer
+  +bool isPlaceholder
+  +bool requiresOwnNode
+  +List<dynamic> stringAttributes
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::inline_span.dart::InlineSpanSemanticsInformation" o-- "flutter::lib::src::painting::inline_span.dart::InlineSpanSemanticsInformation"
+
+abstract class "flutter::lib::src::painting::inline_span.dart::InlineSpan" {
+  +TextStyle? style
+  +int hashCode
+  +void build()
+  +bool visitChildren()
+  +InlineSpan? getSpanForPosition()
+  +InlineSpan? getSpanForPositionVisitor()
+  +String toPlainText()
+  +List<InlineSpanSemanticsInformation> getSemanticsInformation()
+  +void computeSemanticsInformation()
+  +void computeToPlainText()
+  +int? codeUnitAt()
+  +int? codeUnitAtVisitor()
+  +bool debugAssertIsValid()
+  +RenderComparison compareTo()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::painting::inline_span.dart::InlineSpan" o-- "flutter::lib::src::painting::text_style.dart::TextStyle"
+
+
+@enduml

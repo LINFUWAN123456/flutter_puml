@@ -1,0 +1,374 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::diagnostics.dart::TextTreeConfiguration" {
+  +String prefixLineOne
+  +String suffixLineOne
+  +String prefixOtherLines
+  +String prefixLastChildLineOne
+  +String prefixOtherLinesRootNode
+  +String propertyPrefixIfChildren
+  +String propertyPrefixNoChildren
+  +String linkCharacter
+  +String childLinkSpace
+  +String lineBreak
+  +bool lineBreakProperties
+  +String beforeName
+  +String afterName
+  +String afterDescriptionIfBody
+  +String afterDescription
+  +String beforeProperties
+  +String afterProperties
+  +String mandatoryAfterProperties
+  +String propertySeparator
+  +String bodyIndent
+  +bool showChildren
+  +bool addBlankLineIfNoChildren
+  +bool isNameOnOwnLine
+  +String footer
+  +String mandatoryFooter
+  +bool isBlankLineBetweenPropertiesAndChildren
+}
+
+class "flutter::lib::src::foundation::diagnostics.dart::_PrefixedStringBuilder" {
+  +String prefixLineOne
+  -String? _prefixOtherLines
+  -String? _nextPrefixOtherLines
+  +int? wrapWidth
+  -StringBuffer _buffer
+  -StringBuffer _currentLine
+  -List<int> _wrappableRanges
+  -int _numLines
+  +String? prefixOtherLines
+  +bool requiresMultipleLines
+  +bool isCurrentLineEmpty
+  +void incrementPrefixOtherLines()
+  -void _finalizeLine()
+  {static} -Iterable<String> _wordWrapLine()
+  +void write()
+  -void _updatePrefix()
+  -void _writeLine()
+  -String? _getCurrentPrefix()
+  +void writeRawLines()
+  +void writeStretched()
+  +String build()
+}
+
+class "flutter::lib::src::foundation::diagnostics.dart::_NoDefaultValue" {
+}
+
+class "flutter::lib::src::foundation::diagnostics.dart::TextTreeRenderer" {
+  -int _wrapWidth
+  -int _wrapWidthProperties
+  -DiagnosticLevel _minLevel
+  -int _maxDescendentsTruncatableNode
+  -TextTreeConfiguration? _childTextConfiguration()
+  +String render()
+  -String _debugRender()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::TextTreeRenderer" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+
+abstract class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsNode" {
+  +String? name
+  +bool showSeparator
+  +bool showName
+  +String? linePrefix
+  +DiagnosticsTreeStyle? style
+  +DiagnosticLevel level
+  +String? emptyBodyDescription
+  +Object? value
+  +bool allowWrap
+  +bool allowNameWrap
+  +bool allowTruncate
+  -String _separator
+  +TextTreeConfiguration? textTreeConfiguration
+  +String toDescription()
+  +bool isFiltered()
+  +List<DiagnosticsNode> getProperties()
+  +List<DiagnosticsNode> getChildren()
+  +Map<String, String>? toTimelineArguments()
+  +Map<String, Object?> toJsonMap()
+  {static} +List<Map<String, Object?>> toJsonList()
+  +String toString()
+  +String toStringDeep()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsNode" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsTreeStyle"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsNode" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsNode" o-- "flutter::lib::src::foundation::diagnostics.dart::TextTreeConfiguration"
+
+class "flutter::lib::src::foundation::diagnostics.dart::MessageProperty" {
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::MessageProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::StringProperty" {
+  +bool quoted
+  +Map<String, Object?> toJsonMap()
+  +String valueToString()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::StringProperty"
+
+abstract class "flutter::lib::src::foundation::diagnostics.dart::_NumProperty" {
+  +String? unit
+  +Map<String, Object?> toJsonMap()
+  +String numberToString()
+  +String valueToString()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::_NumProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::DoubleProperty" {
+  +String numberToString()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::_NumProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::DoubleProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::IntProperty" {
+  +String numberToString()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::_NumProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::IntProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::PercentProperty" {
+  +String valueToString()
+  +String numberToString()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DoubleProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::PercentProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::FlagProperty" {
+  +String? ifTrue
+  +String? ifFalse
+  +bool showName
+  +DiagnosticLevel level
+  +Map<String, Object?> toJsonMap()
+  +String valueToString()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::FlagProperty" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::FlagProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::IterableProperty" {
+  +DiagnosticLevel level
+  +String valueToString()
+  +Map<String, Object?> toJsonMap()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::IterableProperty" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::IterableProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::EnumProperty" {
+  +String valueToString()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::EnumProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::ObjectFlagProperty" {
+  +String? ifPresent
+  +bool showName
+  +DiagnosticLevel level
+  +String valueToString()
+  +Map<String, Object?> toJsonMap()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::ObjectFlagProperty" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::ObjectFlagProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::FlagsSummary" {
+  +Map<String, T?> value
+  +DiagnosticLevel level
+  +String valueToString()
+  +Map<String, Object?> toJsonMap()
+  -bool _hasNonNullEntry()
+  -Iterable<String> _formattedValues()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::FlagsSummary" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" <|-- "flutter::lib::src::foundation::diagnostics.dart::FlagsSummary"
+
+class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" {
+  -String? _description
+  +bool expandableValue
+  +bool allowWrap
+  +bool allowNameWrap
+  +String? ifNull
+  +String? ifEmpty
+  +String? tooltip
+  +bool missingIfNull
+  -T? _value
+  -bool _valueComputed
+  -Object? _exception
+  +Object? defaultValue
+  -DiagnosticLevel _defaultLevel
+  -T? Function()? _computeValue
+  +Type propertyType
+  +T? value
+  +Object? exception
+  +bool isInteresting
+  +DiagnosticLevel level
+  +Map<String, Object?> toJsonMap()
+  +String valueToString()
+  +String toDescription()
+  -String _addTooltip()
+  -void _maybeCacheValue()
+  +List<DiagnosticsNode> getProperties()
+  +List<DiagnosticsNode> getChildren()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty" o-- "flutter::lib::src::foundation::diagnostics.dart::T Function()"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsNode" <|-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsProperty"
+
+class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticableNode" {
+  +T value
+  -DiagnosticPropertiesBuilder? _cachedBuilder
+  +DiagnosticPropertiesBuilder? builder
+  +DiagnosticsTreeStyle style
+  +String? emptyBodyDescription
+  +List<DiagnosticsNode> getProperties()
+  +List<DiagnosticsNode> getChildren()
+  +String toDescription()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticableNode" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticPropertiesBuilder"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticableNode" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsTreeStyle"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsNode" <|-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticableNode"
+
+class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticableTreeNode" {
+  +List<DiagnosticsNode> getChildren()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticableNode" <|-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticableTreeNode"
+
+class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticPropertiesBuilder" {
+  +List<DiagnosticsNode> properties
+  +DiagnosticsTreeStyle defaultDiagnosticsTreeStyle
+  +String? emptyBodyDescription
+  +void add()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticPropertiesBuilder" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsTreeStyle"
+
+abstract class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticableTree" {
+  +String toStringShallow()
+  +String toStringDeep()
+  +String toStringShort()
+  +DiagnosticsNode toDiagnosticsNode()
+  #List<DiagnosticsNode> debugDescribeChildren()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::Diagnosticable" <|-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticableTree"
+
+class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsBlock" {
+  -List<DiagnosticsNode> _children
+  -List<DiagnosticsNode> _properties
+  +DiagnosticLevel level
+  -String _description
+  +Object? value
+  +bool allowTruncate
+  +List<DiagnosticsNode> getChildren()
+  +List<DiagnosticsNode> getProperties()
+  +String toDescription()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsBlock" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsNode" <|-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsBlock"
+
+abstract class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsSerializationDelegate" {
+  +int subtreeDepth
+  +bool includeProperties
+  +bool expandPropertyValues
+  +Map<String, Object?> additionalNodeProperties()
+  +List<DiagnosticsNode> filterChildren()
+  +List<DiagnosticsNode> filterProperties()
+  +List<DiagnosticsNode> truncateNodesList()
+  +DiagnosticsSerializationDelegate delegateForNode()
+  +DiagnosticsSerializationDelegate copyWith()
+}
+
+class "flutter::lib::src::foundation::diagnostics.dart::_DefaultDiagnosticsSerializationDelegate" {
+  +bool includeProperties
+  +int subtreeDepth
+  +bool expandPropertyValues
+  +Map<String, Object?> additionalNodeProperties()
+  +DiagnosticsSerializationDelegate delegateForNode()
+  +List<DiagnosticsNode> filterChildren()
+  +List<DiagnosticsNode> filterProperties()
+  +List<DiagnosticsNode> truncateNodesList()
+  +DiagnosticsSerializationDelegate copyWith()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsSerializationDelegate" <|-- "flutter::lib::src::foundation::diagnostics.dart::_DefaultDiagnosticsSerializationDelegate"
+
+class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel" {
+  +int index
+  {static} +List<DiagnosticLevel> values
+  {static} +DiagnosticLevel hidden
+  {static} +DiagnosticLevel fine
+  {static} +DiagnosticLevel debug
+  {static} +DiagnosticLevel info
+  {static} +DiagnosticLevel warning
+  {static} +DiagnosticLevel hint
+  {static} +DiagnosticLevel summary
+  {static} +DiagnosticLevel error
+  {static} +DiagnosticLevel off
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+"dart::core::Enum" <|-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticLevel"
+
+class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsTreeStyle" {
+  +int index
+  {static} +List<DiagnosticsTreeStyle> values
+  {static} +DiagnosticsTreeStyle none
+  {static} +DiagnosticsTreeStyle sparse
+  {static} +DiagnosticsTreeStyle offstage
+  {static} +DiagnosticsTreeStyle dense
+  {static} +DiagnosticsTreeStyle transition
+  {static} +DiagnosticsTreeStyle error
+  {static} +DiagnosticsTreeStyle whitespace
+  {static} +DiagnosticsTreeStyle flat
+  {static} +DiagnosticsTreeStyle singleLine
+  {static} +DiagnosticsTreeStyle errorProperty
+  {static} +DiagnosticsTreeStyle shallow
+  {static} +DiagnosticsTreeStyle truncateChildren
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticsTreeStyle" o-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsTreeStyle"
+"dart::core::Enum" <|-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticsTreeStyle"
+
+class "flutter::lib::src::foundation::diagnostics.dart::_WordWrapParseMode" {
+  +int index
+  {static} +List<_WordWrapParseMode> values
+  {static} +_WordWrapParseMode inSpace
+  {static} +_WordWrapParseMode inWord
+  {static} +_WordWrapParseMode atBreak
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::_WordWrapParseMode" o-- "flutter::lib::src::foundation::diagnostics.dart::_WordWrapParseMode"
+"dart::core::Enum" <|-- "flutter::lib::src::foundation::diagnostics.dart::_WordWrapParseMode"
+
+abstract class "flutter::lib::src::foundation::diagnostics.dart::Diagnosticable" {
+  +String toStringShort()
+  +String toString()
+  +DiagnosticsNode toDiagnosticsNode()
+  #void debugFillProperties()
+}
+
+abstract class "flutter::lib::src::foundation::diagnostics.dart::DiagnosticableTreeMixin" {
+  +String toString()
+  +String toStringShallow()
+  +String toStringDeep()
+  +String toStringShort()
+  +DiagnosticsNode toDiagnosticsNode()
+  +List<DiagnosticsNode> debugDescribeChildren()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::foundation::diagnostics.dart::DiagnosticableTree" <|-- "flutter::lib::src::foundation::diagnostics.dart::DiagnosticableTreeMixin"
+
+
+@enduml

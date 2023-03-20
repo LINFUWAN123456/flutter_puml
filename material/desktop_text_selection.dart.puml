@@ -1,0 +1,49 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::desktop_text_selection.dart::_DesktopTextSelectionControls" {
+  +dynamic getHandleSize()
+  +dynamic buildToolbar()
+  +dynamic buildHandle()
+  +dynamic getHandleAnchor()
+  +bool canSelectAll()
+  +void handleSelectAll()
+}
+
+class "flutter::lib::src::material::desktop_text_selection.dart::_DesktopTextSelectionControlsToolbar" {
+  +dynamic clipboardStatus
+  +List<dynamic> endpoints
+  +dynamic globalEditableRegion
+  +dynamic handleCopy
+  +dynamic handleCut
+  +dynamic handlePaste
+  +dynamic handleSelectAll
+  +dynamic lastSecondaryTapDownPosition
+  +dynamic selectionMidpoint
+  +double textLineHeight
+  +_DesktopTextSelectionControlsToolbarState createState()
+}
+
+class "flutter::lib::src::material::desktop_text_selection.dart::_DesktopTextSelectionControlsToolbarState" {
+  -void _onChangedClipboardStatus()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::desktop_text_selection.dart::_DesktopTextSelectionToolbar" {
+  +dynamic anchor
+  +List<dynamic> children
+  {static} -dynamic _defaultToolbarBuilder()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::desktop_text_selection.dart::_DesktopTextSelectionToolbarButton" {
+  +dynamic onPressed
+  +dynamic child
+  +dynamic build()
+}
+
+
+@enduml

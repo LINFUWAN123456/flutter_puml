@@ -1,0 +1,23 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::node.dart::AbstractNode" {
+  -int _depth
+  -Object? _owner
+  -AbstractNode? _parent
+  +int depth
+  +Object? owner
+  +bool attached
+  +AbstractNode? parent
+  #void redepthChild()
+  +void redepthChildren()
+  +void attach()
+  +void detach()
+  #void adoptChild()
+  #void dropChild()
+}
+
+"flutter::lib::src::foundation::node.dart::AbstractNode" o-- "flutter::lib::src::foundation::node.dart::AbstractNode"
+
+
+@enduml

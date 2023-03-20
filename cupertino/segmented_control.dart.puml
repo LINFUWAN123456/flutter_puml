@@ -1,0 +1,82 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::segmented_control.dart::CupertinoSegmentedControl" {
+  +Map<T, dynamic> children
+  +T? groupValue
+  +dynamic onValueChanged
+  +dynamic unselectedColor
+  +dynamic selectedColor
+  +dynamic borderColor
+  +dynamic pressedColor
+  +dynamic padding
+  +dynamic createState()
+}
+
+class "flutter::lib::src::cupertino::segmented_control.dart::_SegmentedControlState" {
+  -T? _pressedKey
+  -List<dynamic> _selectionControllers
+  -List<dynamic> _childTweens
+  -dynamic _forwardBackgroundColorTween
+  -dynamic _reverseBackgroundColorTween
+  -dynamic _textColorTween
+  -dynamic _selectedColor
+  -dynamic _unselectedColor
+  -dynamic _borderColor
+  -dynamic _pressedColor
+  +dynamic createAnimationController()
+  -bool _updateColors()
+  -void _updateAnimationControllers()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _onTapDown()
+  -void _onTapCancel()
+  -void _onTap()
+  +dynamic getTextColor()
+  +dynamic getBackgroundColor()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::segmented_control.dart::_SegmentedControlRenderWidget" {
+  +int? selectedIndex
+  +int? pressedIndex
+  +List<dynamic> backgroundColors
+  +dynamic borderColor
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::cupertino::segmented_control.dart::_SegmentedControlContainerBoxParentData" {
+  +dynamic surroundingRect
+}
+
+class "flutter::lib::src::cupertino::segmented_control.dart::_RenderSegmentedControl" {
+  -int? _selectedIndex
+  -int? _pressedIndex
+  -dynamic _textDirection
+  -List<dynamic> _backgroundColors
+  -dynamic _borderColor
+  +int? selectedIndex
+  +int? pressedIndex
+  +dynamic textDirection
+  +List<dynamic> backgroundColors
+  +dynamic borderColor
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  +void setupParentData()
+  -void _layoutRects()
+  -dynamic _calculateChildSize()
+  -dynamic _computeOverallSizeFromChildSize()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void paint()
+  -void _paintChild()
+  +bool hitTestChildren()
+}
+
+
+@enduml

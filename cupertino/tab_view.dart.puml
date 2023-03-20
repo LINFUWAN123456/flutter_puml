@@ -1,0 +1,28 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::tab_view.dart::CupertinoTabView" {
+  +dynamic builder
+  +dynamic navigatorKey
+  +String? defaultTitle
+  +Map<String, dynamic>? routes
+  +dynamic onGenerateRoute
+  +dynamic onUnknownRoute
+  +List<dynamic> navigatorObservers
+  +String? restorationScopeId
+  +dynamic createState()
+}
+
+class "flutter::lib::src::cupertino::tab_view.dart::_CupertinoTabViewState" {
+  -dynamic _heroController
+  -List<dynamic> _navigatorObservers
+  +void initState()
+  +void didUpdateWidget()
+  -void _updateObservers()
+  +dynamic build()
+  -dynamic _onGenerateRoute()
+  -dynamic _onUnknownRoute()
+}
+
+
+@enduml

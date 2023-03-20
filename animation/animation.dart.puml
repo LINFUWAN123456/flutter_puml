@@ -1,0 +1,33 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::animation::animation.dart::Animation" {
+  +AnimationStatus status
+  +T value
+  +bool isDismissed
+  +bool isCompleted
+  +void addListener()
+  +void removeListener()
+  +void addStatusListener()
+  +void removeStatusListener()
+  +Animation<U> drive()
+  +String toString()
+  +String toStringDetails()
+}
+
+"flutter::lib::src::animation::animation.dart::Animation" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+
+class "flutter::lib::src::animation::animation.dart::AnimationStatus" {
+  +int index
+  {static} +List<AnimationStatus> values
+  {static} +AnimationStatus dismissed
+  {static} +AnimationStatus forward
+  {static} +AnimationStatus reverse
+  {static} +AnimationStatus completed
+}
+
+"flutter::lib::src::animation::animation.dart::AnimationStatus" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"dart::core::Enum" <|-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+
+
+@enduml

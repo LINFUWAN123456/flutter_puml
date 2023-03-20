@@ -1,0 +1,303 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::actions.dart::Intent" {
+  {static} +DoNothingIntent doNothing
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" o-- "flutter::lib::src::widgets::actions.dart::DoNothingIntent"
+
+abstract class "flutter::lib::src::widgets::actions.dart::Action" {
+  -dynamic _listeners
+  -Action<T>? _currentCallingAction
+  +Action<T>? callingAction
+  +Type intentType
+  +bool isActionEnabled
+  -void _updateCallingAction()
+  +bool isEnabled()
+  +bool consumesKey()
+  +Object? invoke()
+  +void addActionListener()
+  +void removeActionListener()
+  +void notifyActionListeners()
+  -Action<T> _makeOverridableAction()
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" o-- "flutter::lib::src::widgets::actions.dart::Action<T>"
+
+class "flutter::lib::src::widgets::actions.dart::ActionListener" {
+  +void Function(Action<Intent>) listener
+  +Action<Intent> action
+  +Widget child
+  +State<ActionListener> createState()
+}
+
+"flutter::lib::src::widgets::actions.dart::ActionListener" o-- "flutter::lib::src::widgets::actions.dart::void Function(Action<Intent>)"
+"flutter::lib::src::widgets::actions.dart::ActionListener" o-- "flutter::lib::src::widgets::actions.dart::Action<Intent>"
+"flutter::lib::src::widgets::actions.dart::ActionListener" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::actions.dart::ActionListener"
+
+class "flutter::lib::src::widgets::actions.dart::_ActionListenerState" {
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::actions.dart::_ActionListenerState"
+
+abstract class "flutter::lib::src::widgets::actions.dart::ContextAction" {
+  +Object? invoke()
+  -ContextAction<T> _makeOverridableAction()
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::actions.dart::ContextAction"
+
+class "flutter::lib::src::widgets::actions.dart::CallbackAction" {
+  +Object? Function(T) onInvoke
+  +Object? invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::CallbackAction" o-- "flutter::lib::src::widgets::actions.dart::Object Function(T)"
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::actions.dart::CallbackAction"
+
+class "flutter::lib::src::widgets::actions.dart::ActionDispatcher" {
+  +Object? invokeAction()
+}
+
+class "flutter::lib::src::widgets::actions.dart::Actions" {
+  +ActionDispatcher? dispatcher
+  +Map<Type, Action<Intent>> actions
+  +Widget child
+  {static} -bool _visitActionsAncestors()
+  {static} -ActionDispatcher _findDispatcher()
+  {static} +dynamic handler()
+  {static} +Action<T> find()
+  {static} +Action<T>? maybeFind()
+  {static} -Action<T>? _maybeFindWithoutDependingOn()
+  {static} -Action<T>? _castAction()
+  {static} +ActionDispatcher of()
+  {static} +Object? invoke()
+  {static} +Object? maybeInvoke()
+  +State<Actions> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::actions.dart::Actions" o-- "flutter::lib::src::widgets::actions.dart::ActionDispatcher"
+"flutter::lib::src::widgets::actions.dart::Actions" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::actions.dart::Actions"
+
+class "flutter::lib::src::widgets::actions.dart::_ActionsState" {
+  +Set<Action<Intent>>? listenedActions
+  +Object rebuildKey
+  +void initState()
+  -void _handleActionChanged()
+  -void _updateActionListeners()
+  +void didUpdateWidget()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::actions.dart::_ActionsState"
+
+class "flutter::lib::src::widgets::actions.dart::_ActionsMarker" {
+  +ActionDispatcher? dispatcher
+  +Map<Type, Action<Intent>> actions
+  +Object rebuildKey
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::actions.dart::_ActionsMarker" o-- "flutter::lib::src::widgets::actions.dart::ActionDispatcher"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::actions.dart::_ActionsMarker"
+
+class "flutter::lib::src::widgets::actions.dart::FocusableActionDetector" {
+  +bool enabled
+  +FocusNode? focusNode
+  +bool autofocus
+  +bool descendantsAreFocusable
+  +bool descendantsAreTraversable
+  +Map<Type, Action<Intent>>? actions
+  +Map<ShortcutActivator, Intent>? shortcuts
+  +dynamic onShowFocusHighlight
+  +dynamic onShowHoverHighlight
+  +dynamic onFocusChange
+  +dynamic mouseCursor
+  +Widget child
+  +State<FocusableActionDetector> createState()
+}
+
+"flutter::lib::src::widgets::actions.dart::FocusableActionDetector" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::actions.dart::FocusableActionDetector" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::actions.dart::FocusableActionDetector"
+
+class "flutter::lib::src::widgets::actions.dart::_FocusableActionDetectorState" {
+  -bool _canShowHighlight
+  -bool _hovering
+  -bool _focused
+  -GlobalKey<State<StatefulWidget>> _mouseRegionKey
+  -bool _canRequestFocus
+  +void initState()
+  +void dispose()
+  -void _updateHighlightMode()
+  -void _handleFocusHighlightModeChange()
+  -void _handleMouseEnter()
+  -void _handleMouseExit()
+  -void _handleFocusChange()
+  -void _mayTriggerCallback()
+  +void didUpdateWidget()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::actions.dart::_FocusableActionDetectorState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::actions.dart::_FocusableActionDetectorState"
+
+class "flutter::lib::src::widgets::actions.dart::VoidCallbackIntent" {
+  +dynamic callback
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::actions.dart::VoidCallbackIntent"
+
+class "flutter::lib::src::widgets::actions.dart::VoidCallbackAction" {
+  +Object? invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::actions.dart::VoidCallbackAction"
+
+class "flutter::lib::src::widgets::actions.dart::DoNothingIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::actions.dart::DoNothingIntent"
+
+class "flutter::lib::src::widgets::actions.dart::DoNothingAndStopPropagationIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::actions.dart::DoNothingAndStopPropagationIntent"
+
+class "flutter::lib::src::widgets::actions.dart::DoNothingAction" {
+  -bool _consumesKey
+  +bool consumesKey()
+  +void invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::actions.dart::DoNothingAction"
+
+class "flutter::lib::src::widgets::actions.dart::ActivateIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::actions.dart::ActivateIntent"
+
+class "flutter::lib::src::widgets::actions.dart::ButtonActivateIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::actions.dart::ButtonActivateIntent"
+
+abstract class "flutter::lib::src::widgets::actions.dart::ActivateAction" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::actions.dart::ActivateAction"
+
+class "flutter::lib::src::widgets::actions.dart::SelectIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::actions.dart::SelectIntent"
+
+abstract class "flutter::lib::src::widgets::actions.dart::SelectAction" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::actions.dart::SelectAction"
+
+class "flutter::lib::src::widgets::actions.dart::DismissIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::actions.dart::DismissIntent"
+
+abstract class "flutter::lib::src::widgets::actions.dart::DismissAction" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::actions.dart::DismissAction"
+
+class "flutter::lib::src::widgets::actions.dart::PrioritizedIntents" {
+  +List<Intent> orderedIntents
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::actions.dart::PrioritizedIntents"
+
+class "flutter::lib::src::widgets::actions.dart::PrioritizedAction" {
+  -Action<dynamic> _selectedAction
+  -Intent _selectedIntent
+  +bool isEnabled()
+  +void invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::PrioritizedAction" o-- "flutter::lib::src::widgets::actions.dart::Action<dynamic>"
+"flutter::lib::src::widgets::actions.dart::PrioritizedAction" o-- "flutter::lib::src::widgets::actions.dart::Intent"
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::actions.dart::PrioritizedAction"
+
+class "flutter::lib::src::widgets::actions.dart::_OverridableAction" {
+  +Action<T> defaultAction
+  +BuildContext lookupContext
+  +Object? invokeDefaultAction()
+  -ContextAction<T> _makeOverridableAction()
+}
+
+"flutter::lib::src::widgets::actions.dart::_OverridableAction" o-- "flutter::lib::src::widgets::actions.dart::Action<T>"
+"flutter::lib::src::widgets::actions.dart::_OverridableAction" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::actions.dart::ContextAction" <|-- "flutter::lib::src::widgets::actions.dart::_OverridableAction"
+"flutter::lib::src::widgets::actions.dart::_OverridableActionMixin" <|-- "flutter::lib::src::widgets::actions.dart::_OverridableAction"
+
+class "flutter::lib::src::widgets::actions.dart::_OverridableContextAction" {
+  +ContextAction<T> defaultAction
+  +BuildContext lookupContext
+  -Object? _invokeOverride()
+  +Object? invokeDefaultAction()
+  -ContextAction<T> _makeOverridableAction()
+}
+
+"flutter::lib::src::widgets::actions.dart::_OverridableContextAction" o-- "flutter::lib::src::widgets::actions.dart::ContextAction<T>"
+"flutter::lib::src::widgets::actions.dart::_OverridableContextAction" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::actions.dart::ContextAction" <|-- "flutter::lib::src::widgets::actions.dart::_OverridableContextAction"
+"flutter::lib::src::widgets::actions.dart::_OverridableActionMixin" <|-- "flutter::lib::src::widgets::actions.dart::_OverridableContextAction"
+
+class "flutter::lib::src::widgets::actions.dart::_ContextActionToActionAdapter" {
+  +BuildContext invokeContext
+  +ContextAction<T> action
+  +Action<T>? callingAction
+  +bool isActionEnabled
+  -void _updateCallingAction()
+  +bool isEnabled()
+  +bool consumesKey()
+  +void addActionListener()
+  +void removeActionListener()
+  +void notifyActionListeners()
+  +Object? invoke()
+}
+
+"flutter::lib::src::widgets::actions.dart::_ContextActionToActionAdapter" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+"flutter::lib::src::widgets::actions.dart::_ContextActionToActionAdapter" o-- "flutter::lib::src::widgets::actions.dart::ContextAction<T>"
+"flutter::lib::src::widgets::actions.dart::_ContextActionToActionAdapter" o-- "flutter::lib::src::widgets::actions.dart::Action<T>"
+"flutter::lib::src::widgets::actions.dart::Action" <|-- "flutter::lib::src::widgets::actions.dart::_ContextActionToActionAdapter"
+
+abstract class "flutter::lib::src::widgets::actions.dart::_OverridableActionMixin" {
+  +bool debugAssertMutuallyRecursive
+  +bool debugAssertIsActionEnabledMutuallyRecursive
+  +bool debugAssertIsEnabledMutuallyRecursive
+  +bool debugAssertConsumeKeyMutuallyRecursive
+  +Action<T> defaultAction
+  +BuildContext lookupContext
+  +bool isActionEnabled
+  +Object? invokeDefaultAction()
+  +Action<T>? getOverrideAction()
+  -void _updateCallingAction()
+  -Object? _invokeOverride()
+  +Object? invoke()
+  +bool isOverrideActionEnabled()
+  +bool isEnabled()
+  +bool consumesKey()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::actions.dart::_OverridableActionMixin" o-- "flutter::lib::src::widgets::actions.dart::Action<T>"
+"flutter::lib::src::widgets::actions.dart::_OverridableActionMixin" o-- "flutter::lib::src::widgets::framework.dart::BuildContext"
+
+
+@enduml

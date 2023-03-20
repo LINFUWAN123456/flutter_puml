@@ -1,0 +1,119 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::focus_scope.dart::Focus" {
+  +Widget child
+  +FocusNode? focusNode
+  +bool autofocus
+  +dynamic onFocusChange
+  -KeyEventResult Function(FocusNode, dynamic)? _onKeyEvent
+  -KeyEventResult Function(FocusNode, dynamic)? _onKey
+  -bool? _canRequestFocus
+  -bool? _skipTraversal
+  -bool? _descendantsAreFocusable
+  -bool? _descendantsAreTraversable
+  +bool includeSemantics
+  -String? _debugLabel
+  -bool _usingExternalFocus
+  +KeyEventResult Function(FocusNode, dynamic)? onKeyEvent
+  +KeyEventResult Function(FocusNode, dynamic)? onKey
+  +bool canRequestFocus
+  +bool skipTraversal
+  +bool descendantsAreFocusable
+  +bool descendantsAreTraversable
+  +String? debugLabel
+  {static} +FocusNode of()
+  {static} +FocusNode? maybeOf()
+  {static} +bool isAt()
+  +void debugFillProperties()
+  +State<Focus> createState()
+}
+
+"flutter::lib::src::widgets::focus_scope.dart::Focus" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::focus_scope.dart::Focus" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::focus_scope.dart::Focus" o-- "flutter::lib::src::widgets::focus_manager.dart::KeyEventResult Function(FocusNode, dynamic)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::focus_scope.dart::Focus"
+
+class "flutter::lib::src::widgets::focus_scope.dart::_FocusWithExternalFocusNode" {
+  -bool _usingExternalFocus
+  +KeyEventResult Function(FocusNode, dynamic)? onKeyEvent
+  +KeyEventResult Function(FocusNode, dynamic)? onKey
+  +bool canRequestFocus
+  +bool skipTraversal
+  +bool descendantsAreFocusable
+  -bool? _descendantsAreTraversable
+  +String? debugLabel
+}
+
+"flutter::lib::src::widgets::focus_scope.dart::_FocusWithExternalFocusNode" o-- "flutter::lib::src::widgets::focus_manager.dart::KeyEventResult Function(FocusNode, dynamic)"
+"flutter::lib::src::widgets::focus_scope.dart::Focus" <|-- "flutter::lib::src::widgets::focus_scope.dart::_FocusWithExternalFocusNode"
+
+class "flutter::lib::src::widgets::focus_scope.dart::_FocusState" {
+  -FocusNode? _internalNode
+  -bool _hadPrimaryFocus
+  -bool _couldRequestFocus
+  -bool _descendantsWereFocusable
+  -bool _descendantsWereTraversable
+  -bool _didAutofocus
+  -FocusAttachment? _focusAttachment
+  +FocusNode focusNode
+  +void initState()
+  -void _initNode()
+  -FocusNode _createNode()
+  +void dispose()
+  +void didChangeDependencies()
+  -void _handleAutofocus()
+  +void deactivate()
+  +void didUpdateWidget()
+  -void _handleFocusChanged()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::focus_scope.dart::_FocusState" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusNode"
+"flutter::lib::src::widgets::focus_scope.dart::_FocusState" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusAttachment"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::focus_scope.dart::_FocusState"
+
+class "flutter::lib::src::widgets::focus_scope.dart::FocusScope" {
+  {static} +FocusScopeNode of()
+  +State<Focus> createState()
+}
+
+"flutter::lib::src::widgets::focus_scope.dart::Focus" <|-- "flutter::lib::src::widgets::focus_scope.dart::FocusScope"
+
+class "flutter::lib::src::widgets::focus_scope.dart::_FocusScopeWithExternalFocusNode" {
+  -bool _usingExternalFocus
+  +KeyEventResult Function(FocusNode, dynamic)? onKeyEvent
+  +KeyEventResult Function(FocusNode, dynamic)? onKey
+  +bool canRequestFocus
+  +bool skipTraversal
+  +bool descendantsAreFocusable
+  +bool descendantsAreTraversable
+  +String? debugLabel
+}
+
+"flutter::lib::src::widgets::focus_scope.dart::_FocusScopeWithExternalFocusNode" o-- "flutter::lib::src::widgets::focus_manager.dart::KeyEventResult Function(FocusNode, dynamic)"
+"flutter::lib::src::widgets::focus_scope.dart::FocusScope" <|-- "flutter::lib::src::widgets::focus_scope.dart::_FocusScopeWithExternalFocusNode"
+
+class "flutter::lib::src::widgets::focus_scope.dart::_FocusScopeState" {
+  -FocusScopeNode _createNode()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::focus_scope.dart::_FocusState" <|-- "flutter::lib::src::widgets::focus_scope.dart::_FocusScopeState"
+
+class "flutter::lib::src::widgets::focus_scope.dart::_FocusMarker" {
+}
+
+"flutter::lib::src::widgets::inherited_notifier.dart::InheritedNotifier" <|-- "flutter::lib::src::widgets::focus_scope.dart::_FocusMarker"
+
+class "flutter::lib::src::widgets::focus_scope.dart::ExcludeFocus" {
+  +bool excluding
+  +Widget child
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::focus_scope.dart::ExcludeFocus" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::focus_scope.dart::ExcludeFocus"
+
+
+@enduml

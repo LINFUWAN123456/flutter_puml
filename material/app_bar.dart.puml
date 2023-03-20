@@ -1,0 +1,285 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::app_bar.dart::_ToolbarContainerLayout" {
+  +double toolbarHeight
+  +dynamic getConstraintsForChild()
+  +dynamic getSize()
+  +dynamic getPositionForChild()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::material::app_bar.dart::_PreferredAppBarSize" {
+  +double? toolbarHeight
+  +double? bottomHeight
+}
+
+class "flutter::lib::src::material::app_bar.dart::AppBar" {
+  +dynamic leading
+  +bool automaticallyImplyLeading
+  +dynamic title
+  +List<dynamic>? actions
+  +dynamic flexibleSpace
+  +dynamic bottom
+  +double? elevation
+  +double? scrolledUnderElevation
+  +dynamic notificationPredicate
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic shape
+  +dynamic backgroundColor
+  +dynamic foregroundColor
+  +dynamic brightness
+  +dynamic iconTheme
+  +dynamic actionsIconTheme
+  +TextTheme? textTheme
+  +bool primary
+  +bool? centerTitle
+  +bool excludeHeaderSemantics
+  +double? titleSpacing
+  +double toolbarOpacity
+  +double bottomOpacity
+  +dynamic preferredSize
+  +double? toolbarHeight
+  +double? leadingWidth
+  +bool? backwardsCompatibility
+  +dynamic toolbarTextStyle
+  +dynamic titleTextStyle
+  +dynamic systemOverlayStyle
+  {static} +double preferredHeightFor()
+  -bool _getEffectiveCenterTitle()
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::app_bar.dart::AppBar" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+
+class "flutter::lib::src::material::app_bar.dart::_AppBarState" {
+  -dynamic _scrollNotificationObserver
+  -bool _scrolledUnder
+  +void didChangeDependencies()
+  +void dispose()
+  -void _handleDrawerButton()
+  -void _handleDrawerButtonEnd()
+  -void _handleScrollNotification()
+  -dynamic _resolveColor()
+  -dynamic _systemOverlayStyleForBrightness()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::app_bar.dart::_SliverAppBarDelegate" {
+  +dynamic leading
+  +bool automaticallyImplyLeading
+  +dynamic title
+  +List<dynamic>? actions
+  +dynamic flexibleSpace
+  +dynamic bottom
+  +double? elevation
+  +double? scrolledUnderElevation
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +bool forceElevated
+  +dynamic backgroundColor
+  +dynamic foregroundColor
+  +dynamic brightness
+  +dynamic iconTheme
+  +dynamic actionsIconTheme
+  +TextTheme? textTheme
+  +bool primary
+  +bool? centerTitle
+  +bool excludeHeaderSemantics
+  +double? titleSpacing
+  +double? expandedHeight
+  +double collapsedHeight
+  +double topPadding
+  +bool floating
+  +bool pinned
+  +dynamic shape
+  +double? toolbarHeight
+  +double? leadingWidth
+  +bool? backwardsCompatibility
+  +dynamic toolbarTextStyle
+  +dynamic titleTextStyle
+  +dynamic systemOverlayStyle
+  -double _bottomHeight
+  +dynamic vsync
+  +dynamic snapConfiguration
+  +dynamic stretchConfiguration
+  +dynamic showOnScreenConfiguration
+  +double minExtent
+  +double maxExtent
+  +dynamic build()
+  +bool shouldRebuild()
+  +String toString()
+}
+
+"flutter::lib::src::material::app_bar.dart::_SliverAppBarDelegate" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+
+class "flutter::lib::src::material::app_bar.dart::SliverAppBar" {
+  +dynamic leading
+  +bool automaticallyImplyLeading
+  +dynamic title
+  +List<dynamic>? actions
+  +dynamic flexibleSpace
+  +dynamic bottom
+  +double? elevation
+  +double? scrolledUnderElevation
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +bool forceElevated
+  +dynamic backgroundColor
+  +dynamic foregroundColor
+  +dynamic brightness
+  +dynamic iconTheme
+  +dynamic actionsIconTheme
+  +TextTheme? textTheme
+  +bool primary
+  +bool? centerTitle
+  +bool excludeHeaderSemantics
+  +double? titleSpacing
+  +double? collapsedHeight
+  +double? expandedHeight
+  +bool floating
+  +bool pinned
+  +dynamic shape
+  +bool snap
+  +bool stretch
+  +double stretchTriggerOffset
+  +dynamic onStretchTrigger
+  +double toolbarHeight
+  +double? leadingWidth
+  +bool? backwardsCompatibility
+  +dynamic toolbarTextStyle
+  +dynamic titleTextStyle
+  +dynamic systemOverlayStyle
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::app_bar.dart::SliverAppBar" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+
+class "flutter::lib::src::material::app_bar.dart::_SliverAppBarState" {
+  -dynamic _snapConfiguration
+  -dynamic _stretchConfiguration
+  -dynamic _showOnScreenConfiguration
+  -void _updateSnapConfiguration()
+  -void _updateStretchConfiguration()
+  +void initState()
+  +void didUpdateWidget()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::app_bar.dart::_AppBarTitleBox" {
+  +_RenderAppBarTitleBox createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::material::app_bar.dart::_RenderAppBarTitleBox" {
+  +dynamic computeDryLayout()
+  +void performLayout()
+}
+
+class "flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleSpace" {
+  +dynamic title
+  +_ScrollUnderFlexibleVariant variant
+  +bool? centerCollapsedTitle
+  +bool primary
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleSpace" o-- "flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleVariant"
+
+class "flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleSpaceState" {
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::app_bar.dart::_AppBarDefaultsM2" {
+  +dynamic context
+  -ThemeData _theme
+  -ColorScheme _colors
+  +dynamic backgroundColor
+  +dynamic foregroundColor
+  +dynamic iconTheme
+  +dynamic toolbarTextStyle
+  +dynamic titleTextStyle
+}
+
+"flutter::lib::src::material::app_bar.dart::_AppBarDefaultsM2" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+"flutter::lib::src::material::app_bar.dart::_AppBarDefaultsM2" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::app_bar_theme.dart::AppBarTheme" <|-- "flutter::lib::src::material::app_bar.dart::_AppBarDefaultsM2"
+
+class "flutter::lib::src::material::app_bar.dart::_AppBarDefaultsM3" {
+  +dynamic context
+  -ThemeData _theme
+  -ColorScheme _colors
+  -TextTheme _textTheme
+  +dynamic backgroundColor
+  +dynamic foregroundColor
+  +dynamic surfaceTintColor
+  +dynamic iconTheme
+  +dynamic actionsIconTheme
+  +dynamic toolbarTextStyle
+  +dynamic titleTextStyle
+}
+
+"flutter::lib::src::material::app_bar.dart::_AppBarDefaultsM3" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+"flutter::lib::src::material::app_bar.dart::_AppBarDefaultsM3" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::app_bar.dart::_AppBarDefaultsM3" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+"flutter::lib::src::material::app_bar_theme.dart::AppBarTheme" <|-- "flutter::lib::src::material::app_bar.dart::_AppBarDefaultsM3"
+
+class "flutter::lib::src::material::app_bar.dart::_MediumScrollUnderFlexibleConfig" {
+  +dynamic context
+  -ThemeData _theme
+  -ColorScheme _colors
+  -TextTheme _textTheme
+  {static} +double collapsedHeight
+  {static} +double expandedHeight
+  +dynamic collapsedTextStyle
+  +dynamic expandedTextStyle
+  +dynamic collapsedTitlePadding
+  +dynamic collapsedCenteredTitlePadding
+  +dynamic expandedTitlePadding
+}
+
+"flutter::lib::src::material::app_bar.dart::_MediumScrollUnderFlexibleConfig" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+"flutter::lib::src::material::app_bar.dart::_MediumScrollUnderFlexibleConfig" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::app_bar.dart::_MediumScrollUnderFlexibleConfig" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+"flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleConfig" <|-- "flutter::lib::src::material::app_bar.dart::_MediumScrollUnderFlexibleConfig"
+
+class "flutter::lib::src::material::app_bar.dart::_LargeScrollUnderFlexibleConfig" {
+  +dynamic context
+  -ThemeData _theme
+  -ColorScheme _colors
+  -TextTheme _textTheme
+  {static} +double collapsedHeight
+  {static} +double expandedHeight
+  +dynamic collapsedTextStyle
+  +dynamic expandedTextStyle
+  +dynamic collapsedTitlePadding
+  +dynamic collapsedCenteredTitlePadding
+  +dynamic expandedTitlePadding
+}
+
+"flutter::lib::src::material::app_bar.dart::_LargeScrollUnderFlexibleConfig" o-- "flutter::lib::src::material::theme_data.dart::ThemeData"
+"flutter::lib::src::material::app_bar.dart::_LargeScrollUnderFlexibleConfig" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::app_bar.dart::_LargeScrollUnderFlexibleConfig" o-- "flutter::lib::src::material::text_theme.dart::TextTheme"
+"flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleConfig" <|-- "flutter::lib::src::material::app_bar.dart::_LargeScrollUnderFlexibleConfig"
+
+class "flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleVariant" {
+  +int index
+  {static} +List<_ScrollUnderFlexibleVariant> values
+  {static} +_ScrollUnderFlexibleVariant medium
+  {static} +_ScrollUnderFlexibleVariant large
+}
+
+"flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleVariant" o-- "flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleVariant"
+"dart::core::Enum" <|-- "flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleVariant"
+
+abstract class "flutter::lib::src::material::app_bar.dart::_ScrollUnderFlexibleConfig" {
+  +dynamic collapsedTextStyle
+  +dynamic expandedTextStyle
+  +dynamic collapsedTitlePadding
+  +dynamic collapsedCenteredTitlePadding
+  +dynamic expandedTitlePadding
+}
+
+
+@enduml

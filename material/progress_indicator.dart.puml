@@ -1,0 +1,133 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::material::progress_indicator.dart::ProgressIndicator" {
+  +double? value
+  +dynamic backgroundColor
+  +dynamic color
+  +dynamic valueColor
+  +String? semanticsLabel
+  +String? semanticsValue
+  -dynamic _getValueColor()
+  +void debugFillProperties()
+  -dynamic _buildSemanticsWrapper()
+}
+
+class "flutter::lib::src::material::progress_indicator.dart::_LinearProgressIndicatorPainter" {
+  +dynamic backgroundColor
+  +dynamic valueColor
+  +double? value
+  +double animationValue
+  +dynamic textDirection
+  {static} +dynamic line1Head
+  {static} +dynamic line1Tail
+  {static} +dynamic line2Head
+  {static} +dynamic line2Tail
+  +void paint()
+  +bool shouldRepaint()
+}
+
+class "flutter::lib::src::material::progress_indicator.dart::LinearProgressIndicator" {
+  +double? minHeight
+  +dynamic backgroundColor
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::progress_indicator.dart::ProgressIndicator" <|-- "flutter::lib::src::material::progress_indicator.dart::LinearProgressIndicator"
+
+class "flutter::lib::src::material::progress_indicator.dart::_LinearProgressIndicatorState" {
+  -dynamic _controller
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -dynamic _buildIndicator()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::progress_indicator.dart::_CircularProgressIndicatorPainter" {
+  +dynamic backgroundColor
+  +dynamic valueColor
+  +double? value
+  +double headValue
+  +double tailValue
+  +double offsetValue
+  +double rotationValue
+  +double strokeWidth
+  +double arcStart
+  +double arcSweep
+  {static} -double _twoPi
+  {static} -double _epsilon
+  {static} -double _sweep
+  {static} -double _startAngle
+  +void paint()
+  +bool shouldRepaint()
+}
+
+class "flutter::lib::src::material::progress_indicator.dart::CircularProgressIndicator" {
+  -_ActivityIndicatorType _indicatorType
+  +double strokeWidth
+  +dynamic backgroundColor
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::progress_indicator.dart::CircularProgressIndicator" o-- "flutter::lib::src::material::progress_indicator.dart::_ActivityIndicatorType"
+"flutter::lib::src::material::progress_indicator.dart::ProgressIndicator" <|-- "flutter::lib::src::material::progress_indicator.dart::CircularProgressIndicator"
+
+class "flutter::lib::src::material::progress_indicator.dart::_CircularProgressIndicatorState" {
+  {static} -int _pathCount
+  {static} -int _rotationCount
+  {static} -dynamic _strokeHeadTween
+  {static} -dynamic _strokeTailTween
+  {static} -dynamic _offsetTween
+  {static} -dynamic _rotationTween
+  -dynamic _controller
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -dynamic _buildCupertinoIndicator()
+  -dynamic _buildMaterialIndicator()
+  -dynamic _buildAnimation()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::progress_indicator.dart::_RefreshProgressIndicatorPainter" {
+  +double arrowheadScale
+  +void paintArrowhead()
+  +void paint()
+}
+
+"flutter::lib::src::material::progress_indicator.dart::_CircularProgressIndicatorPainter" <|-- "flutter::lib::src::material::progress_indicator.dart::_RefreshProgressIndicatorPainter"
+
+class "flutter::lib::src::material::progress_indicator.dart::RefreshProgressIndicator" {
+  {static} +double defaultStrokeWidth
+  +dynamic backgroundColor
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::progress_indicator.dart::CircularProgressIndicator" <|-- "flutter::lib::src::material::progress_indicator.dart::RefreshProgressIndicator"
+
+class "flutter::lib::src::material::progress_indicator.dart::_RefreshProgressIndicatorState" {
+  {static} -double _indicatorSize
+  {static} -double _strokeHeadInterval
+  -dynamic _convertTween
+  -dynamic _additionalRotationTween
+  -double? _lastValue
+  +dynamic build()
+  -dynamic _buildAnimation()
+  -dynamic _buildMaterialIndicator()
+}
+
+"flutter::lib::src::material::progress_indicator.dart::_CircularProgressIndicatorState" <|-- "flutter::lib::src::material::progress_indicator.dart::_RefreshProgressIndicatorState"
+
+class "flutter::lib::src::material::progress_indicator.dart::_ActivityIndicatorType" {
+  +int index
+  {static} +List<_ActivityIndicatorType> values
+  {static} +_ActivityIndicatorType material
+  {static} +_ActivityIndicatorType adaptive
+}
+
+"flutter::lib::src::material::progress_indicator.dart::_ActivityIndicatorType" o-- "flutter::lib::src::material::progress_indicator.dart::_ActivityIndicatorType"
+"dart::core::Enum" <|-- "flutter::lib::src::material::progress_indicator.dart::_ActivityIndicatorType"
+
+
+@enduml

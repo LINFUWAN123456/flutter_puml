@@ -1,0 +1,127 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::overlay.dart::OverlayEntry" {
+  +Widget Function(BuildContext) builder
+  -bool _opaque
+  -bool _maintainState
+  -dynamic _overlayStateMounted
+  -OverlayState? _overlay
+  -GlobalKey<_OverlayEntryWidgetState> _key
+  -bool _disposedByOwner
+  +bool opaque
+  +bool maintainState
+  +bool mounted
+  +void addListener()
+  +void removeListener()
+  +void remove()
+  +void markNeedsBuild()
+  -void _didUnmount()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::overlay.dart::OverlayEntry" o-- "flutter::lib::src::widgets::framework.dart::Widget Function(BuildContext)"
+"flutter::lib::src::widgets::overlay.dart::OverlayEntry" o-- "flutter::lib::src::widgets::overlay.dart::OverlayState"
+"flutter::lib::src::widgets::overlay.dart::OverlayEntry" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<_OverlayEntryWidgetState>"
+
+class "flutter::lib::src::widgets::overlay.dart::_OverlayEntryWidget" {
+  +OverlayEntry entry
+  +bool tickerEnabled
+  +_OverlayEntryWidgetState createState()
+}
+
+"flutter::lib::src::widgets::overlay.dart::_OverlayEntryWidget" o-- "flutter::lib::src::widgets::overlay.dart::OverlayEntry"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::overlay.dart::_OverlayEntryWidget"
+
+class "flutter::lib::src::widgets::overlay.dart::_OverlayEntryWidgetState" {
+  +void initState()
+  +void dispose()
+  +Widget build()
+  -void _markNeedsBuild()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::overlay.dart::_OverlayEntryWidgetState"
+
+class "flutter::lib::src::widgets::overlay.dart::Overlay" {
+  +List<OverlayEntry> initialEntries
+  +dynamic clipBehavior
+  {static} +OverlayState? of()
+  +OverlayState createState()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::overlay.dart::Overlay"
+
+class "flutter::lib::src::widgets::overlay.dart::OverlayState" {
+  -List<OverlayEntry> _entries
+  +void initState()
+  -int _insertionIndex()
+  +void insert()
+  +void insertAll()
+  -bool _debugVerifyInsertPosition()
+  +void rearrange()
+  -void _markDirty()
+  +bool debugIsVisible()
+  -void _didChangeEntryOpacity()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::overlay.dart::OverlayState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::overlay.dart::OverlayState"
+
+class "flutter::lib::src::widgets::overlay.dart::_Theatre" {
+  +int skipCount
+  +dynamic clipBehavior
+  +_TheatreElement createElement()
+  +_RenderTheatre createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::overlay.dart::_Theatre"
+
+class "flutter::lib::src::widgets::overlay.dart::_TheatreElement" {
+  +_RenderTheatre renderObject
+  +void debugVisitOnstageChildren()
+}
+
+"flutter::lib::src::widgets::overlay.dart::_TheatreElement" o-- "flutter::lib::src::widgets::overlay.dart::_RenderTheatre"
+"flutter::lib::src::widgets::framework.dart::MultiChildRenderObjectElement" <|-- "flutter::lib::src::widgets::overlay.dart::_TheatreElement"
+
+class "flutter::lib::src::widgets::overlay.dart::_RenderTheatre" {
+  -bool _hasVisualOverflow
+  -dynamic _resolvedAlignment
+  -dynamic _textDirection
+  -int _skipCount
+  -dynamic _clipBehavior
+  -dynamic _clipRectLayer
+  +dynamic textDirection
+  +int skipCount
+  +dynamic clipBehavior
+  -dynamic _firstOnstageChild
+  -dynamic _lastOnstageChild
+  -int _onstageChildCount
+  +bool sizedByParent
+  +void setupParentData()
+  -void _resolve()
+  -void _markNeedResolution()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +bool hitTestChildren()
+  +void paintStack()
+  +void paint()
+  +void dispose()
+  +void visitChildrenForSemantics()
+  +dynamic describeApproximatePaintClip()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+}
+
+
+@enduml

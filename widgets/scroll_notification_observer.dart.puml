@@ -1,0 +1,47 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scroll_notification_observer.dart::_ScrollNotificationObserverScope" {
+  -ScrollNotificationObserverState _scrollNotificationObserverState
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::scroll_notification_observer.dart::_ScrollNotificationObserverScope" o-- "flutter::lib::src::widgets::scroll_notification_observer.dart::ScrollNotificationObserverState"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::scroll_notification_observer.dart::_ScrollNotificationObserverScope"
+
+class "flutter::lib::src::widgets::scroll_notification_observer.dart::_ListenerEntry" {
+  +void Function(ScrollNotification) listener
+}
+
+"flutter::lib::src::widgets::scroll_notification_observer.dart::_ListenerEntry" o-- "flutter::lib::src::widgets::scroll_notification_observer.dart::void Function(ScrollNotification)"
+"dart::collection::LinkedListEntry" <|-- "flutter::lib::src::widgets::scroll_notification_observer.dart::_ListenerEntry"
+
+class "flutter::lib::src::widgets::scroll_notification_observer.dart::ScrollNotificationObserver" {
+  +Widget child
+  {static} +ScrollNotificationObserverState? of()
+  +ScrollNotificationObserverState createState()
+}
+
+"flutter::lib::src::widgets::scroll_notification_observer.dart::ScrollNotificationObserver" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::scroll_notification_observer.dart::ScrollNotificationObserver"
+
+class "flutter::lib::src::widgets::scroll_notification_observer.dart::ScrollNotificationObserverState" {
+  -LinkedList<_ListenerEntry>? _listeners
+  -bool _debugAssertNotDisposed()
+  +void addListener()
+  +void removeListener()
+  -void _notifyListeners()
+  +Widget build()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::scroll_notification_observer.dart::ScrollNotificationObserverState" o-- "dart::collection::LinkedList<_ListenerEntry>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::scroll_notification_observer.dart::ScrollNotificationObserverState"
+
+class "flutter::lib::src::widgets::scroll_notification_observer.dart::_ConvertedScrollMetricsNotification" {
+}
+
+"flutter::lib::src::widgets::scroll_notification.dart::ScrollUpdateNotification" <|-- "flutter::lib::src::widgets::scroll_notification_observer.dart::_ConvertedScrollMetricsNotification"
+
+
+@enduml

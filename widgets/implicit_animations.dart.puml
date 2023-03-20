@@ -1,0 +1,395 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::implicit_animations.dart::BoxConstraintsTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::widgets::implicit_animations.dart::DecorationTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::widgets::implicit_animations.dart::EdgeInsetsTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::widgets::implicit_animations.dart::EdgeInsetsGeometryTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::widgets::implicit_animations.dart::BorderRadiusTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::widgets::implicit_animations.dart::BorderTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::widgets::implicit_animations.dart::Matrix4Tween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::widgets::implicit_animations.dart::TextStyleTween" {
+  +dynamic lerp()
+}
+
+abstract class "flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" {
+  +dynamic curve
+  +Duration duration
+  +dynamic onEnd
+  +ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget"
+
+abstract class "flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState" {
+  -dynamic _controller
+  -dynamic _animation
+  +dynamic controller
+  +dynamic animation
+  +void initState()
+  +void didUpdateWidget()
+  -dynamic _createCurve()
+  +void dispose()
+  -bool _shouldAnimateTween()
+  -void _updateTween()
+  -bool _constructTweens()
+  +void forEachTween()
+  +void didUpdateTweens()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState"
+"flutter::lib::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState"
+
+abstract class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" {
+  +void initState()
+  -void _handleAnimationChanged()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedContainer" {
+  +Widget? child
+  +dynamic alignment
+  +dynamic padding
+  +dynamic decoration
+  +dynamic foregroundDecoration
+  +dynamic constraints
+  +dynamic margin
+  +dynamic transform
+  +dynamic transformAlignment
+  +dynamic clipBehavior
+  +AnimatedWidgetBaseState<AnimatedContainer> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedContainer" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedContainer"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedContainerState" {
+  -dynamic _alignment
+  -EdgeInsetsGeometryTween? _padding
+  -DecorationTween? _decoration
+  -DecorationTween? _foregroundDecoration
+  -BoxConstraintsTween? _constraints
+  -EdgeInsetsGeometryTween? _margin
+  -Matrix4Tween? _transform
+  -dynamic _transformAlignment
+  +void forEachTween()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::_AnimatedContainerState" o-- "flutter::lib::src::widgets::implicit_animations.dart::EdgeInsetsGeometryTween"
+"flutter::lib::src::widgets::implicit_animations.dart::_AnimatedContainerState" o-- "flutter::lib::src::widgets::implicit_animations.dart::DecorationTween"
+"flutter::lib::src::widgets::implicit_animations.dart::_AnimatedContainerState" o-- "flutter::lib::src::widgets::implicit_animations.dart::BoxConstraintsTween"
+"flutter::lib::src::widgets::implicit_animations.dart::_AnimatedContainerState" o-- "flutter::lib::src::widgets::implicit_animations.dart::Matrix4Tween"
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedContainerState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedPadding" {
+  +dynamic padding
+  +Widget? child
+  +AnimatedWidgetBaseState<AnimatedPadding> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedPadding" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedPadding"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPaddingState" {
+  -EdgeInsetsGeometryTween? _padding
+  +void forEachTween()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPaddingState" o-- "flutter::lib::src::widgets::implicit_animations.dart::EdgeInsetsGeometryTween"
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPaddingState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedAlign" {
+  +dynamic alignment
+  +Widget? child
+  +double? heightFactor
+  +double? widthFactor
+  +AnimatedWidgetBaseState<AnimatedAlign> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedAlign" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedAlign"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedAlignState" {
+  -dynamic _alignment
+  -dynamic _heightFactorTween
+  -dynamic _widthFactorTween
+  +void forEachTween()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedAlignState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedPositioned" {
+  +Widget child
+  +double? left
+  +double? top
+  +double? right
+  +double? bottom
+  +double? width
+  +double? height
+  +AnimatedWidgetBaseState<AnimatedPositioned> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedPositioned" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedPositioned"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPositionedState" {
+  -dynamic _left
+  -dynamic _top
+  -dynamic _right
+  -dynamic _bottom
+  -dynamic _width
+  -dynamic _height
+  +void forEachTween()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPositionedState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedPositionedDirectional" {
+  +Widget child
+  +double? start
+  +double? top
+  +double? end
+  +double? bottom
+  +double? width
+  +double? height
+  +AnimatedWidgetBaseState<AnimatedPositionedDirectional> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedPositionedDirectional" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedPositionedDirectional"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPositionedDirectionalState" {
+  -dynamic _start
+  -dynamic _top
+  -dynamic _end
+  -dynamic _bottom
+  -dynamic _width
+  -dynamic _height
+  +void forEachTween()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPositionedDirectionalState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedScale" {
+  +Widget? child
+  +double scale
+  +dynamic alignment
+  +dynamic filterQuality
+  +ImplicitlyAnimatedWidgetState<AnimatedScale> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedScale" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedScale"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedScaleState" {
+  -dynamic _scale
+  -dynamic _scaleAnimation
+  +void forEachTween()
+  +void didUpdateTweens()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedScaleState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedRotation" {
+  +Widget? child
+  +double turns
+  +dynamic alignment
+  +dynamic filterQuality
+  +ImplicitlyAnimatedWidgetState<AnimatedRotation> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedRotation" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedRotation"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedRotationState" {
+  -dynamic _turns
+  -dynamic _turnsAnimation
+  +void forEachTween()
+  +void didUpdateTweens()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedRotationState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedSlide" {
+  +Widget? child
+  +dynamic offset
+  +ImplicitlyAnimatedWidgetState<AnimatedSlide> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedSlide" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedSlide"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedSlideState" {
+  -dynamic _offset
+  -dynamic _offsetAnimation
+  +void forEachTween()
+  +void didUpdateTweens()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedSlideState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedOpacity" {
+  +Widget? child
+  +double opacity
+  +bool alwaysIncludeSemantics
+  +ImplicitlyAnimatedWidgetState<AnimatedOpacity> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedOpacity" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedOpacity"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedOpacityState" {
+  -dynamic _opacity
+  -dynamic _opacityAnimation
+  +void forEachTween()
+  +void didUpdateTweens()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedOpacityState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::SliverAnimatedOpacity" {
+  +Widget? sliver
+  +double opacity
+  +bool alwaysIncludeSemantics
+  +ImplicitlyAnimatedWidgetState<SliverAnimatedOpacity> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::SliverAnimatedOpacity" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::SliverAnimatedOpacity"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_SliverAnimatedOpacityState" {
+  -dynamic _opacity
+  -dynamic _opacityAnimation
+  +void forEachTween()
+  +void didUpdateTweens()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidgetState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_SliverAnimatedOpacityState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedDefaultTextStyle" {
+  +Widget child
+  +dynamic style
+  +dynamic textAlign
+  +bool softWrap
+  +dynamic overflow
+  +int? maxLines
+  +dynamic textWidthBasis
+  +dynamic textHeightBehavior
+  +AnimatedWidgetBaseState<AnimatedDefaultTextStyle> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedDefaultTextStyle" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedDefaultTextStyle"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedDefaultTextStyleState" {
+  -TextStyleTween? _style
+  +void forEachTween()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::_AnimatedDefaultTextStyleState" o-- "flutter::lib::src::widgets::implicit_animations.dart::TextStyleTween"
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedDefaultTextStyleState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedPhysicalModel" {
+  +Widget child
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic borderRadius
+  +double elevation
+  +dynamic color
+  +bool animateColor
+  +dynamic shadowColor
+  +bool animateShadowColor
+  +AnimatedWidgetBaseState<AnimatedPhysicalModel> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedPhysicalModel" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedPhysicalModel"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPhysicalModelState" {
+  -BorderRadiusTween? _borderRadius
+  -dynamic _elevation
+  -dynamic _color
+  -dynamic _shadowColor
+  +void forEachTween()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPhysicalModelState" o-- "flutter::lib::src::widgets::implicit_animations.dart::BorderRadiusTween"
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedPhysicalModelState"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::AnimatedFractionallySizedBox" {
+  +Widget? child
+  +double? heightFactor
+  +double? widthFactor
+  +dynamic alignment
+  +AnimatedWidgetBaseState<AnimatedFractionallySizedBox> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedFractionallySizedBox" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::implicit_animations.dart::ImplicitlyAnimatedWidget" <|-- "flutter::lib::src::widgets::implicit_animations.dart::AnimatedFractionallySizedBox"
+
+class "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedFractionallySizedBoxState" {
+  -dynamic _alignment
+  -dynamic _heightFactorTween
+  -dynamic _widthFactorTween
+  +void forEachTween()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::implicit_animations.dart::AnimatedWidgetBaseState" <|-- "flutter::lib::src::widgets::implicit_animations.dart::_AnimatedFractionallySizedBoxState"
+
+
+@enduml

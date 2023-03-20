@@ -1,0 +1,102 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::restoration.dart::RestorationScope" {
+  +Widget child
+  +String? restorationId
+  {static} +dynamic of()
+  +State<RestorationScope> createState()
+}
+
+"flutter::lib::src::widgets::restoration.dart::RestorationScope" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::restoration.dart::RestorationScope"
+
+class "flutter::lib::src::widgets::restoration.dart::_RestorationScopeState" {
+  +String? restorationId
+  +void restoreState()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::restoration.dart::_RestorationScopeState"
+"flutter::lib::src::widgets::restoration.dart::RestorationMixin" <|-- "flutter::lib::src::widgets::restoration.dart::_RestorationScopeState"
+
+class "flutter::lib::src::widgets::restoration.dart::UnmanagedRestorationScope" {
+  +dynamic bucket
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::restoration.dart::UnmanagedRestorationScope"
+
+class "flutter::lib::src::widgets::restoration.dart::RootRestorationScope" {
+  +Widget child
+  +String? restorationId
+  +State<RootRestorationScope> createState()
+}
+
+"flutter::lib::src::widgets::restoration.dart::RootRestorationScope" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::restoration.dart::RootRestorationScope"
+
+class "flutter::lib::src::widgets::restoration.dart::_RootRestorationScopeState" {
+  -bool? _okToRenderBlankContainer
+  -bool _rootBucketValid
+  -dynamic _rootBucket
+  -dynamic _ancestorBucket
+  -bool _isLoadingRootBucket
+  -bool _needsRootBucketInserted
+  -bool _isWaitingForRootBucket
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  -void _loadRootBucketIfNecessary()
+  -void _replaceRootBucket()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::restoration.dart::_RootRestorationScopeState"
+
+abstract class "flutter::lib::src::widgets::restoration.dart::RestorableProperty" {
+  -bool _disposed
+  -String? _restorationId
+  -RestorationMixin<StatefulWidget>? _owner
+  +bool enabled
+  +State<StatefulWidget> state
+  +bool isRegistered
+  +T createDefaultValue()
+  +T fromPrimitives()
+  +void initWithValue()
+  +Object? toPrimitives()
+  +void dispose()
+  -void _register()
+  -void _unregister()
+}
+
+"flutter::lib::src::widgets::restoration.dart::RestorableProperty" o-- "flutter::lib::src::widgets::restoration.dart::RestorationMixin<StatefulWidget>"
+"flutter::lib::src::widgets::restoration.dart::RestorableProperty" o-- "flutter::lib::src::widgets::framework.dart::State<StatefulWidget>"
+
+abstract class "flutter::lib::src::widgets::restoration.dart::RestorationMixin" {
+  -dynamic _bucket
+  -Map<RestorableProperty<Object?>, dynamic> _properties
+  -List<RestorableProperty<Object?>>? _debugPropertiesWaitingForReregistration
+  -bool _firstRestorePending
+  -dynamic _currentParent
+  +String? restorationId
+  +dynamic bucket
+  +bool restorePending
+  -bool _debugDoingRestore
+  +void restoreState()
+  +void didToggleBucket()
+  +void registerForRestoration()
+  +void unregisterFromRestoration()
+  +void didUpdateRestorationId()
+  +void didUpdateWidget()
+  +void didChangeDependencies()
+  -void _doRestore()
+  -bool _updateBucketIfNecessary()
+  -bool _setNewBucketIfNecessary()
+  -void _updateProperty()
+  -void _unregister()
+  +void dispose()
+}
+
+
+@enduml

@@ -1,0 +1,461 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::navigator.dart::Route" {
+  -NavigatorState? _navigator
+  -RouteSettings _settings
+  -dynamic _restorationScopeId
+  -Completer<T?> _popCompleter
+  +NavigatorState? navigator
+  +RouteSettings settings
+  +dynamic restorationScopeId
+  +List<OverlayEntry> overlayEntries
+  +bool willHandlePopInternally
+  +T? currentResult
+  +Future<T?> popped
+  +bool isCurrent
+  +bool isFirst
+  +bool hasActiveRouteBelow
+  +bool isActive
+  -void _updateSettings()
+  -void _updateRestorationId()
+  +void install()
+  +dynamic didPush()
+  +void didAdd()
+  +void didReplace()
+  +Future<RoutePopDisposition> willPop()
+  +bool didPop()
+  +void didComplete()
+  +void didPopNext()
+  +void didChangeNext()
+  +void didChangePrevious()
+  +void changedInternalState()
+  +void changedExternalState()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::navigator.dart::Route" o-- "flutter::lib::src::widgets::navigator.dart::NavigatorState"
+"flutter::lib::src::widgets::navigator.dart::Route" o-- "flutter::lib::src::widgets::navigator.dart::RouteSettings"
+"flutter::lib::src::widgets::navigator.dart::Route" o-- "dart::async::Completer<T>"
+
+class "flutter::lib::src::widgets::navigator.dart::RouteSettings" {
+  +String? name
+  +Object? arguments
+  +RouteSettings copyWith()
+  +String toString()
+}
+
+abstract class "flutter::lib::src::widgets::navigator.dart::Page" {
+  +dynamic key
+  +String? restorationId
+  +bool canUpdate()
+  +Route<T> createRoute()
+  +String toString()
+}
+
+"flutter::lib::src::widgets::navigator.dart::RouteSettings" <|-- "flutter::lib::src::widgets::navigator.dart::Page"
+
+class "flutter::lib::src::widgets::navigator.dart::NavigatorObserver" {
+  -NavigatorState? _navigator
+  +NavigatorState? navigator
+  +void didPush()
+  +void didPop()
+  +void didRemove()
+  +void didReplace()
+  +void didStartUserGesture()
+  +void didStopUserGesture()
+}
+
+"flutter::lib::src::widgets::navigator.dart::NavigatorObserver" o-- "flutter::lib::src::widgets::navigator.dart::NavigatorState"
+
+class "flutter::lib::src::widgets::navigator.dart::HeroControllerScope" {
+  +HeroController? controller
+  {static} +HeroController? of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::navigator.dart::HeroControllerScope" o-- "flutter::lib::src::widgets::heroes.dart::HeroController"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::navigator.dart::HeroControllerScope"
+
+abstract class "flutter::lib::src::widgets::navigator.dart::RouteTransitionRecord" {
+  +Route<dynamic> route
+  +bool isWaitingForEnteringDecision
+  +bool isWaitingForExitingDecision
+  +void markForPush()
+  +void markForAdd()
+  +void markForPop()
+  +void markForComplete()
+  +void markForRemove()
+}
+
+"flutter::lib::src::widgets::navigator.dart::RouteTransitionRecord" o-- "flutter::lib::src::widgets::navigator.dart::Route<dynamic>"
+
+abstract class "flutter::lib::src::widgets::navigator.dart::TransitionDelegate" {
+  -Iterable<RouteTransitionRecord> _transition()
+  +Iterable<RouteTransitionRecord> resolve()
+}
+
+class "flutter::lib::src::widgets::navigator.dart::DefaultTransitionDelegate" {
+  +Iterable<RouteTransitionRecord> resolve()
+}
+
+"flutter::lib::src::widgets::navigator.dart::TransitionDelegate" <|-- "flutter::lib::src::widgets::navigator.dart::DefaultTransitionDelegate"
+
+class "flutter::lib::src::widgets::navigator.dart::Navigator" {
+  +List<Page<dynamic>> pages
+  +bool Function(Route<dynamic>, dynamic)? onPopPage
+  +TransitionDelegate<dynamic> transitionDelegate
+  +String? initialRoute
+  +Route<dynamic>? Function(RouteSettings)? onGenerateRoute
+  +Route<dynamic>? Function(RouteSettings)? onUnknownRoute
+  +List<NavigatorObserver> observers
+  +String? restorationScopeId
+  {static} +String defaultRouteName
+  +List<Route<dynamic>> Function(NavigatorState, String) onGenerateInitialRoutes
+  +bool reportsRouteUpdateToEngine
+  +bool requestFocus
+  {static} +Future<T?> pushNamed()
+  {static} +String restorablePushNamed()
+  {static} +Future<T?> pushReplacementNamed()
+  {static} +String restorablePushReplacementNamed()
+  {static} +Future<T?> popAndPushNamed()
+  {static} +String restorablePopAndPushNamed()
+  {static} +Future<T?> pushNamedAndRemoveUntil()
+  {static} +String restorablePushNamedAndRemoveUntil()
+  {static} +Future<T?> push()
+  {static} +String restorablePush()
+  {static} +Future<T?> pushReplacement()
+  {static} +String restorablePushReplacement()
+  {static} +Future<T?> pushAndRemoveUntil()
+  {static} +String restorablePushAndRemoveUntil()
+  {static} +void replace()
+  {static} +String restorableReplace()
+  {static} +void replaceRouteBelow()
+  {static} +String restorableReplaceRouteBelow()
+  {static} +bool canPop()
+  {static} +Future<bool> maybePop()
+  {static} +void pop()
+  {static} +void popUntil()
+  {static} +void removeRoute()
+  {static} +void removeRouteBelow()
+  {static} +NavigatorState of()
+  {static} +NavigatorState? maybeOf()
+  {static} +List<Route<dynamic>> defaultGenerateInitialRoutes()
+  +NavigatorState createState()
+}
+
+"flutter::lib::src::widgets::navigator.dart::Navigator" o-- "flutter::lib::src::widgets::navigator.dart::bool Function(Route<dynamic>, dynamic)"
+"flutter::lib::src::widgets::navigator.dart::Navigator" o-- "flutter::lib::src::widgets::navigator.dart::TransitionDelegate<dynamic>"
+"flutter::lib::src::widgets::navigator.dart::Navigator" o-- "flutter::lib::src::widgets::navigator.dart::Route<dynamic> Function(RouteSettings)"
+"flutter::lib::src::widgets::navigator.dart::Navigator" o-- "flutter::lib::src::widgets::navigator.dart::List<Route<dynamic>> Function(NavigatorState, String)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::navigator.dart::Navigator"
+
+class "flutter::lib::src::widgets::navigator.dart::_NotAnnounced" {
+}
+
+"flutter::lib::src::widgets::navigator.dart::Route" <|-- "flutter::lib::src::widgets::navigator.dart::_NotAnnounced"
+
+class "flutter::lib::src::widgets::navigator.dart::_RouteEntry" {
+  +Route<dynamic> route
+  +_RestorationInformation? restorationInformation
+  {static} +Route<dynamic> notAnnounced
+  +_RouteLifecycle currentState
+  +Route<dynamic>? lastAnnouncedPreviousRoute
+  +Route<dynamic> lastAnnouncedPoppedNextRoute
+  +Route<dynamic>? lastAnnouncedNextRoute
+  +Object? pendingResult
+  -bool _reportRemovalToObserver
+  -bool _isWaitingForExitingDecision
+  +String? restorationId
+  +bool hasPage
+  +bool willBePresent
+  +bool isPresent
+  +bool isPresentForRestoration
+  +bool suitableForAnnouncement
+  +bool suitableForTransitionAnimation
+  +bool isWaitingForEnteringDecision
+  +bool isWaitingForExitingDecision
+  +bool restorationEnabled
+  +bool canUpdateFrom()
+  +void handleAdd()
+  +void handlePush()
+  +void handleDidPopNext()
+  +bool handlePop()
+  +void handleComplete()
+  +void handleRemoval()
+  +void didAdd()
+  +void pop()
+  +void remove()
+  +void complete()
+  +void finalize()
+  +void dispose()
+  +bool shouldAnnounceChangeToNext()
+  {static} +bool isPresentPredicate()
+  {static} +bool suitableForTransitionAnimationPredicate()
+  {static} +bool willBePresentPredicate()
+  {static} +bool Function(_RouteEntry) isRoutePredicate()
+  +void markNeedsExitingDecision()
+  +void markForPush()
+  +void markForAdd()
+  +void markForPop()
+  +void markForComplete()
+  +void markForRemove()
+}
+
+"flutter::lib::src::widgets::navigator.dart::_RouteEntry" o-- "flutter::lib::src::widgets::navigator.dart::Route<dynamic>"
+"flutter::lib::src::widgets::navigator.dart::_RouteEntry" o-- "flutter::lib::src::widgets::navigator.dart::_RestorationInformation"
+"flutter::lib::src::widgets::navigator.dart::_RouteEntry" o-- "flutter::lib::src::widgets::navigator.dart::_RouteLifecycle"
+"flutter::lib::src::widgets::navigator.dart::RouteTransitionRecord" <|-- "flutter::lib::src::widgets::navigator.dart::_RouteEntry"
+
+abstract class "flutter::lib::src::widgets::navigator.dart::_NavigatorObservation" {
+  +Route<dynamic> primaryRoute
+  +Route<dynamic>? secondaryRoute
+  +void notify()
+}
+
+"flutter::lib::src::widgets::navigator.dart::_NavigatorObservation" o-- "flutter::lib::src::widgets::navigator.dart::Route<dynamic>"
+
+class "flutter::lib::src::widgets::navigator.dart::_NavigatorPushObservation" {
+  +void notify()
+}
+
+"flutter::lib::src::widgets::navigator.dart::_NavigatorObservation" <|-- "flutter::lib::src::widgets::navigator.dart::_NavigatorPushObservation"
+
+class "flutter::lib::src::widgets::navigator.dart::_NavigatorPopObservation" {
+  +void notify()
+}
+
+"flutter::lib::src::widgets::navigator.dart::_NavigatorObservation" <|-- "flutter::lib::src::widgets::navigator.dart::_NavigatorPopObservation"
+
+class "flutter::lib::src::widgets::navigator.dart::_NavigatorRemoveObservation" {
+  +void notify()
+}
+
+"flutter::lib::src::widgets::navigator.dart::_NavigatorObservation" <|-- "flutter::lib::src::widgets::navigator.dart::_NavigatorRemoveObservation"
+
+class "flutter::lib::src::widgets::navigator.dart::_NavigatorReplaceObservation" {
+  +void notify()
+}
+
+"flutter::lib::src::widgets::navigator.dart::_NavigatorObservation" <|-- "flutter::lib::src::widgets::navigator.dart::_NavigatorReplaceObservation"
+
+class "flutter::lib::src::widgets::navigator.dart::NavigatorState" {
+  -GlobalKey<OverlayState> _overlayKey
+  -List<_RouteEntry> _history
+  -_HistoryProperty _serializableHistory
+  -Queue<_NavigatorObservation> _observedRouteAdditions
+  -Queue<_NavigatorObservation> _observedRouteDeletions
+  +FocusScopeNode focusScopeNode
+  -bool _debugLocked
+  -HeroController? _heroControllerFromScope
+  -List<NavigatorObserver> _effectiveObservers
+  -RestorableNum<int> _rawNextPagelessRestorationScopeId
+  -String? _lastAnnouncedRouteName
+  -bool _debugUpdatingPage
+  -bool _flushingHistory
+  -int _userGesturesInProgressCount
+  +dynamic userGestureInProgressNotifier
+  -Set<int> _activePointers
+  -int _nextPagelessRestorationScopeId
+  +String? restorationId
+  +OverlayState? overlay
+  -Iterable<OverlayEntry> _allRouteOverlayEntries
+  -int _userGesturesInProgress
+  +bool userGestureInProgress
+  +void initState()
+  +void restoreState()
+  +void didToggleBucket()
+  +void didChangeDependencies()
+  -void _updateHeroController()
+  -void _updateEffectiveObservers()
+  +void didUpdateWidget()
+  -void _debugCheckDuplicatedPageKeys()
+  +void deactivate()
+  +void activate()
+  +void dispose()
+  -void _updatePages()
+  -void _flushHistoryUpdates()
+  -void _flushObserverNotifications()
+  -void _flushRouteAnnouncement()
+  -_RouteEntry? _getRouteBefore()
+  -int _getIndexBefore()
+  -_RouteEntry? _getRouteAfter()
+  -Route<T>? _routeNamed()
+  +Future<T?> pushNamed()
+  +String restorablePushNamed()
+  +Future<T?> pushReplacementNamed()
+  +String restorablePushReplacementNamed()
+  +Future<T?> popAndPushNamed()
+  +String restorablePopAndPushNamed()
+  +Future<T?> pushNamedAndRemoveUntil()
+  +String restorablePushNamedAndRemoveUntil()
+  +Future<T?> push()
+  -bool _debugCheckIsPagelessRoute()
+  -bool _debugIsStaticCallback()
+  +String restorablePush()
+  -void _pushEntry()
+  -void _afterNavigation()
+  +Future<T?> pushReplacement()
+  +String restorablePushReplacement()
+  -void _pushReplacementEntry()
+  +Future<T?> pushAndRemoveUntil()
+  +String restorablePushAndRemoveUntil()
+  -void _pushEntryAndRemoveUntil()
+  +void replace()
+  +String restorableReplace()
+  -void _replaceEntry()
+  +void replaceRouteBelow()
+  +String restorableReplaceRouteBelow()
+  -void _replaceEntryBelow()
+  +bool canPop()
+  +Future<bool> maybePop()
+  +void pop()
+  +void popUntil()
+  +void removeRoute()
+  +void removeRouteBelow()
+  +void finalizeRoute()
+  -Route<T>? _getRouteById()
+  +void didStartUserGesture()
+  +void didStopUserGesture()
+  -void _handlePointerDown()
+  -void _handlePointerUpOrCancel()
+  -void _cancelActivePointers()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::navigator.dart::NavigatorState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<OverlayState>"
+"flutter::lib::src::widgets::navigator.dart::NavigatorState" o-- "flutter::lib::src::widgets::navigator.dart::_HistoryProperty"
+"flutter::lib::src::widgets::navigator.dart::NavigatorState" o-- "dart::collection::Queue<_NavigatorObservation>"
+"flutter::lib::src::widgets::navigator.dart::NavigatorState" o-- "flutter::lib::src::widgets::focus_manager.dart::FocusScopeNode"
+"flutter::lib::src::widgets::navigator.dart::NavigatorState" o-- "flutter::lib::src::widgets::heroes.dart::HeroController"
+"flutter::lib::src::widgets::navigator.dart::NavigatorState" o-- "flutter::lib::src::widgets::restoration_properties.dart::RestorableNum<int>"
+"flutter::lib::src::widgets::navigator.dart::NavigatorState" o-- "flutter::lib::src::widgets::overlay.dart::OverlayState"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::navigator.dart::NavigatorState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::navigator.dart::NavigatorState"
+"flutter::lib::src::widgets::restoration.dart::RestorationMixin" <|-- "flutter::lib::src::widgets::navigator.dart::NavigatorState"
+
+abstract class "flutter::lib::src::widgets::navigator.dart::_RestorationInformation" {
+  +_RouteRestorationType type
+  -Object? _serializableData
+  +int restorationScopeId
+  +bool isRestorable
+  +Object getSerializableData()
+  +List<Object> computeSerializableData()
+  +Route<dynamic> createRoute()
+  +_RouteEntry toRouteEntry()
+}
+
+"flutter::lib::src::widgets::navigator.dart::_RestorationInformation" o-- "flutter::lib::src::widgets::navigator.dart::_RouteRestorationType"
+
+class "flutter::lib::src::widgets::navigator.dart::_NamedRestorationInformation" {
+  +int restorationScopeId
+  +String name
+  +Object? arguments
+  +List<Object> computeSerializableData()
+  +Route<dynamic> createRoute()
+}
+
+"flutter::lib::src::widgets::navigator.dart::_RestorationInformation" <|-- "flutter::lib::src::widgets::navigator.dart::_NamedRestorationInformation"
+
+class "flutter::lib::src::widgets::navigator.dart::_AnonymousRestorationInformation" {
+  +int restorationScopeId
+  +Route<Object?> Function(BuildContext, Object?) routeBuilder
+  +Object? arguments
+  +bool isRestorable
+  +List<Object> computeSerializableData()
+  +Route<dynamic> createRoute()
+}
+
+"flutter::lib::src::widgets::navigator.dart::_AnonymousRestorationInformation" o-- "flutter::lib::src::widgets::navigator.dart::Route<Object> Function(BuildContext, Object)"
+"flutter::lib::src::widgets::navigator.dart::_RestorationInformation" <|-- "flutter::lib::src::widgets::navigator.dart::_AnonymousRestorationInformation"
+
+class "flutter::lib::src::widgets::navigator.dart::_HistoryProperty" {
+  -Map<String?, List<Object>>? _pageToPagelessRoutes
+  +bool hasData
+  +bool enabled
+  +void update()
+  -void _finalizePage()
+  -bool _debugMapsEqual()
+  +void clear()
+  +List<_RouteEntry> restoreEntriesForPage()
+  +Map<String?, List<Object>>? createDefaultValue()
+  +Map<String?, List<Object>>? fromPrimitives()
+  +void initWithValue()
+  +Object? toPrimitives()
+}
+
+"flutter::lib::src::widgets::restoration.dart::RestorableProperty" <|-- "flutter::lib::src::widgets::navigator.dart::_HistoryProperty"
+
+class "flutter::lib::src::widgets::navigator.dart::RestorableRouteFuture" {
+  +NavigatorState Function(BuildContext) navigatorFinder
+  +String Function(NavigatorState, Object?) onPresent
+  +void Function(T)? onComplete
+  -Route<T>? _route
+  -bool _disposed
+  +bool isPresent
+  +Route<T>? route
+  +bool enabled
+  -NavigatorState _navigator
+  +void present()
+  +String? createDefaultValue()
+  +void initWithValue()
+  +Object? toPrimitives()
+  +String fromPrimitives()
+  +void dispose()
+  -void _hookOntoRouteFuture()
+  {static} -NavigatorState _defaultNavigatorFinder()
+}
+
+"flutter::lib::src::widgets::navigator.dart::RestorableRouteFuture" o-- "flutter::lib::src::widgets::navigator.dart::NavigatorState Function(BuildContext)"
+"flutter::lib::src::widgets::navigator.dart::RestorableRouteFuture" o-- "flutter::lib::src::widgets::navigator.dart::String Function(NavigatorState, Object)"
+"flutter::lib::src::widgets::navigator.dart::RestorableRouteFuture" o-- "flutter::lib::src::widgets::navigator.dart::void Function(T)"
+"flutter::lib::src::widgets::navigator.dart::RestorableRouteFuture" o-- "flutter::lib::src::widgets::navigator.dart::Route<T>"
+"flutter::lib::src::widgets::navigator.dart::RestorableRouteFuture" o-- "flutter::lib::src::widgets::navigator.dart::NavigatorState"
+"flutter::lib::src::widgets::restoration.dart::RestorableProperty" <|-- "flutter::lib::src::widgets::navigator.dart::RestorableRouteFuture"
+
+class "flutter::lib::src::widgets::navigator.dart::RoutePopDisposition" {
+  +int index
+  {static} +List<RoutePopDisposition> values
+  {static} +RoutePopDisposition pop
+  {static} +RoutePopDisposition doNotPop
+  {static} +RoutePopDisposition bubble
+}
+
+"flutter::lib::src::widgets::navigator.dart::RoutePopDisposition" o-- "flutter::lib::src::widgets::navigator.dart::RoutePopDisposition"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::navigator.dart::RoutePopDisposition"
+
+class "flutter::lib::src::widgets::navigator.dart::_RouteLifecycle" {
+  +int index
+  {static} +List<_RouteLifecycle> values
+  {static} +_RouteLifecycle staging
+  {static} +_RouteLifecycle add
+  {static} +_RouteLifecycle adding
+  {static} +_RouteLifecycle push
+  {static} +_RouteLifecycle pushReplace
+  {static} +_RouteLifecycle pushing
+  {static} +_RouteLifecycle replace
+  {static} +_RouteLifecycle idle
+  {static} +_RouteLifecycle pop
+  {static} +_RouteLifecycle complete
+  {static} +_RouteLifecycle remove
+  {static} +_RouteLifecycle popping
+  {static} +_RouteLifecycle removing
+  {static} +_RouteLifecycle dispose
+  {static} +_RouteLifecycle disposed
+}
+
+"flutter::lib::src::widgets::navigator.dart::_RouteLifecycle" o-- "flutter::lib::src::widgets::navigator.dart::_RouteLifecycle"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::navigator.dart::_RouteLifecycle"
+
+class "flutter::lib::src::widgets::navigator.dart::_RouteRestorationType" {
+  +int index
+  {static} +List<_RouteRestorationType> values
+  {static} +_RouteRestorationType named
+  {static} +_RouteRestorationType anonymous
+}
+
+"flutter::lib::src::widgets::navigator.dart::_RouteRestorationType" o-- "flutter::lib::src::widgets::navigator.dart::_RouteRestorationType"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::navigator.dart::_RouteRestorationType"
+
+
+@enduml

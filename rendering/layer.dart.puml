@@ -1,0 +1,349 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::layer.dart::AnnotationEntry" {
+  +T annotation
+  +dynamic localPosition
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::layer.dart::AnnotationResult" {
+  -List<AnnotationEntry<T>> _entries
+  +Iterable<AnnotationEntry<T>> entries
+  +Iterable<T> annotations
+  +void add()
+}
+
+abstract class "flutter::lib::src::rendering::layer.dart::Layer" {
+  -Map<int, dynamic> _callbacks
+  {static} -int _nextCallbackId
+  -int _compositionCallbackCount
+  -bool _debugMutationsLocked
+  -bool _debugDisposed
+  -LayerHandle<Layer> _parentHandle
+  -int _refCount
+  -bool _needsAddToScene
+  -dynamic _engineLayer
+  -Layer? _nextSibling
+  -Layer? _previousSibling
+  +Object? debugCreator
+  +bool subtreeHasCompositionCallbacks
+  +bool debugDisposed
+  +int debugHandleCount
+  +ContainerLayer? parent
+  +bool alwaysNeedsAddToScene
+  +bool? debugSubtreeNeedsAddToScene
+  +dynamic engineLayer
+  +Layer? nextSibling
+  +Layer? previousSibling
+  -void _updateSubtreeCompositionObserverCount()
+  -void _fireCompositionCallbacks()
+  +dynamic describeClipBounds()
+  +dynamic addCompositionCallback()
+  -void _unref()
+  +void dispose()
+  +void markNeedsAddToScene()
+  +void debugMarkClean()
+  +void updateSubtreeNeedsAddToScene()
+  +void dropChild()
+  +void adoptChild()
+  +void remove()
+  +bool findAnnotations()
+  +S? find()
+  +AnnotationResult<S> findAllAnnotations()
+  +void addToScene()
+  -void _addToSceneWithRetainedRendering()
+  +String toStringShort()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::Layer" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<Layer>"
+"flutter::lib::src::rendering::layer.dart::Layer" o-- "flutter::lib::src::rendering::layer.dart::Layer"
+"flutter::lib::src::rendering::layer.dart::Layer" o-- "flutter::lib::src::rendering::layer.dart::ContainerLayer"
+
+class "flutter::lib::src::rendering::layer.dart::LayerHandle" {
+  -T? _layer
+  +T? layer
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::layer.dart::PictureLayer" {
+  +dynamic canvasBounds
+  -dynamic _picture
+  -bool _isComplexHint
+  -bool _willChangeHint
+  +dynamic picture
+  +bool isComplexHint
+  +bool willChangeHint
+  +void dispose()
+  +void addToScene()
+  +void debugFillProperties()
+  +bool findAnnotations()
+}
+
+"flutter::lib::src::rendering::layer.dart::Layer" <|-- "flutter::lib::src::rendering::layer.dart::PictureLayer"
+
+class "flutter::lib::src::rendering::layer.dart::TextureLayer" {
+  +dynamic rect
+  +int textureId
+  +bool freeze
+  +dynamic filterQuality
+  +void addToScene()
+  +bool findAnnotations()
+}
+
+"flutter::lib::src::rendering::layer.dart::Layer" <|-- "flutter::lib::src::rendering::layer.dart::TextureLayer"
+
+class "flutter::lib::src::rendering::layer.dart::PlatformViewLayer" {
+  +dynamic rect
+  +int viewId
+  +void addToScene()
+}
+
+"flutter::lib::src::rendering::layer.dart::Layer" <|-- "flutter::lib::src::rendering::layer.dart::PlatformViewLayer"
+
+class "flutter::lib::src::rendering::layer.dart::PerformanceOverlayLayer" {
+  -dynamic _overlayRect
+  +int optionsMask
+  +int rasterizerThreshold
+  +bool checkerboardRasterCacheImages
+  +bool checkerboardOffscreenLayers
+  +dynamic overlayRect
+  +void addToScene()
+  +bool findAnnotations()
+}
+
+"flutter::lib::src::rendering::layer.dart::Layer" <|-- "flutter::lib::src::rendering::layer.dart::PerformanceOverlayLayer"
+
+class "flutter::lib::src::rendering::layer.dart::ContainerLayer" {
+  -Layer? _firstChild
+  -Layer? _lastChild
+  +Layer? firstChild
+  +Layer? lastChild
+  +bool hasChildren
+  -void _fireCompositionCallbacks()
+  +dynamic buildScene()
+  -bool _debugUltimatePreviousSiblingOf()
+  -bool _debugUltimateNextSiblingOf()
+  +void dispose()
+  +void updateSubtreeNeedsAddToScene()
+  +bool findAnnotations()
+  +void attach()
+  +void detach()
+  +void append()
+  -void _removeChild()
+  +void removeAllChildren()
+  +void addToScene()
+  +void addChildrenToScene()
+  +void applyTransform()
+  +List<Layer> depthFirstIterateChildren()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" o-- "flutter::lib::src::rendering::layer.dart::Layer"
+"flutter::lib::src::rendering::layer.dart::Layer" <|-- "flutter::lib::src::rendering::layer.dart::ContainerLayer"
+
+class "flutter::lib::src::rendering::layer.dart::OffsetLayer" {
+  -dynamic _offset
+  +dynamic offset
+  +bool findAnnotations()
+  +void applyTransform()
+  +void addToScene()
+  +void debugFillProperties()
+  +Future<dynamic> toImage()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::OffsetLayer"
+
+class "flutter::lib::src::rendering::layer.dart::ClipRectLayer" {
+  -dynamic _clipRect
+  -dynamic _clipBehavior
+  +dynamic clipRect
+  +dynamic clipBehavior
+  +dynamic describeClipBounds()
+  +bool findAnnotations()
+  +void addToScene()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::ClipRectLayer"
+
+class "flutter::lib::src::rendering::layer.dart::ClipRRectLayer" {
+  -dynamic _clipRRect
+  -dynamic _clipBehavior
+  +dynamic clipRRect
+  +dynamic clipBehavior
+  +dynamic describeClipBounds()
+  +bool findAnnotations()
+  +void addToScene()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::ClipRRectLayer"
+
+class "flutter::lib::src::rendering::layer.dart::ClipPathLayer" {
+  -dynamic _clipPath
+  -dynamic _clipBehavior
+  +dynamic clipPath
+  +dynamic clipBehavior
+  +dynamic describeClipBounds()
+  +bool findAnnotations()
+  +void addToScene()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::ClipPathLayer"
+
+class "flutter::lib::src::rendering::layer.dart::ColorFilterLayer" {
+  -dynamic _colorFilter
+  +dynamic colorFilter
+  +void addToScene()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::ColorFilterLayer"
+
+class "flutter::lib::src::rendering::layer.dart::ImageFilterLayer" {
+  -dynamic _imageFilter
+  +dynamic imageFilter
+  +void addToScene()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::ImageFilterLayer"
+
+class "flutter::lib::src::rendering::layer.dart::TransformLayer" {
+  -dynamic _transform
+  -dynamic _lastEffectiveTransform
+  -dynamic _invertedTransform
+  -bool _inverseDirty
+  +dynamic transform
+  +void addToScene()
+  -dynamic _transformOffset()
+  +bool findAnnotations()
+  +void applyTransform()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::OffsetLayer" <|-- "flutter::lib::src::rendering::layer.dart::TransformLayer"
+
+class "flutter::lib::src::rendering::layer.dart::OpacityLayer" {
+  -int? _alpha
+  +int? alpha
+  +void addToScene()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::OffsetLayer" <|-- "flutter::lib::src::rendering::layer.dart::OpacityLayer"
+
+class "flutter::lib::src::rendering::layer.dart::ShaderMaskLayer" {
+  -dynamic _shader
+  -dynamic _maskRect
+  -dynamic _blendMode
+  +dynamic shader
+  +dynamic maskRect
+  +dynamic blendMode
+  +void addToScene()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::ShaderMaskLayer"
+
+class "flutter::lib::src::rendering::layer.dart::BackdropFilterLayer" {
+  -dynamic _filter
+  -dynamic _blendMode
+  +dynamic filter
+  +dynamic blendMode
+  +void addToScene()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::BackdropFilterLayer"
+
+class "flutter::lib::src::rendering::layer.dart::PhysicalModelLayer" {
+  -dynamic _clipPath
+  -dynamic _clipBehavior
+  -double? _elevation
+  -dynamic _color
+  -dynamic _shadowColor
+  +dynamic clipPath
+  +dynamic clipBehavior
+  +double? elevation
+  +dynamic color
+  +dynamic shadowColor
+  +bool findAnnotations()
+  +void addToScene()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::PhysicalModelLayer"
+
+class "flutter::lib::src::rendering::layer.dart::LayerLink" {
+  -LeaderLayer? _leader
+  -Set<LeaderLayer>? _debugPreviousLeaders
+  -bool _debugLeaderCheckScheduled
+  +dynamic leaderSize
+  +LeaderLayer? leader
+  -void _registerLeader()
+  -void _unregisterLeader()
+  -void _debugScheduleLeadersCleanUpCheck()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::layer.dart::LayerLink" o-- "flutter::lib::src::rendering::layer.dart::LeaderLayer"
+
+class "flutter::lib::src::rendering::layer.dart::LeaderLayer" {
+  -LayerLink _link
+  -dynamic _offset
+  +LayerLink link
+  +dynamic offset
+  +void attach()
+  +void detach()
+  +bool findAnnotations()
+  +void addToScene()
+  +void applyTransform()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::LeaderLayer" o-- "flutter::lib::src::rendering::layer.dart::LayerLink"
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::LeaderLayer"
+
+class "flutter::lib::src::rendering::layer.dart::FollowerLayer" {
+  -LayerLink _link
+  +bool? showWhenUnlinked
+  +dynamic unlinkedOffset
+  +dynamic linkedOffset
+  -dynamic _lastOffset
+  -dynamic _lastTransform
+  -dynamic _invertedTransform
+  -bool _inverseDirty
+  +LayerLink link
+  +bool alwaysNeedsAddToScene
+  -dynamic _transformOffset()
+  +bool findAnnotations()
+  +dynamic getLastTransform()
+  {static} -dynamic _collectTransformForLayerChain()
+  {static} -Layer? _pathsToCommonAncestor()
+  -bool _debugCheckLeaderBeforeFollower()
+  -void _establishTransform()
+  +void addToScene()
+  +void applyTransform()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::FollowerLayer" o-- "flutter::lib::src::rendering::layer.dart::LayerLink"
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::FollowerLayer"
+
+class "flutter::lib::src::rendering::layer.dart::AnnotatedRegionLayer" {
+  +T value
+  +dynamic size
+  +dynamic offset
+  +bool opaque
+  +bool findAnnotations()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::layer.dart::ContainerLayer" <|-- "flutter::lib::src::rendering::layer.dart::AnnotatedRegionLayer"
+
+
+@enduml

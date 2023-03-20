@@ -1,0 +1,31 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::text_selection_theme.dart::TextSelectionThemeData" {
+  +dynamic cursorColor
+  +dynamic selectionColor
+  +dynamic selectionHandleColor
+  +int hashCode
+  +TextSelectionThemeData copyWith()
+  {static} +TextSelectionThemeData? lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::material::text_selection_theme.dart::TextSelectionTheme" {
+  +TextSelectionThemeData data
+  -dynamic _child
+  +dynamic child
+  {static} +TextSelectionThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::text_selection_theme.dart::TextSelectionTheme" o-- "flutter::lib::src::material::text_selection_theme.dart::TextSelectionThemeData"
+
+class "flutter::lib::src::material::text_selection_theme.dart::_NullWidget" {
+  +dynamic createElement()
+}
+
+
+@enduml

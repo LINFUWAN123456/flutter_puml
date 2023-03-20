@@ -1,0 +1,12 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::grid_tile.dart::GridTile" {
+  +dynamic header
+  +dynamic footer
+  +dynamic child
+  +dynamic build()
+}
+
+
+@enduml

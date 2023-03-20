@@ -1,0 +1,19 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::platform.dart::TargetPlatform" {
+  +int index
+  {static} +List<TargetPlatform> values
+  {static} +TargetPlatform android
+  {static} +TargetPlatform fuchsia
+  {static} +TargetPlatform iOS
+  {static} +TargetPlatform linux
+  {static} +TargetPlatform macOS
+  {static} +TargetPlatform windows
+}
+
+"flutter::lib::src::foundation::platform.dart::TargetPlatform" o-- "flutter::lib::src::foundation::platform.dart::TargetPlatform"
+"dart::core::Enum" <|-- "flutter::lib::src::foundation::platform.dart::TargetPlatform"
+
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::painting::shader_warm_up.dart::ShaderWarmUp" {
+  +dynamic size
+  +Future<void> warmUpOnCanvas()
+  +Future<void> execute()
+}
+
+
+@enduml

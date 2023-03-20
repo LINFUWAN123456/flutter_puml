@@ -1,0 +1,100 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" {
+  +DragStartBehavior dragStartBehavior
+  +void Function(DragDownDetails)? onDown
+  +void Function(DragStartDetails)? onStart
+  +void Function(DragUpdateDetails)? onUpdate
+  +void Function(DragEndDetails)? onEnd
+  +void Function()? onCancel
+  +double? minFlingDistance
+  +double? minFlingVelocity
+  +double? maxFlingVelocity
+  +VelocityTracker Function(PointerEvent) velocityTrackerBuilder
+  -_DragState _state
+  -OffsetPair _initialPosition
+  -OffsetPair _pendingDragOffset
+  -Duration? _lastPendingEventTimestamp
+  -int? _initialButtons
+  -dynamic _lastTransform
+  -double _globalDistanceMoved
+  -Map<int, VelocityTracker> _velocityTrackers
+  -Set<int> _acceptedActivePointers
+  {static} -VelocityTracker _defaultBuilder()
+  +bool isFlingGesture()
+  -dynamic _getDeltaForDetails()
+  -double? _getPrimaryValueFromOffset()
+  -bool _hasSufficientGlobalDistanceToAccept()
+  +bool isPointerAllowed()
+  -void _addPointer()
+  +void addAllowedPointer()
+  +void addAllowedPointerPanZoom()
+  +void handleEvent()
+  +void acceptGesture()
+  +void rejectGesture()
+  +void didStopTrackingLastPointer()
+  -void _giveUpPointer()
+  -void _checkDown()
+  -void _checkStart()
+  -void _checkUpdate()
+  -void _checkEnd()
+  -void _checkCancel()
+  +void dispose()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" o-- "flutter::lib::src::gestures::recognizer.dart::DragStartBehavior"
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" o-- "flutter::lib::src::gestures::drag_details.dart::void Function(DragDownDetails)"
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" o-- "flutter::lib::src::gestures::drag_details.dart::void Function(DragStartDetails)"
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" o-- "flutter::lib::src::gestures::drag_details.dart::void Function(DragUpdateDetails)"
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" o-- "flutter::lib::src::gestures::monodrag.dart::void Function(DragEndDetails)"
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" o-- "flutter::lib::src::gestures::monodrag.dart::void Function()"
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" o-- "flutter::lib::src::gestures::monodrag.dart::VelocityTracker Function(PointerEvent)"
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" o-- "flutter::lib::src::gestures::monodrag.dart::_DragState"
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" o-- "flutter::lib::src::gestures::recognizer.dart::OffsetPair"
+"flutter::lib::src::gestures::recognizer.dart::OneSequenceGestureRecognizer" <|-- "flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer"
+
+class "flutter::lib::src::gestures::monodrag.dart::VerticalDragGestureRecognizer" {
+  +String debugDescription
+  +bool isFlingGesture()
+  -bool _hasSufficientGlobalDistanceToAccept()
+  -dynamic _getDeltaForDetails()
+  -double _getPrimaryValueFromOffset()
+}
+
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" <|-- "flutter::lib::src::gestures::monodrag.dart::VerticalDragGestureRecognizer"
+
+class "flutter::lib::src::gestures::monodrag.dart::HorizontalDragGestureRecognizer" {
+  +String debugDescription
+  +bool isFlingGesture()
+  -bool _hasSufficientGlobalDistanceToAccept()
+  -dynamic _getDeltaForDetails()
+  -double _getPrimaryValueFromOffset()
+}
+
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" <|-- "flutter::lib::src::gestures::monodrag.dart::HorizontalDragGestureRecognizer"
+
+class "flutter::lib::src::gestures::monodrag.dart::PanGestureRecognizer" {
+  +String debugDescription
+  +bool isFlingGesture()
+  -bool _hasSufficientGlobalDistanceToAccept()
+  -dynamic _getDeltaForDetails()
+  -double? _getPrimaryValueFromOffset()
+}
+
+"flutter::lib::src::gestures::monodrag.dart::DragGestureRecognizer" <|-- "flutter::lib::src::gestures::monodrag.dart::PanGestureRecognizer"
+
+class "flutter::lib::src::gestures::monodrag.dart::_DragState" {
+  +int index
+  {static} +List<_DragState> values
+  {static} +_DragState ready
+  {static} +_DragState possible
+  {static} +_DragState accepted
+}
+
+"flutter::lib::src::gestures::monodrag.dart::_DragState" o-- "flutter::lib::src::gestures::monodrag.dart::_DragState"
+"dart::core::Enum" <|-- "flutter::lib::src::gestures::monodrag.dart::_DragState"
+
+
+@enduml

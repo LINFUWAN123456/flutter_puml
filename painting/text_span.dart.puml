@@ -1,0 +1,36 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::text_span.dart::TextSpan" {
+  +String? text
+  +List<InlineSpan>? children
+  +dynamic recognizer
+  +dynamic mouseCursor
+  +dynamic onEnter
+  +dynamic onExit
+  +String? semanticsLabel
+  +dynamic locale
+  +bool? spellOut
+  +dynamic cursor
+  +bool validForMouseTracker
+  +int hashCode
+  +void handleEvent()
+  +void build()
+  +bool visitChildren()
+  +InlineSpan? getSpanForPositionVisitor()
+  +void computeToPlainText()
+  +void computeSemanticsInformation()
+  +int? codeUnitAtVisitor()
+  +void describeSemantics()
+  +bool debugAssertIsValid()
+  +RenderComparison compareTo()
+  +bool ==()
+  +String toStringShort()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+}
+
+"flutter::lib::src::painting::inline_span.dart::InlineSpan" <|-- "flutter::lib::src::painting::text_span.dart::TextSpan"
+
+
+@enduml

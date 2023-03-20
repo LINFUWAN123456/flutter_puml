@@ -1,0 +1,16 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::title.dart::Title" {
+  +String title
+  +dynamic color
+  +Widget child
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::title.dart::Title" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::title.dart::Title"
+
+
+@enduml

@@ -1,0 +1,185 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::animation::animations.dart::_AlwaysCompleteAnimation" {
+  +AnimationStatus status
+  +double value
+  +void addListener()
+  +void removeListener()
+  +void addStatusListener()
+  +void removeStatusListener()
+  +String toString()
+}
+
+"flutter::lib::src::animation::animations.dart::_AlwaysCompleteAnimation" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"flutter::lib::src::animation::animation.dart::Animation" <|-- "flutter::lib::src::animation::animations.dart::_AlwaysCompleteAnimation"
+
+class "flutter::lib::src::animation::animations.dart::_AlwaysDismissedAnimation" {
+  +AnimationStatus status
+  +double value
+  +void addListener()
+  +void removeListener()
+  +void addStatusListener()
+  +void removeStatusListener()
+  +String toString()
+}
+
+"flutter::lib::src::animation::animations.dart::_AlwaysDismissedAnimation" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"flutter::lib::src::animation::animation.dart::Animation" <|-- "flutter::lib::src::animation::animations.dart::_AlwaysDismissedAnimation"
+
+class "flutter::lib::src::animation::animations.dart::AlwaysStoppedAnimation" {
+  +T value
+  +AnimationStatus status
+  +void addListener()
+  +void removeListener()
+  +void addStatusListener()
+  +void removeStatusListener()
+  +String toStringDetails()
+}
+
+"flutter::lib::src::animation::animations.dart::AlwaysStoppedAnimation" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"flutter::lib::src::animation::animation.dart::Animation" <|-- "flutter::lib::src::animation::animations.dart::AlwaysStoppedAnimation"
+
+class "flutter::lib::src::animation::animations.dart::ProxyAnimation" {
+  -AnimationStatus? _status
+  -double? _value
+  -Animation<double>? _parent
+  +Animation<double>? parent
+  +AnimationStatus status
+  +double value
+  +void didStartListening()
+  +void didStopListening()
+  +String toString()
+}
+
+"flutter::lib::src::animation::animations.dart::ProxyAnimation" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"flutter::lib::src::animation::animations.dart::ProxyAnimation" o-- "flutter::lib::src::animation::animation.dart::Animation<double>"
+"flutter::lib::src::animation::animation.dart::Animation" <|-- "flutter::lib::src::animation::animations.dart::ProxyAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLazyListenerMixin" <|-- "flutter::lib::src::animation::animations.dart::ProxyAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLocalListenersMixin" <|-- "flutter::lib::src::animation::animations.dart::ProxyAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLocalStatusListenersMixin" <|-- "flutter::lib::src::animation::animations.dart::ProxyAnimation"
+
+class "flutter::lib::src::animation::animations.dart::ReverseAnimation" {
+  +Animation<double> parent
+  +AnimationStatus status
+  +double value
+  +void addListener()
+  +void removeListener()
+  +void didStartListening()
+  +void didStopListening()
+  -void _statusChangeHandler()
+  -AnimationStatus _reverseStatus()
+  +String toString()
+}
+
+"flutter::lib::src::animation::animations.dart::ReverseAnimation" o-- "flutter::lib::src::animation::animation.dart::Animation<double>"
+"flutter::lib::src::animation::animations.dart::ReverseAnimation" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"flutter::lib::src::animation::animation.dart::Animation" <|-- "flutter::lib::src::animation::animations.dart::ReverseAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLazyListenerMixin" <|-- "flutter::lib::src::animation::animations.dart::ReverseAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLocalStatusListenersMixin" <|-- "flutter::lib::src::animation::animations.dart::ReverseAnimation"
+
+class "flutter::lib::src::animation::animations.dart::CurvedAnimation" {
+  +Animation<double> parent
+  +Curve curve
+  +Curve? reverseCurve
+  -AnimationStatus? _curveDirection
+  +bool isDisposed
+  -bool _useForwardCurve
+  +double value
+  -void _updateCurveDirection()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::animation::animations.dart::CurvedAnimation" o-- "flutter::lib::src::animation::animation.dart::Animation<double>"
+"flutter::lib::src::animation::animations.dart::CurvedAnimation" o-- "flutter::lib::src::animation::curves.dart::Curve"
+"flutter::lib::src::animation::animations.dart::CurvedAnimation" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"flutter::lib::src::animation::animation.dart::Animation" <|-- "flutter::lib::src::animation::animations.dart::CurvedAnimation"
+"flutter::lib::src::animation::animations.dart::AnimationWithParentMixin" <|-- "flutter::lib::src::animation::animations.dart::CurvedAnimation"
+
+class "flutter::lib::src::animation::animations.dart::TrainHoppingAnimation" {
+  -Animation<double>? _currentTrain
+  -Animation<double>? _nextTrain
+  -_TrainHoppingMode? _mode
+  +dynamic onSwitchedTrain
+  -AnimationStatus? _lastStatus
+  -double? _lastValue
+  +Animation<double>? currentTrain
+  +AnimationStatus status
+  +double value
+  -void _statusChangeHandler()
+  -void _valueChangeHandler()
+  +void dispose()
+  +String toString()
+}
+
+"flutter::lib::src::animation::animations.dart::TrainHoppingAnimation" o-- "flutter::lib::src::animation::animation.dart::Animation<double>"
+"flutter::lib::src::animation::animations.dart::TrainHoppingAnimation" o-- "flutter::lib::src::animation::animations.dart::_TrainHoppingMode"
+"flutter::lib::src::animation::animations.dart::TrainHoppingAnimation" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"flutter::lib::src::animation::animation.dart::Animation" <|-- "flutter::lib::src::animation::animations.dart::TrainHoppingAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationEagerListenerMixin" <|-- "flutter::lib::src::animation::animations.dart::TrainHoppingAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLocalListenersMixin" <|-- "flutter::lib::src::animation::animations.dart::TrainHoppingAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLocalStatusListenersMixin" <|-- "flutter::lib::src::animation::animations.dart::TrainHoppingAnimation"
+
+abstract class "flutter::lib::src::animation::animations.dart::CompoundAnimation" {
+  +Animation<T> first
+  +Animation<T> next
+  -AnimationStatus? _lastStatus
+  -T? _lastValue
+  +AnimationStatus status
+  +void didStartListening()
+  +void didStopListening()
+  +String toString()
+  -void _maybeNotifyStatusListeners()
+  -void _maybeNotifyListeners()
+}
+
+"flutter::lib::src::animation::animations.dart::CompoundAnimation" o-- "flutter::lib::src::animation::animation.dart::Animation<T>"
+"flutter::lib::src::animation::animations.dart::CompoundAnimation" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+"flutter::lib::src::animation::animation.dart::Animation" <|-- "flutter::lib::src::animation::animations.dart::CompoundAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLazyListenerMixin" <|-- "flutter::lib::src::animation::animations.dart::CompoundAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLocalListenersMixin" <|-- "flutter::lib::src::animation::animations.dart::CompoundAnimation"
+"flutter::lib::src::animation::listener_helpers.dart::AnimationLocalStatusListenersMixin" <|-- "flutter::lib::src::animation::animations.dart::CompoundAnimation"
+
+class "flutter::lib::src::animation::animations.dart::AnimationMean" {
+  +double value
+}
+
+"flutter::lib::src::animation::animations.dart::CompoundAnimation" <|-- "flutter::lib::src::animation::animations.dart::AnimationMean"
+
+class "flutter::lib::src::animation::animations.dart::AnimationMax" {
+  +T value
+}
+
+"flutter::lib::src::animation::animations.dart::CompoundAnimation" <|-- "flutter::lib::src::animation::animations.dart::AnimationMax"
+
+class "flutter::lib::src::animation::animations.dart::AnimationMin" {
+  +T value
+}
+
+"flutter::lib::src::animation::animations.dart::CompoundAnimation" <|-- "flutter::lib::src::animation::animations.dart::AnimationMin"
+
+class "flutter::lib::src::animation::animations.dart::_TrainHoppingMode" {
+  +int index
+  {static} +List<_TrainHoppingMode> values
+  {static} +_TrainHoppingMode minimize
+  {static} +_TrainHoppingMode maximize
+}
+
+"flutter::lib::src::animation::animations.dart::_TrainHoppingMode" o-- "flutter::lib::src::animation::animations.dart::_TrainHoppingMode"
+"dart::core::Enum" <|-- "flutter::lib::src::animation::animations.dart::_TrainHoppingMode"
+
+abstract class "flutter::lib::src::animation::animations.dart::AnimationWithParentMixin" {
+  +Animation<T> parent
+  +AnimationStatus status
+  +void addListener()
+  +void removeListener()
+  +void addStatusListener()
+  +void removeStatusListener()
+}
+
+"flutter::lib::src::animation::animations.dart::AnimationWithParentMixin" o-- "flutter::lib::src::animation::animation.dart::Animation<T>"
+"flutter::lib::src::animation::animations.dart::AnimationWithParentMixin" o-- "flutter::lib::src::animation::animation.dart::AnimationStatus"
+
+
+@enduml

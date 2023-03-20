@@ -1,0 +1,177 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::context_menu.dart::CupertinoContextMenu" {
+  +dynamic child
+  +List<dynamic> actions
+  +dynamic Function(dynamic, dynamic, dynamic)? previewBuilder
+  +dynamic createState()
+}
+
+"flutter::lib::src::cupertino::context_menu.dart::CupertinoContextMenu" o-- "flutter::lib::src::cupertino::context_menu.dart::dynamic Function(dynamic, dynamic, dynamic)"
+
+class "flutter::lib::src::cupertino::context_menu.dart::_CupertinoContextMenuState" {
+  -dynamic _childGlobalKey
+  -bool _childHidden
+  -dynamic _openController
+  -dynamic _decoyChildEndRect
+  -dynamic _lastOverlayEntry
+  -_ContextMenuRoute<void>? _route
+  -_ContextMenuLocation _contextMenuLocation
+  +void initState()
+  -void _openContextMenu()
+  -void _onDecoyAnimationStatusChange()
+  -void _routeAnimationStatusListener()
+  -void _onTap()
+  -void _onTapCancel()
+  -void _onTapUp()
+  -void _onTapDown()
+  +dynamic build()
+  +void dispose()
+}
+
+"flutter::lib::src::cupertino::context_menu.dart::_CupertinoContextMenuState" o-- "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuRoute<void>"
+"flutter::lib::src::cupertino::context_menu.dart::_CupertinoContextMenuState" o-- "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuLocation"
+
+class "flutter::lib::src::cupertino::context_menu.dart::_DecoyChild" {
+  +dynamic beginRect
+  +dynamic controller
+  +dynamic endRect
+  +dynamic child
+  +_DecoyChildState createState()
+}
+
+class "flutter::lib::src::cupertino::context_menu.dart::_DecoyChildState" {
+  {static} -dynamic _lightModeMaskColor
+  {static} -dynamic _masklessColor
+  -dynamic _childGlobalKey
+  -dynamic _mask
+  -dynamic _rect
+  +void initState()
+  -void _rectListener()
+  +void dispose()
+  -dynamic _buildAnimation()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuRoute" {
+  {static} -dynamic _kModalBarrierColor
+  {static} -Duration _kModalPopupTransitionDuration
+  -List<dynamic> _actions
+  -dynamic Function(dynamic, dynamic)? _builder
+  -dynamic _childGlobalKey
+  -_ContextMenuLocation _contextMenuLocation
+  -bool _externalOffstage
+  -bool _internalOffstage
+  -dynamic _lastOrientation
+  -dynamic _previousChildRect
+  -double? _scale
+  -dynamic _sheetGlobalKey
+  {static} -dynamic _curve
+  {static} -dynamic _curveReverse
+  {static} -dynamic _rectTween
+  {static} -dynamic _rectAnimatable
+  {static} -dynamic _rectTweenReverse
+  {static} -dynamic _rectAnimatableReverse
+  {static} -dynamic _sheetRectTween
+  -dynamic _sheetRectAnimatable
+  -dynamic _sheetRectAnimatableReverse
+  {static} -dynamic _sheetScaleTween
+  {static} -dynamic _sheetScaleAnimatable
+  {static} -dynamic _sheetScaleAnimatableReverse
+  -dynamic _opacityTween
+  -dynamic _sheetOpacity
+  +String? barrierLabel
+  +dynamic barrierColor
+  +bool barrierDismissible
+  +bool semanticsDismissible
+  +Duration transitionDuration
+  +bool offstage
+  {static} -dynamic _getScaledRect()
+  {static} +dynamic getSheetAlignment()
+  {static} -dynamic _getSheetRectBegin()
+  -void _onDismiss()
+  -void _updateTweenRects()
+  -void _setOffstageInternally()
+  +bool didPop()
+  +dynamic didPush()
+  +dynamic createAnimation()
+  +dynamic buildPage()
+  +dynamic buildTransitions()
+}
+
+"flutter::lib::src::cupertino::context_menu.dart::_ContextMenuRoute" o-- "flutter::lib::src::cupertino::context_menu.dart::dynamic Function(dynamic, dynamic)"
+"flutter::lib::src::cupertino::context_menu.dart::_ContextMenuRoute" o-- "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuLocation"
+
+class "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuRouteStatic" {
+  +List<dynamic>? actions
+  +dynamic child
+  +dynamic childGlobalKey
+  +_ContextMenuLocation contextMenuLocation
+  +void Function(dynamic, double, double)? onDismiss
+  +dynamic orientation
+  +dynamic sheetGlobalKey
+  +_ContextMenuRouteStaticState createState()
+}
+
+"flutter::lib::src::cupertino::context_menu.dart::_ContextMenuRouteStatic" o-- "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuLocation"
+"flutter::lib::src::cupertino::context_menu.dart::_ContextMenuRouteStatic" o-- "flutter::lib::src::cupertino::context_menu.dart::void Function(dynamic, double, double)"
+
+class "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuRouteStaticState" {
+  {static} -double _kMinScale
+  {static} -double _kSheetScaleThreshold
+  {static} -double _kPadding
+  {static} -double _kDamping
+  {static} -Duration _kMoveControllerDuration
+  -dynamic _dragOffset
+  -double _lastScale
+  -dynamic _moveController
+  -dynamic _sheetController
+  -dynamic _moveAnimation
+  -dynamic _sheetScaleAnimation
+  -dynamic _sheetOpacityAnimation
+  {static} -double _getScale()
+  -void _onPanStart()
+  -void _onPanUpdate()
+  -void _onPanEnd()
+  -void _moveListener()
+  -void _flingStatusListener()
+  -dynamic _getChildAlignment()
+  -void _setDragOffset()
+  -List<dynamic> _getChildren()
+  -dynamic _buildSheetAnimation()
+  -dynamic _buildChildAnimation()
+  -dynamic _buildAnimation()
+  +void initState()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuSheet" {
+  +List<dynamic> actions
+  -_ContextMenuLocation _contextMenuLocation
+  -dynamic _orientation
+  +List<dynamic> getChildren()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::context_menu.dart::_ContextMenuSheet" o-- "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuLocation"
+
+class "flutter::lib::src::cupertino::context_menu.dart::_OnOffAnimation" {
+  -T _offValue
+  +T value
+}
+
+class "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuLocation" {
+  +int index
+  {static} +List<_ContextMenuLocation> values
+  {static} +_ContextMenuLocation center
+  {static} +_ContextMenuLocation left
+  {static} +_ContextMenuLocation right
+}
+
+"flutter::lib::src::cupertino::context_menu.dart::_ContextMenuLocation" o-- "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuLocation"
+"dart::core::Enum" <|-- "flutter::lib::src::cupertino::context_menu.dart::_ContextMenuLocation"
+
+
+@enduml

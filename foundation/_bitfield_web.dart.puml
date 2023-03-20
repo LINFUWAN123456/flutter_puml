@@ -1,0 +1,13 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::_bitfield_web.dart::BitField" {
+  +bool []()
+  +void []=()
+  +void reset()
+}
+
+"flutter::lib::src::foundation::bitfield.dart::BitField" <|-- "flutter::lib::src::foundation::_bitfield_web.dart::BitField"
+
+
+@enduml

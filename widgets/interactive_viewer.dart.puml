@@ -1,0 +1,100 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::interactive_viewer.dart::InteractiveViewer" {
+  +dynamic clipBehavior
+  +bool alignPanAxis
+  +dynamic boundaryMargin
+  +Widget Function(BuildContext, dynamic)? builder
+  +Widget? child
+  +bool constrained
+  +bool panEnabled
+  +bool scaleEnabled
+  +double scaleFactor
+  +double maxScale
+  +double minScale
+  +dynamic onInteractionEnd
+  +dynamic onInteractionStart
+  +dynamic onInteractionUpdate
+  +TransformationController? transformationController
+  {static} +dynamic getNearestPointOnLine()
+  {static} +dynamic getAxisAlignedBoundingBox()
+  {static} +bool pointIsInside()
+  {static} +dynamic getNearestPointInside()
+  +State<InteractiveViewer> createState()
+}
+
+"flutter::lib::src::widgets::interactive_viewer.dart::InteractiveViewer" o-- "flutter::lib::src::widgets::interactive_viewer.dart::Widget Function(BuildContext, dynamic)"
+"flutter::lib::src::widgets::interactive_viewer.dart::InteractiveViewer" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::interactive_viewer.dart::InteractiveViewer" o-- "flutter::lib::src::widgets::interactive_viewer.dart::TransformationController"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::interactive_viewer.dart::InteractiveViewer"
+
+class "flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerState" {
+  -TransformationController? _transformationController
+  -GlobalKey<State<StatefulWidget>> _childKey
+  -GlobalKey<State<StatefulWidget>> _parentKey
+  -dynamic _animation
+  -dynamic _controller
+  -dynamic _panAxis
+  -dynamic _referenceFocalPoint
+  -double? _scaleStart
+  -double? _rotationStart
+  -double _currentRotation
+  -_GestureType? _gestureType
+  -bool _rotateEnabled
+  {static} -double _kDrag
+  -dynamic _boundaryRect
+  -dynamic _viewport
+  -dynamic _matrixTranslate()
+  -dynamic _matrixScale()
+  -dynamic _matrixRotate()
+  -bool _gestureIsSupported()
+  -_GestureType _getGestureType()
+  -void _onScaleStart()
+  -void _onScaleUpdate()
+  -void _onScaleEnd()
+  -void _receivedPointerSignal()
+  -void _onAnimate()
+  -void _onTransformationControllerChange()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerState" o-- "flutter::lib::src::widgets::interactive_viewer.dart::TransformationController"
+"flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerState" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerState" o-- "flutter::lib::src::widgets::interactive_viewer.dart::_GestureType"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerState"
+
+class "flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerBuilt" {
+  +Widget child
+  +GlobalKey<State<StatefulWidget>> childKey
+  +dynamic clipBehavior
+  +bool constrained
+  +dynamic matrix
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerBuilt" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerBuilt" o-- "flutter::lib::src::widgets::framework.dart::GlobalKey<State<StatefulWidget>>"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::interactive_viewer.dart::_InteractiveViewerBuilt"
+
+class "flutter::lib::src::widgets::interactive_viewer.dart::TransformationController" {
+  +dynamic toScene()
+}
+
+class "flutter::lib::src::widgets::interactive_viewer.dart::_GestureType" {
+  +int index
+  {static} +List<_GestureType> values
+  {static} +_GestureType pan
+  {static} +_GestureType scale
+  {static} +_GestureType rotate
+}
+
+"flutter::lib::src::widgets::interactive_viewer.dart::_GestureType" o-- "flutter::lib::src::widgets::interactive_viewer.dart::_GestureType"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::interactive_viewer.dart::_GestureType"
+
+
+@enduml

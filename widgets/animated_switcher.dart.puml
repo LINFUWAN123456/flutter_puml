@@ -1,0 +1,54 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::animated_switcher.dart::_ChildEntry" {
+  +dynamic controller
+  +dynamic animation
+  +Widget transition
+  +Widget widgetChild
+  +String toString()
+}
+
+"flutter::lib::src::widgets::animated_switcher.dart::_ChildEntry" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+
+class "flutter::lib::src::widgets::animated_switcher.dart::AnimatedSwitcher" {
+  +Widget? child
+  +Duration duration
+  +Duration? reverseDuration
+  +dynamic switchInCurve
+  +dynamic switchOutCurve
+  +Widget Function(Widget, dynamic) transitionBuilder
+  +Widget Function(Widget?, List<Widget>) layoutBuilder
+  +State<AnimatedSwitcher> createState()
+  {static} +Widget defaultTransitionBuilder()
+  {static} +Widget defaultLayoutBuilder()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::animated_switcher.dart::AnimatedSwitcher" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::animated_switcher.dart::AnimatedSwitcher" o-- "flutter::lib::src::widgets::animated_switcher.dart::Widget Function(Widget, dynamic)"
+"flutter::lib::src::widgets::animated_switcher.dart::AnimatedSwitcher" o-- "flutter::lib::src::widgets::animated_switcher.dart::Widget Function(Widget, List<Widget>)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::animated_switcher.dart::AnimatedSwitcher"
+
+class "flutter::lib::src::widgets::animated_switcher.dart::_AnimatedSwitcherState" {
+  -_ChildEntry? _currentEntry
+  -Set<_ChildEntry> _outgoingEntries
+  -List<Widget>? _outgoingWidgets
+  -int _childNumber
+  +void initState()
+  +void didUpdateWidget()
+  -void _addEntryForNewChild()
+  -_ChildEntry _newEntry()
+  -void _markChildWidgetCacheAsDirty()
+  -void _updateTransitionForEntry()
+  -void _rebuildOutgoingWidgetsIfNeeded()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::animated_switcher.dart::_AnimatedSwitcherState" o-- "flutter::lib::src::widgets::animated_switcher.dart::_ChildEntry"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::animated_switcher.dart::_AnimatedSwitcherState"
+"flutter::lib::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "flutter::lib::src::widgets::animated_switcher.dart::_AnimatedSwitcherState"
+
+
+@enduml

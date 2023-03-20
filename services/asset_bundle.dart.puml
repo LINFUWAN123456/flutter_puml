@@ -1,0 +1,47 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::services::asset_bundle.dart::AssetBundle" {
+  +Future<dynamic> load()
+  +Future<dynamic> loadBuffer()
+  +Future<String> loadString()
+  {static} -String _utf8decode()
+  +Future<T> loadStructuredData()
+  +void evict()
+  +void clear()
+  +String toString()
+}
+
+class "flutter::lib::src::services::asset_bundle.dart::NetworkAssetBundle" {
+  -Uri _baseUrl
+  -HttpClient _httpClient
+  -Uri _urlFromKey()
+  +Future<dynamic> load()
+  +Future<T> loadStructuredData()
+  +String toString()
+}
+
+"flutter::lib::src::services::asset_bundle.dart::NetworkAssetBundle" o-- "dart::_http::HttpClient"
+"flutter::lib::src::services::asset_bundle.dart::AssetBundle" <|-- "flutter::lib::src::services::asset_bundle.dart::NetworkAssetBundle"
+
+abstract class "flutter::lib::src::services::asset_bundle.dart::CachingAssetBundle" {
+  -Map<String, Future<String>> _stringCache
+  -Map<String, Future<dynamic>> _structuredDataCache
+  +Future<String> loadString()
+  +Future<T> loadStructuredData()
+  +void evict()
+  +void clear()
+  +Future<dynamic> loadBuffer()
+}
+
+"flutter::lib::src::services::asset_bundle.dart::AssetBundle" <|-- "flutter::lib::src::services::asset_bundle.dart::CachingAssetBundle"
+
+class "flutter::lib::src::services::asset_bundle.dart::PlatformAssetBundle" {
+  +Future<dynamic> load()
+  +Future<dynamic> loadBuffer()
+}
+
+"flutter::lib::src::services::asset_bundle.dart::CachingAssetBundle" <|-- "flutter::lib::src::services::asset_bundle.dart::PlatformAssetBundle"
+
+
+@enduml

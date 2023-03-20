@@ -1,0 +1,23 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::table_border.dart::TableBorder" {
+  +dynamic top
+  +dynamic right
+  +dynamic bottom
+  +dynamic left
+  +dynamic horizontalInside
+  +dynamic verticalInside
+  +dynamic borderRadius
+  +dynamic dimensions
+  +bool isUniform
+  +int hashCode
+  +TableBorder scale()
+  {static} +TableBorder? lerp()
+  +void paint()
+  +bool ==()
+  +String toString()
+}
+
+
+@enduml

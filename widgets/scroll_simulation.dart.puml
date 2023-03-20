@@ -1,0 +1,40 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scroll_simulation.dart::BouncingScrollSimulation" {
+  {static} +double maxSpringTransferVelocity
+  +double leadingExtent
+  +double trailingExtent
+  +dynamic spring
+  -dynamic _frictionSimulation
+  -dynamic _springSimulation
+  -double _springTime
+  -double _timeOffset
+  -dynamic _underscrollSimulation()
+  -dynamic _overscrollSimulation()
+  -dynamic _simulation()
+  +double x()
+  +double dx()
+  +bool isDone()
+  +String toString()
+}
+
+class "flutter::lib::src::widgets::scroll_simulation.dart::ClampingScrollSimulation" {
+  +double position
+  +double velocity
+  +double friction
+  -double _duration
+  -double _distance
+  {static} -double _kDecelerationRate
+  {static} -double _initialVelocityPenetration
+  {static} -double _decelerationForFriction()
+  -double _flingDuration()
+  {static} -double _flingDistancePenetration()
+  {static} -double _flingVelocityPenetration()
+  +double x()
+  +double dx()
+  +bool isDone()
+}
+
+
+@enduml

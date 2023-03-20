@@ -1,0 +1,115 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::gestures::recognizer.dart::GestureRecognizer" {
+  +Object? debugOwner
+  +DeviceGestureSettings? gestureSettings
+  -Set<dynamic>? _supportedDevices
+  -Map<int, dynamic> _pointerToKind
+  +String debugDescription
+  +void addPointerPanZoom()
+  +void addAllowedPointerPanZoom()
+  +void addPointer()
+  +void addAllowedPointer()
+  +void handleNonAllowedPointer()
+  +bool isPointerAllowed()
+  +void handleNonAllowedPointerPanZoom()
+  +bool isPointerPanZoomAllowed()
+  +dynamic getKindForPointer()
+  +void dispose()
+  +T? invokeCallback()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::gestures::recognizer.dart::GestureRecognizer" o-- "flutter::lib::src::gestures::gesture_settings.dart::DeviceGestureSettings"
+"flutter::lib::src::gestures::arena.dart::GestureArenaMember" <|-- "flutter::lib::src::gestures::recognizer.dart::GestureRecognizer"
+
+abstract class "flutter::lib::src::gestures::recognizer.dart::OneSequenceGestureRecognizer" {
+  -Map<int, GestureArenaEntry> _entries
+  -Set<int> _trackedPointers
+  -GestureArenaTeam? _team
+  +GestureArenaTeam? team
+  +void addAllowedPointer()
+  +void handleNonAllowedPointer()
+  +void handleEvent()
+  +void acceptGesture()
+  +void rejectGesture()
+  +void didStopTrackingLastPointer()
+  +void resolve()
+  +void resolvePointer()
+  +void dispose()
+  -GestureArenaEntry _addPointerToArena()
+  +void startTrackingPointer()
+  +void stopTrackingPointer()
+  +void stopTrackingIfPointerNoLongerDown()
+}
+
+"flutter::lib::src::gestures::recognizer.dart::OneSequenceGestureRecognizer" o-- "flutter::lib::src::gestures::team.dart::GestureArenaTeam"
+"flutter::lib::src::gestures::recognizer.dart::GestureRecognizer" <|-- "flutter::lib::src::gestures::recognizer.dart::OneSequenceGestureRecognizer"
+
+abstract class "flutter::lib::src::gestures::recognizer.dart::PrimaryPointerGestureRecognizer" {
+  +Duration? deadline
+  +double? preAcceptSlopTolerance
+  +double? postAcceptSlopTolerance
+  -GestureRecognizerState _state
+  -int? _primaryPointer
+  -OffsetPair? _initialPosition
+  -bool _gestureAccepted
+  -Timer? _timer
+  +GestureRecognizerState state
+  +int? primaryPointer
+  +OffsetPair? initialPosition
+  +void addAllowedPointer()
+  +void handleNonAllowedPointer()
+  +void handleEvent()
+  +void handlePrimaryPointer()
+  +void didExceedDeadline()
+  +void didExceedDeadlineWithEvent()
+  +void acceptGesture()
+  +void rejectGesture()
+  +void didStopTrackingLastPointer()
+  +void dispose()
+  -void _stopTimer()
+  -double _getGlobalDistance()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::gestures::recognizer.dart::PrimaryPointerGestureRecognizer" o-- "flutter::lib::src::gestures::recognizer.dart::GestureRecognizerState"
+"flutter::lib::src::gestures::recognizer.dart::PrimaryPointerGestureRecognizer" o-- "flutter::lib::src::gestures::recognizer.dart::OffsetPair"
+"flutter::lib::src::gestures::recognizer.dart::PrimaryPointerGestureRecognizer" o-- "dart::async::Timer"
+"flutter::lib::src::gestures::recognizer.dart::OneSequenceGestureRecognizer" <|-- "flutter::lib::src::gestures::recognizer.dart::PrimaryPointerGestureRecognizer"
+
+class "flutter::lib::src::gestures::recognizer.dart::OffsetPair" {
+  {static} +OffsetPair zero
+  +dynamic local
+  +dynamic global
+  +OffsetPair +()
+  +OffsetPair -()
+  +String toString()
+}
+
+"flutter::lib::src::gestures::recognizer.dart::OffsetPair" o-- "flutter::lib::src::gestures::recognizer.dart::OffsetPair"
+
+class "flutter::lib::src::gestures::recognizer.dart::DragStartBehavior" {
+  +int index
+  {static} +List<DragStartBehavior> values
+  {static} +DragStartBehavior down
+  {static} +DragStartBehavior start
+}
+
+"flutter::lib::src::gestures::recognizer.dart::DragStartBehavior" o-- "flutter::lib::src::gestures::recognizer.dart::DragStartBehavior"
+"dart::core::Enum" <|-- "flutter::lib::src::gestures::recognizer.dart::DragStartBehavior"
+
+class "flutter::lib::src::gestures::recognizer.dart::GestureRecognizerState" {
+  +int index
+  {static} +List<GestureRecognizerState> values
+  {static} +GestureRecognizerState ready
+  {static} +GestureRecognizerState possible
+  {static} +GestureRecognizerState defunct
+}
+
+"flutter::lib::src::gestures::recognizer.dart::GestureRecognizerState" o-- "flutter::lib::src::gestures::recognizer.dart::GestureRecognizerState"
+"dart::core::Enum" <|-- "flutter::lib::src::gestures::recognizer.dart::GestureRecognizerState"
+
+
+@enduml

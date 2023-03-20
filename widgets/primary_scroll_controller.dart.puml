@@ -1,0 +1,18 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::primary_scroll_controller.dart::PrimaryScrollController" {
+  +ScrollController? controller
+  +dynamic scrollDirection
+  +Set<dynamic> automaticallyInheritForPlatforms
+  {static} +bool shouldInherit()
+  {static} +ScrollController? of()
+  +bool updateShouldNotify()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::primary_scroll_controller.dart::PrimaryScrollController" o-- "flutter::lib::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::primary_scroll_controller.dart::PrimaryScrollController"
+
+
+@enduml

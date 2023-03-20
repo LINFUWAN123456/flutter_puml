@@ -1,0 +1,172 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::box.dart::_DebugSize" {
+  -RenderBox _owner
+  -bool _canBeUsedByParent
+}
+
+"flutter::lib::src::rendering::box.dart::_DebugSize" o-- "flutter::lib::src::rendering::box.dart::RenderBox"
+
+class "flutter::lib::src::rendering::box.dart::BoxConstraints" {
+  +double minWidth
+  +double maxWidth
+  +double minHeight
+  +double maxHeight
+  +BoxConstraints flipped
+  +dynamic biggest
+  +dynamic smallest
+  +bool hasTightWidth
+  +bool hasTightHeight
+  +bool isTight
+  +bool hasBoundedWidth
+  +bool hasBoundedHeight
+  +bool hasInfiniteWidth
+  +bool hasInfiniteHeight
+  +bool isNormalized
+  +int hashCode
+  +BoxConstraints copyWith()
+  +BoxConstraints deflate()
+  +BoxConstraints loosen()
+  +BoxConstraints enforce()
+  +BoxConstraints tighten()
+  +BoxConstraints widthConstraints()
+  +BoxConstraints heightConstraints()
+  +double constrainWidth()
+  +double constrainHeight()
+  -dynamic _debugPropagateDebugSize()
+  +dynamic constrain()
+  +dynamic constrainDimensions()
+  +dynamic constrainSizeAndAttemptToPreserveAspectRatio()
+  +bool isSatisfiedBy()
+  +BoxConstraints *()
+  +BoxConstraints /()
+  +BoxConstraints ~/()
+  +BoxConstraints %()
+  {static} +BoxConstraints? lerp()
+  +bool debugAssertIsValid()
+  +BoxConstraints normalize()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::box.dart::BoxConstraints" o-- "flutter::lib::src::rendering::box.dart::BoxConstraints"
+"flutter::lib::src::rendering::object.dart::Constraints" <|-- "flutter::lib::src::rendering::box.dart::BoxConstraints"
+
+class "flutter::lib::src::rendering::box.dart::BoxHitTestResult" {
+  +bool addWithPaintTransform()
+  +bool addWithPaintOffset()
+  +bool addWithRawTransform()
+  +bool addWithOutOfBandPosition()
+}
+
+class "flutter::lib::src::rendering::box.dart::BoxHitTestEntry" {
+  +dynamic localPosition
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::box.dart::BoxParentData" {
+  +dynamic offset
+  +String toString()
+}
+
+"flutter::lib::src::rendering::object.dart::ParentData" <|-- "flutter::lib::src::rendering::box.dart::BoxParentData"
+
+abstract class "flutter::lib::src::rendering::box.dart::ContainerBoxParentData" {
+}
+
+"flutter::lib::src::rendering::box.dart::BoxParentData" <|-- "flutter::lib::src::rendering::box.dart::ContainerBoxParentData"
+"flutter::lib::src::rendering::object.dart::ContainerParentDataMixin" <|-- "flutter::lib::src::rendering::box.dart::ContainerBoxParentData"
+
+class "flutter::lib::src::rendering::box.dart::_IntrinsicDimensionsCacheEntry" {
+  +_IntrinsicDimension dimension
+  +double argument
+  +int hashCode
+  +bool ==()
+}
+
+"flutter::lib::src::rendering::box.dart::_IntrinsicDimensionsCacheEntry" o-- "flutter::lib::src::rendering::box.dart::_IntrinsicDimension"
+
+abstract class "flutter::lib::src::rendering::box.dart::RenderBox" {
+  -Map<_IntrinsicDimensionsCacheEntry, double>? _cachedIntrinsicDimensions
+  {static} -int _debugIntrinsicsDepth
+  -Map<BoxConstraints, dynamic>? _cachedDryLayoutSizes
+  -bool _computingThisDryLayout
+  {static} -bool _dryLayoutCalculationValid
+  -dynamic _size
+  -Map<dynamic, double?>? _cachedBaselines
+  {static} -bool _debugDoingBaseline
+  -int _debugActivePointers
+  +bool hasSize
+  +dynamic size
+  +dynamic semanticBounds
+  +BoxConstraints constraints
+  +dynamic paintBounds
+  +void setupParentData()
+  -double _computeIntrinsicDimension()
+  +double getMinIntrinsicWidth()
+  +double computeMinIntrinsicWidth()
+  +double getMaxIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double getMinIntrinsicHeight()
+  +double computeMinIntrinsicHeight()
+  +double getMaxIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +dynamic getDryLayout()
+  -dynamic _computeDryLayout()
+  +dynamic computeDryLayout()
+  +bool debugCannotComputeDryLayout()
+  +dynamic debugAdoptSize()
+  +void debugResetSize()
+  {static} -bool _debugSetDoingBaseline()
+  +double? getDistanceToBaseline()
+  +double? getDistanceToActualBaseline()
+  +double? computeDistanceToActualBaseline()
+  +void debugAssertDoesMeetConstraints()
+  -bool _clearCachedData()
+  +void markNeedsLayout()
+  +void layout()
+  +void performResize()
+  +void performLayout()
+  +bool hitTest()
+  +bool hitTestSelf()
+  +bool hitTestChildren()
+  +void applyPaintTransform()
+  +dynamic globalToLocal()
+  +dynamic localToGlobal()
+  +void handleEvent()
+  +bool debugHandleEvent()
+  +void debugPaint()
+  +void debugPaintSize()
+  +void debugPaintBaselines()
+  +void debugPaintPointers()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::box.dart::RenderBox" o-- "flutter::lib::src::rendering::box.dart::BoxConstraints"
+"flutter::lib::src::rendering::object.dart::RenderObject" <|-- "flutter::lib::src::rendering::box.dart::RenderBox"
+
+class "flutter::lib::src::rendering::box.dart::_IntrinsicDimension" {
+  +int index
+  {static} +List<_IntrinsicDimension> values
+  {static} +_IntrinsicDimension minWidth
+  {static} +_IntrinsicDimension maxWidth
+  {static} +_IntrinsicDimension minHeight
+  {static} +_IntrinsicDimension maxHeight
+}
+
+"flutter::lib::src::rendering::box.dart::_IntrinsicDimension" o-- "flutter::lib::src::rendering::box.dart::_IntrinsicDimension"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::box.dart::_IntrinsicDimension"
+
+abstract class "flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin" {
+  +double? defaultComputeDistanceToFirstActualBaseline()
+  +double? defaultComputeDistanceToHighestActualBaseline()
+  +bool defaultHitTestChildren()
+  +void defaultPaint()
+  +List<ChildType> getChildrenAsList()
+}
+
+"flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" <|-- "flutter::lib::src::rendering::box.dart::RenderBoxContainerDefaultsMixin"
+
+
+@enduml

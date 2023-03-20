@@ -1,0 +1,125 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::tooltip.dart::Tooltip" {
+  +String? message
+  +dynamic richMessage
+  +double? height
+  +dynamic padding
+  +dynamic margin
+  +double? verticalOffset
+  +bool? preferBelow
+  +bool? excludeFromSemantics
+  +dynamic child
+  +dynamic decoration
+  +dynamic textStyle
+  +dynamic textAlign
+  +Duration? waitDuration
+  +Duration? showDuration
+  +TooltipTriggerMode? triggerMode
+  +bool? enableFeedback
+  +void Function()? onTriggered
+  {static} -List<TooltipState> _openedTooltips
+  {static} -void _concealOtherTooltips()
+  {static} -void _revealLastTooltip()
+  {static} +bool dismissAllToolTips()
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::tooltip.dart::Tooltip" o-- "flutter::lib::src::material::tooltip_theme.dart::TooltipTriggerMode"
+"flutter::lib::src::material::tooltip.dart::Tooltip" o-- "flutter::lib::src::material::tooltip.dart::void Function()"
+
+class "flutter::lib::src::material::tooltip.dart::TooltipState" {
+  {static} -double _defaultVerticalOffset
+  {static} -bool _defaultPreferBelow
+  {static} -dynamic _defaultMargin
+  {static} -Duration _fadeInDuration
+  {static} -Duration _fadeOutDuration
+  {static} -Duration _defaultShowDuration
+  {static} -Duration _defaultHoverShowDuration
+  {static} -Duration _defaultWaitDuration
+  {static} -bool _defaultExcludeFromSemantics
+  {static} -TooltipTriggerMode _defaultTriggerMode
+  {static} -bool _defaultEnableFeedback
+  {static} -dynamic _defaultTextAlign
+  -double _height
+  -dynamic _padding
+  -dynamic _margin
+  -dynamic _decoration
+  -dynamic _textStyle
+  -dynamic _textAlign
+  -double _verticalOffset
+  -bool _preferBelow
+  -bool _excludeFromSemantics
+  -dynamic _controller
+  -dynamic _entry
+  -Timer? _dismissTimer
+  -Timer? _showTimer
+  -Duration _showDuration
+  -Duration _hoverShowDuration
+  -Duration _waitDuration
+  -bool _mouseIsConnected
+  -bool _pressActivated
+  -TooltipTriggerMode _triggerMode
+  -bool _enableFeedback
+  -bool _isConcealed
+  -bool _forceRemoval
+  -bool _visible
+  {static} -Set<TooltipState> _mouseIn
+  -String _tooltipMessage
+  +void initState()
+  +void didChangeDependencies()
+  -double _getDefaultTooltipHeight()
+  -dynamic _getDefaultPadding()
+  -double _getDefaultFontSize()
+  -void _handleMouseTrackerChange()
+  -void _handleStatusChanged()
+  -void _dismissTooltip()
+  -void _showTooltip()
+  -void _concealTooltip()
+  -void _revealTooltip()
+  +bool ensureTooltipVisible()
+  -void _handleMouseEnter()
+  -void _handleMouseExit()
+  -void _createNewEntry()
+  -void _removeEntry()
+  -void _handlePointerEvent()
+  +void deactivate()
+  +void dispose()
+  -void _handlePress()
+  -void _handleTap()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::tooltip.dart::TooltipState" o-- "flutter::lib::src::material::tooltip_theme.dart::TooltipTriggerMode"
+"flutter::lib::src::material::tooltip.dart::TooltipState" o-- "dart::async::Timer"
+
+class "flutter::lib::src::material::tooltip.dart::_TooltipPositionDelegate" {
+  +dynamic target
+  +double verticalOffset
+  +bool preferBelow
+  +dynamic getConstraintsForChild()
+  +dynamic getPositionForChild()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::material::tooltip.dart::_TooltipOverlay" {
+  +dynamic richMessage
+  +double height
+  +dynamic padding
+  +dynamic margin
+  +dynamic decoration
+  +dynamic textStyle
+  +dynamic textAlign
+  +dynamic animation
+  +dynamic target
+  +double verticalOffset
+  +bool preferBelow
+  +dynamic onEnter
+  +dynamic onExit
+  +dynamic build()
+}
+
+
+@enduml

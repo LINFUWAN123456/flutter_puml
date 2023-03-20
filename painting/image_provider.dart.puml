@@ -1,0 +1,140 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::image_provider.dart::ImageConfiguration" {
+  +dynamic bundle
+  +double? devicePixelRatio
+  +dynamic locale
+  +dynamic textDirection
+  +dynamic size
+  +dynamic platform
+  {static} +ImageConfiguration empty
+  +int hashCode
+  +ImageConfiguration copyWith()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::image_provider.dart::ImageConfiguration" o-- "flutter::lib::src::painting::image_provider.dart::ImageConfiguration"
+
+abstract class "flutter::lib::src::painting::image_provider.dart::ImageProvider" {
+  +ImageStream resolve()
+  +ImageStream createStream()
+  +Future<ImageCacheStatus?> obtainCacheStatus()
+  -void _createErrorHandlerAndKey()
+  +void resolveStreamForKey()
+  +Future<bool> evict()
+  +Future<T> obtainKey()
+  +ImageStreamCompleter load()
+  +ImageStreamCompleter loadBuffer()
+  +String toString()
+}
+
+class "flutter::lib::src::painting::image_provider.dart::AssetBundleImageKey" {
+  +dynamic bundle
+  +String name
+  +double scale
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+abstract class "flutter::lib::src::painting::image_provider.dart::AssetBundleImageProvider" {
+  +ImageStreamCompleter loadBuffer()
+  +ImageStreamCompleter load()
+  -Future<dynamic> _loadAsync()
+}
+
+"flutter::lib::src::painting::image_provider.dart::ImageProvider" <|-- "flutter::lib::src::painting::image_provider.dart::AssetBundleImageProvider"
+
+class "flutter::lib::src::painting::image_provider.dart::ResizeImageKey" {
+  -Object _providerCacheKey
+  -int? _width
+  -int? _height
+  +int hashCode
+  +bool ==()
+}
+
+class "flutter::lib::src::painting::image_provider.dart::ResizeImage" {
+  +ImageProvider<Object> imageProvider
+  +int? width
+  +int? height
+  +bool allowUpscaling
+  {static} +ImageProvider<Object> resizeIfNeeded()
+  +ImageStreamCompleter load()
+  +ImageStreamCompleter loadBuffer()
+  +Future<ResizeImageKey> obtainKey()
+}
+
+"flutter::lib::src::painting::image_provider.dart::ResizeImage" o-- "flutter::lib::src::painting::image_provider.dart::ImageProvider<Object>"
+"flutter::lib::src::painting::image_provider.dart::ImageProvider" <|-- "flutter::lib::src::painting::image_provider.dart::ResizeImage"
+
+abstract class "flutter::lib::src::painting::image_provider.dart::NetworkImage" {
+  +String url
+  +double scale
+  +Map<String, String>? headers
+  +ImageStreamCompleter load()
+  +ImageStreamCompleter loadBuffer()
+}
+
+"flutter::lib::src::painting::image_provider.dart::ImageProvider" <|-- "flutter::lib::src::painting::image_provider.dart::NetworkImage"
+
+class "flutter::lib::src::painting::image_provider.dart::FileImage" {
+  +File file
+  +double scale
+  +int hashCode
+  +Future<FileImage> obtainKey()
+  +ImageStreamCompleter load()
+  +ImageStreamCompleter loadBuffer()
+  -Future<dynamic> _loadAsync()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::image_provider.dart::FileImage" o-- "dart::io::File"
+"flutter::lib::src::painting::image_provider.dart::ImageProvider" <|-- "flutter::lib::src::painting::image_provider.dart::FileImage"
+
+class "flutter::lib::src::painting::image_provider.dart::MemoryImage" {
+  +dynamic bytes
+  +double scale
+  +int hashCode
+  +Future<MemoryImage> obtainKey()
+  +ImageStreamCompleter load()
+  +ImageStreamCompleter loadBuffer()
+  -Future<dynamic> _loadAsync()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::image_provider.dart::ImageProvider" <|-- "flutter::lib::src::painting::image_provider.dart::MemoryImage"
+
+class "flutter::lib::src::painting::image_provider.dart::ExactAssetImage" {
+  +String assetName
+  +double scale
+  +dynamic bundle
+  +String? package
+  +String keyName
+  +int hashCode
+  +Future<AssetBundleImageKey> obtainKey()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::painting::image_provider.dart::AssetBundleImageProvider" <|-- "flutter::lib::src::painting::image_provider.dart::ExactAssetImage"
+
+class "flutter::lib::src::painting::image_provider.dart::_ErrorImageCompleter" {
+}
+
+"flutter::lib::src::painting::image_stream.dart::ImageStreamCompleter" <|-- "flutter::lib::src::painting::image_provider.dart::_ErrorImageCompleter"
+
+class "flutter::lib::src::painting::image_provider.dart::NetworkImageLoadException" {
+  +int statusCode
+  -String _message
+  +Uri uri
+  +String toString()
+}
+
+"dart::core::Exception" <|-- "flutter::lib::src::painting::image_provider.dart::NetworkImageLoadException"
+
+
+@enduml

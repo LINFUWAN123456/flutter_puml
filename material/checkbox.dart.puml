@@ -1,0 +1,72 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::checkbox.dart::Checkbox" {
+  +bool? value
+  +dynamic onChanged
+  +dynamic mouseCursor
+  +dynamic activeColor
+  +MaterialStateProperty<dynamic>? fillColor
+  +dynamic checkColor
+  +bool tristate
+  +MaterialTapTargetSize? materialTapTargetSize
+  +VisualDensity? visualDensity
+  +dynamic focusColor
+  +dynamic hoverColor
+  +MaterialStateProperty<dynamic>? overlayColor
+  +double? splashRadius
+  +dynamic focusNode
+  +bool autofocus
+  +dynamic shape
+  +dynamic side
+  {static} +double width
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::checkbox.dart::Checkbox" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::checkbox.dart::Checkbox" o-- "flutter::lib::src::material::theme_data.dart::MaterialTapTargetSize"
+"flutter::lib::src::material::checkbox.dart::Checkbox" o-- "flutter::lib::src::material::theme_data.dart::VisualDensity"
+
+class "flutter::lib::src::material::checkbox.dart::_CheckboxState" {
+  -_CheckboxPainter _painter
+  -bool? _previousValue
+  +dynamic onChanged
+  +bool tristate
+  +bool? value
+  -MaterialStateProperty<dynamic> _widgetFillColor
+  -MaterialStateProperty<dynamic> _defaultFillColor
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -dynamic _resolveSide()
+  +dynamic build()
+}
+
+"flutter::lib::src::material::checkbox.dart::_CheckboxState" o-- "flutter::lib::src::material::checkbox.dart::_CheckboxPainter"
+"flutter::lib::src::material::checkbox.dart::_CheckboxState" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::toggleable.dart::ToggleableStateMixin" <|-- "flutter::lib::src::material::checkbox.dart::_CheckboxState"
+
+class "flutter::lib::src::material::checkbox.dart::_CheckboxPainter" {
+  -dynamic _checkColor
+  -bool? _value
+  -bool? _previousValue
+  -dynamic _shape
+  -dynamic _side
+  +dynamic checkColor
+  +bool? value
+  +bool? previousValue
+  +dynamic shape
+  +dynamic side
+  -dynamic _outerRectAt()
+  -dynamic _colorAt()
+  -dynamic _createStrokePaint()
+  -void _drawBox()
+  -void _drawCheck()
+  -void _drawDash()
+  +void paint()
+}
+
+"flutter::lib::src::material::toggleable.dart::ToggleablePainter" <|-- "flutter::lib::src::material::checkbox.dart::_CheckboxPainter"
+
+
+@enduml

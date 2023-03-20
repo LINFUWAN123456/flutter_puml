@@ -1,0 +1,139 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::route.dart::CupertinoPageRoute" {
+  +dynamic builder
+  +String? title
+  +bool maintainState
+  +String debugLabel
+  +dynamic buildContent()
+}
+
+"flutter::lib::src::cupertino::route.dart::CupertinoRouteTransitionMixin" <|-- "flutter::lib::src::cupertino::route.dart::CupertinoPageRoute"
+
+class "flutter::lib::src::cupertino::route.dart::_PageBasedCupertinoPageRoute" {
+  -CupertinoPage<T> _page
+  +String? title
+  +bool maintainState
+  +bool fullscreenDialog
+  +String debugLabel
+  +dynamic buildContent()
+}
+
+"flutter::lib::src::cupertino::route.dart::_PageBasedCupertinoPageRoute" o-- "flutter::lib::src::cupertino::route.dart::CupertinoPage<T>"
+"flutter::lib::src::cupertino::route.dart::CupertinoRouteTransitionMixin" <|-- "flutter::lib::src::cupertino::route.dart::_PageBasedCupertinoPageRoute"
+
+class "flutter::lib::src::cupertino::route.dart::CupertinoPage" {
+  +dynamic child
+  +String? title
+  +bool maintainState
+  +bool fullscreenDialog
+  +dynamic createRoute()
+}
+
+class "flutter::lib::src::cupertino::route.dart::CupertinoPageTransition" {
+  -dynamic _primaryPositionAnimation
+  -dynamic _secondaryPositionAnimation
+  -dynamic _primaryShadowAnimation
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::route.dart::CupertinoFullscreenDialogTransition" {
+  -dynamic _positionAnimation
+  -dynamic _secondaryPositionAnimation
+  +dynamic child
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::route.dart::_CupertinoBackGestureDetector" {
+  +dynamic child
+  +dynamic enabledCallback
+  +dynamic onStartPopGesture
+  +_CupertinoBackGestureDetectorState<T> createState()
+}
+
+class "flutter::lib::src::cupertino::route.dart::_CupertinoBackGestureDetectorState" {
+  -_CupertinoBackGestureController<T>? _backGestureController
+  -dynamic _recognizer
+  +void initState()
+  +void dispose()
+  -void _handleDragStart()
+  -void _handleDragUpdate()
+  -void _handleDragEnd()
+  -void _handleDragCancel()
+  -void _handlePointerDown()
+  -double _convertToLogical()
+  +dynamic build()
+}
+
+"flutter::lib::src::cupertino::route.dart::_CupertinoBackGestureDetectorState" o-- "flutter::lib::src::cupertino::route.dart::_CupertinoBackGestureController<T>"
+
+class "flutter::lib::src::cupertino::route.dart::_CupertinoBackGestureController" {
+  +dynamic controller
+  +dynamic navigator
+  +void dragUpdate()
+  +void dragEnd()
+}
+
+class "flutter::lib::src::cupertino::route.dart::_CupertinoEdgeShadowDecoration" {
+  {static} +dynamic kTween
+  -List<dynamic>? _colors
+  +int hashCode
+  {static} +_CupertinoEdgeShadowDecoration? lerp()
+  +_CupertinoEdgeShadowDecoration lerpFrom()
+  +_CupertinoEdgeShadowDecoration lerpTo()
+  +_CupertinoEdgeShadowPainter createBoxPainter()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::cupertino::route.dart::_CupertinoEdgeShadowPainter" {
+  -_CupertinoEdgeShadowDecoration _decoration
+  +void paint()
+}
+
+"flutter::lib::src::cupertino::route.dart::_CupertinoEdgeShadowPainter" o-- "flutter::lib::src::cupertino::route.dart::_CupertinoEdgeShadowDecoration"
+
+class "flutter::lib::src::cupertino::route.dart::CupertinoModalPopupRoute" {
+  +dynamic builder
+  -bool? _barrierDismissible
+  -bool? _semanticsDismissible
+  +String barrierLabel
+  +dynamic barrierColor
+  -dynamic _animation
+  -dynamic _offsetTween
+  +dynamic anchorPoint
+  +bool barrierDismissible
+  +bool semanticsDismissible
+  +Duration transitionDuration
+  +dynamic createAnimation()
+  +dynamic buildPage()
+  +dynamic buildTransitions()
+}
+
+class "flutter::lib::src::cupertino::route.dart::CupertinoDialogRoute" {
+}
+
+abstract class "flutter::lib::src::cupertino::route.dart::CupertinoRouteTransitionMixin" {
+  -dynamic _previousTitle
+  +String? title
+  +dynamic previousTitle
+  +Duration transitionDuration
+  +dynamic barrierColor
+  +String? barrierLabel
+  +bool popGestureInProgress
+  +bool popGestureEnabled
+  +dynamic buildContent()
+  +void didChangePrevious()
+  +bool canTransitionTo()
+  {static} +bool isPopGestureInProgress()
+  {static} -bool _isPopGestureEnabled()
+  +dynamic buildPage()
+  {static} -_CupertinoBackGestureController<T> _startPopGesture()
+  {static} +dynamic buildPageTransitions()
+  +dynamic buildTransitions()
+}
+
+
+@enduml

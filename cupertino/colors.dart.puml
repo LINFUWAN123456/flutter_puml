@@ -1,0 +1,81 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::colors.dart::CupertinoColors" {
+  {static} +CupertinoDynamicColor activeBlue
+  {static} +CupertinoDynamicColor activeGreen
+  {static} +CupertinoDynamicColor activeOrange
+  {static} +dynamic white
+  {static} +dynamic black
+  {static} +dynamic lightBackgroundGray
+  {static} +dynamic extraLightBackgroundGray
+  {static} +dynamic darkBackgroundGray
+  {static} +CupertinoDynamicColor inactiveGray
+  {static} +dynamic destructiveRed
+  {static} +CupertinoDynamicColor systemBlue
+  {static} +CupertinoDynamicColor systemGreen
+  {static} +CupertinoDynamicColor systemIndigo
+  {static} +CupertinoDynamicColor systemOrange
+  {static} +CupertinoDynamicColor systemPink
+  {static} +CupertinoDynamicColor systemPurple
+  {static} +CupertinoDynamicColor systemRed
+  {static} +CupertinoDynamicColor systemTeal
+  {static} +CupertinoDynamicColor systemYellow
+  {static} +CupertinoDynamicColor systemGrey
+  {static} +CupertinoDynamicColor systemGrey2
+  {static} +CupertinoDynamicColor systemGrey3
+  {static} +CupertinoDynamicColor systemGrey4
+  {static} +CupertinoDynamicColor systemGrey5
+  {static} +CupertinoDynamicColor systemGrey6
+  {static} +CupertinoDynamicColor label
+  {static} +CupertinoDynamicColor secondaryLabel
+  {static} +CupertinoDynamicColor tertiaryLabel
+  {static} +CupertinoDynamicColor quaternaryLabel
+  {static} +CupertinoDynamicColor systemFill
+  {static} +CupertinoDynamicColor secondarySystemFill
+  {static} +CupertinoDynamicColor tertiarySystemFill
+  {static} +CupertinoDynamicColor quaternarySystemFill
+  {static} +CupertinoDynamicColor placeholderText
+  {static} +CupertinoDynamicColor systemBackground
+  {static} +CupertinoDynamicColor secondarySystemBackground
+  {static} +CupertinoDynamicColor tertiarySystemBackground
+  {static} +CupertinoDynamicColor systemGroupedBackground
+  {static} +CupertinoDynamicColor secondarySystemGroupedBackground
+  {static} +CupertinoDynamicColor tertiarySystemGroupedBackground
+  {static} +CupertinoDynamicColor separator
+  {static} +CupertinoDynamicColor opaqueSeparator
+  {static} +CupertinoDynamicColor link
+}
+
+"flutter::lib::src::cupertino::colors.dart::CupertinoColors" o-- "flutter::lib::src::cupertino::colors.dart::CupertinoDynamicColor"
+
+class "flutter::lib::src::cupertino::colors.dart::CupertinoDynamicColor" {
+  -dynamic _effectiveColor
+  -String? _debugLabel
+  -Element? _debugResolveContext
+  +dynamic color
+  +dynamic darkColor
+  +dynamic highContrastColor
+  +dynamic darkHighContrastColor
+  +dynamic elevatedColor
+  +dynamic darkElevatedColor
+  +dynamic highContrastElevatedColor
+  +dynamic darkHighContrastElevatedColor
+  +int value
+  -bool _isPlatformBrightnessDependent
+  -bool _isHighContrastDependent
+  -bool _isInterfaceElevationDependent
+  +int hashCode
+  {static} +dynamic resolve()
+  {static} +dynamic maybeResolve()
+  +CupertinoDynamicColor resolveFrom()
+  +bool ==()
+  +String toString()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::cupertino::colors.dart::CupertinoDynamicColor" o-- "flutter::lib::src::widgets::framework.dart::Element"
+"flutter::lib::src::foundation::diagnostics.dart::Diagnosticable" <|-- "flutter::lib::src::cupertino::colors.dart::CupertinoDynamicColor"
+
+
+@enduml

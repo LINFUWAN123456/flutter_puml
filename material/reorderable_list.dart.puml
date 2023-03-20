@@ -1,0 +1,49 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::reorderable_list.dart::ReorderableListView" {
+  +dynamic itemBuilder
+  +int itemCount
+  +dynamic onReorder
+  +void Function(int)? onReorderStart
+  +void Function(int)? onReorderEnd
+  +dynamic proxyDecorator
+  +bool buildDefaultDragHandles
+  +dynamic padding
+  +dynamic header
+  +dynamic footer
+  +dynamic scrollDirection
+  +bool reverse
+  +dynamic scrollController
+  +bool? primary
+  +dynamic physics
+  +bool shrinkWrap
+  +double anchor
+  +double? cacheExtent
+  +dynamic dragStartBehavior
+  +dynamic keyboardDismissBehavior
+  +String? restorationId
+  +dynamic clipBehavior
+  +double? itemExtent
+  +dynamic prototypeItem
+  +dynamic createState()
+}
+
+"flutter::lib::src::material::reorderable_list.dart::ReorderableListView" o-- "null::void Function(int)"
+
+class "flutter::lib::src::material::reorderable_list.dart::_ReorderableListViewState" {
+  -dynamic _wrapWithSemantics()
+  -dynamic _itemBuilder()
+  -dynamic _proxyDecorator()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::reorderable_list.dart::_ReorderableListViewChildGlobalKey" {
+  +dynamic subKey
+  +dynamic state
+  +int hashCode
+  +bool ==()
+}
+
+
+@enduml

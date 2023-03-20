@@ -1,0 +1,15 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::pointer_signal_resolver.dart::PointerSignalResolver" {
+  -void Function(PointerSignalEvent)? _firstRegisteredCallback
+  -PointerSignalEvent? _currentEvent
+  +void register()
+  +void resolve()
+}
+
+"flutter::lib::src::gestures::pointer_signal_resolver.dart::PointerSignalResolver" o-- "flutter::lib::src::gestures::pointer_signal_resolver.dart::void Function(PointerSignalEvent)"
+"flutter::lib::src::gestures::pointer_signal_resolver.dart::PointerSignalResolver" o-- "flutter::lib::src::gestures::events.dart::PointerSignalEvent"
+
+
+@enduml

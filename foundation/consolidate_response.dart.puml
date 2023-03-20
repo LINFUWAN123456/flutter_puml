@@ -1,0 +1,17 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::consolidate_response.dart::_OutputBuffer" {
+  -List<List<int>>? _chunks
+  -int _contentLength
+  -Uint8List? _bytes
+  +Uint8List bytes
+  +void add()
+  +void close()
+}
+
+"flutter::lib::src::foundation::consolidate_response.dart::_OutputBuffer" o-- "dart::typed_data::Uint8List"
+"dart::convert::ByteConversionSinkBase" <|-- "flutter::lib::src::foundation::consolidate_response.dart::_OutputBuffer"
+
+
+@enduml

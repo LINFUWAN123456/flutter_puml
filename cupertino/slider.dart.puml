@@ -1,0 +1,84 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::slider.dart::CupertinoSlider" {
+  +double value
+  +dynamic onChanged
+  +dynamic onChangeStart
+  +dynamic onChangeEnd
+  +double min
+  +double max
+  +int? divisions
+  +dynamic activeColor
+  +dynamic thumbColor
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::cupertino::slider.dart::_CupertinoSliderState" {
+  -void _handleChanged()
+  -void _handleDragStart()
+  -void _handleDragEnd()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::slider.dart::_CupertinoSliderRenderObjectWidget" {
+  +double value
+  +int? divisions
+  +dynamic activeColor
+  +dynamic thumbColor
+  +dynamic onChanged
+  +dynamic onChangeStart
+  +dynamic onChangeEnd
+  +dynamic vsync
+  +_RenderCupertinoSlider createRenderObject()
+  +void updateRenderObject()
+}
+
+class "flutter::lib::src::cupertino::slider.dart::_RenderCupertinoSlider" {
+  -double _value
+  -int? _divisions
+  -dynamic _activeColor
+  -dynamic _thumbColor
+  -dynamic _trackColor
+  -dynamic _onChanged
+  +dynamic onChangeStart
+  +dynamic onChangeEnd
+  -dynamic _textDirection
+  -dynamic _position
+  -dynamic _drag
+  -double _currentDragValue
+  -dynamic _cursor
+  +dynamic onEnter
+  +dynamic onHover
+  +dynamic onExit
+  +double value
+  +int? divisions
+  +dynamic activeColor
+  +dynamic thumbColor
+  +dynamic trackColor
+  +dynamic onChanged
+  +dynamic textDirection
+  -double _discretizedCurrentDragValue
+  -double _trackLeft
+  -double _trackRight
+  -double _thumbCenter
+  +bool isInteractive
+  -double _semanticActionUnit
+  +dynamic cursor
+  +bool validForMouseTracker
+  -void _handleDragStart()
+  -void _handleDragUpdate()
+  -void _handleDragEnd()
+  -void _startInteraction()
+  -void _endInteraction()
+  +bool hitTestSelf()
+  +void handleEvent()
+  +void paint()
+  +void describeSemanticsConfiguration()
+  -void _increaseAction()
+  -void _decreaseAction()
+}
+
+
+@enduml

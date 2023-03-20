@@ -1,0 +1,38 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::scrollbar_theme.dart::ScrollbarThemeData" {
+  +MaterialStateProperty<bool?>? thumbVisibility
+  +MaterialStateProperty<double?>? thickness
+  +MaterialStateProperty<bool?>? trackVisibility
+  +bool? showTrackOnHover
+  +bool? isAlwaysShown
+  +bool? interactive
+  +dynamic radius
+  +MaterialStateProperty<dynamic>? thumbColor
+  +MaterialStateProperty<dynamic>? trackColor
+  +MaterialStateProperty<dynamic>? trackBorderColor
+  +double? crossAxisMargin
+  +double? mainAxisMargin
+  +double? minThumbLength
+  +int hashCode
+  +ScrollbarThemeData copyWith()
+  {static} +ScrollbarThemeData lerp()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::material::scrollbar_theme.dart::ScrollbarThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<bool>"
+"flutter::lib::src::material::scrollbar_theme.dart::ScrollbarThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<double>"
+"flutter::lib::src::material::scrollbar_theme.dart::ScrollbarThemeData" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+
+class "flutter::lib::src::material::scrollbar_theme.dart::ScrollbarTheme" {
+  +ScrollbarThemeData data
+  {static} +ScrollbarThemeData of()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::scrollbar_theme.dart::ScrollbarTheme" o-- "flutter::lib::src::material::scrollbar_theme.dart::ScrollbarThemeData"
+
+
+@enduml

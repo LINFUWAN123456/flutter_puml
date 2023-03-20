@@ -1,0 +1,55 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::desktop_text_selection.dart::_CupertinoDesktopTextSelectionControls" {
+  +dynamic getHandleSize()
+  +dynamic buildToolbar()
+  +dynamic buildHandle()
+  +dynamic getHandleAnchor()
+  +void handleSelectAll()
+}
+
+class "flutter::lib::src::cupertino::desktop_text_selection.dart::_CupertinoDesktopTextSelectionControlsToolbar" {
+  +dynamic clipboardStatus
+  +List<dynamic> endpoints
+  +dynamic globalEditableRegion
+  +dynamic handleCopy
+  +dynamic handleCut
+  +dynamic handlePaste
+  +dynamic handleSelectAll
+  +dynamic lastSecondaryTapDownPosition
+  +dynamic selectionMidpoint
+  +double textLineHeight
+  +_CupertinoDesktopTextSelectionControlsToolbarState createState()
+}
+
+class "flutter::lib::src::cupertino::desktop_text_selection.dart::_CupertinoDesktopTextSelectionControlsToolbarState" {
+  -void _onChangedClipboardStatus()
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::desktop_text_selection.dart::_CupertinoDesktopTextSelectionToolbar" {
+  +dynamic anchor
+  +List<dynamic> children
+  {static} -dynamic _defaultToolbarBuilder()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::desktop_text_selection.dart::_CupertinoDesktopTextSelectionToolbarButton" {
+  +dynamic onPressed
+  +dynamic child
+  +_CupertinoDesktopTextSelectionToolbarButtonState createState()
+}
+
+class "flutter::lib::src::cupertino::desktop_text_selection.dart::_CupertinoDesktopTextSelectionToolbarButtonState" {
+  -bool _isHovered
+  -void _onEnter()
+  -void _onExit()
+  +dynamic build()
+}
+
+
+@enduml

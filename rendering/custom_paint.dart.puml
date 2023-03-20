@@ -1,0 +1,67 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::rendering::custom_paint.dart::CustomPainter" {
+  -dynamic _repaint
+  +List<CustomPainterSemantics> Function(dynamic)? semanticsBuilder
+  +void addListener()
+  +void removeListener()
+  +void paint()
+  +bool shouldRebuildSemantics()
+  +bool shouldRepaint()
+  +bool? hitTest()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::custom_paint.dart::CustomPainter" o-- "flutter::lib::src::rendering::custom_paint.dart::List<CustomPainterSemantics> Function(dynamic)"
+
+class "flutter::lib::src::rendering::custom_paint.dart::CustomPainterSemantics" {
+  +dynamic key
+  +dynamic rect
+  +dynamic transform
+  +dynamic properties
+  +Set<dynamic>? tags
+}
+
+class "flutter::lib::src::rendering::custom_paint.dart::RenderCustomPaint" {
+  -CustomPainter? _painter
+  -CustomPainter? _foregroundPainter
+  -dynamic _preferredSize
+  +bool isComplex
+  +bool willChange
+  -List<CustomPainterSemantics> Function(dynamic)? _backgroundSemanticsBuilder
+  -List<CustomPainterSemantics> Function(dynamic)? _foregroundSemanticsBuilder
+  -List<dynamic>? _backgroundSemanticsNodes
+  -List<dynamic>? _foregroundSemanticsNodes
+  +CustomPainter? painter
+  +CustomPainter? foregroundPainter
+  +dynamic preferredSize
+  -void _didUpdatePainter()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +void attach()
+  +void detach()
+  +bool hitTestChildren()
+  +bool hitTestSelf()
+  +void performLayout()
+  +dynamic computeSizeForNoChild()
+  -void _paintWithPainter()
+  +void paint()
+  -void _setRasterCacheHints()
+  +void describeSemanticsConfiguration()
+  +void assembleSemanticsNode()
+  +void clearSemantics()
+  {static} -List<dynamic> _updateSemanticsChildren()
+  {static} -bool _canUpdateSemanticsChild()
+  {static} -dynamic _updateSemanticsChild()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::custom_paint.dart::RenderCustomPaint" o-- "flutter::lib::src::rendering::custom_paint.dart::CustomPainter"
+"flutter::lib::src::rendering::custom_paint.dart::RenderCustomPaint" o-- "flutter::lib::src::rendering::custom_paint.dart::List<CustomPainterSemantics> Function(dynamic)"
+"flutter::lib::src::rendering::proxy_box.dart::RenderProxyBox" <|-- "flutter::lib::src::rendering::custom_paint.dart::RenderCustomPaint"
+
+
+@enduml

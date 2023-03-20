@@ -1,0 +1,56 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::gestures::velocity_tracker.dart::Velocity" {
+  {static} +Velocity zero
+  +dynamic pixelsPerSecond
+  +int hashCode
+  +Velocity unary-()
+  +Velocity -()
+  +Velocity +()
+  +Velocity clampMagnitude()
+  +bool ==()
+  +String toString()
+}
+
+"flutter::lib::src::gestures::velocity_tracker.dart::Velocity" o-- "flutter::lib::src::gestures::velocity_tracker.dart::Velocity"
+
+class "flutter::lib::src::gestures::velocity_tracker.dart::VelocityEstimate" {
+  +dynamic pixelsPerSecond
+  +double confidence
+  +Duration duration
+  +dynamic offset
+  +String toString()
+}
+
+class "flutter::lib::src::gestures::velocity_tracker.dart::_PointAtTime" {
+  +Duration time
+  +dynamic point
+  +String toString()
+}
+
+class "flutter::lib::src::gestures::velocity_tracker.dart::VelocityTracker" {
+  {static} -int _assumePointerMoveStoppedMilliseconds
+  {static} -int _historySize
+  {static} -int _horizonMilliseconds
+  {static} -int _minSampleSize
+  +dynamic kind
+  -List<_PointAtTime?> _samples
+  -int _index
+  +void addPosition()
+  +VelocityEstimate? getVelocityEstimate()
+  +Velocity getVelocity()
+}
+
+class "flutter::lib::src::gestures::velocity_tracker.dart::IOSScrollViewFlingVelocityTracker" {
+  {static} -int _sampleSize
+  -List<_PointAtTime?> _touchSamples
+  +void addPosition()
+  -dynamic _previousVelocityAt()
+  +VelocityEstimate getVelocityEstimate()
+}
+
+"flutter::lib::src::gestures::velocity_tracker.dart::VelocityTracker" <|-- "flutter::lib::src::gestures::velocity_tracker.dart::IOSScrollViewFlingVelocityTracker"
+
+
+@enduml

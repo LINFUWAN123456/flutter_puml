@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::ink_highlight.dart::InkHighlight" {
+  -dynamic _shape
+  -double? _radius
+  -dynamic _borderRadius
+  -dynamic _customBorder
+  -dynamic Function()? _rectCallback
+  -dynamic _textDirection
+  -dynamic _alpha
+  -dynamic _alphaController
+  -bool _active
+  +bool active
+  +void activate()
+  +void deactivate()
+  -void _handleAlphaStatusChanged()
+  +void dispose()
+  -void _paintHighlight()
+  +void paintFeature()
+}
+
+"flutter::lib::src::material::ink_highlight.dart::InkHighlight" o-- "flutter::lib::src::material::material.dart::dynamic Function()"
+"flutter::lib::src::material::ink_well.dart::InteractiveInkFeature" <|-- "flutter::lib::src::material::ink_highlight.dart::InkHighlight"
+
+
+@enduml

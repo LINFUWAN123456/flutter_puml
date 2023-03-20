@@ -1,0 +1,335 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::object.dart::ParentData" {
+  +void detach()
+  +String toString()
+}
+
+class "flutter::lib::src::rendering::object.dart::PaintingContext" {
+  -ContainerLayer _containerLayer
+  +dynamic estimatedBounds
+  -PictureLayer? _currentLayer
+  -dynamic _recorder
+  -dynamic _canvas
+  -bool _isRecording
+  +dynamic canvas
+  {static} +void repaintCompositedChild()
+  {static} -void _repaintCompositedChild()
+  {static} +void updateLayerProperties()
+  {static} +void debugInstrumentRepaintCompositedChild()
+  +void paintChild()
+  -void _compositeChild()
+  +void appendLayer()
+  -void _startRecording()
+  +dynamic addCompositionCallback()
+  +void stopRecordingIfNeeded()
+  +void setIsComplexHint()
+  +void setWillChangeHint()
+  +void addLayer()
+  +void pushLayer()
+  +PaintingContext createChildContext()
+  +ClipRectLayer? pushClipRect()
+  +ClipRRectLayer? pushClipRRect()
+  +ClipPathLayer? pushClipPath()
+  +ColorFilterLayer pushColorFilter()
+  +TransformLayer? pushTransform()
+  +OpacityLayer pushOpacity()
+  +String toString()
+}
+
+"flutter::lib::src::rendering::object.dart::PaintingContext" o-- "flutter::lib::src::rendering::layer.dart::ContainerLayer"
+"flutter::lib::src::rendering::object.dart::PaintingContext" o-- "flutter::lib::src::rendering::layer.dart::PictureLayer"
+
+abstract class "flutter::lib::src::rendering::object.dart::Constraints" {
+  +bool isTight
+  +bool isNormalized
+  +bool debugAssertIsValid()
+}
+
+class "flutter::lib::src::rendering::object.dart::SemanticsHandle" {
+  -PipelineOwner _owner
+  +dynamic listener
+  +void dispose()
+}
+
+"flutter::lib::src::rendering::object.dart::SemanticsHandle" o-- "flutter::lib::src::rendering::object.dart::PipelineOwner"
+
+class "flutter::lib::src::rendering::object.dart::PipelineOwner" {
+  +dynamic onNeedVisualUpdate
+  +dynamic onSemanticsOwnerCreated
+  +dynamic onSemanticsOwnerDisposed
+  -dynamic _rootNode
+  -bool _shouldMergeDirtyNodes
+  -List<RenderObject> _nodesNeedingLayout
+  -bool _debugDoingLayout
+  -bool _debugAllowMutationsToDirtySubtrees
+  -List<RenderObject> _nodesNeedingCompositingBitsUpdate
+  -List<RenderObject> _nodesNeedingPaint
+  -bool _debugDoingPaint
+  -dynamic _semanticsOwner
+  -int _outstandingSemanticsHandles
+  -bool _debugDoingSemantics
+  -Set<RenderObject> _nodesNeedingSemantics
+  +dynamic rootNode
+  +bool debugDoingLayout
+  +bool debugDoingPaint
+  +dynamic semanticsOwner
+  +int debugOutstandingSemanticsHandles
+  +void requestVisualUpdate()
+  +void flushLayout()
+  -void _enableMutationsToDirtySubtrees()
+  +void flushCompositingBits()
+  +void flushPaint()
+  +SemanticsHandle ensureSemantics()
+  -void _didDisposeSemanticsHandle()
+  +void flushSemantics()
+}
+
+abstract class "flutter::lib::src::rendering::object.dart::RenderObject" {
+  -bool _debugDisposed
+  +ParentData? parentData
+  +Object? debugCreator
+  -bool _debugDoingThisResize
+  -bool _debugDoingThisLayout
+  {static} -RenderObject? _debugActiveLayout
+  -bool? _debugCanParentUseSize
+  -bool _debugMutationsLocked
+  -bool _needsLayout
+  -RenderObject? _relayoutBoundary
+  -bool _doingThisLayoutWithCallback
+  -Constraints? _constraints
+  {static} +bool debugCheckingIntrinsics
+  -bool _debugDoingThisPaint
+  {static} -RenderObject? _debugActivePaint
+  -bool _wasRepaintBoundary
+  -LayerHandle<ContainerLayer> _layerHandle
+  -bool _needsCompositingBitsUpdate
+  -bool _needsCompositing
+  -bool _needsPaint
+  -bool _needsCompositedLayerUpdate
+  -dynamic _cachedSemanticsConfiguration
+  -bool _needsSemanticsUpdate
+  -dynamic _semantics
+  +bool? debugDisposed
+  +bool debugDoingThisResize
+  +bool debugDoingThisLayout
+  {static} +RenderObject? debugActiveLayout
+  +bool debugCanParentUseSize
+  -bool _debugCanPerformMutations
+  +PipelineOwner? owner
+  +bool debugNeedsLayout
+  +bool debugDoingThisLayoutWithCallback
+  +Constraints constraints
+  +bool sizedByParent
+  +bool debugDoingThisPaint
+  {static} +RenderObject? debugActivePaint
+  +bool isRepaintBoundary
+  +bool alwaysNeedsCompositing
+  +ContainerLayer? layer
+  +ContainerLayer? debugLayer
+  +bool needsCompositing
+  +bool debugNeedsPaint
+  +bool debugNeedsCompositedLayerUpdate
+  +dynamic paintBounds
+  -dynamic _semanticsConfiguration
+  +dynamic semanticBounds
+  +dynamic debugSemantics
+  +void reassemble()
+  +void dispose()
+  +void setupParentData()
+  +void adoptChild()
+  +void dropChild()
+  +void visitChildren()
+  -void _debugReportException()
+  +void attach()
+  +void debugAssertDoesMeetConstraints()
+  -bool _debugSubtreeRelayoutRootAlreadyMarkedNeedsLayout()
+  +void markNeedsLayout()
+  +void markParentNeedsLayout()
+  +void markNeedsLayoutForSizedByParentChange()
+  -void _cleanRelayoutBoundary()
+  -void _propagateRelayoutBoundary()
+  {static} -void _cleanChildRelayoutBoundary()
+  {static} -void _propagateRelayoutBoundaryToChild()
+  +void scheduleInitialLayout()
+  -void _layoutWithoutResize()
+  +void layout()
+  +void debugResetSize()
+  +void performResize()
+  +void performLayout()
+  +void invokeLayoutCallback()
+  +void debugRegisterRepaintBoundaryPaint()
+  +OffsetLayer updateCompositedLayer()
+  +void markNeedsCompositingBitsUpdate()
+  -void _updateCompositingBits()
+  +void markNeedsPaint()
+  +void markNeedsCompositedLayerUpdate()
+  -void _skippedPaintingOnLayer()
+  +void scheduleInitialPaint()
+  +void replaceRootLayer()
+  -void _paintWithContext()
+  +void debugPaint()
+  +void paint()
+  +void applyPaintTransform()
+  +bool paintsChild()
+  +dynamic getTransformTo()
+  +dynamic describeApproximatePaintClip()
+  +dynamic describeSemanticsClip()
+  +void scheduleInitialSemantics()
+  +void describeSemanticsConfiguration()
+  +void sendSemanticsEvent()
+  +void clearSemantics()
+  +void markNeedsSemanticsUpdate()
+  -void _updateSemantics()
+  -_SemanticsFragment _getSemanticsForParent()
+  +void visitChildrenForSemantics()
+  +void assembleSemanticsNode()
+  +void handleEvent()
+  +String toStringShort()
+  +String toString()
+  +String toStringDeep()
+  +String toStringShallow()
+  +void debugFillProperties()
+  +List<dynamic> debugDescribeChildren()
+  +void showOnScreen()
+  +dynamic describeForError()
+}
+
+"flutter::lib::src::rendering::object.dart::RenderObject" o-- "flutter::lib::src::rendering::object.dart::ParentData"
+"flutter::lib::src::rendering::object.dart::RenderObject" o-- "flutter::lib::src::rendering::object.dart::RenderObject"
+"flutter::lib::src::rendering::object.dart::RenderObject" o-- "flutter::lib::src::rendering::object.dart::Constraints"
+"flutter::lib::src::rendering::object.dart::RenderObject" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ContainerLayer>"
+"flutter::lib::src::rendering::object.dart::RenderObject" o-- "flutter::lib::src::rendering::object.dart::PipelineOwner"
+"flutter::lib::src::rendering::object.dart::RenderObject" o-- "flutter::lib::src::rendering::layer.dart::ContainerLayer"
+
+abstract class "flutter::lib::src::rendering::object.dart::_SemanticsFragment" {
+  +bool dropsSemanticsOfPreviousSiblings
+  +List<_InterestingSemanticsFragment> interestingFragments
+  +void addAll()
+}
+
+class "flutter::lib::src::rendering::object.dart::_ContainerSemanticsFragment" {
+  +List<_InterestingSemanticsFragment> interestingFragments
+  +void addAll()
+}
+
+"flutter::lib::src::rendering::object.dart::_SemanticsFragment" <|-- "flutter::lib::src::rendering::object.dart::_ContainerSemanticsFragment"
+
+abstract class "flutter::lib::src::rendering::object.dart::_InterestingSemanticsFragment" {
+  -List<RenderObject> _ancestorChain
+  -Set<dynamic>? _tagsForChildren
+  +RenderObject owner
+  +dynamic config
+  +bool hasConfigForParent
+  +List<_InterestingSemanticsFragment> interestingFragments
+  +void compileChildren()
+  +void markAsExplicit()
+  +void addAll()
+  +void addTags()
+  +void addAncestor()
+}
+
+"flutter::lib::src::rendering::object.dart::_InterestingSemanticsFragment" o-- "flutter::lib::src::rendering::object.dart::RenderObject"
+"flutter::lib::src::rendering::object.dart::_SemanticsFragment" <|-- "flutter::lib::src::rendering::object.dart::_InterestingSemanticsFragment"
+
+class "flutter::lib::src::rendering::object.dart::_RootSemanticsFragment" {
+  -List<_InterestingSemanticsFragment> _children
+  +dynamic config
+  +void compileChildren()
+  +void markAsExplicit()
+  +void addAll()
+}
+
+"flutter::lib::src::rendering::object.dart::_InterestingSemanticsFragment" <|-- "flutter::lib::src::rendering::object.dart::_RootSemanticsFragment"
+
+class "flutter::lib::src::rendering::object.dart::_SwitchableSemanticsFragment" {
+  -bool _mergeIntoParent
+  -dynamic _config
+  -bool _isConfigWritable
+  -List<_InterestingSemanticsFragment> _children
+  -bool _isExplicit
+  +dynamic config
+  -bool _needsGeometryUpdate
+  +void compileChildren()
+  +void addAll()
+  -void _ensureConfigIsWritable()
+  +void markAsExplicit()
+}
+
+"flutter::lib::src::rendering::object.dart::_InterestingSemanticsFragment" <|-- "flutter::lib::src::rendering::object.dart::_SwitchableSemanticsFragment"
+
+class "flutter::lib::src::rendering::object.dart::_SemanticsGeometry" {
+  -dynamic _paintClipRect
+  -dynamic _semanticsClipRect
+  -dynamic _transform
+  -dynamic _rect
+  {static} -dynamic _temporaryTransformHolder
+  -bool _markAsHidden
+  +dynamic transform
+  +dynamic semanticsClipRect
+  +dynamic paintClipRect
+  +dynamic rect
+  +bool dropFromTree
+  +bool markAsHidden
+  -void _computeValues()
+  {static} -dynamic _transformRect()
+  {static} -void _applyIntermediatePaintTransforms()
+  {static} -dynamic _intersectRects()
+}
+
+class "flutter::lib::src::rendering::object.dart::DiagnosticsDebugCreator" {
+}
+
+abstract class "flutter::lib::src::rendering::object.dart::RenderObjectWithChildMixin" {
+  -ChildType? _child
+  +ChildType? child
+  +bool debugValidateChild()
+  +void attach()
+  +void detach()
+  +void redepthChildren()
+  +void visitChildren()
+  +List<dynamic> debugDescribeChildren()
+}
+
+abstract class "flutter::lib::src::rendering::object.dart::ContainerParentDataMixin" {
+  +ChildType? previousSibling
+  +ChildType? nextSibling
+  +void detach()
+}
+
+abstract class "flutter::lib::src::rendering::object.dart::ContainerRenderObjectMixin" {
+  -int _childCount
+  -ChildType? _firstChild
+  -ChildType? _lastChild
+  +int childCount
+  +ChildType? firstChild
+  +ChildType? lastChild
+  -bool _debugUltimatePreviousSiblingOf()
+  -bool _debugUltimateNextSiblingOf()
+  +bool debugValidateChild()
+  -void _insertIntoChildList()
+  +void insert()
+  +void add()
+  +void addAll()
+  -void _removeFromChildList()
+  +void remove()
+  +void removeAll()
+  +void move()
+  +void attach()
+  +void detach()
+  +void redepthChildren()
+  +void visitChildren()
+  +ChildType? childBefore()
+  +ChildType? childAfter()
+  +List<dynamic> debugDescribeChildren()
+}
+
+abstract class "flutter::lib::src::rendering::object.dart::RelayoutWhenSystemFontsChangeMixin" {
+  +void systemFontsDidChange()
+  +void attach()
+  +void detach()
+}
+
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::physics::tolerance.dart::Tolerance" {
+  {static} -double _epsilonDefault
+  {static} +Tolerance defaultTolerance
+  +double distance
+  +double time
+  +double velocity
+  +String toString()
+}
+
+"flutter::lib::src::physics::tolerance.dart::Tolerance" o-- "flutter::lib::src::physics::tolerance.dart::Tolerance"
+
+
+@enduml

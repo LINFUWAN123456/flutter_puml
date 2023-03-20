@@ -1,0 +1,14 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::flutter_logo.dart::FlutterLogo" {
+  +double? size
+  +dynamic textColor
+  +dynamic style
+  +Duration duration
+  +dynamic curve
+  +dynamic build()
+}
+
+
+@enduml

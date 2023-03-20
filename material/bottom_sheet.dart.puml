@@ -1,0 +1,96 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::bottom_sheet.dart::BottomSheet" {
+  +dynamic animationController
+  +dynamic onClosing
+  +dynamic builder
+  +bool enableDrag
+  +void Function(dynamic)? onDragStart
+  +void Function(dynamic, {required bool isClosing})? onDragEnd
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic constraints
+  +dynamic createState()
+  {static} +dynamic createAnimationController()
+}
+
+"flutter::lib::src::material::bottom_sheet.dart::BottomSheet" o-- "flutter::lib::src::material::bottom_sheet.dart::void Function(dynamic)"
+"flutter::lib::src::material::bottom_sheet.dart::BottomSheet" o-- "flutter::lib::src::material::bottom_sheet.dart::void Function(dynamic, {required bool isClosing})"
+
+class "flutter::lib::src::material::bottom_sheet.dart::_BottomSheetState" {
+  -dynamic _childKey
+  -double _childHeight
+  -bool _dismissUnderway
+  -void _handleDragStart()
+  -void _handleDragUpdate()
+  -void _handleDragEnd()
+  +bool extentChanged()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::bottom_sheet.dart::_ModalBottomSheetLayout" {
+  +double progress
+  +bool isScrollControlled
+  +dynamic getConstraintsForChild()
+  +dynamic getPositionForChild()
+  +bool shouldRelayout()
+}
+
+class "flutter::lib::src::material::bottom_sheet.dart::_ModalBottomSheet" {
+  +_ModalBottomSheetRoute<T>? route
+  +bool isScrollControlled
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic constraints
+  +bool enableDrag
+  +_ModalBottomSheetState<T> createState()
+}
+
+"flutter::lib::src::material::bottom_sheet.dart::_ModalBottomSheet" o-- "flutter::lib::src::material::bottom_sheet.dart::_ModalBottomSheetRoute<T>"
+
+class "flutter::lib::src::material::bottom_sheet.dart::_ModalBottomSheetState" {
+  +dynamic animationCurve
+  -String _getRouteLabel()
+  +void handleDragStart()
+  +void handleDragEnd()
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::bottom_sheet.dart::_ModalBottomSheetRoute" {
+  +dynamic builder
+  +dynamic capturedThemes
+  +bool isScrollControlled
+  +dynamic backgroundColor
+  +double? elevation
+  +dynamic shape
+  +dynamic clipBehavior
+  +dynamic constraints
+  +dynamic modalBarrierColor
+  +bool isDismissible
+  +bool enableDrag
+  +dynamic transitionAnimationController
+  +dynamic anchorPoint
+  +String? barrierLabel
+  -dynamic _animationController
+  +Duration transitionDuration
+  +Duration reverseTransitionDuration
+  +bool barrierDismissible
+  +dynamic barrierColor
+  +dynamic createAnimationController()
+  +dynamic buildPage()
+}
+
+class "flutter::lib::src::material::bottom_sheet.dart::_BottomSheetSuspendedCurve" {
+  +double startingPoint
+  +dynamic curve
+  +double transform()
+  +String toString()
+}
+
+
+@enduml

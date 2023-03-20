@@ -1,0 +1,13 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::haptic_feedback.dart::HapticFeedback" {
+  {static} +Future<void> vibrate()
+  {static} +Future<void> lightImpact()
+  {static} +Future<void> mediumImpact()
+  {static} +Future<void> heavyImpact()
+  {static} +Future<void> selectionClick()
+}
+
+
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::chip_theme.dart::ChipTheme" {
+  +ChipThemeData data
+  {static} +ChipThemeData of()
+  +dynamic wrap()
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::material::chip_theme.dart::ChipTheme" o-- "flutter::lib::src::material::chip_theme.dart::ChipThemeData"
+
+class "flutter::lib::src::material::chip_theme.dart::ChipThemeData" {
+  +dynamic backgroundColor
+  +dynamic deleteIconColor
+  +dynamic disabledColor
+  +dynamic selectedColor
+  +dynamic secondarySelectedColor
+  +dynamic shadowColor
+  +dynamic surfaceTintColor
+  +dynamic selectedShadowColor
+  +bool? showCheckmark
+  +dynamic checkmarkColor
+  +dynamic labelPadding
+  +dynamic padding
+  +dynamic side
+  +dynamic shape
+  +dynamic labelStyle
+  +dynamic secondaryLabelStyle
+  +dynamic brightness
+  +double? elevation
+  +double? pressElevation
+  +dynamic iconTheme
+  +int hashCode
+  +ChipThemeData copyWith()
+  {static} +ChipThemeData? lerp()
+  {static} -dynamic _lerpSides()
+  {static} -dynamic _lerpShapes()
+  +bool ==()
+  +void debugFillProperties()
+}
+
+
+@enduml

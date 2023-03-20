@@ -1,0 +1,124 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::sliding_segmented_control.dart::_Segment" {
+  +dynamic child
+  +bool pressed
+  +bool highlighted
+  +bool isDragging
+  +bool shouldFadeoutContent
+  +bool shouldScaleContent
+  +_SegmentState<T> createState()
+}
+
+class "flutter::lib::src::cupertino::sliding_segmented_control.dart::_SegmentState" {
+  +dynamic highlightPressScaleController
+  +dynamic highlightPressScaleAnimation
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::sliding_segmented_control.dart::_SegmentSeparator" {
+  +bool highlighted
+  +_SegmentSeparatorState createState()
+}
+
+class "flutter::lib::src::cupertino::sliding_segmented_control.dart::_SegmentSeparatorState" {
+  +dynamic separatorOpacityController
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::sliding_segmented_control.dart::CupertinoSlidingSegmentedControl" {
+  +Map<T, dynamic> children
+  +T? groupValue
+  +dynamic onValueChanged
+  +dynamic backgroundColor
+  +dynamic thumbColor
+  +dynamic padding
+  +dynamic createState()
+}
+
+class "flutter::lib::src::cupertino::sliding_segmented_control.dart::_SegmentedControlState" {
+  +dynamic thumbController
+  +dynamic thumbAnimatable
+  +dynamic thumbScaleController
+  +dynamic thumbScaleAnimation
+  +dynamic tap
+  +dynamic drag
+  +dynamic longPress
+  -bool? _startedOnSelectedSegment
+  +T? highlighted
+  +T? pressed
+  +bool isThumbDragging
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  +T segmentForXPosition()
+  -bool _hasDraggedTooFar()
+  -void _playThumbScaleAnimation()
+  +void onHighlightChangedByGesture()
+  +void onPressedChangedByGesture()
+  +void onTapUp()
+  +void onDown()
+  +void onUpdate()
+  +void onEnd()
+  +void onCancel()
+  +dynamic build()
+}
+
+class "flutter::lib::src::cupertino::sliding_segmented_control.dart::_SegmentedControlRenderWidget" {
+  +int? highlightedIndex
+  +dynamic thumbColor
+  +double thumbScale
+  +_SegmentedControlState<T> state
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::cupertino::sliding_segmented_control.dart::_SegmentedControlRenderWidget" o-- "flutter::lib::src::cupertino::sliding_segmented_control.dart::_SegmentedControlState<T>"
+
+class "flutter::lib::src::cupertino::sliding_segmented_control.dart::_SegmentedControlContainerBoxParentData" {
+}
+
+class "flutter::lib::src::cupertino::sliding_segmented_control.dart::_RenderSegmentedControl" {
+  +_SegmentedControlState<T> state
+  +dynamic currentThumbRect
+  -double _thumbScale
+  -int? _highlightedIndex
+  -dynamic _thumbColor
+  +dynamic separatorPaint
+  +double thumbScale
+  +int? highlightedIndex
+  +dynamic thumbColor
+  +double totalSeparatorWidth
+  +void attach()
+  +void detach()
+  +void handleEvent()
+  +dynamic nonSeparatorChildAfter()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +double? computeDistanceToActualBaseline()
+  +void setupParentData()
+  -dynamic _calculateChildSize()
+  -dynamic _computeOverallSizeFromChildSize()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +dynamic moveThumbRectInBound()
+  +void paint()
+  -void _paintSeparator()
+  -void _paintChild()
+  -void _paintThumb()
+  +bool hitTestChildren()
+}
+
+"flutter::lib::src::cupertino::sliding_segmented_control.dart::_RenderSegmentedControl" o-- "flutter::lib::src::cupertino::sliding_segmented_control.dart::_SegmentedControlState<T>"
+
+
+@enduml

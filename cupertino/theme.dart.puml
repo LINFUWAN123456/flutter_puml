@@ -1,0 +1,87 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::theme.dart::CupertinoTheme" {
+  +CupertinoThemeData data
+  +dynamic child
+  {static} +CupertinoThemeData of()
+  {static} +dynamic brightnessOf()
+  {static} +dynamic maybeBrightnessOf()
+  +dynamic build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::cupertino::theme.dart::CupertinoTheme" o-- "flutter::lib::src::cupertino::theme.dart::CupertinoThemeData"
+
+class "flutter::lib::src::cupertino::theme.dart::_InheritedCupertinoTheme" {
+  +CupertinoTheme theme
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::cupertino::theme.dart::_InheritedCupertinoTheme" o-- "flutter::lib::src::cupertino::theme.dart::CupertinoTheme"
+
+class "flutter::lib::src::cupertino::theme.dart::CupertinoThemeData" {
+  -_CupertinoThemeDefaults _defaults
+  +dynamic primaryColor
+  +dynamic primaryContrastingColor
+  +CupertinoTextThemeData textTheme
+  +dynamic barBackgroundColor
+  +dynamic scaffoldBackgroundColor
+  +NoDefaultCupertinoThemeData noDefault()
+  +CupertinoThemeData resolveFrom()
+  +CupertinoThemeData copyWith()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::cupertino::theme.dart::CupertinoThemeData" o-- "flutter::lib::src::cupertino::theme.dart::_CupertinoThemeDefaults"
+"flutter::lib::src::cupertino::theme.dart::CupertinoThemeData" o-- "flutter::lib::src::cupertino::text_theme.dart::CupertinoTextThemeData"
+"flutter::lib::src::cupertino::theme.dart::NoDefaultCupertinoThemeData" <|-- "flutter::lib::src::cupertino::theme.dart::CupertinoThemeData"
+
+class "flutter::lib::src::cupertino::theme.dart::NoDefaultCupertinoThemeData" {
+  +dynamic brightness
+  +dynamic primaryColor
+  +dynamic primaryContrastingColor
+  +CupertinoTextThemeData? textTheme
+  +dynamic barBackgroundColor
+  +dynamic scaffoldBackgroundColor
+  +NoDefaultCupertinoThemeData noDefault()
+  +NoDefaultCupertinoThemeData resolveFrom()
+  +NoDefaultCupertinoThemeData copyWith()
+}
+
+"flutter::lib::src::cupertino::theme.dart::NoDefaultCupertinoThemeData" o-- "flutter::lib::src::cupertino::text_theme.dart::CupertinoTextThemeData"
+
+class "flutter::lib::src::cupertino::theme.dart::_CupertinoThemeDefaults" {
+  +dynamic brightness
+  +dynamic primaryColor
+  +dynamic primaryContrastingColor
+  +dynamic barBackgroundColor
+  +dynamic scaffoldBackgroundColor
+  +_CupertinoTextThemeDefaults textThemeDefaults
+  +_CupertinoThemeDefaults resolveFrom()
+}
+
+"flutter::lib::src::cupertino::theme.dart::_CupertinoThemeDefaults" o-- "flutter::lib::src::cupertino::theme.dart::_CupertinoTextThemeDefaults"
+
+class "flutter::lib::src::cupertino::theme.dart::_CupertinoTextThemeDefaults" {
+  +dynamic labelColor
+  +dynamic inactiveGray
+  +_CupertinoTextThemeDefaults resolveFrom()
+  +CupertinoTextThemeData createDefaults()
+}
+
+class "flutter::lib::src::cupertino::theme.dart::_DefaultCupertinoTextThemeData" {
+  +dynamic labelColor
+  +dynamic inactiveGray
+  +dynamic textStyle
+  +dynamic tabLabelTextStyle
+  +dynamic navTitleTextStyle
+  +dynamic navLargeTitleTextStyle
+  +dynamic pickerTextStyle
+  +dynamic dateTimePickerTextStyle
+}
+
+"flutter::lib::src::cupertino::text_theme.dart::CupertinoTextThemeData" <|-- "flutter::lib::src::cupertino::theme.dart::_DefaultCupertinoTextThemeData"
+
+
+@enduml

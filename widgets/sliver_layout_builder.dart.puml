@@ -1,0 +1,23 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::sliver_layout_builder.dart::SliverLayoutBuilder" {
+  +Widget Function(BuildContext, dynamic) builder
+  +dynamic createRenderObject()
+}
+
+"flutter::lib::src::widgets::sliver_layout_builder.dart::SliverLayoutBuilder" o-- "flutter::lib::src::widgets::sliver_layout_builder.dart::Widget Function(BuildContext, dynamic)"
+"flutter::lib::src::widgets::layout_builder.dart::ConstrainedLayoutBuilder" <|-- "flutter::lib::src::widgets::sliver_layout_builder.dart::SliverLayoutBuilder"
+
+class "flutter::lib::src::widgets::sliver_layout_builder.dart::_RenderSliverLayoutBuilder" {
+  +double childMainAxisPosition()
+  +void performLayout()
+  +void applyPaintTransform()
+  +void paint()
+  +bool hitTestChildren()
+}
+
+"flutter::lib::src::widgets::layout_builder.dart::RenderConstrainedLayoutBuilder" <|-- "flutter::lib::src::widgets::sliver_layout_builder.dart::_RenderSliverLayoutBuilder"
+
+
+@enduml

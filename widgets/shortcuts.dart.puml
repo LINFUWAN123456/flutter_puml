@@ -1,0 +1,178 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::shortcuts.dart::KeySet" {
+  -HashSet<T> _keys
+  +int hashCode
+  {static} -List<int> _tempHashStore3
+  {static} -List<int> _tempHashStore4
+  +Set<T> keys
+  +bool ==()
+  {static} -int _computeHashCode()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::KeySet" o-- "dart::collection::HashSet<T>"
+
+abstract class "flutter::lib::src::widgets::shortcuts.dart::ShortcutActivator" {
+  +Iterable<dynamic>? triggers
+  +bool accepts()
+  {static} +bool isActivatedBy()
+  +String debugDescribeKeys()
+}
+
+class "flutter::lib::src::widgets::shortcuts.dart::LogicalKeySet" {
+  -Set<dynamic> _triggers
+  {static} -Set<dynamic> _modifiers
+  {static} -Map<dynamic, List<dynamic>> _unmapSynonyms
+  +Iterable<dynamic> triggers
+  +bool accepts()
+  +String debugDescribeKeys()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::KeySet" <|-- "flutter::lib::src::widgets::shortcuts.dart::LogicalKeySet"
+"flutter::lib::src::widgets::shortcuts.dart::ShortcutActivator" <|-- "flutter::lib::src::widgets::shortcuts.dart::LogicalKeySet"
+
+class "flutter::lib::src::widgets::shortcuts.dart::ShortcutMapProperty" {
+  +Map<ShortcutActivator, Intent> value
+  +String valueToString()
+}
+
+class "flutter::lib::src::widgets::shortcuts.dart::SingleActivator" {
+  +dynamic trigger
+  +bool control
+  +bool shift
+  +bool alt
+  +bool meta
+  +bool includeRepeats
+  +Iterable<dynamic> triggers
+  +bool accepts()
+  +ShortcutSerialization serializeForMenu()
+  +String debugDescribeKeys()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::MenuSerializableShortcut" <|-- "flutter::lib::src::widgets::shortcuts.dart::SingleActivator"
+"flutter::lib::src::widgets::shortcuts.dart::ShortcutActivator" <|-- "flutter::lib::src::widgets::shortcuts.dart::SingleActivator"
+
+class "flutter::lib::src::widgets::shortcuts.dart::CharacterActivator" {
+  +String character
+  +Iterable<dynamic>? triggers
+  +bool accepts()
+  +String debugDescribeKeys()
+  +ShortcutSerialization serializeForMenu()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::platform_menu_bar.dart::MenuSerializableShortcut" <|-- "flutter::lib::src::widgets::shortcuts.dart::CharacterActivator"
+"flutter::lib::src::widgets::shortcuts.dart::ShortcutActivator" <|-- "flutter::lib::src::widgets::shortcuts.dart::CharacterActivator"
+
+class "flutter::lib::src::widgets::shortcuts.dart::_ActivatorIntentPair" {
+  +ShortcutActivator activator
+  +Intent intent
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::_ActivatorIntentPair" o-- "flutter::lib::src::widgets::shortcuts.dart::ShortcutActivator"
+"flutter::lib::src::widgets::shortcuts.dart::_ActivatorIntentPair" o-- "flutter::lib::src::widgets::actions.dart::Intent"
+
+class "flutter::lib::src::widgets::shortcuts.dart::ShortcutManager" {
+  +bool modal
+  -Map<ShortcutActivator, Intent> _shortcuts
+  -Map<dynamic, List<_ActivatorIntentPair>>? _indexedShortcutsCache
+  +Map<ShortcutActivator, Intent> shortcuts
+  -Map<dynamic, List<_ActivatorIntentPair>> _indexedShortcuts
+  {static} -Map<dynamic, List<_ActivatorIntentPair>> _indexShortcuts()
+  -Intent? _find()
+  +KeyEventResult handleKeypress()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::widgets::shortcuts.dart::Shortcuts" {
+  +ShortcutManager? manager
+  -Map<ShortcutActivator, Intent> _shortcuts
+  +Widget child
+  +String? debugLabel
+  +Map<ShortcutActivator, Intent> shortcuts
+  +State<Shortcuts> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::Shortcuts" o-- "flutter::lib::src::widgets::shortcuts.dart::ShortcutManager"
+"flutter::lib::src::widgets::shortcuts.dart::Shortcuts" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::shortcuts.dart::Shortcuts"
+
+class "flutter::lib::src::widgets::shortcuts.dart::_ShortcutsState" {
+  -ShortcutManager? _internalManager
+  +ShortcutManager manager
+  +void dispose()
+  +void initState()
+  +void didUpdateWidget()
+  -KeyEventResult _handleOnKey()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::_ShortcutsState" o-- "flutter::lib::src::widgets::shortcuts.dart::ShortcutManager"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::shortcuts.dart::_ShortcutsState"
+
+class "flutter::lib::src::widgets::shortcuts.dart::CallbackShortcuts" {
+  +Map<ShortcutActivator, dynamic> bindings
+  +Widget child
+  -bool _applyKeyBinding()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::CallbackShortcuts" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::shortcuts.dart::CallbackShortcuts"
+
+class "flutter::lib::src::widgets::shortcuts.dart::ShortcutRegistryEntry" {
+  +ShortcutRegistry registry
+  +void replaceAll()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::ShortcutRegistryEntry" o-- "flutter::lib::src::widgets::shortcuts.dart::ShortcutRegistry"
+
+class "flutter::lib::src::widgets::shortcuts.dart::ShortcutRegistry" {
+  -Map<ShortcutRegistryEntry, Map<ShortcutActivator, Intent>> _tokenShortcuts
+  +Map<ShortcutActivator, Intent> shortcuts
+  +ShortcutRegistryEntry addAll()
+  {static} +ShortcutRegistry of()
+  {static} +ShortcutRegistry? maybeOf()
+  -void _replaceAll()
+  -void _disposeToken()
+  -bool _debugCheckTokenIsValid()
+  -bool _debugCheckForDuplicates()
+}
+
+class "flutter::lib::src::widgets::shortcuts.dart::ShortcutRegistrar" {
+  +Widget child
+  +State<ShortcutRegistrar> createState()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::ShortcutRegistrar" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::shortcuts.dart::ShortcutRegistrar"
+
+class "flutter::lib::src::widgets::shortcuts.dart::_ShortcutRegistrarState" {
+  +ShortcutRegistry registry
+  +ShortcutManager manager
+  +void initState()
+  -void _shortcutsChanged()
+  +void dispose()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::_ShortcutRegistrarState" o-- "flutter::lib::src::widgets::shortcuts.dart::ShortcutRegistry"
+"flutter::lib::src::widgets::shortcuts.dart::_ShortcutRegistrarState" o-- "flutter::lib::src::widgets::shortcuts.dart::ShortcutManager"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::shortcuts.dart::_ShortcutRegistrarState"
+
+class "flutter::lib::src::widgets::shortcuts.dart::_ShortcutRegistrarMarker" {
+  +ShortcutRegistry registry
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::shortcuts.dart::_ShortcutRegistrarMarker" o-- "flutter::lib::src::widgets::shortcuts.dart::ShortcutRegistry"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::shortcuts.dart::_ShortcutRegistrarMarker"
+
+
+@enduml

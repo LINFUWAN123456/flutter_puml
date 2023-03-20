@@ -1,0 +1,13 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::services::text_layout_metrics.dart::TextLayoutMetrics" {
+  {static} +bool isWhitespace()
+  +TextSelection getLineAtOffset()
+  +dynamic getWordBoundary()
+  +dynamic getTextPositionAbove()
+  +dynamic getTextPositionBelow()
+}
+
+
+@enduml

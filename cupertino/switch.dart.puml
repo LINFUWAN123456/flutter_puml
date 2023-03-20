@@ -1,0 +1,81 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::cupertino::switch.dart::CupertinoSwitch" {
+  +bool value
+  +dynamic onChanged
+  +dynamic activeColor
+  +dynamic trackColor
+  +dynamic thumbColor
+  +dynamic dragStartBehavior
+  +dynamic createState()
+  +void debugFillProperties()
+}
+
+class "flutter::lib::src::cupertino::switch.dart::_CupertinoSwitchState" {
+  -dynamic _tap
+  -dynamic _drag
+  -dynamic _positionController
+  +dynamic position
+  -dynamic _reactionController
+  -dynamic _reaction
+  +bool needsPositionAnimation
+  +bool isInteractive
+  +void initState()
+  +void didUpdateWidget()
+  -void _resumePositionAnimation()
+  -void _handleTapDown()
+  -void _handleTap()
+  -void _handleTapUp()
+  -void _handleTapCancel()
+  -void _handleDragStart()
+  -void _handleDragUpdate()
+  -void _handleDragEnd()
+  -void _emitVibration()
+  +dynamic build()
+  +void dispose()
+}
+
+class "flutter::lib::src::cupertino::switch.dart::_CupertinoSwitchRenderObjectWidget" {
+  +bool value
+  +dynamic activeColor
+  +dynamic trackColor
+  +dynamic thumbColor
+  +dynamic onChanged
+  +_CupertinoSwitchState state
+  +dynamic textDirection
+  +_RenderCupertinoSwitch createRenderObject()
+  +void updateRenderObject()
+}
+
+"flutter::lib::src::cupertino::switch.dart::_CupertinoSwitchRenderObjectWidget" o-- "flutter::lib::src::cupertino::switch.dart::_CupertinoSwitchState"
+
+class "flutter::lib::src::cupertino::switch.dart::_RenderCupertinoSwitch" {
+  -_CupertinoSwitchState _state
+  -bool _value
+  -dynamic _activeColor
+  -dynamic _trackColor
+  -CupertinoThumbPainter _thumbPainter
+  -dynamic _onChanged
+  -dynamic _textDirection
+  -dynamic _clipRRectLayer
+  +bool value
+  +dynamic activeColor
+  +dynamic trackColor
+  +dynamic thumbColor
+  +dynamic onChanged
+  +dynamic textDirection
+  +bool isInteractive
+  +bool hitTestSelf()
+  +void handleEvent()
+  +void describeSemanticsConfiguration()
+  +void paint()
+  +void dispose()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::cupertino::switch.dart::_RenderCupertinoSwitch" o-- "flutter::lib::src::cupertino::switch.dart::_CupertinoSwitchState"
+"flutter::lib::src::cupertino::switch.dart::_RenderCupertinoSwitch" o-- "flutter::lib::src::cupertino::thumb_painter.dart::CupertinoThumbPainter"
+
+
+@enduml

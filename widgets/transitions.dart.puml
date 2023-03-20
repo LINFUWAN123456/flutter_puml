@@ -1,0 +1,155 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::transitions.dart::AnimatedWidget" {
+  +dynamic listenable
+  +Widget build()
+  +State<AnimatedWidget> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::transitions.dart::AnimatedWidget"
+
+class "flutter::lib::src::widgets::transitions.dart::_AnimatedState" {
+  +void initState()
+  +void didUpdateWidget()
+  +void dispose()
+  -void _handleChange()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::transitions.dart::_AnimatedState"
+
+class "flutter::lib::src::widgets::transitions.dart::SlideTransition" {
+  +dynamic textDirection
+  +bool transformHitTests
+  +Widget? child
+  +dynamic position
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::SlideTransition" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::SlideTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::ScaleTransition" {
+  +dynamic alignment
+  +dynamic filterQuality
+  +Widget? child
+  +dynamic scale
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::ScaleTransition" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::ScaleTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::RotationTransition" {
+  +dynamic alignment
+  +dynamic filterQuality
+  +Widget? child
+  +dynamic turns
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::RotationTransition" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::RotationTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::SizeTransition" {
+  +dynamic axis
+  +double axisAlignment
+  +Widget? child
+  +dynamic sizeFactor
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::SizeTransition" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::SizeTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::FadeTransition" {
+  +dynamic opacity
+  +bool alwaysIncludeSemantics
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::transitions.dart::FadeTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::SliverFadeTransition" {
+  +dynamic opacity
+  +bool alwaysIncludeSemantics
+  +dynamic createRenderObject()
+  +void updateRenderObject()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::framework.dart::SingleChildRenderObjectWidget" <|-- "flutter::lib::src::widgets::transitions.dart::SliverFadeTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::RelativeRectTween" {
+  +dynamic lerp()
+}
+
+class "flutter::lib::src::widgets::transitions.dart::PositionedTransition" {
+  +Widget child
+  +dynamic rect
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::PositionedTransition" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::PositionedTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::RelativePositionedTransition" {
+  +dynamic size
+  +Widget child
+  +dynamic rect
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::RelativePositionedTransition" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::RelativePositionedTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::DecoratedBoxTransition" {
+  +dynamic decoration
+  +dynamic position
+  +Widget child
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::DecoratedBoxTransition" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::DecoratedBoxTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::AlignTransition" {
+  +double? widthFactor
+  +double? heightFactor
+  +Widget child
+  +dynamic alignment
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::AlignTransition" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::AlignTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::DefaultTextStyleTransition" {
+  +dynamic textAlign
+  +bool softWrap
+  +dynamic overflow
+  +int? maxLines
+  +Widget child
+  +dynamic style
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::DefaultTextStyleTransition" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::DefaultTextStyleTransition"
+
+class "flutter::lib::src::widgets::transitions.dart::AnimatedBuilder" {
+  +Widget Function(BuildContext, Widget?) builder
+  +Widget? child
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::transitions.dart::AnimatedBuilder" o-- "flutter::lib::src::widgets::framework.dart::Widget Function(BuildContext, Widget)"
+"flutter::lib::src::widgets::transitions.dart::AnimatedBuilder" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::transitions.dart::AnimatedWidget" <|-- "flutter::lib::src::widgets::transitions.dart::AnimatedBuilder"
+
+
+@enduml

@@ -1,0 +1,62 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::image.dart::RenderImage" {
+  -dynamic _resolvedAlignment
+  -bool? _flipHorizontally
+  -dynamic _image
+  +String? debugImageLabel
+  -double? _width
+  -double? _height
+  -double _scale
+  -dynamic _colorFilter
+  -dynamic _color
+  -dynamic _opacity
+  -dynamic _filterQuality
+  -dynamic _colorBlendMode
+  -dynamic _fit
+  -dynamic _alignment
+  -dynamic _repeat
+  -dynamic _centerSlice
+  -bool _invertColors
+  -bool _matchTextDirection
+  -dynamic _textDirection
+  -bool _isAntiAlias
+  +dynamic image
+  +double? width
+  +double? height
+  +double scale
+  +dynamic color
+  +dynamic opacity
+  +dynamic filterQuality
+  +dynamic colorBlendMode
+  +dynamic fit
+  +dynamic alignment
+  +dynamic repeat
+  +dynamic centerSlice
+  +bool invertColors
+  +bool matchTextDirection
+  +dynamic textDirection
+  +bool isAntiAlias
+  -void _resolve()
+  -void _markNeedResolution()
+  -void _updateColorFilter()
+  -dynamic _sizeForConstraints()
+  +double computeMinIntrinsicWidth()
+  +double computeMaxIntrinsicWidth()
+  +double computeMinIntrinsicHeight()
+  +double computeMaxIntrinsicHeight()
+  +bool hitTestSelf()
+  +dynamic computeDryLayout()
+  +void performLayout()
+  +void attach()
+  +void detach()
+  +void paint()
+  +void dispose()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::image.dart::RenderImage"
+
+
+@enduml

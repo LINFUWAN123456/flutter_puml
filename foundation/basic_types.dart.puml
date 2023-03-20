@@ -1,0 +1,42 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::foundation::basic_types.dart::CachingIterable" {
+  -Iterator<E> _prefillIterator
+  -List<E> _results
+  +Iterator<E> iterator
+  +int length
+  +Iterable<T> map()
+  +Iterable<E> where()
+  +Iterable<T> expand()
+  +Iterable<E> take()
+  +Iterable<E> takeWhile()
+  +Iterable<E> skip()
+  +Iterable<E> skipWhile()
+  +List<E> toList()
+  -void _precacheEntireList()
+  -bool _fillNext()
+}
+
+"dart::collection::IterableBase" <|-- "flutter::lib::src::foundation::basic_types.dart::CachingIterable"
+
+class "flutter::lib::src::foundation::basic_types.dart::_LazyListIterator" {
+  -CachingIterable<E> _owner
+  -int _index
+  +E current
+  +bool moveNext()
+}
+
+"flutter::lib::src::foundation::basic_types.dart::_LazyListIterator" o-- "flutter::lib::src::foundation::basic_types.dart::CachingIterable<E>"
+"dart::core::Iterator" <|-- "flutter::lib::src::foundation::basic_types.dart::_LazyListIterator"
+
+class "flutter::lib::src::foundation::basic_types.dart::Factory" {
+  +T Function() constructor
+  +Type type
+  +String toString()
+}
+
+"flutter::lib::src::foundation::basic_types.dart::Factory" o-- "flutter::lib::src::foundation::basic_types.dart::T Function()"
+
+
+@enduml

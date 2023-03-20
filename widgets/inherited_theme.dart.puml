@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter::lib::src::widgets::inherited_theme.dart::InheritedTheme" {
+  +Widget wrap()
+  {static} +Widget captureAll()
+  {static} +CapturedThemes capture()
+}
+
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::inherited_theme.dart::InheritedTheme"
+
+class "flutter::lib::src::widgets::inherited_theme.dart::CapturedThemes" {
+  -List<InheritedTheme> _themes
+  +Widget wrap()
+}
+
+class "flutter::lib::src::widgets::inherited_theme.dart::_CaptureAll" {
+  +List<InheritedTheme> themes
+  +Widget child
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::inherited_theme.dart::_CaptureAll" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::inherited_theme.dart::_CaptureAll"
+
+
+@enduml

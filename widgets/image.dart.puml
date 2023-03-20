@@ -1,0 +1,71 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::image.dart::Image" {
+  +dynamic image
+  +Widget Function(BuildContext, Widget, int?, bool)? frameBuilder
+  +Widget Function(BuildContext, Widget, dynamic)? loadingBuilder
+  +Widget Function(BuildContext, Object, StackTrace?)? errorBuilder
+  +double? width
+  +double? height
+  +dynamic color
+  +dynamic opacity
+  +dynamic filterQuality
+  +dynamic colorBlendMode
+  +dynamic fit
+  +dynamic alignment
+  +dynamic repeat
+  +dynamic centerSlice
+  +bool matchTextDirection
+  +bool gaplessPlayback
+  +String? semanticLabel
+  +bool excludeFromSemantics
+  +bool isAntiAlias
+  +State<Image> createState()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::image.dart::Image" o-- "flutter::lib::src::widgets::image.dart::Widget Function(BuildContext, Widget, int, bool)"
+"flutter::lib::src::widgets::image.dart::Image" o-- "flutter::lib::src::widgets::image.dart::Widget Function(BuildContext, Widget, dynamic)"
+"flutter::lib::src::widgets::image.dart::Image" o-- "flutter::lib::src::widgets::image.dart::Widget Function(BuildContext, Object, StackTrace)"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::image.dart::Image"
+
+class "flutter::lib::src::widgets::image.dart::_ImageState" {
+  -dynamic _imageStream
+  -dynamic _imageInfo
+  -dynamic _loadingProgress
+  -bool _isListeningToStream
+  -bool _invertColors
+  -int? _frameNumber
+  -bool _wasSynchronouslyLoaded
+  -DisposableBuildContext<State<Image>> _scrollAwareContext
+  -Object? _lastException
+  -StackTrace? _lastStack
+  -dynamic _completerHandle
+  -dynamic _imageStreamListener
+  +void initState()
+  +void dispose()
+  +void didChangeDependencies()
+  +void didUpdateWidget()
+  +void didChangeAccessibilityFeatures()
+  +void reassemble()
+  -void _updateInvertColors()
+  -void _resolveImage()
+  -dynamic _getListener()
+  -void _handleImageFrame()
+  -void _handleImageChunk()
+  -void _replaceImage()
+  -void _updateSourceStream()
+  -void _listenToStream()
+  -void _stopListeningToStream()
+  -Widget _debugBuildErrorWidget()
+  +Widget build()
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::widgets::image.dart::_ImageState" o-- "flutter::lib::src::widgets::disposable_build_context.dart::DisposableBuildContext<State<Image>>"
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::image.dart::_ImageState"
+"flutter::lib::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "flutter::lib::src::widgets::image.dart::_ImageState"
+
+
+@enduml

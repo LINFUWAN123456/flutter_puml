@@ -1,0 +1,139 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::DoNothingAndStopPropagationTextIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::DoNothingAndStopPropagationTextIntent"
+
+abstract class "flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent" {
+  +bool forward
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::DeleteCharacterIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::DeleteCharacterIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::DeleteToNextWordBoundaryIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::DeleteToNextWordBoundaryIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::DeleteToLineBreakIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::DeleteToLineBreakIntent"
+
+abstract class "flutter::lib::src::widgets::text_editing_intents.dart::DirectionalCaretMovementIntent" {
+  +bool collapseSelection
+  +bool collapseAtReversal
+  +bool continuesAtWrap
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::DirectionalCaretMovementIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionByCharacterIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalCaretMovementIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionByCharacterIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionToNextWordBoundaryIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalCaretMovementIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionToNextWordBoundaryIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionToNextWordBoundaryOrCaretLocationIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionToNextWordBoundaryOrCaretLocationIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ExpandSelectionToDocumentBoundaryIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ExpandSelectionToDocumentBoundaryIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ExpandSelectionToLineBreakIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ExpandSelectionToLineBreakIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionToLineBreakIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalCaretMovementIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionToLineBreakIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionVerticallyToAdjacentLineIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalCaretMovementIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionVerticallyToAdjacentLineIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionToDocumentBoundaryIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalCaretMovementIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ExtendSelectionToDocumentBoundaryIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ScrollToDocumentBoundaryIntent" {
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::DirectionalTextEditingIntent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ScrollToDocumentBoundaryIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::SelectAllTextIntent" {
+  +dynamic cause
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::SelectAllTextIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::CopySelectionTextIntent" {
+  {static} +CopySelectionTextIntent copy
+  +dynamic cause
+  +bool collapseSelection
+}
+
+"flutter::lib::src::widgets::text_editing_intents.dart::CopySelectionTextIntent" o-- "flutter::lib::src::widgets::text_editing_intents.dart::CopySelectionTextIntent"
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::CopySelectionTextIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::PasteTextIntent" {
+  +dynamic cause
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::PasteTextIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::RedoTextIntent" {
+  +dynamic cause
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::RedoTextIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::ReplaceTextIntent" {
+  +dynamic currentTextEditingValue
+  +String replacementText
+  +dynamic replacementRange
+  +dynamic cause
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::ReplaceTextIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::UndoTextIntent" {
+  +dynamic cause
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::UndoTextIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::UpdateSelectionIntent" {
+  +dynamic currentTextEditingValue
+  +dynamic newSelection
+  +dynamic cause
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::UpdateSelectionIntent"
+
+class "flutter::lib::src::widgets::text_editing_intents.dart::TransposeCharactersIntent" {
+}
+
+"flutter::lib::src::widgets::actions.dart::Intent" <|-- "flutter::lib::src::widgets::text_editing_intents.dart::TransposeCharactersIntent"
+
+
+@enduml

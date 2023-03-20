@@ -1,0 +1,16 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::services::mouse_tracking.dart::MouseTrackerAnnotation" {
+  +void Function(dynamic)? onEnter
+  +void Function(dynamic)? onExit
+  +MouseCursor cursor
+  +bool validForMouseTracker
+  +void debugFillProperties()
+}
+
+"flutter::lib::src::services::mouse_tracking.dart::MouseTrackerAnnotation" o-- "flutter::lib::src::services::mouse_tracking.dart::void Function(dynamic)"
+"flutter::lib::src::services::mouse_tracking.dart::MouseTrackerAnnotation" o-- "flutter::lib::src::services::mouse_cursor.dart::MouseCursor"
+
+
+@enduml

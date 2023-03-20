@@ -1,0 +1,59 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::material::scrollbar.dart::Scrollbar" {
+  +dynamic child
+  +dynamic controller
+  +bool? thumbVisibility
+  +bool? isAlwaysShown
+  +bool? trackVisibility
+  +bool? showTrackOnHover
+  +double? hoverThickness
+  +double? thickness
+  +dynamic radius
+  +bool? interactive
+  +dynamic notificationPredicate
+  +dynamic scrollbarOrientation
+  +dynamic build()
+}
+
+class "flutter::lib::src::material::scrollbar.dart::_MaterialScrollbar" {
+  +bool? showTrackOnHover
+  +double? hoverThickness
+  +_MaterialScrollbarState createState()
+}
+
+class "flutter::lib::src::material::scrollbar.dart::_MaterialScrollbarState" {
+  -dynamic _hoverAnimationController
+  -bool _dragIsActive
+  -bool _hoverIsActive
+  -ColorScheme _colorScheme
+  -ScrollbarThemeData _scrollbarTheme
+  -bool _useAndroidScrollbar
+  +bool showScrollbar
+  +bool enableGestures
+  -bool _showTrackOnHover
+  -MaterialStateProperty<bool> _trackVisibility
+  -Set<MaterialState> _states
+  -MaterialStateProperty<dynamic> _thumbColor
+  -MaterialStateProperty<dynamic> _trackColor
+  -MaterialStateProperty<dynamic> _trackBorderColor
+  -MaterialStateProperty<double> _thickness
+  +void initState()
+  +void didChangeDependencies()
+  +void updateScrollbarPainter()
+  +void handleThumbPressStart()
+  +void handleThumbPressEnd()
+  +void handleHover()
+  +void handleHoverExit()
+  +void dispose()
+}
+
+"flutter::lib::src::material::scrollbar.dart::_MaterialScrollbarState" o-- "flutter::lib::src::material::color_scheme.dart::ColorScheme"
+"flutter::lib::src::material::scrollbar.dart::_MaterialScrollbarState" o-- "flutter::lib::src::material::scrollbar_theme.dart::ScrollbarThemeData"
+"flutter::lib::src::material::scrollbar.dart::_MaterialScrollbarState" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<bool>"
+"flutter::lib::src::material::scrollbar.dart::_MaterialScrollbarState" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<dynamic>"
+"flutter::lib::src::material::scrollbar.dart::_MaterialScrollbarState" o-- "flutter::lib::src::material::material_state.dart::MaterialStateProperty<double>"
+
+
+@enduml

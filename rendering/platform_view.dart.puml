@@ -1,0 +1,147 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::rendering::platform_view.dart::RenderAndroidView" {
+  -_PlatformViewState _state
+  -dynamic _currentTextureSize
+  -bool _isDisposed
+  -dynamic _viewController
+  -dynamic _clipBehavior
+  -LayerHandle<ClipRectLayer> _clipRectLayer
+  +dynamic controller
+  +dynamic clipBehavior
+  +bool sizedByParent
+  +bool alwaysNeedsCompositing
+  +bool isRepaintBoundary
+  -void _onPlatformViewCreated()
+  +dynamic computeDryLayout()
+  +void performResize()
+  -Future<void> _sizePlatformView()
+  -void _setOffset()
+  +void paint()
+  +void dispose()
+  -void _paintTexture()
+  +void describeSemanticsConfiguration()
+}
+
+"flutter::lib::src::rendering::platform_view.dart::RenderAndroidView" o-- "flutter::lib::src::rendering::platform_view.dart::_PlatformViewState"
+"flutter::lib::src::rendering::platform_view.dart::RenderAndroidView" o-- "flutter::lib::src::rendering::layer.dart::LayerHandle<ClipRectLayer>"
+"flutter::lib::src::rendering::platform_view.dart::PlatformViewRenderBox" <|-- "flutter::lib::src::rendering::platform_view.dart::RenderAndroidView"
+
+class "flutter::lib::src::rendering::platform_view.dart::RenderUiKitView" {
+  -dynamic _viewController
+  +PlatformViewHitTestBehavior hitTestBehavior
+  -_UiKitViewGestureRecognizer? _gestureRecognizer
+  -dynamic _lastPointerDownEvent
+  +dynamic viewController
+  +bool sizedByParent
+  +bool alwaysNeedsCompositing
+  +bool isRepaintBoundary
+  +void updateGestureRecognizers()
+  +dynamic computeDryLayout()
+  +void paint()
+  +bool hitTest()
+  +bool hitTestSelf()
+  +void handleEvent()
+  -void _handleGlobalPointerEvent()
+  +void describeSemanticsConfiguration()
+  +void attach()
+  +void detach()
+}
+
+"flutter::lib::src::rendering::platform_view.dart::RenderUiKitView" o-- "flutter::lib::src::rendering::platform_view.dart::PlatformViewHitTestBehavior"
+"flutter::lib::src::rendering::platform_view.dart::RenderUiKitView" o-- "flutter::lib::src::rendering::platform_view.dart::_UiKitViewGestureRecognizer"
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::platform_view.dart::RenderUiKitView"
+
+class "flutter::lib::src::rendering::platform_view.dart::_UiKitViewGestureRecognizer" {
+  +Set<dynamic> gestureRecognizerFactories
+  -Set<dynamic> _gestureRecognizers
+  +dynamic controller
+  +String debugDescription
+  +void addAllowedPointer()
+  +void didStopTrackingLastPointer()
+  +void handleEvent()
+  +void acceptGesture()
+  +void rejectGesture()
+  +void reset()
+}
+
+class "flutter::lib::src::rendering::platform_view.dart::_PlatformViewGestureRecognizer" {
+  -Future<void> Function(dynamic) _handlePointerEvent
+  +Map<int, List<dynamic>> cachedEvents
+  +Set<int> forwardedPointers
+  +Set<dynamic> gestureRecognizerFactories
+  -Set<dynamic> _gestureRecognizers
+  +String debugDescription
+  +void addAllowedPointer()
+  +void didStopTrackingLastPointer()
+  +void handleEvent()
+  +void acceptGesture()
+  +void rejectGesture()
+  -void _cacheEvent()
+  -void _flushPointerCache()
+  +void stopTrackingPointer()
+  +void reset()
+}
+
+"flutter::lib::src::rendering::platform_view.dart::_PlatformViewGestureRecognizer" o-- "flutter::lib::src::rendering::platform_view.dart::Future<void> Function(dynamic)"
+
+class "flutter::lib::src::rendering::platform_view.dart::PlatformViewRenderBox" {
+  -dynamic _controller
+  +dynamic controller
+  +bool sizedByParent
+  +bool alwaysNeedsCompositing
+  +bool isRepaintBoundary
+  +void updateGestureRecognizers()
+  +dynamic computeDryLayout()
+  +void paint()
+  +void describeSemanticsConfiguration()
+}
+
+"flutter::lib::src::rendering::box.dart::RenderBox" <|-- "flutter::lib::src::rendering::platform_view.dart::PlatformViewRenderBox"
+"flutter::lib::src::rendering::platform_view.dart::_PlatformViewGestureMixin" <|-- "flutter::lib::src::rendering::platform_view.dart::PlatformViewRenderBox"
+
+class "flutter::lib::src::rendering::platform_view.dart::PlatformViewHitTestBehavior" {
+  +int index
+  {static} +List<PlatformViewHitTestBehavior> values
+  {static} +PlatformViewHitTestBehavior opaque
+  {static} +PlatformViewHitTestBehavior translucent
+  {static} +PlatformViewHitTestBehavior transparent
+}
+
+"flutter::lib::src::rendering::platform_view.dart::PlatformViewHitTestBehavior" o-- "flutter::lib::src::rendering::platform_view.dart::PlatformViewHitTestBehavior"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::platform_view.dart::PlatformViewHitTestBehavior"
+
+class "flutter::lib::src::rendering::platform_view.dart::_PlatformViewState" {
+  +int index
+  {static} +List<_PlatformViewState> values
+  {static} +_PlatformViewState uninitialized
+  {static} +_PlatformViewState resizing
+  {static} +_PlatformViewState ready
+}
+
+"flutter::lib::src::rendering::platform_view.dart::_PlatformViewState" o-- "flutter::lib::src::rendering::platform_view.dart::_PlatformViewState"
+"dart::core::Enum" <|-- "flutter::lib::src::rendering::platform_view.dart::_PlatformViewState"
+
+abstract class "flutter::lib::src::rendering::platform_view.dart::_PlatformViewGestureMixin" {
+  -PlatformViewHitTestBehavior? _hitTestBehavior
+  -Future<void> Function(dynamic)? _handlePointerEvent
+  -_PlatformViewGestureRecognizer? _gestureRecognizer
+  +PlatformViewHitTestBehavior hitTestBehavior
+  +dynamic onEnter
+  +dynamic onExit
+  +dynamic cursor
+  +bool validForMouseTracker
+  -void _updateGestureRecognizersWithCallBack()
+  +bool hitTest()
+  +bool hitTestSelf()
+  +void handleEvent()
+  +void detach()
+}
+
+"flutter::lib::src::rendering::platform_view.dart::_PlatformViewGestureMixin" o-- "flutter::lib::src::rendering::platform_view.dart::PlatformViewHitTestBehavior"
+"flutter::lib::src::rendering::platform_view.dart::_PlatformViewGestureMixin" o-- "flutter::lib::src::rendering::platform_view.dart::Future<void> Function(dynamic)"
+"flutter::lib::src::rendering::platform_view.dart::_PlatformViewGestureMixin" o-- "flutter::lib::src::rendering::platform_view.dart::_PlatformViewGestureRecognizer"
+
+
+@enduml

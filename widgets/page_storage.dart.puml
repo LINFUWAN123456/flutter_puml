@@ -1,0 +1,36 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::page_storage.dart::PageStorageKey" {
+}
+
+class "flutter::lib::src::widgets::page_storage.dart::_StorageEntryIdentifier" {
+  +List<PageStorageKey<dynamic>> keys
+  +bool isNotEmpty
+  +int hashCode
+  +bool ==()
+  +String toString()
+}
+
+class "flutter::lib::src::widgets::page_storage.dart::PageStorageBucket" {
+  -Map<Object, dynamic>? _storage
+  {static} -bool _maybeAddKey()
+  -List<PageStorageKey<dynamic>> _allKeys()
+  -_StorageEntryIdentifier _computeIdentifier()
+  +void writeState()
+  +dynamic readState()
+}
+
+class "flutter::lib::src::widgets::page_storage.dart::PageStorage" {
+  +Widget child
+  +PageStorageBucket bucket
+  {static} +PageStorageBucket? of()
+  +Widget build()
+}
+
+"flutter::lib::src::widgets::page_storage.dart::PageStorage" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::page_storage.dart::PageStorage" o-- "flutter::lib::src::widgets::page_storage.dart::PageStorageBucket"
+"flutter::lib::src::widgets::framework.dart::StatelessWidget" <|-- "flutter::lib::src::widgets::page_storage.dart::PageStorage"
+
+
+@enduml

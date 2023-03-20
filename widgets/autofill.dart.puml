@@ -1,0 +1,50 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::autofill.dart::AutofillGroup" {
+  +Widget child
+  +AutofillContextAction onDisposeAction
+  {static} +AutofillGroupState? of()
+  +AutofillGroupState createState()
+}
+
+"flutter::lib::src::widgets::autofill.dart::AutofillGroup" o-- "flutter::lib::src::widgets::framework.dart::Widget"
+"flutter::lib::src::widgets::autofill.dart::AutofillGroup" o-- "flutter::lib::src::widgets::autofill.dart::AutofillContextAction"
+"flutter::lib::src::widgets::framework.dart::StatefulWidget" <|-- "flutter::lib::src::widgets::autofill.dart::AutofillGroup"
+
+class "flutter::lib::src::widgets::autofill.dart::AutofillGroupState" {
+  -Map<String, dynamic> _clients
+  -bool _isTopmostAutofillGroup
+  +Iterable<dynamic> autofillClients
+  +dynamic getAutofillClient()
+  +void register()
+  +void unregister()
+  +void didChangeDependencies()
+  +Widget build()
+  +void dispose()
+}
+
+"flutter::lib::src::widgets::framework.dart::State" <|-- "flutter::lib::src::widgets::autofill.dart::AutofillGroupState"
+
+class "flutter::lib::src::widgets::autofill.dart::_AutofillScope" {
+  -AutofillGroupState? _scope
+  +AutofillGroup client
+  +bool updateShouldNotify()
+}
+
+"flutter::lib::src::widgets::autofill.dart::_AutofillScope" o-- "flutter::lib::src::widgets::autofill.dart::AutofillGroupState"
+"flutter::lib::src::widgets::autofill.dart::_AutofillScope" o-- "flutter::lib::src::widgets::autofill.dart::AutofillGroup"
+"flutter::lib::src::widgets::framework.dart::InheritedWidget" <|-- "flutter::lib::src::widgets::autofill.dart::_AutofillScope"
+
+class "flutter::lib::src::widgets::autofill.dart::AutofillContextAction" {
+  +int index
+  {static} +List<AutofillContextAction> values
+  {static} +AutofillContextAction commit
+  {static} +AutofillContextAction cancel
+}
+
+"flutter::lib::src::widgets::autofill.dart::AutofillContextAction" o-- "flutter::lib::src::widgets::autofill.dart::AutofillContextAction"
+"dart::core::Enum" <|-- "flutter::lib::src::widgets::autofill.dart::AutofillContextAction"
+
+
+@enduml

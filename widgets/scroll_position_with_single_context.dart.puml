@@ -1,0 +1,33 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::widgets::scroll_position_with_single_context.dart::ScrollPositionWithSingleContext" {
+  -double _heldPreviousVelocity
+  -dynamic _userScrollDirection
+  -ScrollDragController? _currentDrag
+  +dynamic axisDirection
+  +dynamic userScrollDirection
+  +double setPixels()
+  +void absorb()
+  +void applyNewDimensions()
+  +void beginActivity()
+  +void applyUserOffset()
+  +void goIdle()
+  +void goBallistic()
+  +void updateUserScrollDirection()
+  +Future<void> animateTo()
+  +void jumpTo()
+  +void pointerScroll()
+  +void jumpToWithoutSettling()
+  +ScrollHoldController hold()
+  +dynamic drag()
+  +void dispose()
+  +void debugFillDescription()
+}
+
+"flutter::lib::src::widgets::scroll_position_with_single_context.dart::ScrollPositionWithSingleContext" o-- "flutter::lib::src::widgets::scroll_activity.dart::ScrollDragController"
+"flutter::lib::src::widgets::scroll_position.dart::ScrollPosition" <|-- "flutter::lib::src::widgets::scroll_position_with_single_context.dart::ScrollPositionWithSingleContext"
+"flutter::lib::src::widgets::scroll_activity.dart::ScrollActivityDelegate" <|-- "flutter::lib::src::widgets::scroll_position_with_single_context.dart::ScrollPositionWithSingleContext"
+
+
+@enduml

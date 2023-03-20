@@ -1,0 +1,49 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter::lib::src::painting::basic_types.dart::RenderComparison" {
+  +int index
+  {static} +List<RenderComparison> values
+  {static} +RenderComparison identical
+  {static} +RenderComparison metadata
+  {static} +RenderComparison paint
+  {static} +RenderComparison layout
+}
+
+"flutter::lib::src::painting::basic_types.dart::RenderComparison" o-- "flutter::lib::src::painting::basic_types.dart::RenderComparison"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::basic_types.dart::RenderComparison"
+
+class "flutter::lib::src::painting::basic_types.dart::Axis" {
+  +int index
+  {static} +List<Axis> values
+  {static} +Axis horizontal
+  {static} +Axis vertical
+}
+
+"flutter::lib::src::painting::basic_types.dart::Axis" o-- "flutter::lib::src::painting::basic_types.dart::Axis"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::basic_types.dart::Axis"
+
+class "flutter::lib::src::painting::basic_types.dart::VerticalDirection" {
+  +int index
+  {static} +List<VerticalDirection> values
+  {static} +VerticalDirection up
+  {static} +VerticalDirection down
+}
+
+"flutter::lib::src::painting::basic_types.dart::VerticalDirection" o-- "flutter::lib::src::painting::basic_types.dart::VerticalDirection"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::basic_types.dart::VerticalDirection"
+
+class "flutter::lib::src::painting::basic_types.dart::AxisDirection" {
+  +int index
+  {static} +List<AxisDirection> values
+  {static} +AxisDirection up
+  {static} +AxisDirection right
+  {static} +AxisDirection down
+  {static} +AxisDirection left
+}
+
+"flutter::lib::src::painting::basic_types.dart::AxisDirection" o-- "flutter::lib::src::painting::basic_types.dart::AxisDirection"
+"dart::core::Enum" <|-- "flutter::lib::src::painting::basic_types.dart::AxisDirection"
+
+
+@enduml
